@@ -13,3 +13,4 @@ Export-Package: net.sf.tweety.agents.dialogues,
 Require-Bundle: net.sf.tweety.agents;bundle-version="1.7.0",
  net.sf.tweety.arg.prob;bundle-version="1.0.0",
  net.sf.tweety.arg.saf;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

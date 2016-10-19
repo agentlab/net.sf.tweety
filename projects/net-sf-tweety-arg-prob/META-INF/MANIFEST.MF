@@ -13,3 +13,4 @@ Export-Package: net.sf.tweety.arg.prob,
 Require-Bundle: net.sf.tweety.arg.deductive;bundle-version="1.7.0",
  net.sf.tweety.arg.dung;bundle-version="1.7.0",
  net.sf.tweety.logics.commons;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

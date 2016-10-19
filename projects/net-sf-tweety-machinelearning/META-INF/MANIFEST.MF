@@ -7,3 +7,4 @@ Export-Package: net.sf.tweety.machinelearning,
  net.sf.tweety.machinelearning.assoc,
  net.sf.tweety.machinelearning.svm,
  net.sf.tweety.machinelearning.test
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

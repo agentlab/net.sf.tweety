@@ -6,3 +6,4 @@ Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.web,
  net.sf.tweety.web.services
 Require-Bundle: net.sf.tweety.arg.delp;bundle-version="1.7.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

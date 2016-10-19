@@ -3,3 +3,4 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tweety (Complete Library)
 Bundle-SymbolicName: net.sf.tweety
 Bundle-Version: 1.7.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

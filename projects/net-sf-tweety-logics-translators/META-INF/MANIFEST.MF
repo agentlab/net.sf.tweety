@@ -17,3 +17,4 @@ Require-Bundle: net.sf.tweety.lp.asp;bundle-version="1.0.0",
  net.sf.tweety.logics.pl;bundle-version="1.7.0",
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
  org.slf4j.api;bundle-version="1.7.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

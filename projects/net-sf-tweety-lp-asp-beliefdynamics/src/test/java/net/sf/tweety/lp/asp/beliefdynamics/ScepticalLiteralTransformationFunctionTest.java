@@ -20,18 +20,19 @@ package net.sf.tweety.lp.asp.beliefdynamics;
 
 
 import static org.junit.Assert.assertFalse;
+
+import org.junit.Test;
+
 import net.sf.tweety.arg.lp.semantics.attack.Attack;
 import net.sf.tweety.arg.lp.semantics.attack.AttackStrategy;
 import net.sf.tweety.arg.lp.semantics.attack.Defeat;
 import net.sf.tweety.arg.lp.semantics.attack.StrongAttack;
+import net.sf.tweety.lp.asp.beliefdynamics.selectiverevision.ScepticalLiteralTransformationFunction;
 import net.sf.tweety.lp.asp.syntax.DLPAtom;
 import net.sf.tweety.lp.asp.syntax.DLPNeg;
 import net.sf.tweety.lp.asp.syntax.DLPNot;
 import net.sf.tweety.lp.asp.syntax.Program;
 import net.sf.tweety.lp.asp.syntax.Rule;
-import net.sf.tweety.lp.asp.beliefdynamics.selectiverevision.ScepticalLiteralTransformationFunction;
-
-import org.junit.Test;
 
 public class ScepticalLiteralTransformationFunctionTest {
 	DLPAtom a1 = new DLPAtom("a1");

@@ -1,14 +1,14 @@
 package net.sf.tweety.arg.delp;
 
-import net.sf.tweety.arg.delp.syntax.DelpRule;
-import net.sf.tweety.logics.fol.syntax.FOLAtom;
-import net.sf.tweety.logics.fol.syntax.FolFormula;
-import net.sf.tweety.logics.fol.syntax.Negation;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Comparator;
+
+import net.sf.tweety.arg.delp.syntax.DelpRule;
+import net.sf.tweety.logics.fol.syntax.FOLAtom;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.Negation;
 
 /**
  * Utility functions for test classes to access KBs etc.

@@ -18,11 +18,11 @@
  */
 package net.sf.tweety.arg.delp.syntax;
 
+import java.util.Collections;
+
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.RelationalFormula;
-
-import java.util.Collections;
 
 /**
  * This class implements a fact in defeasible logic programming which encapsulates a literal.

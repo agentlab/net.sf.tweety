@@ -18,12 +18,13 @@
  */
 package net.sf.tweety.arg.dung.syntax;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
 
 import net.sf.tweety.arg.dung.ldo.syntax.LdoFormula;
 import net.sf.tweety.arg.dung.ldo.syntax.LdoNegation;
 import net.sf.tweety.arg.dung.ldo.syntax.LdoRelation;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Signature;
 import net.sf.tweety.graphs.DirectedEdge;
 
 /**

@@ -18,13 +18,16 @@
  */
 package net.sf.tweety.logics.cl.parser;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.cl.*;
-import net.sf.tweety.logics.cl.syntax.*;
-import net.sf.tweety.logics.pl.parser.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.Parser;
+import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.logics.cl.ClBeliefSet;
+import net.sf.tweety.logics.cl.syntax.Conditional;
+import net.sf.tweety.logics.pl.parser.PlParser;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 
 /**

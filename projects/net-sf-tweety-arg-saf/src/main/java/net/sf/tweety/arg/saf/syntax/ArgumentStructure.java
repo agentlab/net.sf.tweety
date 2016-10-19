@@ -18,13 +18,16 @@
  */
 package net.sf.tweety.arg.saf.syntax;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
-import net.sf.tweety.arg.dung.semantics.*;
-import net.sf.tweety.arg.dung.syntax.*;
-import net.sf.tweety.arg.saf.*;
-import net.sf.tweety.commons.util.rules.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.arg.dung.semantics.Extension;
+import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
+import net.sf.tweety.commons.util.rules.Derivation;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 /**
  * This class models an argument structure, i.e. a minimal (with respect to set

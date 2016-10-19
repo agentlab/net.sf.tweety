@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import net.sf.tweety.agents.dialogues.DialogueTrace;
-import net.sf.tweety.arg.dung.syntax.*;
+import net.sf.tweety.arg.dung.syntax.Attack;
 /**
  * Objects of this class represent utility function that assess
  * dialogue traces.

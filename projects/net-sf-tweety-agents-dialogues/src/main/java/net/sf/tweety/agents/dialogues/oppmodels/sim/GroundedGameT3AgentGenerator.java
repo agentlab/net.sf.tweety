@@ -23,6 +23,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.agents.dialogues.oppmodels.BeliefState;
 import net.sf.tweety.agents.dialogues.oppmodels.GroundedGameSystem;
 import net.sf.tweety.agents.dialogues.oppmodels.GroundedGameUtilityFunction;
@@ -35,9 +38,6 @@ import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.math.probability.Probability;
 import net.sf.tweety.math.probability.ProbabilityFunction;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Generates agents of type T3.

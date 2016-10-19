@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * Instances of this class represent a functional term on some inner term.

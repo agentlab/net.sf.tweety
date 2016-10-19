@@ -18,13 +18,15 @@
  */
 package net.sf.tweety.arg.delp.syntax;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import net.sf.tweety.arg.delp.*;
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.arg.delp.DefeasibleLogicProgram;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
  * This class models a DeLP argument which comprises of a set of defeasible rules (the support) and a literal (the conclusion).

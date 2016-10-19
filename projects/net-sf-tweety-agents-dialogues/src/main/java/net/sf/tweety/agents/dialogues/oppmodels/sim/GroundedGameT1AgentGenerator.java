@@ -18,6 +18,9 @@
  */
 package net.sf.tweety.agents.dialogues.oppmodels.sim;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.agents.dialogues.oppmodels.BeliefState;
 import net.sf.tweety.agents.dialogues.oppmodels.GroundedGameSystem;
 import net.sf.tweety.agents.dialogues.oppmodels.GroundedGameUtilityFunction;
@@ -26,9 +29,6 @@ import net.sf.tweety.agents.sim.SimulationParameters;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Generates agents of type T1.

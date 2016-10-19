@@ -1,5 +1,13 @@
 package net.sf.tweety.arg.delp;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.junit.Test;
+
 import net.sf.tweety.arg.delp.syntax.DefeasibleRule;
 import net.sf.tweety.arg.delp.syntax.DelpFact;
 import net.sf.tweety.arg.delp.syntax.StrictRule;
@@ -8,13 +16,6 @@ import net.sf.tweety.logics.commons.syntax.Predicate;
 import net.sf.tweety.logics.commons.syntax.Variable;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
 import net.sf.tweety.logics.fol.syntax.Negation;
-import org.junit.Test;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for rules: facts, strict and defeasible rules.

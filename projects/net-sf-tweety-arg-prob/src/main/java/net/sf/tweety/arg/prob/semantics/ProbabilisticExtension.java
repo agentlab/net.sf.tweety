@@ -24,7 +24,8 @@ import net.sf.tweety.arg.dung.semantics.ArgumentStatus;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Labeling;
 import net.sf.tweety.arg.dung.syntax.Argument;
-import net.sf.tweety.math.probability.*;
+import net.sf.tweety.math.probability.Probability;
+import net.sf.tweety.math.probability.ProbabilityFunction;
 
 /**
  * This class implements a probabilistic interpretation for Dung argumentation frameworks, cf. [Thimm:2012].

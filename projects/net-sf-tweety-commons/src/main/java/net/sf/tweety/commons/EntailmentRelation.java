@@ -18,9 +18,12 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.commons.util.*;
+import net.sf.tweety.commons.util.IncreasingSubsetIterator;
+import net.sf.tweety.commons.util.SubsetIterator;
 
 /**
  * An entailment relation determines whether a formula is entailed

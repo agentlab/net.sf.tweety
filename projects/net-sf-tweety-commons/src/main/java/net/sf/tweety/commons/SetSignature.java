@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * This class models a signature as a set of formulas.

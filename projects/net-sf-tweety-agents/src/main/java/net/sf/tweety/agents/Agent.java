@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.agents;
 
-import java.util.*;
+import java.util.Collection;
 
 /**
  * An agent is a possibly proactive entity situated in some environment.

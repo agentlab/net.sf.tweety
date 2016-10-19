@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.beliefdynamics;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This is the interface for a classic belief base expansion operator, ie. an

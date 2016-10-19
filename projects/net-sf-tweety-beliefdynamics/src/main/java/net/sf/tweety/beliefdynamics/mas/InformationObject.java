@@ -18,8 +18,9 @@
  */
 package net.sf.tweety.beliefdynamics.mas;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.agents.Agent;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
 
 /**
  * This class represents a formula annotated with the source of the formula.

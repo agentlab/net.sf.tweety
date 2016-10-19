@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * This abstract class models a sampler for belief bases. It comprises

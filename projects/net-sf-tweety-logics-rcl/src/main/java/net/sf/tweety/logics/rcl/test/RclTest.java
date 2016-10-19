@@ -18,14 +18,20 @@
  */
 package net.sf.tweety.logics.rcl.test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.parser.*;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rcl.*;
-import net.sf.tweety.logics.rcl.parser.*;
-import net.sf.tweety.logics.rcl.semantics.*;
+import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.commons.TweetyConfiguration;
+import net.sf.tweety.commons.TweetyLogging;
+import net.sf.tweety.logics.fol.parser.FolParser;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.rcl.RclBeliefSet;
+import net.sf.tweety.logics.rcl.RelationalBruteForceCReasoner;
+import net.sf.tweety.logics.rcl.parser.RclParser;
+import net.sf.tweety.logics.rcl.semantics.RelationalRankingFunction;
 
 public class RclTest {
 

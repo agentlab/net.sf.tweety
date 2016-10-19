@@ -18,10 +18,11 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.math.probability.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.BeliefBaseMachineShop;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.math.probability.Probability;
 
 /**
  * This consistency restorer uses the distance minimization inconsistency measure

@@ -18,11 +18,18 @@
  */
 package net.sf.tweety.arg.saf.util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
-import net.sf.tweety.arg.saf.syntax.*;
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.arg.saf.syntax.BasicArgument;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.FormulaSampler;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.logics.pl.syntax.Proposition;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 /**
  * This class implements a formula sampler for structured argumentation

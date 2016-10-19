@@ -18,10 +18,11 @@
  */
 package net.sf.tweety.logics.el.semantics;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.commons.util.*;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.commons.util.Pair;
 
 
 /**

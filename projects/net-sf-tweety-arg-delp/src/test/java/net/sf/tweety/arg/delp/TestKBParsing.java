@@ -1,15 +1,20 @@
 package net.sf.tweety.arg.delp;
 
-import net.sf.tweety.arg.delp.parser.DelpParser;
-import net.sf.tweety.arg.delp.parser.TokenMgrError;
-import net.sf.tweety.commons.ParserException;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.util.*;
+import net.sf.tweety.arg.delp.parser.DelpParser;
+import net.sf.tweety.arg.delp.parser.TokenMgrError;
+import net.sf.tweety.commons.ParserException;
 
 /**
  * Parsing DeLPs.

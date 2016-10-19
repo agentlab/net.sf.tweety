@@ -18,15 +18,18 @@
  */
 package net.sf.tweety.agents.dialogues.structured;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.agents.*;
+import net.sf.tweety.agents.Executable;
+import net.sf.tweety.agents.Perceivable;
 import net.sf.tweety.agents.dialogues.ExecutableExtension;
-import net.sf.tweety.arg.dung.*;
-import net.sf.tweety.arg.dung.syntax.*;
-import net.sf.tweety.arg.saf.*;
-import net.sf.tweety.arg.saf.syntax.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
+import net.sf.tweety.arg.saf.syntax.ArgumentStructure;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 
 /**

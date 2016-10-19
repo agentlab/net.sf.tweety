@@ -18,9 +18,13 @@
  */
 package net.sf.tweety.graphs.orders;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import net.sf.tweety.graphs.*;
+import net.sf.tweety.graphs.DefaultGraph;
+import net.sf.tweety.graphs.DirectedEdge;
+import net.sf.tweety.graphs.Node;
 
 /**
  * This class represents an order among some objects.

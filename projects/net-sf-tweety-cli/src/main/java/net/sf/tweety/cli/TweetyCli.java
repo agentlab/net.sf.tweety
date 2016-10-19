@@ -24,6 +24,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.commons.TweetyConfiguration;
 import net.sf.tweety.commons.TweetyLogging;
@@ -44,9 +47,6 @@ import net.sf.tweety.logics.rpcl.writers.DefaultCondensedProbabilityDistribution
 import net.sf.tweety.logics.rpcl.writers.DefaultProbabilityDistributionWriter;
 import net.sf.tweety.math.opt.ProblemInconsistentException;
 import net.sf.tweety.math.probability.Probability;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a simple command line interface for accessing

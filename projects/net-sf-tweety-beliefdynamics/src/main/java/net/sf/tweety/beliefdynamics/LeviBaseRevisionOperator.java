@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.beliefdynamics;
 
-import java.util.*;
+import java.util.Collection;
 
 import net.sf.tweety.logics.commons.syntax.interfaces.ClassicalFormula;
 

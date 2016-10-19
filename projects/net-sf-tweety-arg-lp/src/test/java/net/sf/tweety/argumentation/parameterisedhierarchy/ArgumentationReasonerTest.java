@@ -18,7 +18,11 @@
  */
 package net.sf.tweety.argumentation.parameterisedhierarchy;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import net.sf.tweety.arg.lp.ArgumentationKnowledgeBase;
 import net.sf.tweety.arg.lp.ArgumentationReasoner;
@@ -26,10 +30,11 @@ import net.sf.tweety.arg.lp.LiteralReasoner;
 import net.sf.tweety.arg.lp.semantics.attack.Attack;
 import net.sf.tweety.arg.lp.semantics.attack.Undercut;
 import net.sf.tweety.arg.lp.syntax.Argument;
-import net.sf.tweety.lp.asp.syntax.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import net.sf.tweety.lp.asp.syntax.DLPAtom;
+import net.sf.tweety.lp.asp.syntax.DLPNeg;
+import net.sf.tweety.lp.asp.syntax.DLPNot;
+import net.sf.tweety.lp.asp.syntax.Program;
+import net.sf.tweety.lp.asp.syntax.Rule;
 
 public class ArgumentationReasonerTest {
 	

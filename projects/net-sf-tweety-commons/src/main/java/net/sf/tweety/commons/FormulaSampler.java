@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This abstract class models a sampler for formulas. It comprises

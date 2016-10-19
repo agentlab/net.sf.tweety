@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.math.GeneralMathException;
 import net.sf.tweety.math.equation.Inequation;

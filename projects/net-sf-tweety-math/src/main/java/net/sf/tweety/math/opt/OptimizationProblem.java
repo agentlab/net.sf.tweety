@@ -18,10 +18,23 @@
  */
 package net.sf.tweety.math.opt;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Stack;
 
-import net.sf.tweety.math.equation.*;
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.math.equation.Inequation;
+import net.sf.tweety.math.equation.Statement;
+import net.sf.tweety.math.term.AbsoluteValue;
+import net.sf.tweety.math.term.BinaryVariable;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.FloatVariable;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.IntegerVariable;
+import net.sf.tweety.math.term.Maximum;
+import net.sf.tweety.math.term.Minimum;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 
 /**

@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.agents;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class models a rigid protocol, i.e. a protocol where,

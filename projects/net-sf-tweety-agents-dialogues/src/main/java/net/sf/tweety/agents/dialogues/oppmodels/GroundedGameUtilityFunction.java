@@ -20,15 +20,15 @@ package net.sf.tweety.agents.dialogues.oppmodels;
 
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.agents.dialogues.DialogueTrace;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.GroundReasoner;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The grounded game utility function u_a^g. See definition in paper.

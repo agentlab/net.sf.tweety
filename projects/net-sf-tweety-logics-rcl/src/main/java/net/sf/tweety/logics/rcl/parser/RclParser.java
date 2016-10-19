@@ -18,13 +18,17 @@
  */
 package net.sf.tweety.logics.rcl.parser;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.parser.*;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rcl.*;
-import net.sf.tweety.logics.rcl.syntax.*;
+import net.sf.tweety.commons.Parser;
+import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.logics.fol.parser.FolParser;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.rcl.RclBeliefSet;
+import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
 
 /**
  * This class implements a parser for relational conditional logic. The BNF for a conditional

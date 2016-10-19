@@ -18,12 +18,14 @@
  */
 package net.sf.tweety.arg.saf.util;
 
-import java.util.*;
+import java.util.Random;
 
-import net.sf.tweety.arg.dung.syntax.*;
-import net.sf.tweety.arg.saf.*;
-import net.sf.tweety.arg.saf.syntax.*;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
+import net.sf.tweety.arg.saf.syntax.BasicArgument;
+import net.sf.tweety.commons.BeliefBaseSampler;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
 
 
 /**

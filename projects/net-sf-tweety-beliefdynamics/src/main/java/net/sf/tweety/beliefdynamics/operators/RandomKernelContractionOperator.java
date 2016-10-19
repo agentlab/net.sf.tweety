@@ -18,9 +18,10 @@
  */
 package net.sf.tweety.beliefdynamics.operators;
 
-import net.sf.tweety.beliefdynamics.kernels.*;
+import net.sf.tweety.beliefdynamics.kernels.KernelContractionOperator;
+import net.sf.tweety.beliefdynamics.kernels.RandomIncisionFunction;
 import net.sf.tweety.logics.pl.ClassicalEntailment;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * This class implements a simple kernel base contraction for propositional logic with 

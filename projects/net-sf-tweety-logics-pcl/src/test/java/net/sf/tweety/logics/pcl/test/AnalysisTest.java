@@ -18,13 +18,17 @@
  */
 package net.sf.tweety.logics.pcl.test;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.analysis.*;
-import net.sf.tweety.logics.pcl.syntax.*;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.analysis.BalancedMachineShop;
+import net.sf.tweety.logics.pcl.analysis.DistanceMinimizationInconsistencyMeasure;
+import net.sf.tweety.logics.pcl.analysis.MeanDistanceCulpabilityMeasure;
+import net.sf.tweety.logics.pcl.analysis.PenalizingCreepingMachineShop;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 
 public class AnalysisTest {
 	public static void main(String[] args) throws FileNotFoundException, ParserException, IOException{

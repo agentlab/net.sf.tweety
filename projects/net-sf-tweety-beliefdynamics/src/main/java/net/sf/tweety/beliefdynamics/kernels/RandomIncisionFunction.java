@@ -18,9 +18,10 @@
  */
 package net.sf.tweety.beliefdynamics.kernels;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This class implements an incision function that just randomly

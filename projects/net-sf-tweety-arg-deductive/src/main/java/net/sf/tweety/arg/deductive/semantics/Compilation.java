@@ -24,7 +24,10 @@ import java.util.Set;
 import java.util.Stack;
 
 import net.sf.tweety.arg.deductive.DeductiveKnowledgeBase;
-import net.sf.tweety.graphs.*;
+import net.sf.tweety.graphs.DefaultGraph;
+import net.sf.tweety.graphs.DirectedEdge;
+import net.sf.tweety.graphs.Edge;
+import net.sf.tweety.graphs.UndirectedEdge;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.sat.PlMusEnumerator;
 import net.sf.tweety.logics.pl.syntax.Conjunction;

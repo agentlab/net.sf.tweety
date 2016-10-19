@@ -26,7 +26,10 @@ import java.util.Set;
 import net.sf.tweety.arg.lp.syntax.Argument;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
-import net.sf.tweety.lp.asp.syntax.*;
+import net.sf.tweety.lp.asp.syntax.DLPElement;
+import net.sf.tweety.lp.asp.syntax.DLPLiteral;
+import net.sf.tweety.lp.asp.syntax.Program;
+import net.sf.tweety.lp.asp.syntax.Rule;
 
 /**
  * Instances of this class represent the set of minimal arguments from

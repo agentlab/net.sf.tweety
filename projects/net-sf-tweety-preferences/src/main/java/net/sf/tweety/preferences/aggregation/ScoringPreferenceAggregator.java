@@ -18,11 +18,12 @@
  */
 package net.sf.tweety.preferences.aggregation;
 
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import net.sf.tweety.preferences.PreferenceOrder;
 import net.sf.tweety.preferences.ranking.LevelingFunction;
 

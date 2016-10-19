@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.beliefdynamics.selectiverevision;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This interface represents a multiple transformation function for selective revision [Kruempelmann:2011,Ferme:1999].

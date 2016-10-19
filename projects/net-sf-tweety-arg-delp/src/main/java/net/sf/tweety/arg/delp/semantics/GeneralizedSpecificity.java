@@ -18,12 +18,19 @@
  */
 package net.sf.tweety.arg.delp.semantics;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import net.sf.tweety.arg.delp.*;
-import net.sf.tweety.arg.delp.syntax.*;
-import net.sf.tweety.commons.util.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.arg.delp.DefeasibleLogicProgram;
+import net.sf.tweety.arg.delp.syntax.DelpArgument;
+import net.sf.tweety.arg.delp.syntax.DelpRule;
+import net.sf.tweety.arg.delp.syntax.StrictRule;
+import net.sf.tweety.commons.util.Triple;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
  * This class implements the generalized specificity criterion used to compare two arguments. Using this criterion, an argument is more specific

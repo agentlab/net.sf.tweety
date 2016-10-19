@@ -20,7 +20,7 @@ package net.sf.tweety.arg.prob.test.deductive;
 
 import java.io.IOException;
 
-import net.sf.tweety.arg.deductive.semantics.attacks.*;
+import net.sf.tweety.arg.deductive.semantics.attacks.DirectDefeat;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.TweetyConfiguration;

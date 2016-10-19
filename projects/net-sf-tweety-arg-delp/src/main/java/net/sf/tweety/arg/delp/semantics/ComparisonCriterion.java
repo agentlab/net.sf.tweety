@@ -18,8 +18,8 @@
  */
 package net.sf.tweety.arg.delp.semantics;
 
-import net.sf.tweety.arg.delp.*;
-import net.sf.tweety.arg.delp.syntax.*;
+import net.sf.tweety.arg.delp.DefeasibleLogicProgram;
+import net.sf.tweety.arg.delp.syntax.DelpArgument;
 
 /**
  * This class is the superclass for all comparison criteria between two arguments in defeasible logic programming.

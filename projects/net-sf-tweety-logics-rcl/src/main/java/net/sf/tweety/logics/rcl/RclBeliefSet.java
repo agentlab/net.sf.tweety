@@ -18,12 +18,14 @@
  */
 package net.sf.tweety.logics.rcl;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.rcl.syntax.*;
+import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.Constant;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
 
 /**
  * This class models a belief set on relational conditional logic, i.e. a set of relational conditionals.

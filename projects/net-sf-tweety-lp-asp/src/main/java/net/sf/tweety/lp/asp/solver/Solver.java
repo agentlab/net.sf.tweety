@@ -18,10 +18,10 @@
  */
 package net.sf.tweety.lp.asp.solver;
 
-import java.util.*;
+import java.util.List;
 
-import net.sf.tweety.lp.asp.util.*;
-import net.sf.tweety.lp.asp.syntax.*;
+import net.sf.tweety.lp.asp.syntax.Program;
+import net.sf.tweety.lp.asp.util.AnswerSetList;
 
 /**
  * this interface models common calls to a solver.

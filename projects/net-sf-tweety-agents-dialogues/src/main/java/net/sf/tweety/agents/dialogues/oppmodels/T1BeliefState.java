@@ -21,9 +21,9 @@ package net.sf.tweety.agents.dialogues.oppmodels;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.sf.tweety.agents.dialogues.ArgumentationEnvironment;
 import net.sf.tweety.agents.dialogues.DialogueTrace;
 import net.sf.tweety.agents.dialogues.ExecutableExtension;
-import net.sf.tweety.agents.dialogues.ArgumentationEnvironment;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.commons.util.Pair;

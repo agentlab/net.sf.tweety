@@ -18,10 +18,13 @@
  */
 package net.sf.tweety.beliefdynamics.kernels;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.beliefdynamics.*;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.beliefdynamics.MultipleBaseContractionOperator;
+import net.sf.tweety.commons.EntailmentRelation;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This class implements kernel contraction for belief bases [Hansson:2001]. That is, 

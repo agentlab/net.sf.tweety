@@ -19,7 +19,22 @@
 package net.sf.tweety.logics.pl.analysis;
 
 import net.sf.tweety.commons.BeliefSet;
-import net.sf.tweety.logics.commons.analysis.*;
+import net.sf.tweety.logics.commons.analysis.CcInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.CspInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.DHitInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.DMaxInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.DSumInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.DfInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.DrasticInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.EtaInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.HsInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.MaInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.McscInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.MiInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.MicInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.NConsInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.PrInconsistencyMeasure;
 import net.sf.tweety.logics.pl.sat.PlMusEnumerator;
 import net.sf.tweety.logics.pl.sat.SatSolver;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;

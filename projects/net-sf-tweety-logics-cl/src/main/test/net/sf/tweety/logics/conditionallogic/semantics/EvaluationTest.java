@@ -18,8 +18,12 @@
  */
 package net.sf.tweety.logics.conditionallogic.semantics;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import org.junit.Test;
 
 import net.sf.tweety.logics.cl.semantics.RankingFunction;
 import net.sf.tweety.logics.cl.syntax.Conditional;
@@ -27,9 +31,6 @@ import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Disjunction;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class EvaluationTest {
 	@Test

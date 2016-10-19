@@ -18,11 +18,11 @@
  */
 package net.sf.tweety.agents.dialogues;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.arg.dung.semantics.*;
-import net.sf.tweety.arg.dung.syntax.*;
+import net.sf.tweety.agents.Executable;
+import net.sf.tweety.arg.dung.semantics.Extension;
+import net.sf.tweety.arg.dung.syntax.Argument;
 
 /**
  * This class packs an extension into an executable object.

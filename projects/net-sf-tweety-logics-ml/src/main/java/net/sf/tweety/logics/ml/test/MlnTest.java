@@ -19,16 +19,24 @@
 package net.sf.tweety.logics.ml.test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.commons.util.Pair;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Predicate;
 import net.sf.tweety.logics.fol.parser.FolParser;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.ml.*;
-import net.sf.tweety.logics.ml.analysis.*;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.ml.MarkovLogicNetwork;
+import net.sf.tweety.logics.ml.NaiveMlnReasoner;
+import net.sf.tweety.logics.ml.analysis.AggregatingCoherenceMeasure;
+import net.sf.tweety.logics.ml.analysis.AggregatingDistanceFunction;
+import net.sf.tweety.logics.ml.analysis.AverageAggregator;
+import net.sf.tweety.logics.ml.analysis.MaxAggregator;
+import net.sf.tweety.logics.ml.analysis.MinAggregator;
+import net.sf.tweety.logics.ml.analysis.PNormDistanceFunction;
 import net.sf.tweety.logics.ml.syntax.MlnFormula;
 
 public class MlnTest {

@@ -18,11 +18,13 @@
  */
 package net.sf.tweety.beliefdynamics.mas;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.graphs.orders.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.agents.Agent;
+import net.sf.tweety.graphs.orders.Order;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * This class provides for auxiliary functions used to compare

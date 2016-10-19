@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.logics.pcl.syntax;
 
-import net.sf.tweety.logics.cl.syntax.*;
+import net.sf.tweety.logics.cl.syntax.Conditional;
 import net.sf.tweety.logics.commons.syntax.interfaces.ProbabilityAware;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 import net.sf.tweety.math.probability.Probability;
 
 

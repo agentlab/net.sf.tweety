@@ -22,13 +22,14 @@ import net.sf.tweety.commons.TweetyConfiguration;
 import net.sf.tweety.commons.TweetyLogging;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Predicate;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rpcl.*;
-import net.sf.tweety.logics.rpcl.semantics.*;
-import net.sf.tweety.logics.rpcl.syntax.*;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.rpcl.RpclBeliefSet;
+import net.sf.tweety.logics.rpcl.RpclMeReasoner;
+import net.sf.tweety.logics.rpcl.semantics.AggregatingSemantics;
+import net.sf.tweety.logics.rpcl.syntax.RelationalProbabilisticConditional;
 import net.sf.tweety.math.opt.Solver;
 import net.sf.tweety.math.opt.solver.OctaveSqpSolver;
-import net.sf.tweety.math.probability.*;
+import net.sf.tweety.math.probability.Probability;
 
 public class RpclMeReasonerTest {
 	public static void main(String[] args){

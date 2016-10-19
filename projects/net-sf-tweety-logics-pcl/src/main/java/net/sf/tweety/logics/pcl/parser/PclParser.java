@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
@@ -29,9 +32,6 @@ import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.parser.PlParser;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 import net.sf.tweety.math.probability.Probability;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

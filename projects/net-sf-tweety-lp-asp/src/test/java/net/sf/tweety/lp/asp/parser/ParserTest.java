@@ -26,17 +26,30 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import net.sf.tweety.lp.asp.syntax.*;
-import net.sf.tweety.lp.asp.util.AnswerSet;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.FunctionalTerm;
 import net.sf.tweety.logics.commons.syntax.Functor;
 import net.sf.tweety.logics.commons.syntax.NumberTerm;
 import net.sf.tweety.logics.commons.syntax.Variable;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
+import net.sf.tweety.lp.asp.syntax.Aggregate;
+import net.sf.tweety.lp.asp.syntax.Arithmetic;
+import net.sf.tweety.lp.asp.syntax.Comparative;
+import net.sf.tweety.lp.asp.syntax.DLPAtom;
+import net.sf.tweety.lp.asp.syntax.DLPElement;
+import net.sf.tweety.lp.asp.syntax.DLPLiteral;
+import net.sf.tweety.lp.asp.syntax.DLPNeg;
+import net.sf.tweety.lp.asp.syntax.DLPNot;
+import net.sf.tweety.lp.asp.syntax.ListTerm;
+import net.sf.tweety.lp.asp.syntax.ListTermValue;
+import net.sf.tweety.lp.asp.syntax.Program;
+import net.sf.tweety.lp.asp.syntax.Rule;
+import net.sf.tweety.lp.asp.syntax.SetTerm;
+import net.sf.tweety.lp.asp.syntax.SymbolicSet;
+import net.sf.tweety.lp.asp.util.AnswerSet;
 
 /**
  * Test all important functions of the ASP-Parser in combination with the

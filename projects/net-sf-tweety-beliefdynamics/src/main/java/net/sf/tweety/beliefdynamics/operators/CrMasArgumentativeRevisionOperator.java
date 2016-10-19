@@ -18,15 +18,22 @@
  */
 package net.sf.tweety.beliefdynamics.operators;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
 
-import net.sf.tweety.arg.deductive.accumulator.*;
-import net.sf.tweety.beliefdynamics.*;
-import net.sf.tweety.beliefdynamics.mas.*;
-import net.sf.tweety.beliefdynamics.selectiverevision.*;
-import net.sf.tweety.beliefdynamics.selectiverevision.argumentative.*;
-import net.sf.tweety.logics.pl.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.arg.deductive.accumulator.SimpleAccumulator;
+import net.sf.tweety.beliefdynamics.DefaultMultipleBaseExpansionOperator;
+import net.sf.tweety.beliefdynamics.LeviMultipleBaseRevisionOperator;
+import net.sf.tweety.beliefdynamics.MultipleBaseRevisionOperator;
+import net.sf.tweety.beliefdynamics.mas.CrMasBeliefSet;
+import net.sf.tweety.beliefdynamics.mas.CrMasRevisionWrapper;
+import net.sf.tweety.beliefdynamics.mas.CredibilityCategorizer;
+import net.sf.tweety.beliefdynamics.mas.InformationObject;
+import net.sf.tweety.beliefdynamics.selectiverevision.MultipleSelectiveRevisionOperator;
+import net.sf.tweety.beliefdynamics.selectiverevision.MultipleTransformationFunction;
+import net.sf.tweety.beliefdynamics.selectiverevision.argumentative.ArgumentativeTransformationFunction;
+import net.sf.tweety.logics.pl.PlBeliefSet;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * This class is an exemplary instantiation of a revision operator based on deductive argumentation and credibilities where

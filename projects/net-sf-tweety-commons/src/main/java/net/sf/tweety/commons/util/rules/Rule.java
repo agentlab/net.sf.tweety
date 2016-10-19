@@ -18,9 +18,10 @@
  */
 package net.sf.tweety.commons.util.rules;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
 
 /**
  * This interface models a general rule, i.e. a structure with some

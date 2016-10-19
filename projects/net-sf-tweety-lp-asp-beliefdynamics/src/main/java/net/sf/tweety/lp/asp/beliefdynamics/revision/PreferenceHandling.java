@@ -27,6 +27,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.beliefdynamics.CredibilityRevisionIterative;
 import net.sf.tweety.commons.util.Pair;
 import net.sf.tweety.lp.asp.parser.ASPParser;
@@ -42,9 +45,6 @@ import net.sf.tweety.lp.asp.syntax.Program;
 import net.sf.tweety.lp.asp.syntax.Rule;
 import net.sf.tweety.lp.asp.util.AnswerSet;
 import net.sf.tweety.lp.asp.util.AnswerSetList;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

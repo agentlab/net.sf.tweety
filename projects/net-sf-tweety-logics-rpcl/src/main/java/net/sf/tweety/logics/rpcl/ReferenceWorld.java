@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
@@ -43,9 +46,6 @@ import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.Negation;
 import net.sf.tweety.logics.fol.syntax.RelationalFormula;
 import net.sf.tweety.logics.fol.syntax.Tautology;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

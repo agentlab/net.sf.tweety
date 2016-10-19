@@ -18,16 +18,20 @@
  */
 package net.sf.tweety.logics.rpcl.semantics;
 
-import java.util.*;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.semantics.*;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rcl.syntax.*;
-import net.sf.tweety.logics.rpcl.*;
-import net.sf.tweety.logics.rpcl.syntax.*;
-import net.sf.tweety.logics.pcl.semantics.*;
-import net.sf.tweety.math.probability.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.logics.fol.semantics.HerbrandBase;
+import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.pcl.semantics.ProbabilityDistribution;
+import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
+import net.sf.tweety.logics.rpcl.RpclBeliefSet;
+import net.sf.tweety.logics.rpcl.syntax.RelationalProbabilisticConditional;
+import net.sf.tweety.math.probability.Probability;
 
 
 /**

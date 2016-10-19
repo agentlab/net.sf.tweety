@@ -18,10 +18,16 @@
  */
 package net.sf.tweety.logics.pl;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.logics.pl.syntax.Conjunction;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 /**
  * This class represents a knowledge base of propositional formulae.

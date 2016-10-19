@@ -18,20 +18,26 @@
  */
 package net.sf.tweety.preferences.unittesting;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.TreeSet;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import net.sf.tweety.commons.util.Triple;
 import net.sf.tweety.preferences.PreferenceOrder;
 import net.sf.tweety.preferences.Relation;
 import net.sf.tweety.preferences.ranking.LevelingFunction;
-import java.util.TreeSet;
-import net.sf.tweety.commons.util.Triple;
-import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  * The class <code>PreferenceOrderTest</code> contains tests for the class <code>{@link PreferenceOrder}</code>.

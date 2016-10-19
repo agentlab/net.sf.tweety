@@ -18,10 +18,15 @@
  */
 package net.sf.tweety.preferences.unittesting;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
-import org.junit.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import net.sf.tweety.preferences.PreferenceOrder;
 import net.sf.tweety.preferences.aggregation.BordaScoringPreferenceAggregator;
 import net.sf.tweety.preferences.aggregation.PluralityScoringPreferenceAggregator;
@@ -29,7 +34,6 @@ import net.sf.tweety.preferences.aggregation.ScoringPreferenceAggregator;
 import net.sf.tweety.preferences.aggregation.VetoScoringPreferenceAggregator;
 import net.sf.tweety.preferences.io.POParser;
 import net.sf.tweety.preferences.io.ParseException;
-import static org.junit.Assert.*;
 
 /**
  * The class <code>ScoringPreferenceAggregatorTest</code> contains tests for the class <code>{@link ScoringPreferenceAggregator}</code>.

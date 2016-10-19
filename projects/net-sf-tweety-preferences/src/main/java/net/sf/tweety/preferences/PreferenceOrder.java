@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.preferences;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import net.sf.tweety.commons.util.Triple;
 import net.sf.tweety.preferences.ranking.LevelingFunction;

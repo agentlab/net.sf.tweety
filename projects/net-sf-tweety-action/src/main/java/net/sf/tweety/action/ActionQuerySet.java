@@ -20,7 +20,6 @@ package net.sf.tweety.action;
 
 import java.util.Collection;
 
-import net.sf.tweety.action.ActionQuery;
 import net.sf.tweety.commons.BeliefSet;
 
 /**

@@ -18,10 +18,11 @@
  */
 package net.sf.tweety.beliefdynamics.mas;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
 
-import net.sf.tweety.beliefdynamics.*;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.beliefdynamics.MultipleBaseRevisionOperator;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This class is a wrapper for a revision for formulas of type T that is

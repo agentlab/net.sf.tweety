@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.agents;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class models a synchronous protocol for multi-agent systems.

@@ -34,8 +34,8 @@ import net.sf.tweety.logics.cl.kappa.ConditionalStructureKappaBuilder;
 import net.sf.tweety.logics.cl.kappa.KappaValue;
 import net.sf.tweety.logics.cl.rules.EvaluateRule;
 import net.sf.tweety.logics.cl.semantics.ConditionalStructure;
-import net.sf.tweety.logics.cl.semantics.RankingFunction;
 import net.sf.tweety.logics.cl.semantics.ConditionalStructure.Generator;
+import net.sf.tweety.logics.cl.semantics.RankingFunction;
 import net.sf.tweety.logics.cl.syntax.Conditional;
 import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
 

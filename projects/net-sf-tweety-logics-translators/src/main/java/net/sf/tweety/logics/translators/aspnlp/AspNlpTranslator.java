@@ -24,14 +24,18 @@ import java.util.List;
 import java.util.Map;
 
 import net.sf.tweety.commons.util.Pair;
-import net.sf.tweety.lp.asp.syntax.*;
-import net.sf.tweety.lp.nlp.syntax.NLPProgram;
-import net.sf.tweety.lp.nlp.syntax.NLPRule;
 import net.sf.tweety.logics.fol.syntax.Conjunction;
 import net.sf.tweety.logics.fol.syntax.Disjunction;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.RelationalFormula;
 import net.sf.tweety.logics.translators.aspfol.AspFolTranslator;
+import net.sf.tweety.lp.asp.syntax.DLPElement;
+import net.sf.tweety.lp.asp.syntax.DLPHead;
+import net.sf.tweety.lp.asp.syntax.DLPLiteral;
+import net.sf.tweety.lp.asp.syntax.Program;
+import net.sf.tweety.lp.asp.syntax.Rule;
+import net.sf.tweety.lp.nlp.syntax.NLPProgram;
+import net.sf.tweety.lp.nlp.syntax.NLPRule;
 
 /**
  * Translates between DLP under the answer set semantics (ASP) and NLP.

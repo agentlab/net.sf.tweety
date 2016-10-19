@@ -23,11 +23,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.tweety.math.opt.Solver;
+import net.sf.tweety.math.opt.solver.LpSolve;
 import net.sf.tweety.plugin.AbstractTweetyPlugin;
 import net.sf.tweety.plugin.PluginOutput;
 import net.sf.tweety.plugin.parameter.CommandParameter;
-import net.sf.tweety.plugin.parameter.SelectionCommandParameter;
 import net.sf.tweety.plugin.parameter.FileListCommandParameter;
+import net.sf.tweety.plugin.parameter.SelectionCommandParameter;
 import net.sf.tweety.preferences.PreferenceOrder;
 import net.sf.tweety.preferences.aggregation.BordaScoringPreferenceAggregator;
 import net.sf.tweety.preferences.aggregation.DynamicBordaScoringPreferenceAggregator;
@@ -39,8 +41,6 @@ import net.sf.tweety.preferences.io.POParser;
 import net.sf.tweety.preferences.io.ParseException;
 import net.sf.tweety.preferences.io.UPParser;
 import net.sf.tweety.preferences.update.Update;
-import net.sf.tweety.math.opt.Solver;
-import net.sf.tweety.math.opt.solver.LpSolve;
 import net.xeoh.plugins.base.annotations.Capabilities;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
 

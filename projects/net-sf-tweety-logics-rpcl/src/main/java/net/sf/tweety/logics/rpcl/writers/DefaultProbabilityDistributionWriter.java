@@ -18,12 +18,14 @@
  */
 package net.sf.tweety.logics.rpcl.writers;
 
-import java.text.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.semantics.*;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rpcl.semantics.*;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.commons.Writer;
+import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
+import net.sf.tweety.logics.fol.syntax.FOLAtom;
+import net.sf.tweety.logics.rpcl.semantics.RpclProbabilityDistribution;
 
 
 /**

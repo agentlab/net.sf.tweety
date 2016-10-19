@@ -26,6 +26,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
 import net.sf.tweety.arg.delp.DefeasibleLogicProgram;
 import net.sf.tweety.arg.delp.DelpReasoner;
 import net.sf.tweety.arg.delp.parser.DelpParser;
@@ -39,9 +42,6 @@ import net.sf.tweety.logics.fol.parser.FolParser;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.Negation;
 import net.sf.tweety.web.TweetyServer;
-
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 
 /**
  * Web service for defeasible logic programming.

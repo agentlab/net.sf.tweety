@@ -19,8 +19,8 @@
 package net.sf.tweety.logics.pcl.analysis;
 
 import net.sf.tweety.logics.commons.analysis.CulpabilityMeasure;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.syntax.*;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 
 /**
  * Classes implementing this interface represent signed culpability measures, i.e.

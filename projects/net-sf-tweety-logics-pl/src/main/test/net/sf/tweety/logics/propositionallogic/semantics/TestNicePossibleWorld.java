@@ -23,13 +23,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
-import net.sf.tweety.logics.pl.syntax.Proposition;
-import net.sf.tweety.commons.util.Pair;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import net.sf.tweety.commons.util.Pair;
+import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 
 public class TestNicePossibleWorld {

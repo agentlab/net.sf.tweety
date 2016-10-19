@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.logics.fol.syntax;
 
-import java.util.*;
+import java.util.Set;
 
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.FunctionalTerm;

@@ -18,9 +18,13 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.NonDifferentiableException;
 
 
 /**

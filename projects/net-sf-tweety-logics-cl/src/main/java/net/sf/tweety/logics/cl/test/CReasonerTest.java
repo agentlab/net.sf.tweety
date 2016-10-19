@@ -18,9 +18,11 @@
  */
 package net.sf.tweety.logics.cl.test;
 
-import net.sf.tweety.logics.cl.*;
-import net.sf.tweety.logics.cl.syntax.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.cl.BruteForceCReasoner;
+import net.sf.tweety.logics.cl.ClBeliefSet;
+import net.sf.tweety.logics.cl.syntax.Conditional;
+import net.sf.tweety.logics.pl.syntax.Negation;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 public class CReasonerTest {
 	public static void main(String[] args){

@@ -18,13 +18,13 @@
  */
 package net.sf.tweety.agents.dialogues.oppmodels;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.agents.Agent;
 import net.sf.tweety.agents.RoundRobinProtocol;
 import net.sf.tweety.agents.dialogues.ArgumentationEnvironment;
 import net.sf.tweety.agents.sim.GameProtocol;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a round robin protocol for the grounded game.

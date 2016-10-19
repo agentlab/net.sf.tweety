@@ -18,13 +18,14 @@
  */
 package net.sf.tweety.beliefdynamics.mas;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.arg.deductive.categorizer.*;
-import net.sf.tweety.arg.deductive.semantics.*;
-import net.sf.tweety.graphs.orders.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.agents.Agent;
+import net.sf.tweety.arg.deductive.categorizer.Categorizer;
+import net.sf.tweety.arg.deductive.semantics.ArgumentTree;
+import net.sf.tweety.arg.deductive.semantics.DeductiveArgumentNode;
+import net.sf.tweety.graphs.orders.Order;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * This class implements a credibility-based categorizer that works like

@@ -18,15 +18,18 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.BeliefBaseMachineShop;
+import net.sf.tweety.commons.Formula;
 import net.sf.tweety.logics.commons.analysis.MusEnumerator;
 import net.sf.tweety.logics.commons.analysis.NaiveMusEnumerator;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.semantics.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.logics.pl.semantics.*;
+import net.sf.tweety.logics.pcl.DefaultMeReasoner;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.semantics.ProbabilityDistribution;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 
 /**
  * This consistency restorer determines the new probabilities of conditionals

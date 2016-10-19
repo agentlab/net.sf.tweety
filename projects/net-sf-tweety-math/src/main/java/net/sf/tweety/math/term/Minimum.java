@@ -18,9 +18,11 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.NonDifferentiableException;
 
 /**
  * This class models the minimum of two terms.

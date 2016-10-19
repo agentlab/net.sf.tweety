@@ -18,9 +18,10 @@
  */
 package net.sf.tweety.agents.dialogues;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
 
-import net.sf.tweety.agents.*;
+import net.sf.tweety.agents.Executable;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**

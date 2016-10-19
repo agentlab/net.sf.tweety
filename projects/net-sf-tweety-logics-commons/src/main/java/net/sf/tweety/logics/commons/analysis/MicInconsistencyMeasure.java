@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.logics.commons.analysis;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This class models the MI^C inconsistency measure.

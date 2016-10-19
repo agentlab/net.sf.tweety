@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Nested Logic Programs)
+Bundle-SymbolicName: net.sf.tweety.lp.nlp
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.logicprogramming.nlp.syntax,
+ net.sf.tweety.lp.nlp.error,
+ net.sf.tweety.lp.nlp.syntax
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0"

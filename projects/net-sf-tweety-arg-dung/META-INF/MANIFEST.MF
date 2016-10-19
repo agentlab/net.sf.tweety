@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Dung Argumentation Library)
+Bundle-SymbolicName: net.sf.tweety.arg.dung
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.arg.dung,
+ net.sf.tweety.arg.dung.divisions,
+ net.sf.tweety.arg.dung.ldo.semantics,
+ net.sf.tweety.arg.dung.ldo.syntax,
+ net.sf.tweety.arg.dung.parser,
+ net.sf.tweety.arg.dung.semantics,
+ net.sf.tweety.arg.dung.syntax,
+ net.sf.tweety.arg.dung.test,
+ net.sf.tweety.arg.dung.util
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+ net.sf.tweety.graphs;bundle-version="1.0.0",
+ net.sf.tweety.logics.pl;bundle-version="1.0.0",
+ net.sf.tweety.math;bundle-version="1.0.0"

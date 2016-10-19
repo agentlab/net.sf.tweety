@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Command Line Interface)
+Bundle-SymbolicName: net.sf.tweety.cli
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.cli,
+ net.sf.tweety.cli.plugins
+Require-Bundle: net.sf.tweety.logics.rpcl;bundle-version="1.0.0",
+ net.sf.tweety.commons;bundle-version="1.0.0"

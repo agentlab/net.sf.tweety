@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Deductive Argumentation Library)
+Bundle-SymbolicName: net.sf.tweety.arg.deductive
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.arg.deductive,
+ net.sf.tweety.arg.deductive.accumulator,
+ net.sf.tweety.arg.deductive.categorizer,
+ net.sf.tweety.arg.deductive.semantics,
+ net.sf.tweety.arg.deductive.semantics.attacks,
+ net.sf.tweety.arg.deductive.test
+Require-Bundle: net.sf.tweety.logics.pl;bundle-version="1.0.0",
+ net.sf.tweety.graphs;bundle-version="1.0.0",
+ net.sf.tweety.commons;bundle-version="1.7.0",
+ org.slf4j.api;bundle-version="1.7.2"

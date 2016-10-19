@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Belief Dynamics Library)
+Bundle-SymbolicName: net.sf.tweety.beliefdynamics
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.beliefdynamics,
+ net.sf.tweety.beliefdynamics.gui,
+ net.sf.tweety.beliefdynamics.kernels,
+ net.sf.tweety.beliefdynamics.mas,
+ net.sf.tweety.beliefdynamics.operators,
+ net.sf.tweety.beliefdynamics.selectiverevision,
+ net.sf.tweety.beliefdynamics.selectiverevision.argumentative,
+ net.sf.tweety.beliefdynamics.test
+Require-Bundle: net.sf.tweety.agents;bundle-version="1.7.0",
+ net.sf.tweety.arg.deductive;bundle-version="1.7.0",
+ net.sf.tweety.arg.dung;bundle-version="1.7.0",
+ net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.graphs;bundle-version="1.7.0",
+ net.sf.tweety.logics.pl;bundle-version="1.7.0"

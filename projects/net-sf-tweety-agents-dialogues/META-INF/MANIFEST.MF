@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Dialogue Systems Library)
+Bundle-SymbolicName: net.sf.tweety.agents.dialogues
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.agents.dialogues,
+ net.sf.tweety.agents.dialogues.lotteries,
+ net.sf.tweety.agents.dialogues.lotteries.sim,
+ net.sf.tweety.agents.dialogues.oppmodels,
+ net.sf.tweety.agents.dialogues.oppmodels.sim,
+ net.sf.tweety.agents.dialogues.structured,
+ net.sf.tweety.agents.dialogues.test
+Require-Bundle: net.sf.tweety.agents;bundle-version="1.7.0",
+ net.sf.tweety.arg.prob;bundle-version="1.0.0",
+ net.sf.tweety.arg.saf;bundle-version="1.0.0"

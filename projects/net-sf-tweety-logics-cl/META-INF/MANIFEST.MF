@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Conditional)
+Bundle-SymbolicName: net.sf.tweety.logics.cl
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.logics.cl,
+ net.sf.tweety.logics.cl.kappa,
+ net.sf.tweety.logics.cl.parser,
+ net.sf.tweety.logics.cl.rules,
+ net.sf.tweety.logics.cl.semantics,
+ net.sf.tweety.logics.cl.syntax,
+ net.sf.tweety.logics.cl.test,
+ net.sf.tweety.logics.conditionallogic.semantics
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+ net.sf.tweety.logics.pl;bundle-version="1.0.0",
+ net.sf.tweety.math;bundle-version="1.0.0"

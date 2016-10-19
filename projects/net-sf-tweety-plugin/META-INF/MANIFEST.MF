@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Plugin Project)
+Bundle-SymbolicName: net.sf.tweety.plugin
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.plugin,
+ net.sf.tweety.plugin.parameter

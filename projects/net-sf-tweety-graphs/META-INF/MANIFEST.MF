@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Graph Library)
+Bundle-SymbolicName: net.sf.tweety.graphs
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.graphs,
+ net.sf.tweety.graphs.orders,
+ net.sf.tweety.graphs.test,
+ net.sf.tweety.graphs.util
+Require-Bundle: net.sf.tweety.math;bundle-version="1.0.0"

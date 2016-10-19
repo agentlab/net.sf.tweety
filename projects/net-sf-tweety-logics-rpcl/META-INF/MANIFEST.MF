@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Relational Probabilistic Conditional Logic Library)
+Bundle-SymbolicName: net.sf.tweety.logics.rpcl
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.logics.rpcl,
+ net.sf.tweety.logics.rpcl.parser,
+ net.sf.tweety.logics.rpcl.parser.rpclcondensedprobabilitydistributionparser,
+ net.sf.tweety.logics.rpcl.parser.rpclprobabilitydistributionparser,
+ net.sf.tweety.logics.rpcl.plugin,
+ net.sf.tweety.logics.rpcl.semantics,
+ net.sf.tweety.logics.rpcl.syntax,
+ net.sf.tweety.logics.rpcl.test,
+ net.sf.tweety.logics.rpcl.writers
+Require-Bundle: net.sf.tweety.logics.cl;bundle-version="1.7.0",
+ net.sf.tweety.logics.rcl;bundle-version="1.7.0",
+ net.sf.tweety.logics.pcl;bundle-version="1.7.0",
+ net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0",
+ org.slf4j.api;bundle-version="1.7.2"

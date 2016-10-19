@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.beliefdynamics.selectiverevision;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This interface represents a transformation function for selective revision [Ferme:1999].

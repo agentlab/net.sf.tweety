@@ -18,13 +18,17 @@
  */
 package net.sf.tweety.arg.delp.semantics;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import net.sf.tweety.arg.delp.*;
-import net.sf.tweety.arg.delp.syntax.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.arg.delp.DefeasibleLogicProgram;
+import net.sf.tweety.arg.delp.syntax.DefeasibleRule;
+import net.sf.tweety.arg.delp.syntax.DelpArgument;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
  * This class implements a node of a dialectical tree from DeLP.

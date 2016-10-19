@@ -19,7 +19,11 @@
 package net.sf.tweety.logics.commons.syntax;
 
 import java.text.Collator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import net.sf.tweety.logics.commons.syntax.interfaces.TypedStructure;
 

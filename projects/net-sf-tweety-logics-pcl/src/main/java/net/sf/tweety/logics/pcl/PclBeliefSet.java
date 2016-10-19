@@ -18,11 +18,12 @@
  */
 package net.sf.tweety.logics.pcl;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 
 /**

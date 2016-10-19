@@ -24,10 +24,13 @@ import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.arg.prob.PartialProbabilityAssignment;
 import net.sf.tweety.arg.prob.analysis.PAInconsistencyMeasure;
-import net.sf.tweety.arg.prob.dynamics.*;
-import net.sf.tweety.arg.prob.semantics.*;
+import net.sf.tweety.arg.prob.dynamics.ChangeOperator;
+import net.sf.tweety.arg.prob.dynamics.PAUpdateOperator;
+import net.sf.tweety.arg.prob.semantics.CoherentPASemantics;
+import net.sf.tweety.arg.prob.semantics.SemiOptimisticPASemantics;
 import net.sf.tweety.math.func.EntropyFunction;
-import net.sf.tweety.math.norm.*;
+import net.sf.tweety.math.norm.EntropyNorm;
+import net.sf.tweety.math.norm.PNorm;
 import net.sf.tweety.math.probability.Probability;
 
 public class IncProbTest {

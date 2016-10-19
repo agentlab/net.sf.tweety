@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.logics.cl;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Answer;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Reasoner;
 
 /**
  * Implements the approach from<br>

@@ -23,7 +23,7 @@ import java.io.IOException;
 
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.StratifiedLabelingReasoner;
-import net.sf.tweety.arg.dung.parser.*;
+import net.sf.tweety.arg.dung.parser.DungParser;
 import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.semantics.StratifiedLabeling;
 import net.sf.tweety.commons.ParserException;

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (ADF Library)
+Bundle-SymbolicName: net.sf.tweety.arg.adf
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.arg.adf
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

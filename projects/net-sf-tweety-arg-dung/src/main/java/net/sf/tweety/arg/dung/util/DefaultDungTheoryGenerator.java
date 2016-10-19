@@ -22,7 +22,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-import net.sf.tweety.arg.dung.*;
+import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.GroundReasoner;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 

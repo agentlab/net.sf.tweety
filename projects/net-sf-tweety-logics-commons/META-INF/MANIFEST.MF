@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Commons Logic)
+Bundle-SymbolicName: net.sf.tweety.logics.commons
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.logics.commons,
+ net.sf.tweety.logics.commons.analysis,
+ net.sf.tweety.logics.commons.analysis.streams,
+ net.sf.tweety.logics.commons.error,
+ net.sf.tweety.logics.commons.syntax,
+ net.sf.tweety.logics.commons.syntax.interfaces
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+ net.sf.tweety.math;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

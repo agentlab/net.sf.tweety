@@ -18,16 +18,27 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.logics.pl.semantics.*;
-import net.sf.tweety.logics.pl.syntax.*;
-import net.sf.tweety.math.*;
-import net.sf.tweety.math.opt.*;
-import net.sf.tweety.math.term.*;
-import net.sf.tweety.logics.commons.analysis.*;
+import net.sf.tweety.logics.commons.analysis.AbstractBeliefSetConsistencyTester;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.logics.pl.semantics.PossibleWorld;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
+import net.sf.tweety.math.GeneralMathException;
+import net.sf.tweety.math.opt.OpenOptRootFinder;
+import net.sf.tweety.math.opt.RootFinder;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.FloatVariable;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 /**
  * This class is capable of checking whether a given conditional knowledge base

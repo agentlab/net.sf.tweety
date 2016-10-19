@@ -18,11 +18,17 @@
  */
 package net.sf.tweety.logics.commons.analysis;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
-import net.sf.tweety.commons.util.*;
+import net.sf.tweety.commons.util.MathTools;
+import net.sf.tweety.commons.util.Pair;
+import net.sf.tweety.commons.util.SetTools;
 
 /**
  * This class implements the Shapley culpability measure.

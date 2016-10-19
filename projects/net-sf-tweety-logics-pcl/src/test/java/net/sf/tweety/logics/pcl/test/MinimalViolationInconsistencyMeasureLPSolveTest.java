@@ -23,6 +23,9 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
@@ -34,9 +37,6 @@ import net.sf.tweety.math.norm.ManhattanNorm;
 import net.sf.tweety.math.norm.MaximumNorm;
 import net.sf.tweety.math.opt.Solver;
 import net.sf.tweety.math.opt.solver.LpSolve;
-
-import org.junit.Before;
-import org.junit.Test;
 
 
 

@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.graphs.util;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import Jama.EigenvalueDecomposition;
 import net.sf.tweety.commons.util.MapTools;

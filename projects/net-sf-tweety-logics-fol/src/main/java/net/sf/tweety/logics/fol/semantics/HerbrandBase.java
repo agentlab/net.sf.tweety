@@ -18,13 +18,17 @@
  */
 package net.sf.tweety.logics.fol.semantics;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import net.sf.tweety.commons.util.*;
+import net.sf.tweety.commons.util.SetTools;
 import net.sf.tweety.logics.commons.syntax.Predicate;
 import net.sf.tweety.logics.commons.syntax.Sort;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.logics.fol.syntax.FOLAtom;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
 
 
 /**

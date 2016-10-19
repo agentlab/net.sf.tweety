@@ -28,7 +28,11 @@ import net.sf.tweety.action.signature.ActionSignature;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Variable;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.logics.fol.syntax.Disjunction;
+import net.sf.tweety.logics.fol.syntax.FOLAtom;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.RelationalFormula;
+import net.sf.tweety.logics.fol.syntax.Tautology;
 
 /**
  * A dynamic law in C has the form caused F if G after U where F is a

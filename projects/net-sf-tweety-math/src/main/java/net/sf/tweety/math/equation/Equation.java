@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.math.equation;
 
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.math.term.Constant;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.Term;
 
 /**
  * This class represent an equation of two terms.

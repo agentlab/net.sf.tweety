@@ -24,9 +24,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.sf.tweety.web.TweetyServer;
-
 import org.codehaus.jettison.json.JSONException;
+
+import net.sf.tweety.web.TweetyServer;
 
 /**
  * Provides a simple ping service that always returns the request

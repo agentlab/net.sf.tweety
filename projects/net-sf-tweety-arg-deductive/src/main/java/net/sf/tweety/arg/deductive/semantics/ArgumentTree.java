@@ -21,7 +21,7 @@ package net.sf.tweety.arg.deductive.semantics;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.tweety.graphs.*;
+import net.sf.tweety.graphs.DefaultGraph;
 
 /**
  * Instances of this class represent argument trees in the sense

@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.Collection;
 
 /**
  * An interpretation for some logical language.

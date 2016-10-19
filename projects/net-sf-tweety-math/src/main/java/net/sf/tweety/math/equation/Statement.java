@@ -18,9 +18,14 @@
  */
 package net.sf.tweety.math.equation;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.math.term.AbsoluteValue;
+import net.sf.tweety.math.term.Maximum;
+import net.sf.tweety.math.term.Minimum;
+import net.sf.tweety.math.term.Term;
 
 
 /**

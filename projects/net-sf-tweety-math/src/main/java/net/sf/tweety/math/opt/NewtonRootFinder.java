@@ -18,13 +18,23 @@
  */
 package net.sf.tweety.math.opt;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.commons.util.*;
-import net.sf.tweety.math.*;
-import net.sf.tweety.math.equation.*;
-import net.sf.tweety.math.opt.solver.*;
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.commons.util.VectorTools;
+import net.sf.tweety.math.GeneralMathException;
+import net.sf.tweety.math.equation.Equation;
+import net.sf.tweety.math.opt.solver.ApacheCommonsSimplex;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.FloatVariable;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 
 /**

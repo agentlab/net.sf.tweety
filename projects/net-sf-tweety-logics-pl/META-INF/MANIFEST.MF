@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Propositional Logic)
+Bundle-SymbolicName: net.sf.tweety.logics.pl
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.logics.pl,
+ net.sf.tweety.logics.pl.analysis,
+ net.sf.tweety.logics.pl.error,
+ net.sf.tweety.logics.pl.lang,
+ net.sf.tweety.logics.pl.parser,
+ net.sf.tweety.logics.pl.plugin,
+ net.sf.tweety.logics.pl.sat,
+ net.sf.tweety.logics.pl.semantics,
+ net.sf.tweety.logics.pl.syntax,
+ net.sf.tweety.logics.pl.test,
+ net.sf.tweety.logics.pl.util,
+ net.sf.tweety.logics.propositionallogic.semantics
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0",
+ org.junit;bundle-version="4.12.0",
+ net.sf.tweety.plugin;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

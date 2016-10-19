@@ -18,14 +18,17 @@
  */
 package net.sf.tweety.arg.saf;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.arg.dung.*;
-import net.sf.tweety.arg.dung.syntax.*;
-import net.sf.tweety.arg.saf.syntax.*;
-import net.sf.tweety.commons.*;
-import net.sf.tweety.commons.util.rules.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.arg.saf.syntax.ArgumentStructure;
+import net.sf.tweety.arg.saf.syntax.BasicArgument;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.util.rules.Derivation;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 /**
  * This class represents a structured argumentation framework, i.e. a set of 

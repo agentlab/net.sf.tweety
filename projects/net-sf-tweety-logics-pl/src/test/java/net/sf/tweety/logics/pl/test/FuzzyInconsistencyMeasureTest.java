@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.logics.pl.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 

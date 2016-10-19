@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Action and Change)
+Bundle-SymbolicName: net.sf.tweety.action
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.action,
+ net.sf.tweety.action.description,
+ net.sf.tweety.action.description.parser,
+ net.sf.tweety.action.description.syntax,
+ net.sf.tweety.action.grounding,
+ net.sf.tweety.action.grounding.parser,
+ net.sf.tweety.action.query,
+ net.sf.tweety.action.query.parser,
+ net.sf.tweety.action.query.syntax,
+ net.sf.tweety.action.signature,
+ net.sf.tweety.action.signature.parser,
+ net.sf.tweety.action.transitionsystem
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+ net.sf.tweety.logics.fol;bundle-version="1.0.0",
+ net.sf.tweety.logics.commons;bundle-version="1.0.0",
+ net.sf.tweety.lp.asp;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

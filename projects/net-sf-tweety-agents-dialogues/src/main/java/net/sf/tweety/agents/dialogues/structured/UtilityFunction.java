@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.agents.dialogues.structured;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 /**
  * This interface models an utility function, i.e. a 

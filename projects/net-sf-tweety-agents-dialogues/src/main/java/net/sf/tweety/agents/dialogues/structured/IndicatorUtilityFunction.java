@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.agents.dialogues.structured;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 /**
  * This class represents an indicator utility function, i.e. a function

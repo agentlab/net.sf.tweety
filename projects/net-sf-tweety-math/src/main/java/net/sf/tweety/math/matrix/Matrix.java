@@ -18,7 +18,9 @@
  */
 package net.sf.tweety.math.matrix;
 
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.Term;
 
 /**
  * This class models a matrix of terms.

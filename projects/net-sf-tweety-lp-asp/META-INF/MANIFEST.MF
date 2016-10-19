@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (ASP Library)
+Bundle-SymbolicName: net.sf.tweety.lp.asp
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.lp.asp.analysis,
+ net.sf.tweety.lp.asp.parser,
+ net.sf.tweety.lp.asp.solver,
+ net.sf.tweety.lp.asp.syntax,
+ net.sf.tweety.lp.asp.util
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.beliefdynamics;bundle-version="1.7.0",
+ org.junit;bundle-version="4.12.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

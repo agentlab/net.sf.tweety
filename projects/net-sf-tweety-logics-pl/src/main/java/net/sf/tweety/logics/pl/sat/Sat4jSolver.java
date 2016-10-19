@@ -22,6 +22,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.sat4j.core.VecInt;
+import org.sat4j.minisat.SolverFactory;
+import org.sat4j.specs.ContradictionException;
+import org.sat4j.specs.ISolver;
+import org.sat4j.specs.TimeoutException;
+
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
@@ -32,12 +38,6 @@ import net.sf.tweety.logics.pl.syntax.Proposition;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 import net.sf.tweety.logics.pl.syntax.Tautology;
-
-import org.sat4j.core.VecInt;
-import org.sat4j.minisat.SolverFactory;
-import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.ISolver;
-import org.sat4j.specs.TimeoutException;
 
 /**
  * Uses the Sat4j library for SAT solving (note that currently only the light version is used).

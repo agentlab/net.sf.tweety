@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class models an abstract constant, e.g. a float or an integer.

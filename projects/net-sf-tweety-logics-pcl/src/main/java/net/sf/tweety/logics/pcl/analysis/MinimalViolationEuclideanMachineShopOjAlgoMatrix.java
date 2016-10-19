@@ -20,6 +20,14 @@ package net.sf.tweety.logics.pcl.analysis;
 
 import java.util.Set;
 
+import org.ojalgo.matrix.BigMatrix;
+import org.ojalgo.matrix.PrimitiveMatrix;
+import org.ojalgo.matrix.store.PhysicalStore;
+import org.ojalgo.matrix.store.PrimitiveDenseStore;
+import org.ojalgo.matrix.store.SingleStore;
+import org.ojalgo.optimisation.Optimisation;
+import org.ojalgo.optimisation.quadratic.QuadraticSolver;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.semantics.ProbabilityDistribution;
@@ -29,14 +37,6 @@ import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 import net.sf.tweety.math.probability.Probability;
 import net.sf.tweety.math.util.OjAlgoMathUtils;
-
-import org.ojalgo.matrix.BigMatrix;
-import org.ojalgo.matrix.PrimitiveMatrix;
-import org.ojalgo.matrix.store.PhysicalStore;
-import org.ojalgo.matrix.store.PrimitiveDenseStore;
-import org.ojalgo.matrix.store.SingleStore;
-import org.ojalgo.optimisation.Optimisation;
-import org.ojalgo.optimisation.quadratic.QuadraticSolver;
 
 /**
  * Repairs a probabilistic belief base by taking the probabilities from the probability function

@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.arg.dung.syntax;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.SetSignature;
 
 
 /**

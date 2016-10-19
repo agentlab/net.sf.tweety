@@ -18,7 +18,9 @@
  */
 package net.sf.tweety.commons.util;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class provides some methods for set operations.

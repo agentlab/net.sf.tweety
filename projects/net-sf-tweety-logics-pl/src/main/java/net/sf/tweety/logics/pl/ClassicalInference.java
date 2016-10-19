@@ -18,8 +18,12 @@
  */
 package net.sf.tweety.logics.pl;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.Answer;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.EntailmentRelation;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Reasoner;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * This class implements the classical inference operator. A query, i.e. a 

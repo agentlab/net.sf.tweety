@@ -18,21 +18,35 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.parser.*;
-import net.sf.tweety.logics.pcl.semantics.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.logics.pl.semantics.*;
-import net.sf.tweety.logics.pl.syntax.*;
-import net.sf.tweety.math.*;
-import net.sf.tweety.math.equation.*;
-import net.sf.tweety.math.opt.*;
-import net.sf.tweety.math.term.*;
-import net.sf.tweety.math.probability.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.BeliefBaseMachineShop;
+import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.commons.TweetyConfiguration;
+import net.sf.tweety.commons.TweetyLogging;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.parser.PclParser;
+import net.sf.tweety.logics.pcl.semantics.ProbabilityDistribution;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.logics.pl.semantics.PossibleWorld;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
+import net.sf.tweety.math.GeneralMathException;
+import net.sf.tweety.math.equation.Equation;
+import net.sf.tweety.math.opt.OptimizationProblem;
+import net.sf.tweety.math.opt.Solver;
+import net.sf.tweety.math.probability.Probability;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.FloatVariable;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.Logarithm;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 /**
  * This consistency restorer uses the idea of the upper approximative distance minimization inconsistency measure to compute a

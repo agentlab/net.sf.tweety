@@ -18,9 +18,12 @@
  */
 package net.sf.tweety.arg.dung.semantics;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import net.sf.tweety.arg.dung.syntax.*;
+import net.sf.tweety.arg.dung.syntax.Argument;
 
 
 /**

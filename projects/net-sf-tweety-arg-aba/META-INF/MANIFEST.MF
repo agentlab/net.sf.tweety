@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (ASPIC Library)
+Bundle-SymbolicName: net.sf.tweety.arg.aba
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.arg.aba,
+ net.sf.tweety.arg.aba.syntax
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+ net.sf.tweety.graphs;bundle-version="1.0.0",
+ net.sf.tweety.arg.dung;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

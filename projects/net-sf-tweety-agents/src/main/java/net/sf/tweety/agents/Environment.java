@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.agents;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * This interface models an environment for agents, i.e.

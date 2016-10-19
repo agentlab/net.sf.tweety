@@ -18,17 +18,29 @@
  */
 package net.sf.tweety.logics.cl;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.cl.semantics.*;
-import net.sf.tweety.logics.cl.syntax.*;
-import net.sf.tweety.logics.pl.semantics.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.Answer;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Reasoner;
+import net.sf.tweety.logics.cl.semantics.RankingFunction;
+import net.sf.tweety.logics.cl.syntax.Conditional;
+import net.sf.tweety.logics.pl.semantics.PossibleWorld;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 import net.sf.tweety.math.GeneralMathException;
-import net.sf.tweety.math.equation.*;
-import net.sf.tweety.math.opt.*;
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.math.equation.Equation;
+import net.sf.tweety.math.equation.Inequation;
+import net.sf.tweety.math.equation.Statement;
+import net.sf.tweety.math.opt.OptimizationProblem;
+import net.sf.tweety.math.opt.Solver;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.IntegerVariable;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 
 /**

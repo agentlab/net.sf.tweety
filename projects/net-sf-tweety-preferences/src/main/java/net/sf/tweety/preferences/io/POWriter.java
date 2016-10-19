@@ -18,16 +18,16 @@
  */
 package net.sf.tweety.preferences.io;
 
-import net.sf.tweety.commons.util.Triple;
-import net.sf.tweety.preferences.PreferenceOrder;
-import net.sf.tweety.preferences.Relation;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Iterator;
+
+import net.sf.tweety.commons.util.Triple;
+import net.sf.tweety.preferences.PreferenceOrder;
+import net.sf.tweety.preferences.Relation;
 
 /**
  * 

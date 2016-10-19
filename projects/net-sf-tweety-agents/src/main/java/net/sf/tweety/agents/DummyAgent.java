@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.agents;
 
-import java.util.*;
+import java.util.Collection;
 
 /**
  * A dummy agent is an agent that cannot act.

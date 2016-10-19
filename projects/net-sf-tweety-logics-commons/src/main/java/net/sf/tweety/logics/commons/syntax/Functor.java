@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.logics.commons.syntax;
 
-import java.util.*;
+import java.util.List;
 
 
 /**

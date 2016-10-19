@@ -18,9 +18,11 @@
  */
 package net.sf.tweety.commons.util.rules;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This class represents a set of rules and provides several

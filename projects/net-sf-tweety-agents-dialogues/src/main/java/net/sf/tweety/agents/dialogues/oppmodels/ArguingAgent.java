@@ -23,8 +23,8 @@ import java.util.Collection;
 import net.sf.tweety.agents.Agent;
 import net.sf.tweety.agents.Executable;
 import net.sf.tweety.agents.Perceivable;
-import net.sf.tweety.agents.dialogues.DialogueTrace;
 import net.sf.tweety.agents.dialogues.ArgumentationEnvironment;
+import net.sf.tweety.agents.dialogues.DialogueTrace;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 

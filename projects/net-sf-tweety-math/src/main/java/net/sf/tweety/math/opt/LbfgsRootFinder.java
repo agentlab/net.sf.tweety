@@ -18,11 +18,13 @@
  */
 package net.sf.tweety.math.opt;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.GeneralMathException;
 import net.sf.tweety.math.opt.solver.LbfgsSolver;
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 
 /**

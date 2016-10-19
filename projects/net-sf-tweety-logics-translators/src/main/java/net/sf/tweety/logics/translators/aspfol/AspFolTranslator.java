@@ -22,13 +22,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.tweety.commons.util.Pair;
-import net.sf.tweety.lp.asp.syntax.*;
 import net.sf.tweety.logics.commons.syntax.interfaces.SimpleLogicalFormula;
-import net.sf.tweety.logics.translators.Translator;
 import net.sf.tweety.logics.fol.syntax.Disjunction;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.Negation;
+import net.sf.tweety.logics.translators.Translator;
+import net.sf.tweety.lp.asp.syntax.DLPAtom;
+import net.sf.tweety.lp.asp.syntax.DLPElement;
+import net.sf.tweety.lp.asp.syntax.DLPHead;
+import net.sf.tweety.lp.asp.syntax.DLPLiteral;
+import net.sf.tweety.lp.asp.syntax.DLPNeg;
 
 /**
  * This Translator can translate between FOL and ASP literals (without default

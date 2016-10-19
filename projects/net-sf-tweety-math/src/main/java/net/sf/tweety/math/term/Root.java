@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.math.term;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.NonDifferentiableException;
 
 /**
  * This class represents a the nth root function

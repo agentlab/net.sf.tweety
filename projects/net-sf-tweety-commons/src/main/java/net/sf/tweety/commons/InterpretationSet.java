@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * This class models an interpretation that is a set of some formula and as such implements the

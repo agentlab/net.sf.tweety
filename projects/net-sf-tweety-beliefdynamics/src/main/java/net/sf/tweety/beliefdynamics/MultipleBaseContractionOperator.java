@@ -18,9 +18,11 @@
  */
 package net.sf.tweety.beliefdynamics;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This is the interface for a classic multiple belief base contraction operator, ie. an

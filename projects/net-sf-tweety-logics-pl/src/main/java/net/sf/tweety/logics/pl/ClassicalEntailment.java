@@ -18,11 +18,15 @@
  */
 package net.sf.tweety.logics.pl;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.EntailmentRelation;
+import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.syntax.Contradiction;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 /**
  * This class implements classical entailment for propositional logic.

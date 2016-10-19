@@ -21,13 +21,13 @@ package net.sf.tweety.math.opt;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.math.GeneralMathException;
 import net.sf.tweety.math.opt.solver.GradientDescent;
 import net.sf.tweety.math.term.Term;
 import net.sf.tweety.math.term.Variable;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

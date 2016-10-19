@@ -19,7 +19,6 @@
 package net.sf.tweety.logics.commons.syntax;
 
 import static org.junit.Assert.assertEquals;
-import net.sf.tweety.logics.commons.syntax.Variable;
 
 import org.junit.Test;
 

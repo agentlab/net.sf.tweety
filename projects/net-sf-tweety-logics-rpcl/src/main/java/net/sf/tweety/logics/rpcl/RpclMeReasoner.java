@@ -23,6 +23,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
@@ -52,9 +55,6 @@ import net.sf.tweety.math.term.IntegerConstant;
 import net.sf.tweety.math.term.Logarithm;
 import net.sf.tweety.math.term.Term;
 import net.sf.tweety.math.term.Variable;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * General ME-reasoner for RPCL.

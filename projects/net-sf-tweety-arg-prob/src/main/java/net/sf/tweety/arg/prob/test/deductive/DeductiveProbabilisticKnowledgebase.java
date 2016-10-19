@@ -22,7 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.tweety.arg.deductive.DeductiveKnowledgeBase;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 import net.sf.tweety.math.probability.Probability;

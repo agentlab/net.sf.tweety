@@ -18,13 +18,23 @@
  */
 package net.sf.tweety.logics.rcl.semantics;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.semantics.*;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rcl.*;
-import net.sf.tweety.logics.rcl.syntax.*;
+import net.sf.tweety.commons.AbstractInterpretation;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.logics.fol.semantics.HerbrandBase;
+import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.fol.syntax.RelationalFormula;
+import net.sf.tweety.logics.rcl.RclBeliefSet;
+import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
 
 /**
  * A relational ranking function (or relational ordinal conditional function, ROCF) that maps

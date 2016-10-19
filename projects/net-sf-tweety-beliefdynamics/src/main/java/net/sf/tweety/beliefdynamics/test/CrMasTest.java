@@ -18,19 +18,28 @@
  */
 package net.sf.tweety.beliefdynamics.test;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.beliefdynamics.*;
-import net.sf.tweety.beliefdynamics.kernels.*;
-import net.sf.tweety.beliefdynamics.mas.*;
-import net.sf.tweety.beliefdynamics.operators.*;
-import net.sf.tweety.commons.*;
-import net.sf.tweety.graphs.orders.*;
+import net.sf.tweety.agents.Agent;
+import net.sf.tweety.agents.DummyAgent;
+import net.sf.tweety.beliefdynamics.DefaultMultipleBaseExpansionOperator;
+import net.sf.tweety.beliefdynamics.LeviMultipleBaseRevisionOperator;
+import net.sf.tweety.beliefdynamics.kernels.KernelContractionOperator;
+import net.sf.tweety.beliefdynamics.kernels.RandomIncisionFunction;
+import net.sf.tweety.beliefdynamics.mas.CrMasBeliefSet;
+import net.sf.tweety.beliefdynamics.mas.CrMasRevisionWrapper;
+import net.sf.tweety.beliefdynamics.mas.InformationObject;
+import net.sf.tweety.beliefdynamics.operators.CrMasArgumentativeRevisionOperator;
+import net.sf.tweety.beliefdynamics.operators.CrMasSimpleRevisionOperator;
+import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.graphs.orders.Order;
 import net.sf.tweety.logics.pl.ClassicalEntailment;
-import net.sf.tweety.logics.pl.parser.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.parser.PlParser;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 public class CrMasTest {
 

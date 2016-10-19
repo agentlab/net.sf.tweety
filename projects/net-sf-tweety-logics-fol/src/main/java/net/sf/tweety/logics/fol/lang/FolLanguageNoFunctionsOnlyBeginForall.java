@@ -18,8 +18,10 @@
  */
 package net.sf.tweety.logics.fol.lang;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.ForallQuantifiedFormula;
 
 /**
  * This class models a first-order language without functions and there may be

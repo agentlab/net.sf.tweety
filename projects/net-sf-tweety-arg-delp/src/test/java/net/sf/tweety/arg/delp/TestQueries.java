@@ -1,16 +1,16 @@
 package net.sf.tweety.arg.delp;
 
-import net.sf.tweety.arg.delp.parser.DelpParser;
-import net.sf.tweety.arg.delp.semantics.GeneralizedSpecificity;
-import net.sf.tweety.commons.Formula;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import net.sf.tweety.arg.delp.parser.DelpParser;
+import net.sf.tweety.arg.delp.semantics.GeneralizedSpecificity;
+import net.sf.tweety.commons.Formula;
 
 /**
  * Testing some example KBs with various queries.

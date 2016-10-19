@@ -18,9 +18,13 @@
  */
 package net.sf.tweety.logics.fol.lang;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.fol.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Language;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.logics.fol.FolBeliefSet;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
 
 /**
  * This class models a first-order language for a given signature.

@@ -1,10 +1,5 @@
 package net.sf.tweety.arg.delp;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.kohsuke.args4j.CmdLineException;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -12,6 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+import org.kohsuke.args4j.CmdLineException;
 
 /**
  * Testing the command line stuff for DeLP.

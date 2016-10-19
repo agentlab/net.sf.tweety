@@ -18,7 +18,13 @@
  */
 package net.sf.tweety.graphs;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
 
 import net.sf.tweety.commons.util.SetTools;
 import net.sf.tweety.math.matrix.Matrix;

@@ -18,13 +18,17 @@
  */
 package net.sf.tweety.logics.rpcl;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
-import net.sf.tweety.logics.fol.syntax.*;
-import net.sf.tweety.logics.rpcl.syntax.*;
+import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.rpcl.syntax.RelationalProbabilisticConditional;
 
 
 /**

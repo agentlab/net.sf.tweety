@@ -18,7 +18,11 @@
  */
 package net.sf.tweety.commons;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
 
 /**
  * This class models an abstract parser for belief bases and formulas.

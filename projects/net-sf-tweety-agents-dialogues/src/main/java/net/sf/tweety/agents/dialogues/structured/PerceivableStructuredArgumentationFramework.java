@@ -18,8 +18,8 @@
  */
 package net.sf.tweety.agents.dialogues.structured;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.arg.saf.*;
+import net.sf.tweety.agents.Perceivable;
+import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
 
 /**
  * This class packs a structured argumentation framework into a

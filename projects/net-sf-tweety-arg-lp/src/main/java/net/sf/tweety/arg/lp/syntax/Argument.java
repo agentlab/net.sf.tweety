@@ -27,7 +27,10 @@ import java.util.Set;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
-import net.sf.tweety.lp.asp.syntax.*;
+import net.sf.tweety.lp.asp.syntax.DLPElement;
+import net.sf.tweety.lp.asp.syntax.DLPLiteral;
+import net.sf.tweety.lp.asp.syntax.DLPNot;
+import net.sf.tweety.lp.asp.syntax.Rule;
 
 
 /**

@@ -19,6 +19,7 @@
 package net.sf.tweety.logics.translators.aspfol;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 

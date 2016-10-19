@@ -18,14 +18,21 @@
  */
 package net.sf.tweety.beliefdynamics.operators;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.beliefdynamics.*;
-import net.sf.tweety.beliefdynamics.mas.*;
-import net.sf.tweety.graphs.orders.*;
+import net.sf.tweety.agents.Agent;
+import net.sf.tweety.beliefdynamics.DefaultMultipleBaseExpansionOperator;
+import net.sf.tweety.beliefdynamics.LeviMultipleBaseRevisionOperator;
+import net.sf.tweety.beliefdynamics.MultipleBaseRevisionOperator;
+import net.sf.tweety.beliefdynamics.mas.AbstractCredibilityComparer;
+import net.sf.tweety.beliefdynamics.mas.CrMasBeliefSet;
+import net.sf.tweety.beliefdynamics.mas.CrMasRevisionWrapper;
+import net.sf.tweety.beliefdynamics.mas.InformationObject;
+import net.sf.tweety.graphs.orders.Order;
 import net.sf.tweety.logics.pl.ClassicalEntailment;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.syntax.Negation;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * This revision operator accepts only those pieces of information for revision where the credibility

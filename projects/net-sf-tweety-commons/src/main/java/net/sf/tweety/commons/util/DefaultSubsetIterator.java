@@ -18,7 +18,12 @@
  */
 package net.sf.tweety.commons.util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 /**
  * Iterates over all subsets of a given sets. The order is given by the increment of a bitset as follows.

@@ -19,6 +19,9 @@
 package net.sf.tweety.logics.translators.folprop;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import net.sf.tweety.logics.commons.error.LanguageException;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Predicate;
@@ -26,8 +29,6 @@ import net.sf.tweety.logics.fol.syntax.Conjunction;
 import net.sf.tweety.logics.fol.syntax.Disjunction;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
 import net.sf.tweety.logics.pl.syntax.Proposition;
-
-import org.junit.Test;
 
 /**
  * Tests the FOLPropTranslator

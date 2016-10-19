@@ -23,9 +23,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.arg.dung.*;
-import net.sf.tweety.arg.dung.semantics.*;
-import net.sf.tweety.arg.dung.syntax.*;
+import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.GroundReasoner;
+import net.sf.tweety.arg.dung.StableReasoner;
+import net.sf.tweety.arg.dung.semantics.ArgumentStatus;
+import net.sf.tweety.arg.dung.semantics.Labeling;
+import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.arg.dung.util.DungTheoryGenerator;
 import net.sf.tweety.arg.dung.util.IsoSafeEnumeratingDungTheoryGenerator;
 import net.sf.tweety.graphs.Graph;

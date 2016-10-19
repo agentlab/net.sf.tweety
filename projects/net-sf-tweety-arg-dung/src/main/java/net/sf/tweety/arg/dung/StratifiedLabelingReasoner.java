@@ -21,7 +21,9 @@ package net.sf.tweety.arg.dung;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.tweety.arg.dung.semantics.*;
+import net.sf.tweety.arg.dung.semantics.Extension;
+import net.sf.tweety.arg.dung.semantics.Semantics;
+import net.sf.tweety.arg.dung.semantics.StratifiedLabeling;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;

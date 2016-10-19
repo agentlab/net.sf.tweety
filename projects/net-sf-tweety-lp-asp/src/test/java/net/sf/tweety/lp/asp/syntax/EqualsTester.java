@@ -23,13 +23,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.Test;
+
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.FunctionalTerm;
 import net.sf.tweety.logics.commons.syntax.Functor;
 import net.sf.tweety.logics.commons.syntax.NumberTerm;
 import net.sf.tweety.logics.commons.syntax.Variable;
-
-import org.junit.Test;
 
 public class EqualsTester {
 	@Test

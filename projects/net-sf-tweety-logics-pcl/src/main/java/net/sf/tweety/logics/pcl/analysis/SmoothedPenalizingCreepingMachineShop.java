@@ -18,12 +18,13 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.sf.tweety.logics.commons.analysis.CulpabilityMeasure;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.math.probability.*;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.math.probability.Probability;
 
 /**
  * This class is capable of restoring consistency of a possible inconsistent probabilistic

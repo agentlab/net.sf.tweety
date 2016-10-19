@@ -24,8 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.ParserException;
@@ -54,7 +54,6 @@ import net.sf.tweety.plugin.parameter.SelectionCommandParameter;
 import net.sf.tweety.plugin.parameter.StringListCommandParameter;
 import net.xeoh.plugins.base.annotations.Capabilities;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
-import net.xeoh.plugins.base.options.getplugin.OptionCapabilities;
 
 /**
  * relational probabilistic conditional logic plugin for the tweety cli 

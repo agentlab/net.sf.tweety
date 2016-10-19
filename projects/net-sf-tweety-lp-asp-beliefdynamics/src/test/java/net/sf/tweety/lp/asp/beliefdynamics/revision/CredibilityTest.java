@@ -26,6 +26,11 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.lp.asp.parser.ASPParser;
 import net.sf.tweety.lp.asp.parser.InstantiateVisitor;
 import net.sf.tweety.lp.asp.parser.ParseException;
@@ -36,12 +41,6 @@ import net.sf.tweety.lp.asp.syntax.Program;
 import net.sf.tweety.lp.asp.syntax.Rule;
 import net.sf.tweety.lp.asp.util.AnswerSet;
 import net.sf.tweety.lp.asp.util.AnswerSetList;
-import net.sf.tweety.lp.asp.beliefdynamics.revision.CredibilityRevision;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Tests the revision method described in Kruempelmann et al. 2008. 

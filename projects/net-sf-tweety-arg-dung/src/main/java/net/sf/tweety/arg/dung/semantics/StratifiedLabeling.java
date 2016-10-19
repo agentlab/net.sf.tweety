@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.arg.dung.syntax.*;
+import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;

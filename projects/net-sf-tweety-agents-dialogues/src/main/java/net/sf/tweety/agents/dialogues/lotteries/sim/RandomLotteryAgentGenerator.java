@@ -19,8 +19,8 @@
 package net.sf.tweety.agents.dialogues.lotteries.sim;
 
 import net.sf.tweety.agents.dialogues.lotteries.AbstractLotteryAgent;
-import net.sf.tweety.agents.dialogues.lotteries.RandomLotteryAgent;
 import net.sf.tweety.agents.dialogues.lotteries.LotteryGameSystem;
+import net.sf.tweety.agents.dialogues.lotteries.RandomLotteryAgent;
 import net.sf.tweety.agents.sim.AgentGenerator;
 import net.sf.tweety.agents.sim.SimulationParameters;
 import net.sf.tweety.arg.dung.DungTheory;

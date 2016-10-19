@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.agents;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A protocol gives instructions in which order agents have to be asked

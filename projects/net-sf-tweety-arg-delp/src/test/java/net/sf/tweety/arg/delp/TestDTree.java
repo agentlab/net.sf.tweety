@@ -1,18 +1,21 @@
 package net.sf.tweety.arg.delp;
 
-import net.sf.tweety.arg.delp.parser.DelpParser;
-import net.sf.tweety.arg.delp.semantics.DialecticalTree;
-import net.sf.tweety.arg.delp.syntax.DelpArgument;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static net.sf.tweety.arg.delp.TestArguments.ARG_TINA_FLIES1;
+import static net.sf.tweety.arg.delp.TestArguments.ARG_TINA_FLIES2;
+import static net.sf.tweety.arg.delp.TestArguments.ARG_TINA_NESTS;
+import static net.sf.tweety.arg.delp.TestArguments.ARG_TINA_NOT_FLIES;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
-import static net.sf.tweety.arg.delp.TestArguments.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import net.sf.tweety.arg.delp.parser.DelpParser;
+import net.sf.tweety.arg.delp.semantics.DialecticalTree;
 
 /**
  * Testing dialectical trees.

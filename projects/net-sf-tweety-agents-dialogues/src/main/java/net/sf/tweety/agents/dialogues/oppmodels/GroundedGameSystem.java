@@ -18,8 +18,8 @@
  */
 package net.sf.tweety.agents.dialogues.oppmodels;
 
-import net.sf.tweety.agents.MultiAgentSystem;
 import net.sf.tweety.agents.AbstractProtocol;
+import net.sf.tweety.agents.MultiAgentSystem;
 import net.sf.tweety.agents.ProtocolTerminatedException;
 import net.sf.tweety.agents.dialogues.ArgumentationEnvironment;
 import net.sf.tweety.arg.dung.DungTheory;

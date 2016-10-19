@@ -20,6 +20,9 @@ package net.sf.tweety.logics.translators;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.commons.util.Pair;
 import net.sf.tweety.commons.util.rules.Rule;
 import net.sf.tweety.logics.commons.error.LanguageException;
@@ -30,9 +33,6 @@ import net.sf.tweety.logics.commons.syntax.interfaces.AssociativeFormula;
 import net.sf.tweety.logics.commons.syntax.interfaces.Atom;
 import net.sf.tweety.logics.commons.syntax.interfaces.SimpleLogicalFormula;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Allows translation between different logic languages, sub classes

@@ -18,17 +18,26 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
-import net.sf.tweety.logics.pcl.*;
-import net.sf.tweety.logics.pcl.syntax.*;
-import net.sf.tweety.logics.pl.semantics.*;
-import net.sf.tweety.logics.pl.syntax.*;
-import net.sf.tweety.math.*;
-import net.sf.tweety.math.equation.*;
-import net.sf.tweety.math.opt.*;
-import net.sf.tweety.math.term.*;
+import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
+import net.sf.tweety.logics.pl.semantics.PossibleWorld;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
+import net.sf.tweety.math.GeneralMathException;
+import net.sf.tweety.math.equation.Equation;
+import net.sf.tweety.math.equation.Inequation;
+import net.sf.tweety.math.opt.OptimizationProblem;
+import net.sf.tweety.math.opt.Solver;
+import net.sf.tweety.math.term.FloatConstant;
+import net.sf.tweety.math.term.FloatVariable;
+import net.sf.tweety.math.term.IntegerConstant;
+import net.sf.tweety.math.term.Term;
+import net.sf.tweety.math.term.Variable;
 
 /**
  * This class implements the mean distance culpability measure, see [PhD thesis, Thimm].

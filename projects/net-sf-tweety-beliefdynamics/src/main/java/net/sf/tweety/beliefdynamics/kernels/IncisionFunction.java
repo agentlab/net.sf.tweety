@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.beliefdynamics.kernels;
 
-import java.util.*;
+import java.util.Collection;
 
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Formula;
 
 /**
  * This interface models an incision function for kernel contraction, ie

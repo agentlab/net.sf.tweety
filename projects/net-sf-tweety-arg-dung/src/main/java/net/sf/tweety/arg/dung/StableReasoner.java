@@ -18,11 +18,14 @@
  */
 package net.sf.tweety.arg.dung;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.arg.dung.semantics.*;
-import net.sf.tweety.arg.dung.syntax.*;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.arg.dung.semantics.Extension;
+import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Contradiction;
 import net.sf.tweety.logics.pl.syntax.Proposition;

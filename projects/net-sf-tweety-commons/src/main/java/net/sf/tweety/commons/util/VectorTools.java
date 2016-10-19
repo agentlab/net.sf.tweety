@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.commons.util;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class contains some auxiliary methods for

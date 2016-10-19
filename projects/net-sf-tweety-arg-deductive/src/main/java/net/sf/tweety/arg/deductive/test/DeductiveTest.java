@@ -24,7 +24,10 @@ import net.sf.tweety.arg.deductive.DeductiveKnowledgeBase;
 import net.sf.tweety.arg.deductive.SimpleReasoner;
 import net.sf.tweety.arg.deductive.accumulator.SimpleAccumulator;
 import net.sf.tweety.arg.deductive.categorizer.ClassicalCategorizer;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.commons.Reasoner;
+import net.sf.tweety.commons.TweetyConfiguration;
+import net.sf.tweety.commons.TweetyLogging;
 import net.sf.tweety.logics.pl.parser.PlParser;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 

@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class models a variable as a mathematical term.

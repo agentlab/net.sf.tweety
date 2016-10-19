@@ -23,6 +23,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.arg.deductive.accumulator.Accumulator;
 import net.sf.tweety.arg.deductive.categorizer.Categorizer;
 import net.sf.tweety.arg.deductive.semantics.ArgumentTree;
@@ -33,9 +36,6 @@ import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.syntax.Negation;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class contains common characteristics for deductive argumentation

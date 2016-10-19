@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.Set;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.NonDifferentiableException;
 
 /**
  * Instances of this class represent fractions of two terms.

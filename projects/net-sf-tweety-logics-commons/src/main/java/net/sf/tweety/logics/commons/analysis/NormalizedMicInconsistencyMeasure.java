@@ -21,7 +21,7 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 
 import net.sf.tweety.commons.Formula;
-import net.sf.tweety.commons.util.*;
+import net.sf.tweety.commons.util.MathTools;
 
 /**
  * This class models the normalized MI^C inconsistency measure, see [PhD thesis, Thimm].

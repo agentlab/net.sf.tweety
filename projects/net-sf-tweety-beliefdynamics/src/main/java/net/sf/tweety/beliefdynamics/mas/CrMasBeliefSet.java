@@ -18,9 +18,11 @@
  */
 package net.sf.tweety.beliefdynamics.mas;
 
-import net.sf.tweety.agents.*;
-import net.sf.tweety.commons.*;
-import net.sf.tweety.graphs.orders.*;
+import net.sf.tweety.agents.Agent;
+import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Signature;
+import net.sf.tweety.graphs.orders.Order;
 
 /**
  * This class represents belief sets for credibility-based agents multi-agent systems.

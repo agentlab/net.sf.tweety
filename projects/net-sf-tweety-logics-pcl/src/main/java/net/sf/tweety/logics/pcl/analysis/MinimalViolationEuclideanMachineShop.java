@@ -18,12 +18,12 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Repairs a probabilistic belief base by taking the probabilities from the probability function

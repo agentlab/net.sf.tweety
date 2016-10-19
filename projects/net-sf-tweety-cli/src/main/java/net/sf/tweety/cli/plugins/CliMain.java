@@ -29,15 +29,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import net.sf.tweety.plugin.*;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.XMLConfiguration;
+
+import net.sf.tweety.plugin.PluginOutput;
+import net.sf.tweety.plugin.TweetyPlugin;
 import net.sf.tweety.plugin.parameter.CommandParameter;
 import net.xeoh.plugins.base.PluginManager;
 import net.xeoh.plugins.base.impl.PluginManagerFactory;
 import net.xeoh.plugins.base.options.getplugin.OptionCapabilities;
 import net.xeoh.plugins.base.util.PluginManagerUtil;
-
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.XMLConfiguration;
 
 /**
  * skeleton of the new main method of this CLI using plugins.

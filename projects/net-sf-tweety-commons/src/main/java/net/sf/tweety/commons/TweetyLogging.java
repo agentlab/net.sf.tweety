@@ -18,9 +18,9 @@
  */
 package net.sf.tweety.commons;
 
-import java.util.*;
+import java.util.Properties;
 
-import org.apache.log4j.*;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  * This class handles the global logging configuration.

@@ -18,14 +18,22 @@
  */
 package net.sf.tweety.logics.cl.semantics;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.cl.*;
-import net.sf.tweety.logics.cl.syntax.*;
+import net.sf.tweety.commons.AbstractInterpretation;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.logics.cl.ClBeliefSet;
+import net.sf.tweety.logics.cl.syntax.Conditional;
 import net.sf.tweety.logics.commons.syntax.interfaces.SimpleLogicalFormula;
-import net.sf.tweety.logics.pl.semantics.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.logics.pl.semantics.PossibleWorld;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 
 /**

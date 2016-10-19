@@ -20,7 +20,7 @@ package net.sf.tweety.arg.dung.syntax;
 
 import net.sf.tweety.arg.dung.ldo.syntax.LdoArgument;
 import net.sf.tweety.arg.dung.ldo.syntax.LdoFormula;
-import net.sf.tweety.commons.*;
+import net.sf.tweety.commons.Signature;
 import net.sf.tweety.graphs.Node;
 
 /**

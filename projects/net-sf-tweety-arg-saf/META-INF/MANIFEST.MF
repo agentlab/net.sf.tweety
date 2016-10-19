@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety (Structured Argumentation Frameworks Library)
+Bundle-SymbolicName: net.sf.tweety.arg.saf
+Bundle-Version: 1.7.0.qualifier
+Export-Package: net.sf.tweety.arg.saf,
+ net.sf.tweety.arg.saf.syntax,
+ net.sf.tweety.arg.saf.util
+Require-Bundle: net.sf.tweety.arg.dung;bundle-version="1.7.0",
+ net.sf.tweety.logics.pl;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

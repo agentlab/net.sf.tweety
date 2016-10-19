@@ -18,16 +18,32 @@
  */
 package net.sf.tweety.logics.fol.semantics;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.commons.util.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.InterpretationSet;
+import net.sf.tweety.commons.util.MapTools;
+import net.sf.tweety.commons.util.SetTools;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Predicate;
 import net.sf.tweety.logics.commons.syntax.Variable;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
-import net.sf.tweety.logics.fol.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.logics.fol.FolBeliefSet;
+import net.sf.tweety.logics.fol.syntax.Conjunction;
+import net.sf.tweety.logics.fol.syntax.Contradiction;
+import net.sf.tweety.logics.fol.syntax.Disjunction;
+import net.sf.tweety.logics.fol.syntax.ExistsQuantifiedFormula;
+import net.sf.tweety.logics.fol.syntax.FOLAtom;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.fol.syntax.ForallQuantifiedFormula;
+import net.sf.tweety.logics.fol.syntax.Negation;
+import net.sf.tweety.logics.fol.syntax.RelationalFormula;
+import net.sf.tweety.logics.fol.syntax.Tautology;
 
 
 /**

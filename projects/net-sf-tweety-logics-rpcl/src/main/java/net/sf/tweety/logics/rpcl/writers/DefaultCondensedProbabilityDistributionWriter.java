@@ -18,10 +18,14 @@
  */
 package net.sf.tweety.logics.rpcl.writers;
 
-import java.text.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.rpcl.*;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.commons.Writer;
+import net.sf.tweety.logics.rpcl.CondensedProbabilityDistribution;
+import net.sf.tweety.logics.rpcl.InstanceAssignment;
+import net.sf.tweety.logics.rpcl.ReferenceWorld;
 
 /**
  * This class implements a simple writer for writing condensed probability distributions.

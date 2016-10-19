@@ -18,7 +18,8 @@
  */
 package net.sf.tweety.logics.fol.syntax;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Set;
 
 import net.sf.tweety.logics.commons.LogicalSymbols;
 import net.sf.tweety.logics.commons.syntax.Variable;

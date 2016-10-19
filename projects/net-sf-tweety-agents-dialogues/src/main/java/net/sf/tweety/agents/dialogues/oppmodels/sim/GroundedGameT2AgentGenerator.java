@@ -21,6 +21,9 @@ package net.sf.tweety.agents.dialogues.oppmodels.sim;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.tweety.agents.dialogues.oppmodels.BeliefState;
 import net.sf.tweety.agents.dialogues.oppmodels.GroundedGameSystem;
 import net.sf.tweety.agents.dialogues.oppmodels.GroundedGameUtilityFunction;
@@ -31,9 +34,6 @@ import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.math.probability.Probability;
 import net.sf.tweety.math.probability.ProbabilityFunction;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Generates agents of type T2.

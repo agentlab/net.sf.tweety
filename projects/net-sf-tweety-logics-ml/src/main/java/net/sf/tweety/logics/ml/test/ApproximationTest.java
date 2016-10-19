@@ -24,7 +24,9 @@ import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.commons.util.Pair;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
 import net.sf.tweety.logics.fol.syntax.RelationalFormula;
-import net.sf.tweety.logics.ml.*;
+import net.sf.tweety.logics.ml.MarkovLogicNetwork;
+import net.sf.tweety.logics.ml.NaiveMlnReasoner;
+import net.sf.tweety.logics.ml.SimpleSamplingMlnReasoner;
 import net.sf.tweety.logics.ml.syntax.MlnFormula;
 
 public class ApproximationTest {

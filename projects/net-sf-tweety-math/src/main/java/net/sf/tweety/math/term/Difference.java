@@ -18,9 +18,10 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.NonDifferentiableException;
 
 /**
  * This class models a difference between two terms.

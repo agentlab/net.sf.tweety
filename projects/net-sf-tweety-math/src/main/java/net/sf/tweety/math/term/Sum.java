@@ -18,9 +18,12 @@
  */
 package net.sf.tweety.math.term;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Stack;
 
-import net.sf.tweety.math.*;
+import net.sf.tweety.math.NonDifferentiableException;
 
 /**
  * This class models a sum of two terms.

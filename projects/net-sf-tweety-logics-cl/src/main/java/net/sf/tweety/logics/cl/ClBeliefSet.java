@@ -18,11 +18,13 @@
  */
 package net.sf.tweety.logics.cl;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.cl.syntax.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.logics.cl.syntax.Conditional;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
 /**
  * This class models a belief set on conditional logic, i.e. a set of conditionals.

@@ -18,12 +18,23 @@
  */
 package net.sf.tweety.logics.pl.semantics;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.commons.util.*;
-import net.sf.tweety.logics.pl.*;
-import net.sf.tweety.logics.pl.syntax.*;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.InterpretationSet;
+import net.sf.tweety.commons.util.SetTools;
+import net.sf.tweety.logics.pl.PlBeliefSet;
+import net.sf.tweety.logics.pl.syntax.Conjunction;
+import net.sf.tweety.logics.pl.syntax.Contradiction;
+import net.sf.tweety.logics.pl.syntax.Disjunction;
+import net.sf.tweety.logics.pl.syntax.Negation;
+import net.sf.tweety.logics.pl.syntax.Proposition;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
+import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
+import net.sf.tweety.logics.pl.syntax.Tautology;
 
 
 /**

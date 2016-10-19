@@ -18,7 +18,9 @@
  */
 package net.sf.tweety.commons;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * This class represents an abstract writer for

@@ -18,11 +18,16 @@
  */
 package net.sf.tweety.logics.el.semantics;
 
-import java.util.*;
+import java.util.Set;
 
-import net.sf.tweety.commons.*;
-import net.sf.tweety.logics.el.syntax.*;
-import net.sf.tweety.logics.fol.syntax.*;
+import net.sf.tweety.commons.AbstractInterpretation;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.logics.el.syntax.ModalFormula;
+import net.sf.tweety.logics.el.syntax.Necessity;
+import net.sf.tweety.logics.el.syntax.Possibility;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
  * This class models a Kripke model, i.e. a set of possible worlds (with evaluation functions) together with an

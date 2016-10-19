@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import net.sf.tweety.preferences.Relation;
-import net.sf.tweety.util.Triple;
+import net.sf.tweety.commons.util.Triple;
 import net.sf.tweety.preferences.PreferenceOrder;
 import net.sf.tweety.preferences.io.POParser;
 import net.sf.tweety.preferences.io.ParseException;

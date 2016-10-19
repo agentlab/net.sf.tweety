@@ -29,7 +29,7 @@ import net.sf.tweety.preferences.PreferenceOrder;
 import net.sf.tweety.preferences.Relation;
 import net.sf.tweety.preferences.ranking.LevelingFunction;
 import java.util.TreeSet;
-import net.sf.tweety.util.Triple;
+import net.sf.tweety.commons.util.Triple;
 import org.junit.*;
 import static org.junit.Assert.*;
 

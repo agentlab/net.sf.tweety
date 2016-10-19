@@ -24,10 +24,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.logics.conditionallogic.semantics.ConditionalStructure.Generator;
-import net.sf.tweety.logics.conditionallogic.syntax.Conditional;
-import net.sf.tweety.logics.propositionallogic.semantics.NicePossibleWorld;
-import net.sf.tweety.logics.propositionallogic.syntax.Proposition;
+import net.sf.tweety.logics.cl.semantics.ConditionalStructure;
+import net.sf.tweety.logics.cl.semantics.ConditionalStructure.Generator;
+import net.sf.tweety.logics.cl.syntax.Conditional;
+import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
+import net.sf.tweety.logics.pl.syntax.Proposition;
 
 import org.junit.Test;
 

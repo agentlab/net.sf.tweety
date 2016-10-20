@@ -15,5 +15,6 @@ Export-Package: net.sf.tweety.logics.fol,
 Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0",
  net.sf.tweety.commons;bundle-version="1.0.0",
  org.junit;bundle-version="4.12.0",
- net.sf.tweety.math
+ net.sf.tweety.math,
+ net.sf.tweety.plugin;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

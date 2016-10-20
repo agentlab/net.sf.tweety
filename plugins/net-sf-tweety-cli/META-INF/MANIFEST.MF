@@ -6,5 +6,10 @@ Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.cli,
  net.sf.tweety.cli.plugins
 Require-Bundle: net.sf.tweety.logics.rpcl;bundle-version="1.0.0",
- net.sf.tweety.commons;bundle-version="1.0.0"
+ net.sf.tweety.commons;bundle-version="1.0.0",
+ org.slf4j.api;bundle-version="1.7.2",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0",
+ net.sf.tweety.logics.pcl;bundle-version="1.7.0",
+ net.sf.tweety.plugin;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -9,7 +9,11 @@ Export-Package: net.sf.tweety.arg.aspic,
  net.sf.tweety.arg.aspic.ruleformulagenerator,
  net.sf.tweety.arg.aspic.semantics,
  net.sf.tweety.arg.aspic.syntax
-Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
- net.sf.tweety.graphs;bundle-version="1.0.0",
- net.sf.tweety.arg.dung;bundle-version="1.0.0"
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.graphs;bundle-version="1.7.0",
+ net.sf.tweety.arg.dung;bundle-version="1.7.0",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0",
+ net.sf.tweety.logics.pl;bundle-version="1.7.0",
+ org.junit;bundle-version="4.12.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

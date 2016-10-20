@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>net.sf.tweety.aggregator</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>net.sf.tweety</groupId>
+		<artifactId>net.sf.tweety.releng</artifactId>
+		<version>1.7.0-SNAPSHOT</version>
+		<relativePath>../../releng/net.sf.tweety.releng</relativePath>
+	</parent>
+
+	<modules>
+		<module>../../plugins/net-sf-tweety-action</module>
+		<module>../../plugins/net-sf-tweety-agents</module>
+		<module>../../plugins/net-sf-tweety-agents-dialogues</module>
+		<module>../../plugins/net-sf-tweety-arg-aba</module>
+		<module>../../plugins/net-sf-tweety-arg-adf</module>
+		<module>../../plugins/net-sf-tweety-arg-aspic</module>
+		<module>../../plugins/net-sf-tweety-arg-deductive</module>
+		<module>../../plugins/net-sf-tweety-arg-delp</module>
+		<module>../../plugins/net-sf-tweety-arg-dung</module>
+		<module>../../plugins/net-sf-tweety-arg-lp</module>
+		<module>../../plugins/net-sf-tweety-arg-prob</module>
+		<module>../../plugins/net-sf-tweety-arg-saf</module>
+		<module>../../plugins/net-sf-tweety-arg-social</module>
+		<module>../../plugins/net-sf-tweety-beliefdynamics</module>
+		<module>../../plugins/net-sf-tweety-cli</module>
+		<module>../../plugins/net-sf-tweety-commons</module>
+		<module>../../plugins/net-sf-tweety-graphs</module>
+		<module>../../plugins/net-sf-tweety-logics-cl</module>
+		<module>../../plugins/net-sf-tweety-logics-commons</module>
+		<module>../../plugins/net-sf-tweety-logics-dl</module>
+		<module>../../plugins/net-sf-tweety-logics-el</module>
+		<module>../../plugins/net-sf-tweety-logics-fol</module>
+		<module>../../plugins/net-sf-tweety-logics-ml</module>
+		<module>../../plugins/net-sf-tweety-logics-pcl</module>
+		<module>../../plugins/net-sf-tweety-logics-pl</module>
+		<module>../../plugins/net-sf-tweety-logics-rcl</module>
+		<module>../../plugins/net-sf-tweety-logics-rdl</module>
+		<module>../../plugins/net-sf-tweety-logics-rpcl</module>
+		<module>../../plugins/net-sf-tweety-logics-translators</module>
+		<module>../../plugins/net-sf-tweety-lp-asp</module>
+		<module>../../plugins/net-sf-tweety-lp-asp-beliefdynamics</module>
+		<module>../../plugins/net-sf-tweety-lp-nlp</module>
+		<module>../../plugins/net-sf-tweety-machinelearning</module>
+		<module>../../plugins/net-sf-tweety-math</module>
+		<module>../../plugins/net-sf-tweety-plugin</module>
+		<!-- <module>../../plugins/net-sf-tweety-preferences</module> -->
+		<module>../../plugins/net-sf-tweety-web</module>
+
+		<!-- <module>../../releng/net-sf-tweety-repository</module> -->
+		<module>../../releng/net.sf.tweety.target</module>
+	</modules>
+</project>

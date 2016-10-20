@@ -12,8 +12,9 @@ Export-Package: net.sf.tweety.arg.dung,
  net.sf.tweety.arg.dung.syntax,
  net.sf.tweety.arg.dung.test,
  net.sf.tweety.arg.dung.util
-Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
- net.sf.tweety.graphs;bundle-version="1.0.0",
- net.sf.tweety.logics.pl;bundle-version="1.0.0",
- net.sf.tweety.math;bundle-version="1.0.0"
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0",
+ net.sf.tweety.graphs;bundle-version="1.7.0",
+ net.sf.tweety.logics.pl;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

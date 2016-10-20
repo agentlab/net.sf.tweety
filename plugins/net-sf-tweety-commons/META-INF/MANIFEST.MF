@@ -10,3 +10,4 @@ Export-Package: net.sf.tweety.commons,
  net.sf.tweety.commons.util,
  net.sf.tweety.commons.util.rules
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.apache.log4j;bundle-version="1.2.15"

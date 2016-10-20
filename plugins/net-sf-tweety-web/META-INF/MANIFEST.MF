@@ -5,5 +5,10 @@ Bundle-SymbolicName: net.sf.tweety.web
 Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.web,
  net.sf.tweety.web.services
-Require-Bundle: net.sf.tweety.arg.delp;bundle-version="1.7.0"
+Require-Bundle: net.sf.tweety.arg.delp;bundle-version="1.7.0",
+ net.sf.tweety.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.fol;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.logics.pl;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

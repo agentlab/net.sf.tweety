@@ -7,7 +7,9 @@ Export-Package: net.sf.tweety.logics.ml,
  net.sf.tweety.logics.ml.analysis,
  net.sf.tweety.logics.ml.syntax,
  net.sf.tweety.logics.ml.test
-Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
- net.sf.tweety.logics.pcl;bundle-version="1.0.0"
+ net.sf.tweety.logics.pcl;bundle-version="1.7.0",
+ net.sf.tweety.logics.commons;bundle-version="1.7.0",
+ net.sf.tweety.math;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

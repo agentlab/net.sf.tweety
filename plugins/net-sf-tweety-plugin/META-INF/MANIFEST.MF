@@ -4,5 +4,9 @@ Bundle-Name: Tweety (Plugin Project)
 Bundle-SymbolicName: net.sf.tweety.plugin
 Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.plugin,
- net.sf.tweety.plugin.parameter
+ net.sf.tweety.plugin.parameter,
+ net.xeoh.plugins.base.annotations
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: net.sf.tweety.math;bundle-version="1.7.0"
+Bundle-ClassPath: libs/core-1.0.2.jar,
+ .

@@ -1,79 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="ru.agentlab.maia.target" sequenceNumber="95">
+<?pde version="3.8"?><target name="ru.agentlab.maia.target" sequenceNumber="107">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.slf4j.impl.log4j12" version="1.7.2.v20131105-2200"/>
-<unit id="org.apache.commons.logging.source" version="1.1.1.v201101211721"/>
-<unit id="javax.inject" version="1.0.0.v20091030"/>
-<unit id="com.google.guava" version="15.0.0.v201403281430"/>
 <unit id="org.apache.log4j.source" version="1.2.15.v201012070815"/>
-<unit id="org.apache.commons.logging" version="1.1.1.v201101211721"/>
-<unit id="javax.inject.source" version="1.0.0.v20091030"/>
-<unit id="javax.annotation.source" version="1.2.0.v201602091430"/>
-<unit id="org.hamcrest.library" version="1.3.0.v201505072020"/>
-<unit id="com.google.guava.source" version="15.0.0.v201403281430"/>
-<unit id="org.hamcrest" version="1.1.0.v20090501071000"/>
-<unit id="org.hamcrest.library.source" version="1.3.0.v201505072020"/>
-<unit id="org.junit" version="4.12.0.v201504281640"/>
-<unit id="com.google.gerrit.common" version="2.1.5.v201112241444"/>
-<unit id="javax.annotation" version="1.2.0.v201602091430"/>
 <unit id="org.slf4j.impl.log4j12.source" version="1.7.2.v20131105-2200"/>
 <unit id="org.mockito" version="1.9.5.v201605172210"/>
 <unit id="org.mockito.source" version="1.9.5.v201605172210"/>
 <unit id="org.apache.log4j" version="1.2.15.v201012070815"/>
-<unit id="org.junit.source" version="4.12.0.v201504281640"/>
 <unit id="org.slf4j.api.source" version="1.7.2.v20121108-1250"/>
 <unit id="org.objenesis" version="1.0.0.v201505121915"/>
 <unit id="org.slf4j.api" version="1.7.2.v20121108-1250"/>
 <unit id="org.objenesis.source" version="1.0.0.v201505121915"/>
-<unit id="org.hamcrest.generator.source" version="1.3.0.v201305210900"/>
-<unit id="org.hamcrest.text.source" version="1.1.0.v20090501071000"/>
+<unit id="org.apache.commons.math.source" version="2.1.0.v201105210652"/>
+<unit id="org.apache.commons.math3.source" version="3.5.0.v20160301-1110"/>
+<unit id="org.apache.commons.math" version="2.1.0.v201105210652"/>
+<unit id="org.apache.commons.math3" version="3.5.0.v20160301-1110"/>
+<unit id="org.hamcrest.library.source" version="1.3.0.v201505072020"/>
 <unit id="org.hamcrest.text" version="1.1.0.v20090501071000"/>
-<unit id="org.hamcrest.integration" version="1.3.0.v201305210900"/>
 <unit id="org.hamcrest.integration.source" version="1.3.0.v201305210900"/>
 <unit id="org.hamcrest.generator" version="1.3.0.v201305210900"/>
-<unit id="com.google.gson.source" version="2.2.4.v201311231704"/>
-<unit id="com.google.gson" version="2.2.4.v201311231704"/>
-<unit id="org.apache.commons.io.source" version="2.2.0.v201405211200"/>
-<unit id="org.apache.commons.io" version="2.2.0.v201405211200"/>
-<unit id="com.google.inject.assistedinject" version="3.0.0.v201402270930"/>
-<unit id="com.google.inject.source" version="3.0.0.v201605172100"/>
-<unit id="com.google.inject.multibindings.source" version="3.0.0.v201605172100"/>
-<unit id="com.google.inject" version="3.0.0.v201605172100"/>
-<unit id="com.google.inject.multibindings" version="3.0.0.v201605172100"/>
-<unit id="com.google.inject.assistedinject.source" version="3.0.0.v201402270930"/>
-<unit id="org.apache.commons.lang3.source" version="3.1.0.v201403281430"/>
-<unit id="org.apache.commons.lang3" version="3.1.0.v201403281430"/>
-<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/"/>
+<unit id="org.hamcrest" version="1.1.0.v20090501071000"/>
+<unit id="org.hamcrest.integration" version="1.3.0.v201305210900"/>
+<unit id="org.hamcrest.generator.source" version="1.3.0.v201305210900"/>
+<unit id="org.hamcrest.text.source" version="1.1.0.v20090501071000"/>
+<unit id="org.hamcrest.library" version="1.3.0.v201505072020"/>
+<unit id="org.kohsuke.args4j" version="2.33.0.v20160323-2218"/>
+<unit id="org.kohsuke.args4j.source" version="2.33.0.v20160323-2218"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/S20160916162009/repository/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.equinox.weaving.sdk.feature.group" version="1.2.0.201604061446"/>
-<unit id="org.aspectj.feature.group" version="1.8.9.201604061446"/>
-<unit id="org.eclipse.ajdt.feature.group" version="2.2.4.201604061446"/>
-<repository location="http://download.eclipse.org/tools/ajdt/45/dev/update"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.sdk.ide" version="4.5.0.I20150603-2000"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
+<unit id="org.eclipse.sdk.ide" version="4.6.1.M20160907-1200"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.6"/>
 </location>
 </locations>
 <includeBundles>
-<plugin id="com.google.gson"/>
-<plugin id="com.google.gson.source"/>
-<plugin id="com.google.guava.source"/>
-<plugin id="com.google.inject"/>
-<plugin id="com.google.inject.assistedinject"/>
-<plugin id="com.google.inject.assistedinject.source"/>
-<plugin id="com.google.inject.multibindings"/>
-<plugin id="com.google.inject.multibindings.source"/>
-<plugin id="com.google.inject.source"/>
-<plugin id="javax.inject" version="1.0.0.v20091030"/>
-<plugin id="javax.inject.source" version="1.0.0.v20091030"/>
-<plugin id="javax.inject.source" version="1.0.0.v20091030"/>
-<plugin id="org.apache.commons.io"/>
-<plugin id="org.apache.commons.io.source"/>
-<plugin id="org.apache.commons.lang3"/>
-<plugin id="org.apache.commons.lang3.source"/>
+<plugin id="org.apache.commons.math"/>
+<plugin id="org.apache.commons.math.source"/>
+<plugin id="org.apache.commons.math3"/>
+<plugin id="org.apache.commons.math3.source"/>
 <plugin id="org.apache.felix.gogo.command"/>
 <plugin id="org.apache.felix.gogo.command.source"/>
 <plugin id="org.apache.felix.gogo.runtime"/>
@@ -82,22 +47,9 @@
 <plugin id="org.apache.felix.gogo.shell.source"/>
 <plugin id="org.apache.log4j"/>
 <plugin id="org.apache.log4j.source"/>
-<plugin id="org.aspectj.runtime"/>
-<plugin id="org.aspectj.runtime.source"/>
-<plugin id="org.aspectj.weaver"/>
-<plugin id="org.aspectj.weaver.source"/>
 <plugin id="org.eclipse.equinox.console"/>
 <plugin id="org.eclipse.equinox.console.source"/>
-<plugin id="org.eclipse.equinox.event"/>
-<plugin id="org.eclipse.equinox.event.source"/>
-<plugin id="org.eclipse.equinox.weaving.aspectj"/>
-<plugin id="org.eclipse.equinox.weaving.caching"/>
-<plugin id="org.eclipse.equinox.weaving.caching.source"/>
-<plugin id="org.eclipse.equinox.weaving.hook"/>
-<plugin id="org.eclipse.equinox.weaving.hook.source"/>
 <plugin id="org.eclipse.osgi"/>
-<plugin id="org.eclipse.osgi.services"/>
-<plugin id="org.eclipse.osgi.services.source"/>
 <plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.hamcrest"/>
 <plugin id="org.hamcrest.core"/>
@@ -110,9 +62,10 @@
 <plugin id="org.hamcrest.library.source"/>
 <plugin id="org.hamcrest.text"/>
 <plugin id="org.hamcrest.text.source"/>
-<plugin id="org.junit" version="4.12.0.v201504281640"/>
-<plugin id="org.junit.source" version="4.12.0.v201504281640"/>
-<plugin id="org.junit.source" version="4.12.0.v201504281640"/>
+<plugin id="org.junit"/>
+<plugin id="org.junit.source"/>
+<plugin id="org.kohsuke.args4j"/>
+<plugin id="org.kohsuke.args4j.source"/>
 <plugin id="org.mockito"/>
 <plugin id="org.mockito.source"/>
 <plugin id="org.objenesis"/>

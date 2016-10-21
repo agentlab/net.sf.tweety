@@ -16,5 +16,8 @@ Export-Package: net.sf.tweety.math,
  net.sf.tweety.math.test,
  net.sf.tweety.math.util
 Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
- org.junit;bundle-version="4.12.0"
+ org.junit;bundle-version="4.12.0",
+ org.apache.commons.math;bundle-version="2.1.0",
+ org.apache.commons.math3;bundle-version="3.5.0",
+ org.slf4j.api;bundle-version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

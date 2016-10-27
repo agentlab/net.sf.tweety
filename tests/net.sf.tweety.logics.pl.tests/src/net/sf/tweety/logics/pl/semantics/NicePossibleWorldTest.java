@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.propositionallogic.semantics;
+package net.sf.tweety.logics.pl.semantics;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,7 +32,7 @@ import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 
 
-public class TestNicePossibleWorld {
+public class NicePossibleWorldTest {
 	
 	static private Set<Proposition> worldProps = new HashSet<Proposition>();
 	

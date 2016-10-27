@@ -5,6 +5,4 @@ Bundle-SymbolicName: net.sf.tweety.logics.pl.tests
 Bundle-Version: 1.7.0.qualifier
 Fragment-Host: net.sf.tweety.logics.pl;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: net.sf.tweety.logics.pl.test,
- net.sf.tweety.logics.propositionallogic.semantics
 Require-Bundle: org.junit;bundle-version="4.12.0"

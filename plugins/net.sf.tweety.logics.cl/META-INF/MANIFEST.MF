@@ -8,13 +8,10 @@ Export-Package: net.sf.tweety.logics.cl,
  net.sf.tweety.logics.cl.parser,
  net.sf.tweety.logics.cl.rules,
  net.sf.tweety.logics.cl.semantics,
- net.sf.tweety.logics.cl.syntax,
- net.sf.tweety.logics.cl.test,
- net.sf.tweety.logics.conditionallogic.semantics
-Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
- net.sf.tweety.logics.commons;bundle-version="1.7.0",
- net.sf.tweety.logics.pl;bundle-version="1.0.0",
+ net.sf.tweety.logics.cl.syntax
+Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0";visibility:=reexport,
+ net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,
+ net.sf.tweety.logics.pl;bundle-version="1.0.0";visibility:=reexport,
  net.sf.tweety.math;bundle-version="1.0.0",
- net.sf.tweety.logics.fol;bundle-version="1.7.0",
- org.junit;bundle-version="4.12.0"
+ net.sf.tweety.logics.fol;bundle-version="1.7.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

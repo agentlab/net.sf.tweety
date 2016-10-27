@@ -16,37 +16,34 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.conditionallogic.semantics;
+package net.sf.tweety.logics.cl.examples;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import org.junit.Test;
-
-import net.sf.tweety.logics.cl.semantics.RankingFunction;
+import net.sf.tweety.logics.cl.BruteForceCReasoner;
+import net.sf.tweety.logics.cl.ClBeliefSet;
 import net.sf.tweety.logics.cl.syntax.Conditional;
-import net.sf.tweety.logics.pl.semantics.PossibleWorld;
-import net.sf.tweety.logics.pl.syntax.Disjunction;
+import net.sf.tweety.logics.pl.syntax.Negation;
 import net.sf.tweety.logics.pl.syntax.Proposition;
-import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
-public class EvaluationTest {
-	@Test
-	public void testDisjunctionFact() {
-		List<Proposition> lst = new LinkedList<Proposition>();
-		Proposition a = new Proposition("a");
+public class CReasonerTest {
+	public static void main(String[] args){
+		Proposition f = new Proposition("f");
 		Proposition b = new Proposition("b");
-		lst.add(a);
-		lst.add(b);
+		Proposition p = new Proposition("p");
 		
-		Disjunction dis = new Disjunction();
-		dis.add(b);
-		dis.add((PropositionalFormula) a.complement());
+		Conditional c1 = new Conditional(b,f);
+		Conditional c2 = new Conditional(p,b);
+		Conditional c3 = new Conditional(p,new Negation(f));
 		
-		PossibleWorld world = new PossibleWorld(lst);
-		Conditional c = new Conditional(dis);
-		assertEquals(true, RankingFunction.verifies(world, c));
+		ClBeliefSet bs = new ClBeliefSet();
+		bs.add(c1);
+		bs.add(c2);
+		bs.add(c3);
+		
+		System.out.println(bs);
+		
+		BruteForceCReasoner reasoner = new BruteForceCReasoner(bs);
+		
+		System.out.println(reasoner.getCRepresentation());
+		
 	}
 }

@@ -51,6 +51,7 @@
 		<!-- <module>../../plugins/net.sf.tweety.preferences</module> -->
 		<module>../../plugins/net.sf.tweety.web</module>
 		
+		<module>../../tests/net.sf.tweety.logics.commons.tests</module>
 		<module>../../tests/net.sf.tweety.logics.fol.tests</module>
 		
 		<module>../../examples/net.sf.tweety.logics.fol.examples</module>

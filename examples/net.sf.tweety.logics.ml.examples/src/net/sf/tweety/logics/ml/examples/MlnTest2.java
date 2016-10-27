@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.ml.test;
+package net.sf.tweety.logics.ml.examples;
 
 import java.io.IOException;
 

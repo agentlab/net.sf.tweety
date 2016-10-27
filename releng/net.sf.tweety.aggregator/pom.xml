@@ -50,6 +50,10 @@
 		<module>../../plugins/net.sf.tweety.plugin</module>
 		<!-- <module>../../plugins/net.sf.tweety.preferences</module> -->
 		<module>../../plugins/net.sf.tweety.web</module>
+		
+		<module>../../tests/net.sf.tweety.logics.fol.tests</module>
+		
+		<module>../../examples/net.sf.tweety.logics.fol.examples</module>
 
 		<!-- <module>../../releng/net.sf.tweety.repository</module> -->
 		<module>../../releng/net.sf.tweety.target</module>

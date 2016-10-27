@@ -49,7 +49,13 @@
 <plugin id="org.apache.log4j.source"/>
 <plugin id="org.eclipse.equinox.console"/>
 <plugin id="org.eclipse.equinox.console.source"/>
+<plugin id="org.eclipse.equinox.ds"/>
+<plugin id="org.eclipse.equinox.ds.source"/>
+<plugin id="org.eclipse.equinox.util"/>
+<plugin id="org.eclipse.equinox.util.source"/>
 <plugin id="org.eclipse.osgi"/>
+<plugin id="org.eclipse.osgi.services"/>
+<plugin id="org.eclipse.osgi.services.source"/>
 <plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.hamcrest"/>
 <plugin id="org.hamcrest.core"/>

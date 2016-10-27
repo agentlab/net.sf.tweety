@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.fol.test;
+package net.sf.tweety.logics.fol.examples;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,7 +35,7 @@ import net.sf.tweety.logics.fol.syntax.FolSignature;
 
 public class FolTest {
 
-	public static void test() throws ParserException, IOException{
+	public static void test() throws ParserException, IOException {
 		FolParser parser = new FolParser();
 		FolBeliefSet bs = new FolBeliefSet();
 		FolSignature sig = new FolSignature();
@@ -44,22 +44,22 @@ public class FolTest {
 		List<Sort> l = new ArrayList<Sort>();
 		l.add(animal);
 		l.add(animal);
-		sig.add(new Predicate("A",l));
-		sig.add(new Constant("b",animal));
-		sig.add(new Constant("c",animal));
-		parser.setSignature(sig);		
-		bs.add((FolFormula)parser.parseFormula("forall X: (forall Y: ((!A(X,Y) || A(Y,X)) && (!A(Y,X) || A(X,Y))))"));
-		bs.add((FolFormula)parser.parseFormula("A(b,c)"));
+		sig.add(new Predicate("A", l));
+		sig.add(new Constant("b", animal));
+		sig.add(new Constant("c", animal));
+		parser.setSignature(sig);
+		bs.add((FolFormula) parser.parseFormula("forall X: (forall Y: ((!A(X,Y) || A(Y,X)) && (!A(Y,X) || A(X,Y))))"));
+		bs.add((FolFormula) parser.parseFormula("A(b,c)"));
 		FolTheoremProver prover = FolTheoremProver.getDefaultProver();
-		System.out.println(prover.query(bs, (FolFormula)parser.parseFormula("A(c,b)")));
+		System.out.println(prover.query(bs, (FolFormula) parser.parseFormula("A(c,b)")));
 	}
-	
-	public static void main(String[] args) throws FileNotFoundException, ParserException, IOException{
-		//test();System.exit(1);
-		FolParser parser = new FolParser();		
+
+	public static void main(String[] args) throws FileNotFoundException, ParserException, IOException {
+		// test();System.exit(1);
+		FolParser parser = new FolParser();
 		FolBeliefSet b = parser.parseBeliefBaseFromFile("examplebeliefbase.fologic");
 		System.out.println(b);
 		FolTheoremProver prover = FolTheoremProver.getDefaultProver();
-		System.out.println(prover.query(b, (FolFormula)parser.parseFormula("Knows(martin,carl)")));
+		System.out.println(prover.query(b, (FolFormula) parser.parseFormula("Knows(martin,carl)")));
 	}
 }

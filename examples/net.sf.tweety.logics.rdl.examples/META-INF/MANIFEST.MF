@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety RDL Examples
+Bundle-SymbolicName: net.sf.tweety.logics.rdl.examples
+Bundle-Version: 1.7.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: net.sf.tweety.logics.rdl,
+ net.sf.tweety.logics.fol;bundle-version="1.7.0"

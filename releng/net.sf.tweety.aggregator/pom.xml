@@ -61,6 +61,7 @@
 		<module>../../examples/net.sf.tweety.logics.ml.examples</module>
 		<module>../../examples/net.sf.tweety.logics.rcl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.rdl.examples</module>
+		<module>../../examples/net.sf.tweety.logics.rpcl.examples</module>
 
 		<!-- <module>../../releng/net.sf.tweety.repository</module> -->
 		<module>../../releng/net.sf.tweety.target</module>

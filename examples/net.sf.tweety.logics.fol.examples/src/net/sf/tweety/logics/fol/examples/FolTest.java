@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.fol.test;
+package net.sf.tweety.logics.fol.examples;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

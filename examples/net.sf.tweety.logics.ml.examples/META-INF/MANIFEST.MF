@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety ML Examples
+Bundle-SymbolicName: net.sf.tweety.logics.ml.examples
+Bundle-Version: 1.7.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: net.sf.tweety.logics.ml.test
+Require-Bundle: net.sf.tweety.logics.fol,
+ net.sf.tweety.logics.ml

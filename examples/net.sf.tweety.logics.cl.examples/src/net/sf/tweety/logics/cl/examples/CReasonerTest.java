@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.cl.test;
+package net.sf.tweety.logics.cl.examples;
 
 import net.sf.tweety.logics.cl.BruteForceCReasoner;
 import net.sf.tweety.logics.cl.ClBeliefSet;

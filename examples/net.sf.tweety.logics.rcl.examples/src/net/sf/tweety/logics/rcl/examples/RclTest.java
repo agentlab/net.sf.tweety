@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.rcl.test;
+package net.sf.tweety.logics.rcl.examples;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

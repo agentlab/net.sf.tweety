@@ -6,12 +6,8 @@ Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.logics.rcl,
  net.sf.tweety.logics.rcl.parser,
  net.sf.tweety.logics.rcl.semantics,
- net.sf.tweety.logics.rcl.syntax,
- net.sf.tweety.logics.rcl.test
-Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
- net.sf.tweety.logics.commons;bundle-version="1.7.0",
- net.sf.tweety.logics.cl;bundle-version="1.7.0",
+ net.sf.tweety.logics.rcl.syntax
+Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
- net.sf.tweety.math;bundle-version="1.7.0",
  org.slf4j.api;bundle-version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

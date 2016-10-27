@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tweety (FOL)
 Bundle-SymbolicName: net.sf.tweety.logics.fol
 Bundle-Version: 1.7.0.qualifier
+Bundle-Vendor: www.agentlab.ru
 Export-Package: net.sf.tweety.logics.fol,
  net.sf.tweety.logics.fol.lang,
  net.sf.tweety.logics.fol.parser,

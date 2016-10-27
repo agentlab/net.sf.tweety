@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.rdl.test;
+package net.sf.tweety.logics.rdl.examples;
 
 import java.util.LinkedList;
 import java.util.List;

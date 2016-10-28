@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 
 /**
@@ -33,7 +33,7 @@ import net.sf.tweety.logics.pl.syntax.Proposition;
  * @author Matthias Thimm
  *
  */
-public class FuzzyInterpretation extends AbstractInterpretation implements Map<Proposition,Double>{
+public class FuzzyInterpretation implements Interpretation, Map<Proposition,Double>{
 
 	/** Maps the propositions to their values. */
 	private Map<Proposition,Double> values;

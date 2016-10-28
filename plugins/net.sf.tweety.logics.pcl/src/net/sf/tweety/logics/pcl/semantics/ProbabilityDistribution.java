@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
@@ -43,7 +42,7 @@ import net.sf.tweety.math.probability.Probability;
  * @author Matthias Thimm
  * @param <T> The actual interpretation class used for this distribution.
  */
-public class ProbabilityDistribution<T extends Interpretation> extends AbstractInterpretation implements Map<T,Probability>{
+public class ProbabilityDistribution<T extends Interpretation> implements Interpretation, Map<T,Probability>{
 
 	/**
 	 * The probabilities of the interpretations.

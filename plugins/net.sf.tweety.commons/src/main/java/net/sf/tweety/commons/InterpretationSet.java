@@ -32,7 +32,7 @@ import java.util.Set;
  * 
  * @author Matthias Thimm
  */
-public abstract class InterpretationSet<T extends Formula> extends AbstractInterpretation implements Collection<T> {
+public abstract class InterpretationSet<T extends Formula> implements Interpretation, Collection<T> {
 
 	/**
 	 * The set of formulas of this interpretation.

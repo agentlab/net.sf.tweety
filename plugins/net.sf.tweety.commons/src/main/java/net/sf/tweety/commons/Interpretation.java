@@ -22,34 +22,46 @@ import java.util.Collection;
 
 /**
  * An interpretation for some logical language.
+ * 
  * @author Matthias Thimm
  */
 public interface Interpretation {
-	
+
 	/**
 	 * Checks whether this interpretation satisfies the given formula.
-	 * @param formula a formula .
-	 * @return "true" if this interpretation satisfies the given formula.
-	 * @throws IllegalArgumentException if the formula does not correspond
-	 * 		to the expected language.
+	 * 
+	 * @param formula
+	 *            a formula.
+	 * @return {@code true} if this interpretation satisfies the given formula.
+	 * @throws IllegalArgumentException
+	 *             if the formula does not correspond to the expected language.
 	 */
-	public boolean satisfies(Formula formula) throws IllegalArgumentException;
-	
+	boolean satisfies(Formula formula);
+
 	/**
 	 * Checks whether this interpretation satisfies all given formulas.
-	 * @param formulas a collection of formulas.
-	 * @return "true" if this interpretation satisfies all given formulas. 
-	 * @throws IllegalArgumentException if at least one formula does not correspond
-	 * 		to the expected language.
+	 * 
+	 * @param formulas
+	 *            a collection of formulas.
+	 * @return {@code true} if this interpretation satisfies all given formulas.
+	 * @throws IllegalArgumentException
+	 *             if at least one formula does not correspond to the expected
+	 *             language.
 	 */
-	public boolean satisfies(Collection<? extends Formula> formulas) throws IllegalArgumentException;
-	
+	default boolean satisfies(Collection<? extends Formula> formulas) {
+		return formulas.stream().allMatch(this::satisfies);
+	}
+
 	/**
 	 * Checks whether this interpretation satisfies the given knowledge base.
-	 * @param beliefBase a knowledge base.
-	 * @return "true" if this interpretation satisfies the given knowledge base.
-	 * @throws IllegalArgumentException IllegalArgumentException if the knowledgebase does not correspond
-	 * 		to the expected language.
+	 * 
+	 * @param beliefBase
+	 *            a knowledge base.
+	 * @return {@code true} if this interpretation satisfies the given knowledge
+	 *         base.
+	 * @throws IllegalArgumentException
+	 *             if the knowledgebase does not correspond to the expected
+	 *             language.
 	 */
-	public abstract boolean satisfies(BeliefBase beliefBase) throws IllegalArgumentException;
+	boolean satisfies(BeliefBase beliefBase);
 }

@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
 import net.sf.tweety.logics.pl.syntax.Contradiction;
@@ -43,7 +43,7 @@ import net.sf.tweety.logics.pl.syntax.Tautology;
  * 
  * @author Matthias Thimm
  */
-public class PriestWorld extends AbstractInterpretation{
+public class PriestWorld implements Interpretation {
 
 	/** The three truth values. */
 	public enum TruthValue {

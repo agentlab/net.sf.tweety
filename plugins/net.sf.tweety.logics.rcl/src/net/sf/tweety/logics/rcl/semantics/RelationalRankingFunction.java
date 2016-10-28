@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
@@ -49,7 +48,7 @@ import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
  * @author Matthias Thimm
  *
  */
-public class RelationalRankingFunction extends AbstractInterpretation {
+public class RelationalRankingFunction implements Interpretation {
 
 	/**
 	 * Integer used to define infinity.

@@ -29,9 +29,9 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.util.MathTools;
 import net.sf.tweety.commons.util.SetTools;
 import net.sf.tweety.logics.commons.syntax.Constant;
@@ -54,7 +54,7 @@ import net.sf.tweety.logics.fol.syntax.Tautology;
  * 
  * @author Matthias Thimm
  */
-public class ReferenceWorld extends AbstractInterpretation implements Map<Predicate,InstanceAssignment>{
+public class ReferenceWorld implements Interpretation, Map<Predicate,InstanceAssignment>{
 
 	/**
 	 * Logger.

@@ -25,9 +25,9 @@ import java.util.Map;
 
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.social.SocialAbstractArgumentationFramework;
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
 
 /**
  * Implements a mapping from arguments to social value.
@@ -35,7 +35,7 @@ import net.sf.tweety.commons.Formula;
  * @author Matthias Thimm
  * @param <L> The set used for valuations
  */
-public class SocialMapping<L> extends AbstractInterpretation{
+public class SocialMapping<L> implements Interpretation {
 
 	/** The semantics used for this mapping */
 	private AbstractSocialSemantics<L> semantics;

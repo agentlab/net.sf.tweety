@@ -39,9 +39,9 @@ import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.graphs.Graph;
 
 /**
@@ -51,7 +51,7 @@ import net.sf.tweety.graphs.Graph;
  * @author Matthias Thimm
  *
  */
-public class LdoInterpretation extends AbstractInterpretation {
+public class LdoInterpretation implements Interpretation {
 
 	/** The abstract argumentation framework */
 	private DungTheory theory;

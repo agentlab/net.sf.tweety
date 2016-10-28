@@ -24,15 +24,15 @@ import java.util.Map;
 import java.util.Set;
 
 import net.sf.tweety.arg.dung.syntax.Argument;
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Interpretation;
 
 /**
  * This class implements stratified labelings as in [Thimm, Kern-Isberner, 2013].
  * @author Matthias Thimm
  */
-public class StratifiedLabeling extends AbstractInterpretation implements Map<Argument,Integer>{
+public class StratifiedLabeling implements Interpretation, Map<Argument,Integer>{
 
 	/** The actual mapping of arguments to integers. */
 	private HashMap<Argument,Integer> map;

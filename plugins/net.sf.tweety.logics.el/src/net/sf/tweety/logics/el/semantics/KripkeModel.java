@@ -20,7 +20,6 @@ package net.sf.tweety.logics.el.semantics;
 
 import java.util.Set;
 
-import net.sf.tweety.commons.AbstractInterpretation;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
@@ -36,7 +35,7 @@ import net.sf.tweety.logics.fol.syntax.FolFormula;
  * @author Matthias Thimm
  *
  */
-public class KripkeModel extends AbstractInterpretation {
+public class KripkeModel implements Interpretation {
 
 	/**
 	 * The possible worlds of this model.

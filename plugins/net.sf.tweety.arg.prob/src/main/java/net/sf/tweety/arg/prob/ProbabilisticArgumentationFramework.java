@@ -165,7 +165,7 @@ public class ProbabilisticArgumentationFramework extends DungTheory{
 	 * @return the probability of the given AAF.
 	 */
 	public Probability getProbability(DungTheory aaf){
-		if(!this.containsAll(aaf))
+		if(!formulas.containsAll(aaf.getFormulas()))
 			return Probability.ZERO;
 		double d = 1d;
 		for(Argument a: this)

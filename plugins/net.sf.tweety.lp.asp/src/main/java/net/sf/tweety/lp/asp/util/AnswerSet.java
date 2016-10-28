@@ -50,14 +50,14 @@ public class AnswerSet extends BeliefSet<DLPLiteral> {
 	}
 	
 	public AnswerSet(AnswerSet other) {
-		super(other);
+		super(other.formulas);
 		this.level = other.level;
 		this.weight = other.weight;
 	}
 	
 	public Set<DLPLiteral> getLiteralsWithName(String name) {
 		Set<DLPLiteral> reval = new HashSet<DLPLiteral>();
-		for(DLPLiteral lit : this) {
+		for(DLPLiteral lit : formulas) {
 			if(lit.getName().equals(name)) {
 				reval.add(lit);
 			}
@@ -83,7 +83,7 @@ public class AnswerSet extends BeliefSet<DLPLiteral> {
 	@Override
 	public Signature getSignature() {
 		FolSignature reval = new FolSignature();
-		for(DLPLiteral lit : this) {
+		for(DLPLiteral lit : formulas) {
 			reval.addSignature(lit.getSignature());
 		}
 		return reval;

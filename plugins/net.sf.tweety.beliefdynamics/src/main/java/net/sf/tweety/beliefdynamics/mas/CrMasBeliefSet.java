@@ -62,7 +62,7 @@ public class CrMasBeliefSet<T extends Formula> extends BeliefSet<InformationObje
 	public Signature getSignature() {
 		Signature sig = null;
 		
-		for(InformationObject<T> f: this)
+		for(InformationObject<T> f: formulas)
 			if(sig == null)
 				sig = f.getSignature();
 			else sig.addSignature(f.getSignature());

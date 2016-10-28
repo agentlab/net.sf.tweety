@@ -118,7 +118,7 @@ public class RpclBeliefSet extends BeliefSet<RelationalProbabilisticConditional>
 			return false;
 		// Each constant not appearing in he conditionals belongs to the same equivalence class
 		Set<Constant> appearingConstants = new HashSet<Constant>();
-		for(RelationalProbabilisticConditional c: this)
+		for(RelationalProbabilisticConditional c: formulas)
 			appearingConstants.addAll(c.getTerms(Constant.class));
 		if(!appearingConstants.contains(a) && !appearingConstants.contains(b))
 			return true;
@@ -138,7 +138,7 @@ public class RpclBeliefSet extends BeliefSet<RelationalProbabilisticConditional>
 	 */
 	public RpclBeliefSet exchange(Term<?> a, Term<?> b){
 		RpclBeliefSet bs = new RpclBeliefSet();
-		for(RelationalProbabilisticConditional r: this)
+		for(RelationalProbabilisticConditional r: formulas)
 			bs.add((RelationalProbabilisticConditional)r.exchange(a, b));
 		return bs;
 	}
@@ -149,7 +149,7 @@ public class RpclBeliefSet extends BeliefSet<RelationalProbabilisticConditional>
 	@Override
 	public Signature getSignature() {
 		FolSignature sig = new FolSignature();
-		for(RelationalProbabilisticConditional c: this){
+		for(RelationalProbabilisticConditional c: formulas){
 			sig.addAll(c.getTerms(Constant.class));
 			sig.addAll(c.getFunctors());
 			sig.addAll(c.getPredicates());			

@@ -89,7 +89,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 * @see net.sf.tweety.kr.BeliefBase#getSignature()
 	 */
 	public Signature getSignature(){
-		return new DungSignature(this);
+		return new DungSignature(formulas);
 	}
 
 	/**
@@ -393,39 +393,39 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 		return super.remove(a) || b;
 	}
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.commons.BeliefSet#removeAll(java.util.Collection)
-	 */
-	public boolean removeAll(Collection<?> c){
-		boolean result = true;
-		for(Object a: c)
-			if(a instanceof Argument)
-				result |= this.remove((Argument)a);
-			else result |= this.remove(a);
-		return result;
-	}
+//	/* (non-Javadoc)
+//	 * @see net.sf.tweety.commons.BeliefSet#removeAll(java.util.Collection)
+//	 */
+//	public boolean removeAll(Collection<?> c){
+//		boolean result = true;
+//		for(Object a: c)
+//			if(a instanceof Argument)
+//				result |= this.remove((Argument)a);
+//			else result |= this.remove(a);
+//		return result;
+//	}
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.kr.BeliefSet#contains(java.lang.Object)
-	 */
-	@Override
-	public boolean contains(Object o){
-		if(o instanceof Argument)
-			return super.contains(o);
-		return this.attacks.contains(o);
-	}
+//	/* (non-Javadoc)
+//	 * @see net.sf.tweety.kr.BeliefSet#contains(java.lang.Object)
+//	 */
+//	@Override
+//	public boolean contains(Object o){
+//		if(o instanceof Argument)
+//			return super.contains(o);
+//		return this.attacks.contains(o);
+//	}
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.kr.BeliefSet#containsAll(java.util.Collection)
-	 */
-	@Override
-	public boolean containsAll(Collection<?> c){
-		if(c instanceof DungTheory){
-			DungTheory other = (DungTheory) c;
-			return super.containsAll(other) && this.attacks.containsAll(other.getAttacks());
-		}
-		return super.containsAll(c);
-	}
+//	/* (non-Javadoc)
+//	 * @see net.sf.tweety.kr.BeliefSet#containsAll(java.util.Collection)
+//	 */
+//	@Override
+//	public boolean containsAll(Collection<?> c){
+//		if(c instanceof DungTheory){
+//			DungTheory other = (DungTheory) c;
+//			return super.containsAll(other) && this.attacks.containsAll(other.getAttacks());
+//		}
+//		return super.containsAll(c);
+//	}
 	
 	/**
 	 * Adds the set of attacks to this Dung theory.
@@ -443,7 +443,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 * @return "true" if this Dung Theory has been modified 
 	 */
 	public boolean add(DungTheory theory){
-		boolean b1 = this.addAll(theory);
+		boolean b1 = this.addAll(theory.formulas);
 		boolean b2 = this.addAllAttacks(theory.getAttacks());
 		return b1 || b2 ;		
 	}
@@ -513,7 +513,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 */
 	@Override
 	public Collection<Argument> getNodes() {		
-		return this;
+		return formulas;
 	}
 
 	/* (non-Javadoc)
@@ -676,5 +676,17 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 		// have a fixed (but arbitrary) order among all theories
 		// for that purpose we just use the hash code.
 		return this.hashCode() - o.hashCode();
+	}
+
+	@Override
+	public Iterator<Argument> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean contains(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

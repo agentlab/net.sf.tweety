@@ -19,10 +19,8 @@
 package net.sf.tweety.logics.cl;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import net.sf.tweety.commons.BeliefSet;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.logics.cl.syntax.Conditional;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 
@@ -56,8 +54,7 @@ public class ClBeliefSet extends BeliefSet<Conditional> {
 	@Override
 	public PropositionalSignature getSignature(){
 		PropositionalSignature sig = new PropositionalSignature();
-		for(Formula f: this){
-			Conditional c = (Conditional) f;
+		for(Conditional c: formulas){
 			sig.addAll(c.getPremise().iterator().next().getAtoms());
 			sig.addAll(c.getConclusion().getAtoms());
 		}
@@ -67,10 +64,7 @@ public class ClBeliefSet extends BeliefSet<Conditional> {
 	@Override
 	public ClBeliefSet clone(){
 		ClBeliefSet copy = new ClBeliefSet();
-		Iterator<Conditional> i = this.iterator();
-		while(i.hasNext()){
-			copy.add(i.next());
-		}
+		copy.addAll(formulas);
 		return copy;
 	}
 }

@@ -26,6 +26,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -75,7 +76,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	 * constructor; initializes this program with the given program
 	 * @param delp a defeasible logic program
 	 */
-	public DefeasibleLogicProgram(DefeasibleLogicProgram delp){
+	public DefeasibleLogicProgram(Collection<DelpRule> delp){
 		super(delp);		
 	}
 
@@ -98,9 +99,9 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	 * @return the grounded version of <source>this</source>
 	 */
 	public DefeasibleLogicProgram ground(Set<Constant> constants){
-		if(this.isGround()) return new DefeasibleLogicProgram(this);
+		if(this.isGround()) return new DefeasibleLogicProgram(formulas);
 		DefeasibleLogicProgram groundedDelp = new DefeasibleLogicProgram();
-		for(DelpRule rule: this)
+		for(DelpRule rule: formulas)
 			groundedDelp.addAll(rule.allGroundInstances(constants).stream()
 					.map(groundedRule -> (DelpRule) groundedRule)
 					.collect(Collectors.toList()));
@@ -135,7 +136,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	public Set<DelpArgument> getArguments(){
 		if(!this.isGround())
 			throw new IllegalArgumentException("This program must be grounded first before computing arguments.");
-		Set<Derivation<DelpRule>> derivations = Derivation.allDerivations(this);
+		Set<Derivation<DelpRule>> derivations = Derivation.allDerivations(formulas);
 		Set<DelpArgument> arguments = new HashSet<>();
 		for(Derivation<DelpRule> derivation: derivations){
 			Set<DefeasibleRule> rules = derivation.stream()
@@ -176,13 +177,13 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 			throw new IllegalArgumentException("Delp must be grounded first.");
 		Set<FolFormula> strictClosure = new HashSet<>(literals);
 		if(usefacts){
-            strictClosure.addAll(this.stream()
+            strictClosure.addAll(formulas.stream()
                     .filter(rule -> rule instanceof DelpFact)
                     .map(DelpRule::getConclusion)
                     .collect(Collectors.toList()));
 		}
 		boolean modified = true;
-		Set<StrictRule> rules = this.stream()
+		Set<StrictRule> rules = formulas.stream()
                 .filter(rule -> rule instanceof StrictRule)
                 .map(rule -> (StrictRule) rule)
                 .collect(Collectors.toSet());
@@ -247,9 +248,10 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	public boolean isConsistent(Set<DefeasibleRule> rules){
 		if(!isGround())	
 			throw new IllegalArgumentException("Delp must be ground.");
-		DefeasibleLogicProgram delp = this.stream()
+		Set<DelpRule> delp2 = formulas.stream()
                 .filter(rule -> rule instanceof DelpFact || rule instanceof StrictRule)
-                .collect(Collectors.toCollection(DefeasibleLogicProgram::new));
+                .collect(Collectors.toSet());
+		DefeasibleLogicProgram delp = new DefeasibleLogicProgram(delp2);
         delp.addAll(rules.stream()
                 .map(DefeasibleRule::toStrictRule)
                 .collect(Collectors.toList()));
@@ -269,7 +271,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	public boolean disagree(Set<FolFormula> literals){
 		if(!isGround()) 
 			throw new IllegalArgumentException("Delp must be grounded first.");
-		DefeasibleLogicProgram delp = new DefeasibleLogicProgram(this);
+		DefeasibleLogicProgram delp = new DefeasibleLogicProgram(formulas);
         delp.addAll(literals.stream()
                 .map(DelpFact::new)
                 .collect(Collectors.toList()));
@@ -281,11 +283,11 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	}
 
     public boolean isGround(){
-        return this.stream().allMatch(DelpRule::isGround);
+        return formulas.stream().allMatch(DelpRule::isGround);
 	}
 
 	public String toString(){
-        return this.stream().map(Object::toString).collect(Collectors.joining("\n"))+"\n";
+        return formulas.stream().map(Object::toString).collect(Collectors.joining("\n"))+"\n";
 	}
 
 	/**
@@ -294,7 +296,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	 * @return a set of strict and defeasible rules
 	 */
 	public Set<DelpRule> getRulesWithHead(FolFormula l){
-		return this.stream()
+		return formulas.stream()
                 .filter(rule -> (rule instanceof DefeasibleRule || rule instanceof StrictRule)
                         && rule.getConclusion().equals(l))
                 .collect(Collectors.toSet());
@@ -306,7 +308,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 	@Override
 	public Signature getSignature() {
 		FolSignature signature = new FolSignature();
-		for(DelpRule rule: this){
+		for(DelpRule rule: formulas){
 			signature.addAll(rule.getPredicates());
 			signature.addAll(rule.getTerms(Constant.class));
 		}

@@ -25,7 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.logics.commons.analysis.AbstractBeliefSetConsistencyTester;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -46,19 +47,15 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class PclDefaultConsistencyTester extends AbstractBeliefSetConsistencyTester<ProbabilisticConditional> {
+public class PclDefaultConsistencyTester implements BeliefSetConsistencyTester<ProbabilisticConditional> {
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.AbstractBeliefSetConsistencyTester#isConsistent(java.util.Collection)
-	 */
 	@Override
-	public boolean isConsistent(Collection<ProbabilisticConditional> formulas) {
-		PclBeliefSet beliefSet = new PclBeliefSet(formulas);
-		if(beliefSet.isEmpty()) return true;
+	public boolean isConsistent(BeliefBase<ProbabilisticConditional> beliefBase) {
+		if(beliefBase.isEmpty()) return true;
 		// Create variables for the probability of each possible world and
 		// create a multi-dimensional function that has a root iff the belief base is consistent
 		List<Term> functions = new ArrayList<Term>();
-		Set<PossibleWorld> worlds = PossibleWorld.getAllPossibleWorlds((PropositionalSignature)beliefSet.getSignature());
+		Set<PossibleWorld> worlds = PossibleWorld.getAllPossibleWorlds((PropositionalSignature)beliefBase.getSignature());
 		Map<PossibleWorld,Variable> worlds2vars = new HashMap<PossibleWorld,Variable>();
 		int i = 0;
 		Term normConstraint = null;
@@ -72,7 +69,7 @@ public class PclDefaultConsistencyTester extends AbstractBeliefSetConsistencyTes
 		normConstraint = normConstraint.add(new IntegerConstant(-1));
 		functions.add(normConstraint);
 		// add constraints implied by the conditionals
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefBase.getFormulas()){
 			Term leftSide = null;
 			Term rightSide = null;
 			if(c.isFact()){
@@ -124,15 +121,15 @@ public class PclDefaultConsistencyTester extends AbstractBeliefSetConsistencyTes
 			return false;
 		}
 		return true;
+	
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(net.sf.tweety.Formula)
+	 * @see net.sf.tweety.logics.commons.analysis.AbstractBeliefSetConsistencyTester#isConsistent(java.util.Collection)
 	 */
 	@Override
-	public boolean isConsistent(ProbabilisticConditional formula) {
-		PclBeliefSet bs = new PclBeliefSet();
-		bs.add(formula);
-		return this.isConsistent(bs);
+	public boolean isConsistent(Collection<ProbabilisticConditional> formulas) {
+		return isConsistent(new PclBeliefSet(formulas));
 	}
+
 }

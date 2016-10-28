@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.logics.pcl.test;
+package net.sf.tweety.logics.pcl.analysis;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

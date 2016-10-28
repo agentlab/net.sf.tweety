@@ -4,7 +4,10 @@ Bundle-Name: Tweety (Translators Library)
 Bundle-SymbolicName: net.sf.tweety.logics.translators
 Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.logics.translators,
- net.sf.tweety.logics.translators.clnlp
+ net.sf.tweety.logics.translators.aspfol,
+ net.sf.tweety.logics.translators.aspnlp,
+ net.sf.tweety.logics.translators.clnlp,
+ net.sf.tweety.logics.translators.folprop
 Require-Bundle: net.sf.tweety.lp.asp;bundle-version="1.0.0",
  net.sf.tweety.lp.nlp;bundle-version="1.0.0",
  net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,

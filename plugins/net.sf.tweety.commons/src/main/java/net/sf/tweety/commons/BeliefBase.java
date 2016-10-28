@@ -18,24 +18,50 @@
  */
 package net.sf.tweety.commons;
 
+import java.util.Collection;
+
 /**
- * This class captures an abstract knowledge base, i.e. some set of
- * formulas in a given knowledge representation language, that can be asked
- * queries.
+ * This class captures an abstract knowledge base, i.e. some set of formulas in
+ * a given knowledge representation language, that can be asked queries.
+ * 
+ * @param <T>
+ *            The type of the beliefs in this belief base.
+ * 
  * @author Matthias Thimm
  * @author Tim Janus
+ * @author Dmitriy Shishkin
  */
-public interface BeliefBase {
-	
+public interface BeliefBase<T extends Formula> {
+
 	/**
 	 * Returns the signature of the language of this knowledge base.
+	 * 
 	 * @return the signature of the language of this knowledge base.
 	 */
-	public Signature getSignature();
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString();
+	Signature getSignature();
+
+	Collection<T> getFormulas();
+
+	boolean add(T formula);
+
+	default boolean addAll(Collection<T> formulas) {
+		return formulas.stream().map(formula -> add(formula)).reduce(false, (a, b) -> a && b);
+	}
+
+	boolean remove(T formula);
+
+	default boolean removeAll(Collection<T> formulas) {
+		return formulas.stream().map(formula -> remove(formula)).reduce(false, (a, b) -> a && b);
+	}
+
+	void clear();
+
+	default boolean isEmpty() {
+		return getFormulas().isEmpty();
+	}
+
+	default int size() {
+		return getFormulas().size();
+	}
+
 }

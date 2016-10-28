@@ -57,6 +57,7 @@
 		<module>../../tests/net.sf.tweety.logics.pcl.tests</module>
 		<module>../../tests/net.sf.tweety.logics.pl.tests</module>
 		<module>../../tests/net.sf.tweety.logics.rdl.tests</module>
+		<module>../../tests/net.sf.tweety.logics.translators.tests</module>
 		
 		<module>../../examples/net.sf.tweety.logics.cl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.fol.examples</module>

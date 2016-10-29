@@ -62,15 +62,15 @@ public class PenalizingCreepingMachineShop extends AbstractCreepingMachineShop {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {	
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {	
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		log.debug("Determining culpability vector of '" + beliefSet + "'.");
 		DistanceMinimizationInconsistencyMeasure inconMeasure = new DistanceMinimizationInconsistencyMeasure();
 		MeanDistanceCulpabilityMeasure agMeasure = new MeanDistanceCulpabilityMeasure(false);
 		this.culpVector = new HashMap<ProbabilisticConditional,Double>();
-		for(ProbabilisticConditional pc: beliefSet){
+		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 			this.culpVector.put(pc, agMeasure.sign(beliefSet, pc) * agMeasure.culpabilityMeasure(beliefSet, pc));
 		}
 		log.debug("Finished determining culpability vector of '" + beliefSet + "'.");		
@@ -101,7 +101,7 @@ public class PenalizingCreepingMachineShop extends AbstractCreepingMachineShop {
 			if(cnt >= AbstractCreepingMachineShop.MAX_ITERATIONS)
 				break;
 		}		
-		throw new RuntimeException("Consistent knowledge base cannot be found for '" + beliefBase + "'.");
+		throw new RuntimeException("Consistent knowledge base cannot be found for '" + beliefSet + "'.");
 	}
 	
 	/* (non-Javadoc)
@@ -138,9 +138,9 @@ public class PenalizingCreepingMachineShop extends AbstractCreepingMachineShop {
 	 * @see net.sf.tweety.logics.probabilisticconditionallogic.analysis.AbstractCreepingMachineShop#getValues(double, net.sf.tweety.logics.probabilisticconditionallogic.PclBeliefSet)
 	 */
 	@Override
-	protected Map<ProbabilisticConditional, Probability> getValues(double delta, PclBeliefSet beliefSet) {
+	protected Map<ProbabilisticConditional, Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet) {
 		Map<ProbabilisticConditional,Probability> values = new HashMap<ProbabilisticConditional,Probability>();
-		for(ProbabilisticConditional pc: beliefSet)
+		for(ProbabilisticConditional pc: beliefSet.getFormulas())
 			values.put(pc, new Probability(this.u(pc.getProbability().getValue()+(delta*this.culpVector.get(pc)))));
 		return values;
 	}

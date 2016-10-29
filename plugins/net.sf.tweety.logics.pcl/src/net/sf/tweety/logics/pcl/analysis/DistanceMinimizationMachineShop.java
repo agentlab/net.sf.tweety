@@ -31,7 +31,7 @@ import net.sf.tweety.math.probability.Probability;
  * @author Matthias Thimm
  *
  */
-public class DistanceMinimizationMachineShop implements BeliefBaseMachineShop  {
+public class DistanceMinimizationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional>  {
 
 	/**
 	 * The p-norm parameter.
@@ -57,16 +57,16 @@ public class DistanceMinimizationMachineShop implements BeliefBaseMachineShop  {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
-		if(tester.isConsistent(beliefSet))
+		if(tester.isConsistent(beliefSet.getFormulas()))
 			return beliefSet;
 		PclBeliefSet newBeliefSet = new PclBeliefSet();
 		DistanceMinimizationInconsistencyMeasure m = new DistanceMinimizationInconsistencyMeasure(this.p);
-		for(ProbabilisticConditional pc: beliefSet)
+		for(ProbabilisticConditional pc: beliefSet.getFormulas())
 			newBeliefSet.add(new ProbabilisticConditional(pc, new Probability(pc.getProbability().doubleValue()+m.getDeviation(beliefSet, pc))));		
 		return newBeliefSet;
 	}

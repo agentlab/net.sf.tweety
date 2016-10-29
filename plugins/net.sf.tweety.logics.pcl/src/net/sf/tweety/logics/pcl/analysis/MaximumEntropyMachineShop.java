@@ -54,16 +54,16 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class MaximumEntropyMachineShop implements BeliefBaseMachineShop {
+public class MaximumEntropyMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
 		if(tester.isConsistent(beliefSet))
 			return beliefSet;
@@ -88,7 +88,7 @@ public class MaximumEntropyMachineShop implements BeliefBaseMachineShop {
 		Map<ProbabilisticConditional,Variable> nus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable mu = new FloatVariable("m" + i,0,1);
 			FloatVariable nu = new FloatVariable("n" + i++,0,1);
 			mus.put(c, mu);
@@ -138,7 +138,7 @@ public class MaximumEntropyMachineShop implements BeliefBaseMachineShop {
 		try{			
 			Map<Variable,Term> solution = Solver.getDefaultGeneralSolver().solve(problem);
 			// insert the mu/nu solution into the optimization problem
-			for(ProbabilisticConditional pc: beliefSet){
+			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 				problem.add(new Equation(mus.get(pc),solution.get(mus.get(pc))));
 				problem.add(new Equation(nus.get(pc),solution.get(nus.get(pc))));
 			}
@@ -158,7 +158,7 @@ public class MaximumEntropyMachineShop implements BeliefBaseMachineShop {
 				meDistribution.put(world, new Probability(solution.get(worlds2vars.get(world)).doubleValue()));
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet)
+			for(ProbabilisticConditional pc: beliefSet.getFormulas())
 				result.add(new ProbabilisticConditional(pc,meDistribution.probability(pc)));							
 			return result;			
 		}catch (GeneralMathException e){

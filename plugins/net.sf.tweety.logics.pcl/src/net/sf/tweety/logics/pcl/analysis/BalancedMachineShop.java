@@ -47,7 +47,7 @@ import net.sf.tweety.math.term.Variable;
  * This class implements a consistency restorer using balanced distance minimization, see [Diss, Thimm] for details.
  * @author Matthias Thimm
  */
-public class BalancedMachineShop implements BeliefBaseMachineShop {
+public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/** The precision for comparing culpability values. */
 	public static final double PRECISIONCULP = 0.01;
@@ -55,9 +55,9 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 	public static final double PRECISIONOPT = 0.002;
 	
 	/** The culpability measure used by this machine shop. */
-	private CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure;
+	private CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure;
 	
-	public BalancedMachineShop(CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure){
+	public BalancedMachineShop(CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure){
 		this.culpabilityMeasure = culpabilityMeasure;
 	}
 	
@@ -65,16 +65,16 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
-		if(tester.isConsistent(beliefSet))
+		if(tester.isConsistent(beliefSet.getFormulas()))
 			return beliefSet;		
 		// get culpability values
 		Map<ProbabilisticConditional,Double> culpMeasures = new HashMap<ProbabilisticConditional,Double>();
-		for(ProbabilisticConditional pc: beliefSet)
+		for(ProbabilisticConditional pc: beliefSet.getFormulas())
 			culpMeasures.put(pc, this.culpabilityMeasure.culpabilityMeasure(beliefSet, pc));		
 		// Do a distance minimization but incorporate conformity constraints
 		// -----------
@@ -100,7 +100,7 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable eta = new FloatVariable("e" + i,0,1);
 			FloatVariable tau = new FloatVariable("t" + i++,0,1);
 			etas.put(c, eta);
@@ -145,7 +145,7 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 		}
 		// add conformity constraints
 		Stack<ProbabilisticConditional> stack = new Stack<ProbabilisticConditional>();
-		stack.addAll(beliefSet);
+		stack.addAll(beliefSet.getFormulas());
 		while(!stack.isEmpty()){
 			ProbabilisticConditional pc1 = stack.pop();
 			for(ProbabilisticConditional pc2: stack){
@@ -171,7 +171,7 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 			Map<Variable,Term> solution = Solver.getDefaultGeneralSolver().solve(problem);
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet)
+			for(ProbabilisticConditional pc: beliefSet.getFormulas())
 				result.add(new ProbabilisticConditional(pc,new Probability(pc.getProbability().doubleValue() + solution.get(etas.get(pc)).doubleValue() - solution.get(taus.get(pc)).doubleValue())));							
 			return result;
 		}catch (GeneralMathException e){

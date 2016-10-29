@@ -47,7 +47,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class MinimumViolationMachineShop implements BeliefBaseMachineShop {
+public class MinimumViolationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/** The norm. */
 	private RealVectorNorm norm;
@@ -64,10 +64,10 @@ public class MinimumViolationMachineShop implements BeliefBaseMachineShop {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		// Create variables for the probability of each possible world and
 		// set up the optimization problem for computing the minimal violation.
 		OptimizationProblem problem = new OptimizationProblem(OptimizationProblem.MINIMIZE);
@@ -87,7 +87,7 @@ public class MinimumViolationMachineShop implements BeliefBaseMachineShop {
 		// add a constraint P(A_i B_i) - p_i P(A_i) = d_i		
 		Map<ProbabilisticConditional,Variable> vio = new HashMap<ProbabilisticConditional,Variable>();		
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable v = new FloatVariable("v" + i,-1,1);
 			vio.put(c, v);
 			Term leftSide = null;
@@ -114,7 +114,7 @@ public class MinimumViolationMachineShop implements BeliefBaseMachineShop {
 				p.put(world, new Probability(solution.get(worlds2vars.get(world)).doubleValue()));
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet)
+			for(ProbabilisticConditional pc: beliefSet.getFormulas())
 				result.add(new ProbabilisticConditional(pc,p.probability(pc)));
 			return result;
 		}catch (GeneralMathException e){

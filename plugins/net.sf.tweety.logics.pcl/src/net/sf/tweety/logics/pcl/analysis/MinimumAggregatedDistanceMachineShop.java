@@ -50,16 +50,16 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineShop {
+public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
 		if(tester.isConsistent(beliefSet))
 			return beliefSet;
@@ -70,7 +70,7 @@ public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineSh
 		// and add constraints to ensure those are actual probability functions that satisfy their given conditional
 		Map<ProbabilisticConditional,Map<PossibleWorld,Variable>> pc2vars = new HashMap<ProbabilisticConditional,Map<PossibleWorld,Variable>>();
 		int cnt = 0;
-		for(ProbabilisticConditional pc: beliefSet){
+		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 			Map<PossibleWorld,Variable> prob = new HashMap<PossibleWorld,Variable>();
 			Term t = null;
 			int w_cnt = 0;
@@ -133,7 +133,7 @@ public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineSh
 		// construct target function: minimize sum of squared cross-entropies
 		// from each p_i to p
 		Term targetFunction = null;
-		for(ProbabilisticConditional pc: beliefSet){
+		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 			t = null;
 			for(PossibleWorld w: worlds){
 				if(t == null)
@@ -153,7 +153,7 @@ public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineSh
 				p.put(w, new Probability(solution.get(prob_main.get(w)).doubleValue()));
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet)
+			for(ProbabilisticConditional pc: beliefSet.getFormulas())
 				result.add(new ProbabilisticConditional(pc,p.probability(pc)));							
 			return result;					
 		}catch (GeneralMathException e){

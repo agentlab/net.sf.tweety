@@ -53,7 +53,7 @@ import net.sf.tweety.math.term.Variable;
  * distance to the original belief set using some culpability measure, see [Diss, Thimm] for details.
  * @author Matthias Thimm
  */
-public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements BeliefBaseMachineShop {
+public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -63,13 +63,13 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 	/**
 	 * The culpability measure this machine shop bases on.
 	 */
-	private CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure;
+	private CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure;
 	
 	/**
 	 * Creates a new machine shop based on the given culpability measure.
 	 * @param culpabilityMeasure a culpability measure.
 	 */
-	public PclBeliefSetQuadraticErrorMinimizationMachineShop(CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure){
+	public PclBeliefSetQuadraticErrorMinimizationMachineShop(CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure){
 		this.culpabilityMeasure = culpabilityMeasure;
 	}
 	
@@ -77,10 +77,10 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		// check whether the belief set is already consistent
 		if(new PclDefaultConsistencyTester().isConsistent(beliefSet))
 			return beliefSet;
@@ -106,7 +106,7 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable tau = new FloatVariable("t" + i++,-1,1);
 			taus.put(c, tau);
 			// the target function is the quadratic sums of the deviations
@@ -149,7 +149,7 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 			problem.add(new Equation(leftSide,rightSide));
 		}		
 		// add constraints to ensure conformity
-		for(Set<ProbabilisticConditional> pair: new SetTools<ProbabilisticConditional>().subsets(beliefSet, 2)){
+		for(Set<ProbabilisticConditional> pair: new SetTools<ProbabilisticConditional>().subsets(beliefSet.getFormulas(), 2)){
 			Iterator<ProbabilisticConditional> it = pair.iterator();
 			ProbabilisticConditional pc1 = it.next();
 			ProbabilisticConditional pc2 = it.next();
@@ -165,7 +165,7 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 			log.trace("Problem solved, modifying belief set.");
 			// Modify belief set
 			PclBeliefSet newBeliefSet = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet){
+			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 				Double p = pc.getProbability().getValue();
 				p += solution.get(taus.get(pc)).doubleValue();
 				newBeliefSet.add(new ProbabilisticConditional(pc,new Probability(p)));

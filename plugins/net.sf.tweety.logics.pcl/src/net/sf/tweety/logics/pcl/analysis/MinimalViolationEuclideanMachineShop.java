@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 
 /**
  * Repairs a probabilistic belief base by taking the probabilities from the probability function
@@ -31,7 +32,7 @@ import net.sf.tweety.logics.pcl.PclBeliefSet;
  * 
  * @author Nico Potyka
  */
-public abstract class MinimalViolationEuclideanMachineShop implements BeliefBaseMachineShop {
+public abstract class MinimalViolationEuclideanMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -44,7 +45,7 @@ public abstract class MinimalViolationEuclideanMachineShop implements BeliefBase
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefBase) {
 
 		log.info("Start repair.");
 		

@@ -39,13 +39,13 @@ import net.sf.tweety.logics.pl.semantics.PossibleWorld;
  * 
  * @author Matthias Thimm
  */
-public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineShop {
+public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefBase) {
 		if(!(beliefBase instanceof PclBeliefSet))
 			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
 		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
@@ -53,7 +53,7 @@ public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineS
 		if(tester.isConsistent(beliefSet))
 			return beliefSet;
 		MusEnumerator<ProbabilisticConditional> mu = new NaiveMusEnumerator<ProbabilisticConditional>(tester);
-		Collection<Collection<ProbabilisticConditional>> maxCons = mu.maximalConsistentSubsets(beliefSet);
+		Collection<Collection<ProbabilisticConditional>> maxCons = mu.maximalConsistentSubsets(beliefSet.getFormulas());
 		// for each maximal consistent subset determine its ME-distribution
 		@SuppressWarnings("unchecked")
 		ProbabilityDistribution<PossibleWorld>[] distributions = new ProbabilityDistribution[maxCons.size()];
@@ -73,7 +73,7 @@ public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineS
 		ProbabilityDistribution<PossibleWorld> p = ProbabilityDistribution.convexCombination(factors, distributions);
 		// prepare result
 		PclBeliefSet result = new PclBeliefSet();
-		for(ProbabilisticConditional pc: beliefSet)
+		for(ProbabilisticConditional pc: beliefSet.getFormulas())
 			result.add(new ProbabilisticConditional(pc, p.probability(pc)));
 		return result;
 	}

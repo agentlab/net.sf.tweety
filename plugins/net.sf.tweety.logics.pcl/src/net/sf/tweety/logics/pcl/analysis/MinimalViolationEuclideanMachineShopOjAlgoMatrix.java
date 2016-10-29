@@ -117,7 +117,7 @@ public class MinimalViolationEuclideanMachineShopOjAlgoMatrix extends MinimalVio
 		}
 		
 		PclBeliefSet repairedSet = new PclBeliefSet();
-		for(ProbabilisticConditional pc: beliefSet) {
+		for(ProbabilisticConditional pc: beliefSet.getFormulas()) {
 			repairedSet.add(new ProbabilisticConditional(pc,p.probability(pc)));
 		}
 		

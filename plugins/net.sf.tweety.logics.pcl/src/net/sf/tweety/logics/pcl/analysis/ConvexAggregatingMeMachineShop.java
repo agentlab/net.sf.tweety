@@ -34,24 +34,24 @@ import net.sf.tweety.logics.pl.semantics.PossibleWorld;
  * 
  * @author Matthias Thimm
  */
-public class ConvexAggregatingMeMachineShop implements BeliefBaseMachineShop {
+public class ConvexAggregatingMeMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
-		if(tester.isConsistent(beliefSet))
+		if(tester.isConsistent(beliefSet.getFormulas()))
 			return beliefSet;
 		// for each conditional determine its ME-distribution
 		@SuppressWarnings("unchecked")
 		ProbabilityDistribution<PossibleWorld>[] distributions = new ProbabilityDistribution[beliefSet.size()];
 		int cnt = 0;
-		for(ProbabilisticConditional pc: beliefSet){
+		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 			PclBeliefSet bs = new PclBeliefSet();
 			bs.add(pc);
 			// name the signature explicitly in order to ensure that the distributions
@@ -65,7 +65,7 @@ public class ConvexAggregatingMeMachineShop implements BeliefBaseMachineShop {
 		ProbabilityDistribution<PossibleWorld> p = ProbabilityDistribution.convexCombination(factors, distributions);
 		// prepare result
 		PclBeliefSet result = new PclBeliefSet();
-		for(ProbabilisticConditional pc: beliefSet)
+		for(ProbabilisticConditional pc: beliefSet.getFormulas())
 			result.add(new ProbabilisticConditional(pc, p.probability(pc)));
 		return result;
 	}

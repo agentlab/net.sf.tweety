@@ -21,7 +21,7 @@ package net.sf.tweety.logics.pcl.analysis;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.tweety.logics.pcl.PclBeliefSet;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.math.probability.Probability;
 
@@ -37,9 +37,9 @@ public class UnbiasedCreepingMachineShop extends AbstractCreepingMachineShop {
 	 * @see net.sf.tweety.logics.probabilisticconditionallogic.analysis.AbstractCreepingMachineShop#getValues(double, net.sf.tweety.logics.probabilisticconditionallogic.PclBeliefSet)
 	 */
 	@Override
-	protected Map<ProbabilisticConditional,Probability> getValues(double delta, PclBeliefSet beliefSet){
+	protected Map<ProbabilisticConditional,Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet){
 		Map<ProbabilisticConditional,Probability> values = new HashMap<ProbabilisticConditional,Probability>();
-		for(ProbabilisticConditional pc: beliefSet)
+		for(ProbabilisticConditional pc: beliefSet.getFormulas())
 			values.put(pc, new Probability((1-delta) * pc.getProbability().getValue() + delta * pc.getUniformProbability().getValue()));
 		return values;
 	}

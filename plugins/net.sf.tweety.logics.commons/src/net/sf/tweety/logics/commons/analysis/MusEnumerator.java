@@ -35,7 +35,7 @@ import net.sf.tweety.commons.util.SetTools;
  * @author Matthias Thimm
  *
  */
-public interface MusEnumerator<S extends Formula> extends BeliefSetConsistencyTester<S> {
+public interface MusEnumerator<S extends Formula> extends ConsistencyTester<S> {
 	
 	/**
 	 * This method returns the minimal inconsistent subsets of the given

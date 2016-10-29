@@ -30,7 +30,7 @@ import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.util.Pair;
-import net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.commons.analysis.ConsistencyWitnessProvider;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
 import net.sf.tweety.logics.pl.syntax.Disjunction;
@@ -42,7 +42,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * Abstract class for specifying SAT solvers.
  * @author Matthias Thimm
  */
-public abstract class SatSolver implements BeliefSetConsistencyTester<PropositionalFormula>, ConsistencyWitnessProvider<PropositionalFormula>{
+public abstract class SatSolver implements ConsistencyTester<PropositionalFormula>, ConsistencyWitnessProvider<PropositionalFormula>{
 
 	/** The default SAT solver. */
 	private static SatSolver defaultSatSolver = null;

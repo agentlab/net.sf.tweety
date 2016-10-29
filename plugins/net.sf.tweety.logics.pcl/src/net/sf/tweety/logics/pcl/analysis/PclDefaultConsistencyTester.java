@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -48,7 +48,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class PclDefaultConsistencyTester implements BeliefSetConsistencyTester<ProbabilisticConditional> {
+public class PclDefaultConsistencyTester implements ConsistencyTester<ProbabilisticConditional> {
 
 	@Override
 	public boolean isConsistent(BeliefBase<ProbabilisticConditional> beliefBase) {

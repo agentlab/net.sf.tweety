@@ -24,7 +24,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.util.MathTools;
 import net.sf.tweety.commons.util.Pair;
@@ -35,7 +35,7 @@ import net.sf.tweety.commons.util.SetTools;
  * 
  * @author Matthias Thimm
  */
-public class ShapleyCulpabilityMeasure<S extends Formula, T extends BeliefSet<S>> implements CulpabilityMeasure<S,T> {
+public class ShapleyCulpabilityMeasure<S extends Formula> implements CulpabilityMeasure<S> {
 
 	/**
 	 * The inconsistency measure this Shapley culpability measure bases on.
@@ -43,7 +43,7 @@ public class ShapleyCulpabilityMeasure<S extends Formula, T extends BeliefSet<S>
 	private BeliefSetInconsistencyMeasure<S> inconsistencyMeasure;
 	
 	/** Stores previously computed culpability values. */
-	private Map<Pair<T,S>,Double> archive;
+	private Map<Pair<BeliefBase<S>,S>,Double> archive;
 	
 	/**
 	 * Creates a new Shapley culpability measure that bases on the given
@@ -52,16 +52,16 @@ public class ShapleyCulpabilityMeasure<S extends Formula, T extends BeliefSet<S>
 	 */
 	public ShapleyCulpabilityMeasure(BeliefSetInconsistencyMeasure<S> inconsistencyMeasure){
 		this.inconsistencyMeasure = inconsistencyMeasure;
-		this.archive = new HashMap<Pair<T,S>,Double>();
+		this.archive = new HashMap<Pair<BeliefBase<S>,S>,Double>();
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.logics.commons.analysis.CulpabilityMeasure#culpabilityMeasure(net.sf.tweety.BeliefSet, net.sf.tweety.Formula)
 	 */
 	@Override
-	public Double culpabilityMeasure(T beliefSet, S formula) {
-		if(this.archive.containsKey(new Pair<T,S>(beliefSet,formula)))
-			return this.archive.get(new Pair<T,S>(beliefSet,formula)); 
+	public Double culpabilityMeasure(BeliefBase<S> beliefSet, S formula) {
+		if(this.archive.containsKey(new Pair<BeliefBase<S>,S>(beliefSet,formula)))
+			return this.archive.get(new Pair<BeliefBase<S>,S>(beliefSet,formula)); 
 		Set<Pair<Collection<S>,Collection<S>>> subbases = this.getSubsets(beliefSet, formula);		
 		Double result = new Double(0);
 		for(Pair<Collection<S>,Collection<S>> pair : subbases){
@@ -74,7 +74,7 @@ public class ShapleyCulpabilityMeasure<S extends Formula, T extends BeliefSet<S>
 			temp /= MathTools.faculty(beliefSet.size());
 			result += temp;
 		}		
-		this.archive.put(new Pair<T,S>(beliefSet,formula), result); 
+		this.archive.put(new Pair<BeliefBase<S>,S>(beliefSet,formula), result); 
 		return result;
 	}
 		
@@ -84,9 +84,9 @@ public class ShapleyCulpabilityMeasure<S extends Formula, T extends BeliefSet<S>
 	 * @param f a formula.
 	 * @return a set of pairs of knowledge bases.
 	 */
-	private Set<Pair<Collection<S>,Collection<S>>> getSubsets(T kb, S f){
+	private Set<Pair<Collection<S>,Collection<S>>> getSubsets(BeliefBase<S> kb, S f){
 		Set<Pair<Collection<S>,Collection<S>>> result = new HashSet<Pair<Collection<S>,Collection<S>>>();
-		Set<Set<S>> subsets = new SetTools<S>().subsets(kb);
+		Set<Set<S>> subsets = new SetTools<S>().subsets(kb.getFormulas());
 		for(Set<S> subset: subsets)
 			if(!subset.contains(f)){
 				Pair<Collection<S>,Collection<S>> pair = new Pair<Collection<S>,Collection<S>>();

@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
-import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
@@ -62,9 +62,9 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	 * @see net.sf.tweety.logics.probabilisticconditionallogic.analysis.CulpabilityMeasure#culpabilityMeasure(net.sf.tweety.logics.probabilisticconditionallogic.PclBeliefSet, net.sf.tweety.logics.probabilisticconditionallogic.syntax.ProbabilisticConditional)
 	 */
 	@Override
-	public Double culpabilityMeasure(PclBeliefSet beliefSet, ProbabilisticConditional conditional) {
+	public Double culpabilityMeasure(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional) {
 		// determine the mindev inconsistency measure (and add some tolerance)
-		double incVal =	new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet) + InconsistencyMeasure.MEASURE_TOLERANCE;
+		double incVal =	new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet.getFormulas()) + InconsistencyMeasure.MEASURE_TOLERANCE;
 		if(incVal == 0)
 			return 0d;
 		if(this.normalized)
@@ -76,9 +76,9 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	 * @see net.sf.tweety.logics.probabilisticconditionallogic.analysis.SignedCulpabilityMeasure#sign(net.sf.tweety.logics.probabilisticconditionallogic.PclBeliefSet, net.sf.tweety.logics.probabilisticconditionallogic.syntax.ProbabilisticConditional)
 	 */
 	@Override
-	public Double sign(PclBeliefSet beliefSet, ProbabilisticConditional conditional) {
+	public Double sign(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional) {
 		// determine the mindev inconsistency measure
-		double incVal = new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet) + InconsistencyMeasure.MEASURE_TOLERANCE;
+		double incVal = new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet.getFormulas()) + InconsistencyMeasure.MEASURE_TOLERANCE;
 		if(incVal == 0)	return 0d;
 		return Math.signum(this.getMinimumValue(beliefSet, conditional, incVal) + this.getMaximumValue(beliefSet, conditional, incVal));		
 	}
@@ -89,7 +89,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	 * @param incVal the value of the inconsistency
 	 * @return a double
 	 */
-	private Double getMinimumValue(PclBeliefSet beliefSet, ProbabilisticConditional conditional, double incVal){
+	private Double getMinimumValue(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional, double incVal){
 		OptimizationProblem problem = this.getBaseProblem(beliefSet, conditional, incVal);
 		problem.setType(OptimizationProblem.MINIMIZE);
 		try{			
@@ -107,7 +107,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	 * @param incVal the value of the inconsistency
 	 * @return a double
 	 */
-	private Double getMaximumValue(PclBeliefSet beliefSet, ProbabilisticConditional conditional, double incVal){
+	private Double getMaximumValue(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional, double incVal){
 		OptimizationProblem problem = this.getBaseProblem(beliefSet, conditional, incVal);
 		try{			
 			Map<Variable,Term> solution = Solver.getDefaultGeneralSolver().solve(problem);			
@@ -125,7 +125,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	 * @param incVal the value of the inconsistency
 	 * @return the base optimization problem
 	 */
-	private OptimizationProblem getBaseProblem(PclBeliefSet beliefSet, ProbabilisticConditional conditional, double incVal){
+	private OptimizationProblem getBaseProblem(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional, double incVal){
 		// Create variables for the probability of each possible world and
 		// set up the optimization problem for computing the minimal
 		// distance to a consistent belief set.
@@ -147,7 +147,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 		Map<ProbabilisticConditional,Variable> etas = new HashMap<ProbabilisticConditional,Variable>();
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable eta = new FloatVariable("e" + i,0,1);
 			FloatVariable tau = new FloatVariable("t" + i++,0,1);
 			etas.put(c, eta);

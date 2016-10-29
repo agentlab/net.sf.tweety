@@ -20,7 +20,7 @@ package net.sf.tweety.logics.pl.sat;
 
 import java.util.Collection;
 
-import net.sf.tweety.logics.commons.analysis.AbstractMusEnumerator;
+import net.sf.tweety.logics.commons.analysis.MusEnumerator;
 import net.sf.tweety.logics.commons.analysis.NaiveMusEnumerator;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
@@ -32,16 +32,16 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * 
  * @author Matthias Thimm
  */
-public abstract class PlMusEnumerator extends AbstractMusEnumerator<PropositionalFormula>{
+public abstract class PlMusEnumerator implements MusEnumerator<PropositionalFormula> {
 
 	/** The default MUS enumerator. */
-	private static AbstractMusEnumerator<PropositionalFormula> defaultEnumerator = null;
+	private static MusEnumerator<PropositionalFormula> defaultEnumerator = null;
 	
 	/**
 	 * Sets the default MUS enumerator.
 	 * @param solver some MUS enumerator
 	 */
-	public static void setDefaultEnumerator(AbstractMusEnumerator<PropositionalFormula> enumerator){
+	public static void setDefaultEnumerator(MusEnumerator<PropositionalFormula> enumerator){
 		PlMusEnumerator.defaultEnumerator = enumerator;
 	}
 	
@@ -62,7 +62,7 @@ public abstract class PlMusEnumerator extends AbstractMusEnumerator<Propositiona
 	 * printed to stderr pointing out that no default MUS enumerator is configured.
 	 * @return the default MUS enumerator.
 	 */
-	public static AbstractMusEnumerator<PropositionalFormula> getDefaultEnumerator(){
+	public static MusEnumerator<PropositionalFormula> getDefaultEnumerator(){
 		if(PlMusEnumerator.defaultEnumerator != null)
 			return PlMusEnumerator.defaultEnumerator;
 		System.err.println("No default MUS enumerator configured, using "

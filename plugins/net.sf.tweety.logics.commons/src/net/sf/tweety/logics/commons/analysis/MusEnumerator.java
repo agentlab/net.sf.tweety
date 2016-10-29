@@ -19,9 +19,14 @@
 package net.sf.tweety.logics.commons.analysis;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.util.SetTools;
 
 /**
  * Interface for classes enumerating MUSes (minimal unsatisfiable sets) and
@@ -39,7 +44,7 @@ public interface MusEnumerator<S extends Formula> extends BeliefSetConsistencyTe
 	 * @return the minimal inconsistent subsets of the given
 	 *  set of formulas
 	 */
-	public Collection<Collection<S>> minimalInconsistentSubsets(Collection<S> formulas);
+	Collection<Collection<S>> minimalInconsistentSubsets(Collection<S> formulas);
 		
 	/**
 	 * This method returns the maximal consistent subsets of the given
@@ -48,7 +53,18 @@ public interface MusEnumerator<S extends Formula> extends BeliefSetConsistencyTe
 	 * @return the maximal consistent subsets of the given
 	 *  set of formulas.
 	 */
-	public Collection<Collection<S>> maximalConsistentSubsets(Collection<S> formulas);
+	default Collection<Collection<S>> maximalConsistentSubsets(Collection<S> formulas){
+		Set<Set<S>> md_sets = minimalCorrectionSubsets(formulas);
+		// every maximal consistent subset is the complement of a minimal correction set
+		Collection<Collection<S>> result = new HashSet<Collection<S>>();;
+		Collection<S> tmp;
+		for(Collection<S> ms: md_sets){
+			tmp = new HashSet<S>(formulas);
+			tmp.removeAll(ms);
+			result.add(tmp);
+		}			
+		return result;
+	}
 	
 	/**
 	 * This method returns the minimal correction subsets of the given
@@ -56,7 +72,19 @@ public interface MusEnumerator<S extends Formula> extends BeliefSetConsistencyTe
 	 * @param formulas a set of formulas
 	 * @return the minimal corrections subsets of the given set of formulas.
 	 */
-	public Set<Set<S>> minimalCorrectionSubsets(Collection<S> formulas);
+	default Set<Set<S>> minimalCorrectionSubsets(Collection<S> formulas){
+		// we use the duality of minimal inconsistent subsets, minimal correction sets, and maximal consistent
+		// subsets to compute the set of maximal consistent subsets
+		Collection<Collection<S>> mis = minimalInconsistentSubsets(formulas);
+		// makes sets out of this
+		Set<Set<S>> mi_sets = new HashSet<Set<S>>();
+		for(Collection<S> m: mis)
+			mi_sets.add(new HashSet<S>(m));
+		SetTools<S> settools = new SetTools<S>();
+		// get the minimal correction sets, i.e. irreducible hitting sets of minimal inconsistent subsets
+		Set<Set<S>> md_sets =  settools.irreducibleHittingSets(mi_sets);
+		return md_sets;
+	}
 	
 	/**
 	 * Computes the maximal (wrt. cardinality) partitioning {K1,...,Kn}
@@ -65,6 +93,28 @@ public interface MusEnumerator<S extends Formula> extends BeliefSetConsistencyTe
 	 * @param formulas a set of formulas K
 	 * @return the MI components of K
 	 */
-	public Collection<Collection<S>> getMiComponents(Collection<S> formulas);
+	default Collection<Collection<S>> getMiComponents(Collection<S> formulas){
+		List<Collection<S>> comp = new LinkedList<Collection<S>>(minimalInconsistentSubsets(formulas));
+		boolean changed;
+		do{
+			changed = false;
+			for(int i = 0; i < comp.size(); i++){
+				for(int j = i+1; j< comp.size(); j++){
+					if(!Collections.disjoint(comp.get(i), comp.get(j))){
+						changed = true;
+						comp.get(i).addAll(comp.get(j));
+						comp.remove(j);
+						break;
+					}					
+				}
+				if(changed) break;
+			}
+		}while(changed);
+		return comp;
+	}
+	
+	default boolean isConsistent(Collection<S> formulas){
+		return minimalInconsistentSubsets(formulas).isEmpty();
+	}
 	
 }

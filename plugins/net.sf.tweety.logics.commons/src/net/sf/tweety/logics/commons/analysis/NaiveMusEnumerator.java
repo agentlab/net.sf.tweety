@@ -31,7 +31,7 @@ import net.sf.tweety.commons.Formula;
  *
  * @param <S> The type of formulas.
  */
-public class NaiveMusEnumerator<S extends Formula> extends AbstractMusEnumerator<S>{
+public class NaiveMusEnumerator<S extends Formula> implements MusEnumerator<S>{
 	
 	/** Used for making consistency checks. */
 	private BeliefSetConsistencyTester<S> tester;

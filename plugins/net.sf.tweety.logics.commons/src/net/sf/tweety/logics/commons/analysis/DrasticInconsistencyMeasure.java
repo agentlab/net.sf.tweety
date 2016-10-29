@@ -27,16 +27,16 @@ import net.sf.tweety.commons.Formula;
  * 
  * @author Matthias Thimm
  */
-public class DrasticInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class DrasticInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The consistency tester used for measuring. */
-	private BeliefSetConsistencyTester<S> consTester;
+	private ConsistencyTester<S> consTester;
 	
 	/**
 	 * Creates a new drastic inconsistency measure.
 	 * @param consTester some consistency tester
 	 */
-	public DrasticInconsistencyMeasure(BeliefSetConsistencyTester<S> consTester){
+	public DrasticInconsistencyMeasure(ConsistencyTester<S> consTester){
 		this.consTester = consTester;
 	}
 

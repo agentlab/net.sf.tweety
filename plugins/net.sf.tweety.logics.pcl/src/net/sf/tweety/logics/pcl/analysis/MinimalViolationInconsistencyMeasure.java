@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -44,7 +45,7 @@ import net.sf.tweety.math.term.Variable;
  * cf. [Potyka, 2014]. It accepts any real vector norm and the used solver can be configured.
  * @author Nico Potyka, Matthias Thimm
  */
-public class MinimalViolationInconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class MinimalViolationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/** The norm. */
 	private RealVectorNorm norm;
@@ -86,7 +87,7 @@ public class MinimalViolationInconsistencyMeasure extends BeliefSetInconsistency
 		// add a constraint P(A_i B_i) - p_i P(A_i) = d_i		
 		Map<ProbabilisticConditional,Variable> vio = new HashMap<ProbabilisticConditional,Variable>();		
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable v = new FloatVariable("v" + i,-1,1);
 			vio.put(c, v);
 			Term leftSide = null;

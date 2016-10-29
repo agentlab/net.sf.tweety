@@ -26,7 +26,9 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -50,7 +52,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class DistanceMinimizationInconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class DistanceMinimizationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -94,9 +96,9 @@ public class DistanceMinimizationInconsistencyMeasure extends BeliefSetInconsist
 	 * @param pc a probabilistic conditional.
 	 * @return a double.
 	 */
-	public Double getDeviation(PclBeliefSet beliefSet, ProbabilisticConditional pc){
+	public Double getDeviation(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional pc){
 		if(!this.archiveDevs.containsKey(beliefSet))
-			this.inconsistencyMeasure(beliefSet);
+			this.inconsistencyMeasure(beliefSet.getFormulas());
 		return this.archiveDevs.get(beliefSet).get(pc);
 	}
 	
@@ -140,7 +142,7 @@ public class DistanceMinimizationInconsistencyMeasure extends BeliefSetInconsist
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable eta = new FloatVariable("e" + i,0,1);
 			FloatVariable tau = new FloatVariable("t" + i++,0,1);
 			etas.put(c, eta);
@@ -192,7 +194,7 @@ public class DistanceMinimizationInconsistencyMeasure extends BeliefSetInconsist
 			log.debug("Problem solved, the measure is '" + result + "'.");
 			String values = "Eta/Tau-values for the solution:\n===BEGIN===\n";
 			this.archiveDevs.put(beliefSet, new HashMap<ProbabilisticConditional,Double>());
-			for(ProbabilisticConditional pc: beliefSet){
+			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 				values += pc + "\teta: " + solution.get(etas.get(pc)) + "\ttau: " + solution.get(taus.get(pc)) +  "\n";
 				this.archiveDevs.get(beliefSet).put(pc, solution.get(etas.get(pc)).doubleValue() - solution.get(taus.get(pc)).doubleValue() );
 			}

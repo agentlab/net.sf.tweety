@@ -44,7 +44,7 @@ import net.sf.tweety.math.term.Variable;
  *
  * @param <S> The specific type of formulas
  */
-public class CcInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class CcInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 	
 	/** The MUS enumerator used for the measure. */
 	private MusEnumerator<S> enumerator;

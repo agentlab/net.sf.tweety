@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Queue;
 
 import net.sf.tweety.commons.Formula;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.math.func.BinaryFunction;
 import net.sf.tweety.math.func.MaxFunction;
 
@@ -40,7 +40,7 @@ import net.sf.tweety.math.func.MaxFunction;
 public abstract class WindowInconsistencyMeasurementProcess<S extends Formula> extends InconsistencyMeasurementProcess<S>{
 
 	/** The inconsistency measure used */
-	private BeliefSetInconsistencyMeasure<S> measure;
+	private InconsistencyMeasure<S> measure;
 	/** The window size. */	
 	private int windowsize;
 	/** the current window of formulas */
@@ -76,7 +76,7 @@ public abstract class WindowInconsistencyMeasurementProcess<S extends Formula> e
 		this.formulas = new LinkedList<S>();
 		if(!config.containsKey(WindowInconsistencyMeasurementProcess.CONFIG_MEASURE))
 			throw new RuntimeException("Key \"CONFIG_MEASURE\" expected for configuration of WindowInconsistencyMeasurementProcess");
-		this.measure = (BeliefSetInconsistencyMeasure<S>) config.get(WindowInconsistencyMeasurementProcess.CONFIG_MEASURE);
+		this.measure = (InconsistencyMeasure<S>) config.get(WindowInconsistencyMeasurementProcess.CONFIG_MEASURE);
 		if(config.containsKey(WindowInconsistencyMeasurementProcess.CONFIG_WINDOWSIZE))
 			this.windowsize = (int) config.get(WindowInconsistencyMeasurementProcess.CONFIG_WINDOWSIZE);
 		else this.windowsize = -1;

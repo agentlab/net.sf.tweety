@@ -26,7 +26,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -48,7 +49,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class UpperApproxDistanceMinimizationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -58,14 +59,10 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefS
 	/**
 	 * For archiving.
 	 */
-	private Map<PclBeliefSet,Double> archive = new HashMap<PclBeliefSet,Double>();
+	private Map<BeliefBase<ProbabilisticConditional>,Double> archive = new HashMap<BeliefBase<ProbabilisticConditional>,Double>();
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)
-	 */
 	@Override
-	public Double inconsistencyMeasure(Collection<ProbabilisticConditional> formulas) {
-		PclBeliefSet beliefSet = new PclBeliefSet(formulas);
+	public Double inconsistencyMeasure(BeliefBase<ProbabilisticConditional> beliefSet) {
 		log.trace("Starting to compute minimal distance inconsistency measure for '" + beliefSet + "'.");
 		// check archive
 		if(this.archive.containsKey(beliefSet))
@@ -100,7 +97,7 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefS
 		Map<ProbabilisticConditional,Variable> nus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet){
+		for(ProbabilisticConditional c: beliefSet.getFormulas()){
 			FloatVariable mu = new FloatVariable("m" + i,0,1);
 			FloatVariable nu = new FloatVariable("n" + i++,0,1);
 			mus.put(c, mu);
@@ -152,7 +149,7 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefS
 			// transform into eta values
 			String values = "Eta-values for the solution:\n===BEGIN===\n";
 			Double result = 0d;
-			for(ProbabilisticConditional pc: beliefSet){
+			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 				Double eta = solution.get(mus.get(pc)).doubleValue() - solution.get(nus.get(pc)).doubleValue();
 				Double denom = 0d;
 				if(eta != 0){					
@@ -178,6 +175,14 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefS
 			// This should not happen as the optimization problem is guaranteed to be feasible
 			throw new RuntimeException("Fatal error: Optimization problem to compute the minimal distance to a consistent knowledge base is not feasible.");
 		}		
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)
+	 */
+	@Override
+	public Double inconsistencyMeasure(Collection<ProbabilisticConditional> formulas) {
+		return inconsistencyMeasure(new PclBeliefSet(formulas));
 	}
 }
 

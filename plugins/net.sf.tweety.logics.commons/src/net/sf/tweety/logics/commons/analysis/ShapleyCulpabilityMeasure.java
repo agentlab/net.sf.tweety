@@ -40,7 +40,7 @@ public class ShapleyCulpabilityMeasure<S extends Formula> implements Culpability
 	/**
 	 * The inconsistency measure this Shapley culpability measure bases on.
 	 */
-	private BeliefSetInconsistencyMeasure<S> inconsistencyMeasure;
+	private InconsistencyMeasure<S> inconsistencyMeasure;
 	
 	/** Stores previously computed culpability values. */
 	private Map<Pair<BeliefBase<S>,S>,Double> archive;
@@ -50,7 +50,7 @@ public class ShapleyCulpabilityMeasure<S extends Formula> implements Culpability
 	 * inconsistency measure.
 	 * @param inconsistencyMeasure an inconsistency measure.
 	 */
-	public ShapleyCulpabilityMeasure(BeliefSetInconsistencyMeasure<S> inconsistencyMeasure){
+	public ShapleyCulpabilityMeasure(InconsistencyMeasure<S> inconsistencyMeasure){
 		this.inconsistencyMeasure = inconsistencyMeasure;
 		this.archive = new HashMap<Pair<BeliefBase<S>,S>,Double>();
 	}

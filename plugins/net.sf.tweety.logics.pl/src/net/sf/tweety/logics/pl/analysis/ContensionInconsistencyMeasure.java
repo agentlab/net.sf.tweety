@@ -24,6 +24,7 @@ import java.util.HashSet;
 import net.sf.tweety.commons.util.IncreasingSubsetIterator;
 import net.sf.tweety.commons.util.SubsetIterator;
 import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.sat.SatSolver;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
@@ -45,7 +46,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * the process is repeated with all pairs "p1,p2" of propositions, then triples, etc.  
  * @author Matthias Thimm
  */
-public class ContensionInconsistencyMeasure extends BeliefSetInconsistencyMeasure<PropositionalFormula> {
+public class ContensionInconsistencyMeasure implements InconsistencyMeasure<PropositionalFormula> {
 
 
 	/* (non-Javadoc)

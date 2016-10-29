@@ -42,7 +42,7 @@ import net.sf.tweety.math.term.Variable;
  *
  * @param <S> The type of formula
  */
-public class EtaInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S>{
+public class EtaInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S>{
 
 	/** Used for enumerating the interpretations of the underlying language. */
 	private InterpretationIterator<?> it;

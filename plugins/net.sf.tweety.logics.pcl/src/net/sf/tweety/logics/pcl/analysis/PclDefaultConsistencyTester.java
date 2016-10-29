@@ -43,89 +43,111 @@ import net.sf.tweety.math.term.Variable;
 
 /**
  * This class is capable of checking whether a given conditional knowledge base
- * is consistent by searching for the root of some equivalent multi-dimensional function.
+ * is consistent by searching for the root of some equivalent multi-dimensional
+ * function.
  * 
  * @author Matthias Thimm
  */
 public class PclDefaultConsistencyTester implements BeliefSetConsistencyTester<ProbabilisticConditional> {
-	
+
 	@Override
 	public boolean isConsistent(BeliefBase<ProbabilisticConditional> beliefBase) {
-		if(beliefBase.isEmpty()) return true;
+		if (beliefBase.isEmpty()) {
+			return true;
+		}
 		// Create variables for the probability of each possible world and
-		// create a multi-dimensional function that has a root iff the belief base is consistent
+		// create a multi-dimensional function that has a root iff the belief
+		// base is consistent
 		List<Term> functions = new ArrayList<Term>();
-		Set<PossibleWorld> worlds = PossibleWorld.getAllPossibleWorlds((PropositionalSignature)beliefBase.getSignature());
-		Map<PossibleWorld,Variable> worlds2vars = new HashMap<PossibleWorld,Variable>();
+		Set<PossibleWorld> worlds = PossibleWorld
+				.getAllPossibleWorlds((PropositionalSignature) beliefBase.getSignature());
+		Map<PossibleWorld, Variable> worlds2vars = new HashMap<PossibleWorld, Variable>();
 		int i = 0;
 		Term normConstraint = null;
-		for(PossibleWorld w: worlds){
-			FloatVariable var = new FloatVariable("w" + i++,0,1);
+		for (PossibleWorld w : worlds) {
+			FloatVariable var = new FloatVariable("w" + i++, 0, 1);
 			worlds2vars.put(w, var);
-			if(normConstraint == null)
+			if (normConstraint == null) {
 				normConstraint = var;
-			else normConstraint = normConstraint.add(var);
+			} else {
+				normConstraint = normConstraint.add(var);
+			}
 		}
 		normConstraint = normConstraint.add(new IntegerConstant(-1));
 		functions.add(normConstraint);
 		// add constraints implied by the conditionals
-		for(ProbabilisticConditional c: beliefBase.getFormulas()){
+		for (ProbabilisticConditional c : beliefBase.getFormulas()) {
 			Term leftSide = null;
 			Term rightSide = null;
-			if(c.isFact()){
-				for(PossibleWorld w: worlds)
-					if(w.satisfies(c.getConclusion())){
-						if(leftSide == null)
+			if (c.isFact()) {
+				for (PossibleWorld w : worlds)
+					if (w.satisfies(c.getConclusion())) {
+						if (leftSide == null) {
 							leftSide = worlds2vars.get(w);
-						else leftSide = leftSide.add(worlds2vars.get(w));
+						} else {
+							leftSide = leftSide.add(worlds2vars.get(w));
+						}
 					}
 				rightSide = new FloatConstant(c.getProbability().getValue());
-			}else{				
+			} else {
 				PropositionalFormula body = c.getPremise().iterator().next();
 				PropositionalFormula head_and_body = c.getConclusion().combineWithAnd(body);
-				for(PossibleWorld w: worlds){
-					if(w.satisfies(head_and_body)){
-						if(leftSide == null)
+				for (PossibleWorld w : worlds) {
+					if (w.satisfies(head_and_body)) {
+						if (leftSide == null) {
 							leftSide = worlds2vars.get(w);
-						else leftSide = leftSide.add(worlds2vars.get(w));
+						} else {
+							leftSide = leftSide.add(worlds2vars.get(w));
+						}
 					}
-					if(w.satisfies(body)){
-						if(rightSide == null)
+					if (w.satisfies(body)) {
+						if (rightSide == null) {
 							rightSide = worlds2vars.get(w);
-						else rightSide = rightSide.add(worlds2vars.get(w));
-					}					
+						} else {
+							rightSide = rightSide.add(worlds2vars.get(w));
+						}
+					}
 				}
-				if(rightSide == null)
+				if (rightSide == null) {
 					rightSide = new FloatConstant(0);
-				else rightSide = rightSide.mult(new FloatConstant(c.getProbability().getValue()));
+				} else {
+					rightSide = rightSide.mult(new FloatConstant(c.getProbability().getValue()));
+				}
 			}
-			if(leftSide == null)
+			if (leftSide == null) {
 				leftSide = new FloatConstant(0);
-			if(rightSide == null)
+			}
+			if (rightSide == null) {
 				rightSide = new FloatConstant(0);
-			functions.add(leftSide.minus(rightSide));			
+			}
+			functions.add(leftSide.minus(rightSide));
 		}
 		// Search for a root of "functions" using OpenOpt
-		Map<Variable,Term> startingPoint = new HashMap<Variable,Term>();
-		for(PossibleWorld w: worlds)
+		Map<Variable, Term> startingPoint = new HashMap<Variable, Term>();
+		for (PossibleWorld w : worlds) {
 			startingPoint.put(worlds2vars.get(w), new IntegerConstant(1));
-		OpenOptRootFinder rootFinder = new OpenOptRootFinder(functions,startingPoint);
+		}
+		OpenOptRootFinder rootFinder = new OpenOptRootFinder(functions, startingPoint);
 		RootFinder.PRECISION = 0.001;
 		rootFinder.contol = 1.0E-8;
 		rootFinder.ftol = 1.0E-8;
 		rootFinder.gtol = 1.0E-8;
-		rootFinder.xtol = 1.0E-8;		
+		rootFinder.xtol = 1.0E-8;
 		try {
 			rootFinder.randomRoot();
 		} catch (GeneralMathException e) {
 			return false;
 		}
 		return true;
-	
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.AbstractBeliefSetConsistencyTester#isConsistent(java.util.Collection)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.sf.tweety.logics.commons.analysis.AbstractBeliefSetConsistencyTester#
+	 * isConsistent(java.util.Collection)
 	 */
 	@Override
 	public boolean isConsistent(Collection<ProbabilisticConditional> formulas) {

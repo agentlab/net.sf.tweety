@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.util.Pair;
@@ -215,14 +216,6 @@ public abstract class SatSolver implements BeliefSetConsistencyTester<Propositio
 	public abstract boolean isSatisfiable(Collection<PropositionalFormula> formulas);
 
 	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(net.sf.tweety.commons.BeliefSet)
-	 */
-	@Override
-	public boolean isConsistent(BeliefSet<PropositionalFormula> beliefSet) {
-		return this.isSatisfiable(beliefSet);
-	}
-
-	/* (non-Javadoc)
 	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(java.util.Collection)
 	 */
 	@Override
@@ -230,16 +223,6 @@ public abstract class SatSolver implements BeliefSetConsistencyTester<Propositio
 		return this.isSatisfiable(formulas);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(net.sf.tweety.commons.Formula)
-	 */
-	@Override
-	public boolean isConsistent(PropositionalFormula formula) {
-		Collection<PropositionalFormula> formulas = new HashSet<PropositionalFormula>();
-		formulas.add(formula);
-		return this.isSatisfiable(formulas);
-	}
-	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.logics.commons.analysis.ConsistencyWitnessProvider#getWitness(net.sf.tweety.commons.Formula)
 	 */

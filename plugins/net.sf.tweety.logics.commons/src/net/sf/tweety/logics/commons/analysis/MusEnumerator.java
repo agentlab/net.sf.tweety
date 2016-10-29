@@ -21,7 +21,6 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 import java.util.Set;
 
-import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 
 /**
@@ -68,18 +67,4 @@ public interface MusEnumerator<S extends Formula> extends BeliefSetConsistencyTe
 	 */
 	public Collection<Collection<S>> getMiComponents(Collection<S> formulas);
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(net.sf.tweety.BeliefSet)
-	 */
-	public boolean isConsistent(BeliefSet<S> beliefSet);
-	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(java.util.Collection)
-	 */
-	public boolean isConsistent(Collection<S> formulas);
-		
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetConsistencyTester#isConsistent(net.sf.tweety.Formula)
-	 */
-	public boolean isConsistent(S formula);
 }

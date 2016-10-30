@@ -72,7 +72,7 @@ public class StructuredArgumentationSystem extends MultiAgentSystem<SasAgent> {
 			if(!(action instanceof Extension))
 				throw new IllegalArgumentException("SasEnvironment expects action of type 'Extension'.");
 			Extension e = (Extension) action;
-			if(!(this.saf.containsAll(e)))
+			if(!(this.saf.getFormulas().containsAll(e)))
 				throw new IllegalArgumentException("Action contains unknown arguments.");
 			this.commonView.addAll(e);
 			for(Argument a: this.commonView){

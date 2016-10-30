@@ -94,7 +94,7 @@ public class CautiousArgumentationAgent extends OvercautiousArgumentationAgent {
 	 */
 	protected Set<Argument> necessaryArguments(){
 		DungTheory commonView = this.getCommonView().toDungTheory();
-		Set<Argument> necessaryArguments = new HashSet<Argument>(commonView);
+		Set<Argument> necessaryArguments = new HashSet<Argument>(commonView.getFormulas());
 		for(Argument a : commonView){
 			ArgumentStructure arg1 = (ArgumentStructure) a;
 			necessaryArguments.retainAll(arg1);

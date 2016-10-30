@@ -88,7 +88,7 @@ public class ProbabilityDistribution<T extends Interpretation> implements Interp
 		if(!(beliefBase instanceof PclBeliefSet))
 			throw new IllegalArgumentException("Relational probabilistic conditional knowledge base expected.");
 		PclBeliefSet kb = (PclBeliefSet) beliefBase;
-		for(Formula f: kb)
+		for(Formula f: kb.getFormulas())
 			if(!this.satisfies(f)) return false;
 		return true;
 	}

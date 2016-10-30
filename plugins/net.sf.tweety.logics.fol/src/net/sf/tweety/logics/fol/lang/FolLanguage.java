@@ -59,9 +59,9 @@ public class FolLanguage extends Language {
 	 * @see net.sf.tweety.kr.Language#isRepresentable(net.sf.tweety.kr.BeliefBase)
 	 */
 	@Override
-	public boolean isRepresentable(BeliefBase beliefBase){
+	public boolean isRepresentable(BeliefBase<?> beliefBase){
 		if(!(beliefBase instanceof FolBeliefSet)) return false;
-		for(Formula f : (FolBeliefSet)beliefBase)
+		for(Formula f : beliefBase.getFormulas())
 			if(!this.isRepresentable(f))
 				return false;
 		return true;

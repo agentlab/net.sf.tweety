@@ -100,7 +100,7 @@ public abstract class SasAgent extends Agent {
 		// update common view
 		this.commonView = (StructuredArgumentationFramework) percepts.iterator().next();
 		// update own view
-		this.view.addAll(this.commonView);
+		this.view.addAll(this.commonView.getFormulas());
 		this.view.addAllAttacks(this.commonView.getAttacks());
 		// prepare action (a set of arguments)
 		// per default this is an empty set
@@ -146,8 +146,8 @@ public abstract class SasAgent extends Agent {
 	 * @return The set of arguments this agent may bring forward.
 	 */
 	protected Set<Argument> getPossibleArguments(){
-		Set<Argument> possibleArguments = new HashSet<Argument>(this.getView()); 
-		possibleArguments.removeAll(this.getCommonView());
+		Set<Argument> possibleArguments = new HashSet<Argument>(this.getView().getFormulas()); 
+		possibleArguments.removeAll(this.getCommonView().getFormulas());
 		return possibleArguments;
 	}
 	

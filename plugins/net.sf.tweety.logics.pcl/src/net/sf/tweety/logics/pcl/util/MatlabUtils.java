@@ -44,7 +44,7 @@ public class MatlabUtils {
 
 		out.println("A = [");
 		
-		for(ProbabilisticConditional c: beliefSet) {
+		for(ProbabilisticConditional c: beliefSet.getFormulas()) {
 			
 			out.print("  ");
 			
@@ -104,7 +104,7 @@ public class MatlabUtils {
 
 		out.println("CV = [");
 		
-		for(ProbabilisticConditional c: beliefSet) {
+		for(ProbabilisticConditional c: beliefSet.getFormulas()) {
 			
 			out.print("  ");
 			
@@ -156,7 +156,7 @@ public class MatlabUtils {
 
 		out.println("CA = [");
 		
-		for(ProbabilisticConditional c: beliefSet) {
+		for(ProbabilisticConditional c: beliefSet.getFormulas()) {
 			
 			out.print("  ");
 			
@@ -289,7 +289,7 @@ public class MatlabUtils {
 		}
 		
 		System.out.println("disp( 'Original knowledge base:' );");
-		for(ProbabilisticConditional c: kb) {
+		for(ProbabilisticConditional c: kb.getFormulas()) {
 			System.out.println("disp( '"+c.toString()+"' );");
 		}
 		System.out.println("\n\n\n");

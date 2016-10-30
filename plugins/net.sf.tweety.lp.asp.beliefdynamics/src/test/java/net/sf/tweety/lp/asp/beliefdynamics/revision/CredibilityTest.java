@@ -112,9 +112,9 @@ public class CredibilityTest {
 			assertEquals(1, asl.size());
 			AnswerSet as = asl.get(0);
 			assertEquals(2, as.size());
-			assertEquals(true, as.contains(new DLPAtom("b")));
-			assertEquals(true, as.contains(new DLPNeg("a")));
-			assertEquals(false, as.contains(new DLPAtom("a")));
+			assertEquals(true, as.getFormulas().contains(new DLPAtom("b")));
+			assertEquals(true, as.getFormulas().contains(new DLPNeg("a")));
+			assertEquals(false, as.getFormulas().contains(new DLPAtom("a")));
 		}
 	}
 	
@@ -138,14 +138,14 @@ public class CredibilityTest {
 			
 			for(AnswerSet as : asl) {
 				assertEquals(3, as.size());
-				assertEquals(true, as.contains(new DLPAtom("b")));
-				assertEquals(true, as.contains(new DLPAtom("c")));
+				assertEquals(true, as.getFormulas().contains(new DLPAtom("b")));
+				assertEquals(true, as.getFormulas().contains(new DLPAtom("c")));
 			}
 			
-			if(asl.get(0).contains(new DLPAtom("a"))) {
-				assertEquals(true, asl.get(1).contains(new DLPNeg("a")));
+			if(asl.get(0).getFormulas().contains(new DLPAtom("a"))) {
+				assertEquals(true, asl.get(1).getFormulas().contains(new DLPNeg("a")));
 			} else {
-				assertEquals(true, asl.get(1).contains(new DLPAtom("a")));
+				assertEquals(true, asl.get(1).getFormulas().contains(new DLPAtom("a")));
 			}
 		}
 	}

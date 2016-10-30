@@ -112,7 +112,7 @@ public class ClNLPTranslator extends Translator
 	 */
 	public NLPProgram toNLP(ClBeliefSet conditionals) {
 		NLPProgram result = new NLPProgram();
-		for(Conditional cond : conditionals) {
+		for(Conditional cond : conditionals.getFormulas()) {
 			result.add(toNLP(cond));
 		}
 		return result;

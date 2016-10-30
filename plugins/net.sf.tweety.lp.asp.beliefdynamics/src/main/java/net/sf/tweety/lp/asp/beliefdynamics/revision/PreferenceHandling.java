@@ -161,8 +161,8 @@ public class PreferenceHandling extends CredibilityRevisionIterative<Rule> {
 				literals.addAll(conflict.getSecond().getLiterals());
 				literals.removeAll(conflict.getSecond().getConclusion());
 				
-				if(	as.containsAll(literals) &&
-					!as.containsAll(conflict.getSecond().getConclusion())) {
+				if(	as.getFormulas().containsAll(literals) &&
+					!as.getFormulas().containsAll(conflict.getSecond().getConclusion())) {
 					toRemoveCollection.add(conflict.getFirst());
 				}
 			}

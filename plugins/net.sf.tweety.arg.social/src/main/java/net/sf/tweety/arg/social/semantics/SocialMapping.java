@@ -26,7 +26,6 @@ import java.util.Map;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.social.SocialAbstractArgumentationFramework;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
 
 /**
@@ -35,7 +34,7 @@ import net.sf.tweety.commons.Interpretation;
  * @author Matthias Thimm
  * @param <L> The set used for valuations
  */
-public class SocialMapping<L> implements Interpretation {
+public class SocialMapping<L> implements Interpretation<Argument> {
 
 	/** The semantics used for this mapping */
 	private AbstractSocialSemantics<L> semantics;
@@ -56,9 +55,9 @@ public class SocialMapping<L> implements Interpretation {
 	 * @see net.sf.tweety.commons.Interpretation#satisfies(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public boolean satisfies(Formula formula) throws IllegalArgumentException {
-		if(!(formula instanceof Argument))
-			throw new IllegalArgumentException("Formula of type 'Argument' expected.");
+	public boolean satisfies(Argument formula) throws IllegalArgumentException {
+//		if(!(formula instanceof Argument))
+//			throw new IllegalArgumentException("Formula of type 'Argument' expected.");
 		if(!this.map.containsKey(formula))
 			return false;
 		return this.semantics.compare(this.map.get(formula), this.semantics.topElement()) == 0;
@@ -68,7 +67,7 @@ public class SocialMapping<L> implements Interpretation {
 	 * @see net.sf.tweety.commons.Interpretation#satisfies(net.sf.tweety.commons.BeliefBase)
 	 */
 	@Override
-	public boolean satisfies(BeliefBase beliefBase) throws IllegalArgumentException {
+	public boolean satisfies(BeliefBase<Argument> beliefBase) throws IllegalArgumentException {
 		if(!(beliefBase instanceof SocialAbstractArgumentationFramework))
 			throw new IllegalArgumentException("Belief base of type 'SocialAbstractArgumentationFramework' expected.");
 		SocialAbstractArgumentationFramework saf = (SocialAbstractArgumentationFramework) beliefBase;

@@ -221,7 +221,7 @@ public class RankingFunction implements Interpretation {
 	 * @return "true" if the given possible world verifies the given conditional. 
 	 */
 	public static boolean verifies(PossibleWorld w, Conditional c){
-		SimpleLogicalFormula formula = c.getPremise().iterator().next().combineWithAnd(c.getConclusion());
+		PropositionalFormula formula = c.getPremise().iterator().next().combineWithAnd(c.getConclusion());
 		return w.satisfies(formula);
 	}
 	
@@ -233,7 +233,7 @@ public class RankingFunction implements Interpretation {
 	 * @return "true" if the given possible world falsifies the given conditional. 
 	 */
 	public static boolean falsifies(PossibleWorld w, Conditional c){
-		SimpleLogicalFormula formula = c.getPremise().iterator().next().combineWithAnd(c.getConclusion().complement());
+		PropositionalFormula formula = c.getPremise().iterator().next().combineWithAnd(c.getConclusion().complement());
 		return w.satisfies(formula);
 	}
 	

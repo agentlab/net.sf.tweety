@@ -307,7 +307,7 @@ public abstract class PropositionalFormula implements ClassicalFormula {
 	public abstract Set<PossibleWorld> getModels(PropositionalSignature sig);
 	
     @Override
-	public ClassicalFormula complement(){
+	public PropositionalFormula complement(){
 		if(this instanceof Negation)
 			return ((Negation)this).getFormula();
 		return new Negation(this);

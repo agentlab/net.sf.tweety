@@ -24,8 +24,9 @@ import java.util.Collection;
  * An interpretation for some logical language.
  * 
  * @author Matthias Thimm
+ * @author Dmitriy Shishkin
  */
-public interface Interpretation {
+public interface Interpretation<T extends Formula> {
 
 	/**
 	 * Checks whether this interpretation satisfies the given formula.
@@ -36,7 +37,7 @@ public interface Interpretation {
 	 * @throws IllegalArgumentException
 	 *             if the formula does not correspond to the expected language.
 	 */
-	boolean satisfies(Formula formula);
+	boolean satisfies(T formula);
 
 	/**
 	 * Checks whether this interpretation satisfies all given formulas.
@@ -48,7 +49,7 @@ public interface Interpretation {
 	 *             if at least one formula does not correspond to the expected
 	 *             language.
 	 */
-	default boolean satisfies(Collection<? extends Formula> formulas) {
+	default boolean satisfies(Collection<? extends T> formulas) {
 		return formulas.stream().allMatch(this::satisfies);
 	}
 
@@ -63,5 +64,7 @@ public interface Interpretation {
 	 *             if the knowledgebase does not correspond to the expected
 	 *             language.
 	 */
-	boolean satisfies(BeliefBase beliefBase);
+	default boolean satisfies(BeliefBase<T> beliefBase) {
+		return beliefBase.getFormulas().stream().allMatch(this::satisfies);
+	}
 }

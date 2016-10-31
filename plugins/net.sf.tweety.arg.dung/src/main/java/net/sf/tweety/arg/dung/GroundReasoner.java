@@ -43,27 +43,27 @@ public class GroundReasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public GroundReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public GroundReasoner(int inferenceType){
+		super(inferenceType);		
 	}
 	
 	/**
 	 * Creates a new ground reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public GroundReasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public GroundReasoner(){
+		super();		
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	protected Set<Extension> computeExtensions(){		
+	protected Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){		
 		Extension ext = new Extension();
 		int size;
 		do{
 			size = ext.size();			
-			ext = ((DungTheory)this.getKnowledgeBase()).faf(ext);			
+			ext = ((DungTheory) beliefBase).faf(ext);			
 		}while(size!=ext.size());
 		Set<Extension> extensions = new HashSet<Extension>();
 		extensions.add(ext);
@@ -74,7 +74,7 @@ public class GroundReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("not defined for grounded semantics");
 	}
 	

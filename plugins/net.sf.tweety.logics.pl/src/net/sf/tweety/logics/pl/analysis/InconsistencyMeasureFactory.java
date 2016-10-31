@@ -92,7 +92,7 @@ public abstract class InconsistencyMeasureFactory {
 	 * @param im some identifier of an inconsistency measure.
 	 * @return the requested inconsistency measure.
 	 */
-	public static InconsistencyMeasure<BeliefSet<PropositionalFormula>> getInconsistencyMeasure(Measure im){
+	public static InconsistencyMeasure<PropositionalFormula> getInconsistencyMeasure(Measure im){
 		switch(im){
 			case DRASTIC:
 				return new DrasticInconsistencyMeasure<PropositionalFormula>(SatSolver.getDefaultSolver());

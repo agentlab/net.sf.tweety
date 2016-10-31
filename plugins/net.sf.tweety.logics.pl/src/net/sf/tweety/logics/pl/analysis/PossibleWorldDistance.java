@@ -48,7 +48,7 @@ public abstract class PossibleWorldDistance implements InterpretationDistance<Po
 		// NOTE: this may not be true for every imaginable distance between possible worlds, but it
 		//	is true for e.g. the Dalal distance 
 		PossibleWorld b2 = new PossibleWorld();
-		for(Proposition p: b)
+		for(PropositionalFormula p: b)
 			if(f.getSignature().contains(p))
 				b2.add(p);
 		// get models

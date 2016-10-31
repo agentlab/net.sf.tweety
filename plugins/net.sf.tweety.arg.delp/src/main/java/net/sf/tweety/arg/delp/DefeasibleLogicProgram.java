@@ -385,7 +385,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
                 delpBuilder.append(line+"\n");
         }
         DefeasibleLogicProgram delp = parser.parseBeliefBase(delpBuilder.toString());
-        DelpReasoner reasoner = new DelpReasoner(delp, options.criterion);
+        DelpReasoner reasoner = new DelpReasoner(options.criterion);
 
         // ... and perform query or queries against it
         if (options.beVerbose)
@@ -396,7 +396,7 @@ public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 				System.out.println("... Starting query at "+ LocalTime.now());
             System.out.print(formula + "? ");
             System.out.flush();
-            DelpAnswer answer = (DelpAnswer) reasoner.query(formula);
+            DelpAnswer answer = (DelpAnswer) reasoner.query(delp, (FolFormula) formula);
             System.out.print(answer.getText());
 			if (options.showTime)
 				System.out.println("... Query done at "+ LocalTime.now() + System.lineSeparator());

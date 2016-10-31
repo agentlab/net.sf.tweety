@@ -6,6 +6,7 @@ import java.util.Collection;
 import net.sf.tweety.arg.aba.syntax.InferenceRule;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.interfaces.Invertable;
 
@@ -25,6 +26,30 @@ public class ABATheory <T extends Invertable> implements BeliefBase {
 	
 	public DungTheory asDungTheory(){
 		return null;
+	}
+
+	@Override
+	public Collection getFormulas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean add(Formula formula) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean remove(Formula formula) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

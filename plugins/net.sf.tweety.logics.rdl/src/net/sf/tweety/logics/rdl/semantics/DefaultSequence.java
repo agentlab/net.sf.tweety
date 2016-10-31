@@ -64,7 +64,7 @@ public class DefaultSequence {
 	 * @param dt a default theory, from which defaults will be added to the sequence
 	 */
 	public DefaultSequence(DefaultTheory dt) {
-		in.addAll(dt.getFacts());
+		in.addAll(dt.getFacts().getFormulas());
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class DefaultSequence {
 	 */
 	public DefaultSequence(DefaultSequence ds, DefaultRule d) {
 		defaults.addAll(ds.defaults);
-		in.addAll(ds.in);
+		in.addAll(ds.in.getFormulas());
 		process = ds.isApplicable(d);
 		for(DefaultRule r: defaults)
 			if(d.equals(r))
@@ -113,7 +113,7 @@ public class DefaultSequence {
 	 * 	@return the sequence's in set
 	 */
 	public Collection<FolFormula> getIn() {
-		return in;
+		return in.getFormulas();
 	}
 
 	

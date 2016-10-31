@@ -11,6 +11,7 @@ import org.junit.Test;
 import net.sf.tweety.arg.delp.parser.DelpParser;
 import net.sf.tweety.arg.delp.semantics.GeneralizedSpecificity;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
  * Testing some example KBs with various queries.
@@ -33,32 +34,34 @@ public final class TestQueries {
     private static DelpReasoner REASONER_HOBBES;
     private final static DelpParser PARSER_DTREE = new DelpParser();
     private static DelpReasoner REASONER_DTREE;
+    
+    static DefeasibleLogicProgram delp;
 
     @BeforeClass
     public static void initParsers() {
-        DefeasibleLogicProgram delp;
+//        DefeasibleLogicProgram delp;
         try {
             delp = PARSER_BIRDS.parseBeliefBase(Utilities.getKB("/birds.txt"));
-            REASONER_BIRDS = new DelpReasoner(delp, new GeneralizedSpecificity());
+            REASONER_BIRDS = new DelpReasoner(new GeneralizedSpecificity());
             delp = PARSER_NIXON.parseBeliefBase(Utilities.getKB("/nixon.txt"));
-            REASONER_NIXON = new DelpReasoner(delp, new GeneralizedSpecificity());
+            REASONER_NIXON = new DelpReasoner(new GeneralizedSpecificity());
             delp = PARSER_STOCKS.parseBeliefBase(Utilities.getKB("/stocks.txt"));
-            REASONER_STOCKS = new DelpReasoner(delp, new GeneralizedSpecificity());
+            REASONER_STOCKS = new DelpReasoner(new GeneralizedSpecificity());
             delp = PARSER_COUNTER.parseBeliefBase(Utilities.getKB("/counterarg.txt"));
-            REASONER_COUNTER = new DelpReasoner(delp, new GeneralizedSpecificity());
+            REASONER_COUNTER = new DelpReasoner(new GeneralizedSpecificity());
             delp = PARSER_HOBBES.parseBeliefBase(Utilities.getKB("/hobbes.txt"));
-            REASONER_HOBBES = new DelpReasoner(delp, new GeneralizedSpecificity());
+            REASONER_HOBBES = new DelpReasoner(new GeneralizedSpecificity());
             delp = PARSER_DTREE.parseBeliefBase(Utilities.getKB("/dtree.txt"));
-            REASONER_DTREE = new DelpReasoner(delp, new GeneralizedSpecificity());
+            REASONER_DTREE = new DelpReasoner(new GeneralizedSpecificity());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private DelpAnswer query(DelpReasoner reasoner, DelpParser parser, String query) throws IOException {
+    private DelpAnswer query(DefeasibleLogicProgram delp, DelpReasoner reasoner, DelpParser parser, String query) throws IOException {
         // perform query
         Formula formula = parser.parseFormula(query);
-        DelpAnswer answer = (DelpAnswer) reasoner.query(formula);
+        DelpAnswer answer = (DelpAnswer) reasoner.query(delp, (FolFormula) formula);
         LOGGER.info("DeLP answer to query '"+formula+"' = "+answer);
         return answer;
     }
@@ -67,58 +70,58 @@ public final class TestQueries {
     public void birds() throws IOException {
         DelpAnswer answer;
         // tina
-        answer = query(REASONER_BIRDS, PARSER_BIRDS, "Flies(tina)");
+        answer = query(delp, REASONER_BIRDS, PARSER_BIRDS, "Flies(tina)");
         assertEquals("Tina should fly", DelpAnswer.Type.YES, answer.getType());
-        answer = query(REASONER_BIRDS, PARSER_BIRDS, "~Flies(tina)");
+        answer = query(delp, REASONER_BIRDS, PARSER_BIRDS, "~Flies(tina)");
         assertEquals("Tina should fly", DelpAnswer.Type.NO, answer.getType());
         // tweety
-        answer = query(REASONER_BIRDS, PARSER_BIRDS, "Flies(tweety)");
+        answer = query(delp, REASONER_BIRDS, PARSER_BIRDS, "Flies(tweety)");
         assertEquals("Tweety does not fly", DelpAnswer.Type.NO, answer.getType());
-        answer = query(REASONER_BIRDS, PARSER_BIRDS, "~Flies(tweety)");
+        answer = query(delp, REASONER_BIRDS, PARSER_BIRDS, "~Flies(tweety)");
         assertEquals("Tweety does not fly", DelpAnswer.Type.YES, answer.getType());
     }
 
     @Test
     public void nixon() throws IOException {
         DelpAnswer answer;
-        answer = query(REASONER_NIXON, PARSER_NIXON, "~pacifist(nixon)"); // UNDECIDED
+        answer = query(delp, REASONER_NIXON, PARSER_NIXON, "~pacifist(nixon)"); // UNDECIDED
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
-        answer = query(REASONER_NIXON, PARSER_NIXON, "pacifist(nixon)"); // UNDECIDED
+        answer = query(delp, REASONER_NIXON, PARSER_NIXON, "pacifist(nixon)"); // UNDECIDED
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
-        answer = query(REASONER_NIXON, PARSER_NIXON, "has_a_gun(nixon)"); // YES
+        answer = query(delp, REASONER_NIXON, PARSER_NIXON, "has_a_gun(nixon)"); // YES
         assertEquals(DelpAnswer.Type.YES, answer.getType());
     }
 
     @Test
     public void stocks() throws IOException {
-        DelpAnswer ans = query(REASONER_STOCKS, PARSER_STOCKS, "buy_stock(acme)");
+        DelpAnswer ans = query(delp, REASONER_STOCKS, PARSER_STOCKS, "buy_stock(acme)");
         assertEquals("Buying stock ACME should be supported", DelpAnswer.Type.YES, ans.getType());
     }
 
     @Test
     public void counterarguments() throws IOException {
         DelpAnswer answer;
-        answer = query(REASONER_COUNTER, PARSER_COUNTER, "a");
+        answer = query(delp, REASONER_COUNTER, PARSER_COUNTER, "a");
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
-        answer = query(REASONER_COUNTER, PARSER_COUNTER, "c");
+        answer = query(delp, REASONER_COUNTER, PARSER_COUNTER, "c");
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
     }
 
     @Test
     public void hobbes() throws IOException {
         DelpAnswer answer;
-        answer = query(REASONER_HOBBES, PARSER_HOBBES, "~dangerous(hobbes)");
+        answer = query(delp, REASONER_HOBBES, PARSER_HOBBES, "~dangerous(hobbes)");
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
     }
 
     @Test
     public void dtree() throws IOException {
         DelpAnswer answer;
-        answer = query(REASONER_DTREE, PARSER_DTREE, "a"); // UNDECIDED
+        answer = query(delp, REASONER_DTREE, PARSER_DTREE, "a"); // UNDECIDED
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
-        answer = query(REASONER_DTREE, PARSER_DTREE, "~b"); // YES
+        answer = query(delp, REASONER_DTREE, PARSER_DTREE, "~b"); // YES
         assertEquals(DelpAnswer.Type.YES, answer.getType());
-        answer = query(REASONER_DTREE, PARSER_DTREE, "b"); // NO
+        answer = query(delp, REASONER_DTREE, PARSER_DTREE, "b"); // NO
         assertEquals(DelpAnswer.Type.NO, answer.getType());
     }
 
@@ -130,10 +133,10 @@ public final class TestQueries {
                 "saw(\"1.2.3.4\",\"foo.png\").\n"+
                 "visited(IP) -< saw(IP,STR).\n"+
                 "src(\"1.2.3.5\").");
-        DelpReasoner reasoner = new DelpReasoner(delp, new GeneralizedSpecificity());
-        answer = query(reasoner, parser, "visited(\"1.2.3.4\")"); // YES
+        DelpReasoner reasoner = new DelpReasoner(new GeneralizedSpecificity());
+        answer = query(delp, reasoner, parser, "visited(\"1.2.3.4\")"); // YES
         assertEquals(DelpAnswer.Type.YES, answer.getType());
-        answer = query(reasoner, parser, "visited(\"1.2.3.5\")"); // UNDECIDED
+        answer = query(delp, reasoner, parser, "visited(\"1.2.3.5\")"); // UNDECIDED
         assertEquals(DelpAnswer.Type.UNDECIDED, answer.getType());
     }
 
@@ -167,10 +170,10 @@ public final class TestQueries {
                 "slash24(\"1.2.3.4\",\"1.2.3\").\n" +
                 "slash24(\"1.2.3.9\",\"1.2.3\").\n" +
                 "true.");
-        DelpReasoner reasoner = new DelpReasoner(delp, new GeneralizedSpecificity());
-        answer = query(reasoner, parser, "same_realm(\"1.2.3.4\",\"1.2.3.9\")"); // YES
+        DelpReasoner reasoner = new DelpReasoner(new GeneralizedSpecificity());
+        answer = query(delp, reasoner, parser, "same_realm(\"1.2.3.4\",\"1.2.3.9\")"); // YES
         assertEquals(DelpAnswer.Type.YES, answer.getType());
-        answer = query(reasoner, parser, "web_defaced(\"fr.jpg\",\"1.2.3.9\")"); // YES
+        answer = query(delp, reasoner, parser, "web_defaced(\"fr.jpg\",\"1.2.3.9\")"); // YES
         assertEquals(DelpAnswer.Type.YES, answer.getType());
     }
 }

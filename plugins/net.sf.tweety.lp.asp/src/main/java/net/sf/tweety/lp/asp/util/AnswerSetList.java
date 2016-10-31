@@ -81,7 +81,7 @@ public class AnswerSetList extends ArrayList<AnswerSet> {
 	 */
 	public boolean	holdsOne( DLPLiteral q ) {
 		for(AnswerSet as : this) {
-			if(as.contains(q)) {
+			if(as.getFormulas().contains(q)) {
 				return true;
 			}
 		}
@@ -95,7 +95,7 @@ public class AnswerSetList extends ArrayList<AnswerSet> {
 	 */
 	public boolean	holdsAll( DLPLiteral q ) {
 		for(AnswerSet as : this) {
-			if(!as.contains(q)) {
+			if(!as.getFormulas().contains(q)) {
 				return false;
 			}
 		}

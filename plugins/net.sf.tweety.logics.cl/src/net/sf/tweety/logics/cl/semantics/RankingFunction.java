@@ -46,7 +46,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
-public class RankingFunction implements Interpretation {
+public class RankingFunction implements Interpretation<Conditional> {
 	
 	/**
 	 * Integer used to define infinity.
@@ -105,27 +105,27 @@ public class RankingFunction implements Interpretation {
 	 * @see net.sf.tweety.logic.Interpretation#satisfies(net.sf.tweety.logic.Formula)
 	 */
 	@Override
-	public boolean satisfies(Formula formula) throws IllegalArgumentException{
-		if(!(formula instanceof Conditional))
-			throw new IllegalArgumentException("Formula " + formula + " is not a conditional expression.");		
-		Conditional c = (Conditional) formula;
+	public boolean satisfies(Conditional c) throws IllegalArgumentException{
+//		if(!(formula instanceof Conditional))
+//			throw new IllegalArgumentException("Formula " + formula + " is not a conditional expression.");		
+//		Conditional c = (Conditional) formula;
 		Integer rankPremiseAndConclusion = this.rank(c.getConclusion().combineWithAnd(c.getPremise().iterator().next()));
 		Integer rankPremiseAndNotConclusion = this.rank(c.getConclusion().complement().combineWithAnd(c.getPremise().iterator().next()));
 		return rankPremiseAndConclusion < rankPremiseAndNotConclusion;		
 	}
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.kr.Interpretation#satisfies(net.sf.tweety.logic.KnowledgeBase)
-	 */
-	@Override
-	public boolean satisfies(BeliefBase beliefBase){
-		if(!(beliefBase instanceof ClBeliefSet))
-			throw new IllegalArgumentException("Knowledge base is not a conditional knowledge base.");
-		for(Formula f: ((ClBeliefSet)beliefBase))
-			if(!this.satisfies(f))
-				return false;
-		return true;
-	}
+//	/* (non-Javadoc)
+//	 * @see net.sf.tweety.kr.Interpretation#satisfies(net.sf.tweety.logic.KnowledgeBase)
+//	 */
+//	@Override
+//	public boolean satisfies(BeliefBase<Conditional> beliefBase){
+//		if(!(beliefBase instanceof ClBeliefSet))
+//			throw new IllegalArgumentException("Knowledge base is not a conditional knowledge base.");
+//		for(Formula f: ((ClBeliefSet)beliefBase))
+//			if(!this.satisfies(f))
+//				return false;
+//		return true;
+//	}
 	
 	/**
 	 * Sets the rank of every interpretation i that does not satisfy

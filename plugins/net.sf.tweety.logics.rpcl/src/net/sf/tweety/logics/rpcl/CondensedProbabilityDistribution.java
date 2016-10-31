@@ -78,7 +78,7 @@ public class CondensedProbabilityDistribution extends ProbabilityDistribution<Re
 		if(!(beliefBase instanceof RpclBeliefSet))
 			throw new IllegalArgumentException("Relational probabilistic conditional knowledge base expected.");
 		RpclBeliefSet kb = (RpclBeliefSet) beliefBase;
-		for(Formula f: kb)
+		for(Formula f: kb.getFormulas())
 			if(!this.satisfies(f)) return false;
 		return true;
 	}

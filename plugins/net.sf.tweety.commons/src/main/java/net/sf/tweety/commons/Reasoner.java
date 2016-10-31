@@ -20,39 +20,24 @@ package net.sf.tweety.commons;
 
 /**
  * A reasoner specifies a specific inference operation for a given language.
- * @author Matthias Thimm
  * 
- * @param S the class of belief bases for this reasoner.
- * @param T the class of formulas for this reasoner
+ * @param T
+ *            type of belief base formulas.
+ * @param Q
+ *            type of query formula.
+ *            
+ * @author Matthias Thimm
  */
-public abstract class Reasoner {
-	
+public interface Reasoner<T extends Formula, Q extends Formula> {
+
 	/**
-	 * The knowledge base on which reasoning is performed.
-	 */
-	private BeliefBase beliefBase;
-	
-	/**
-	 * Creates a new reasoner for the given knowledge base.
-	 * @param beliefBase a knowledge base.
-	 */
-	public Reasoner(BeliefBase beliefBase){
-		this.beliefBase = beliefBase;
-	}
-	
-	/**
-	 * This method determines the answer of the given query
-	 * wrt. to the given knowledge base.
-	 * @param query a query.
+	 * This method determines the answer of the given query wrt. to the given
+	 * knowledge base.
+	 * 
+	 * @param query
+	 *            a query.
 	 * @return the answer to the query.
 	 */
-	public abstract Answer query(Formula query);
-	
-	/**
-	 * Returns the knowledge base of this reasoner.
-	 * @return the knowledge base of this reasoner.
-	 */
-	public BeliefBase getKnowledgeBase(){
-		return this.beliefBase;
-	}
+	public abstract Answer query(BeliefBase<T> beliefBase, Q query);
+
 }

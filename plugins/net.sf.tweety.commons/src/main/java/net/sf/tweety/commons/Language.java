@@ -52,7 +52,7 @@ public abstract class Language {
 	 * @param beliefBase the knowledge base to be checked
 	 * @return "true" if the knowledge base is representable in this language.
 	 */
-	public abstract boolean isRepresentable(BeliefBase beliefBase);
+	public abstract boolean isRepresentable(BeliefBase<?> beliefBase);
 	
 	/**
 	 * Returns the signature of this language.

@@ -33,11 +33,11 @@ public class GrossiModgilReasonerTest {
 		theory.add(new Attack(f,e));
 		theory.add(new Attack(g,e));
 		
-		GrossiModgilRankingReasoner reasoner = new GrossiModgilRankingReasoner(theory);
+		GrossiModgilRankingReasoner reasoner = new GrossiModgilRankingReasoner();
 		
 		for(int m = 1; m < theory.size(); m++)
 			for(int n = 1; n < theory.size(); n++)
-				System.out.println(m + "," + n + " : " + reasoner.getAllMNCompleteExtensions(m, n));
+				System.out.println(m + "," + n + " : " + reasoner.getAllMNCompleteExtensions(theory, m, n));
 		
 		
 		

@@ -21,7 +21,7 @@ package net.sf.tweety.logics.pl.examples;
 import java.io.IOException;
 
 import net.sf.tweety.commons.ParserException;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.commons.analysis.MaInconsistencyMeasure;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.parser.PlParser;
@@ -42,7 +42,7 @@ public class MaMeasureTest {
 		
 				
 		// test Ma inconsistency measure		
-		BeliefSetInconsistencyMeasure<PropositionalFormula> ma = new MaInconsistencyMeasure<PropositionalFormula>(new MarcoMusEnumerator("/Users/mthimm/Projects/misc_bins/marco_py-1.0/marco.py"));
+		InconsistencyMeasure<PropositionalFormula> ma = new MaInconsistencyMeasure<PropositionalFormula>(new MarcoMusEnumerator("/Users/mthimm/Projects/misc_bins/marco_py-1.0/marco.py"));
 		System.out.println("Ma: " + ma.inconsistencyMeasure(kb));
 		
 	}

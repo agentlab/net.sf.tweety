@@ -20,24 +20,44 @@ package net.sf.tweety.beliefdynamics;
 
 import java.util.Collection;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 
 /**
  * This is the interface for a classic belief base revision operator, ie. an
- * operator that takes some set of formulas and a single formula and revises
- * the former by the latter. 
+ * operator that takes some set of formulas and a single formula and revises the
+ * former by the latter.
+ *
+ * @param <T>
+ *            The type of formulas that this operator works on.
  * 
  * @author Matthias Thimm
- *
- * @param <T> The type of formulas that this operator works on.
+ * @author Dmitriy Shishkin
  */
 public interface BaseRevisionOperator<T extends Formula> {
 
 	/**
 	 * Revises the given collection of formulas by the given formula.
-	 * @param base some collection of formulas.
-	 * @param formula a formula
+	 * 
+	 * @param base
+	 *            some collection of formulas.
+	 * @param formula
+	 *            a formula
 	 * @return the revised collection.
 	 */
-	public Collection<T> revise(Collection<T> base, T formula);	
+	Collection<T> revise(Collection<T> base, T formula);
+
+	/**
+	 * Revises the given belief base by the given formula.
+	 * 
+	 * @param base
+	 *            some belief base.
+	 * @param formula
+	 *            a formula
+	 * @return the revised collection.
+	 */
+	default Collection<T> revise(BeliefBase<T> base, T formula) {
+		return revise(base.getFormulas(), formula);
+	}
+
 }

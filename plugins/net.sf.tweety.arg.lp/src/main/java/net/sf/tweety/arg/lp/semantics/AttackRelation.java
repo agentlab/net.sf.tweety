@@ -21,9 +21,9 @@ package net.sf.tweety.arg.lp.semantics;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.tweety.arg.lp.ArgumentationKnowledgeBase;
 import net.sf.tweety.arg.lp.semantics.attack.AttackStrategy;
 import net.sf.tweety.arg.lp.syntax.Argument;
+import net.sf.tweety.commons.BeliefBase;
 
 /**
  * This class represents an attack relation for a specific set
@@ -33,7 +33,7 @@ import net.sf.tweety.arg.lp.syntax.Argument;
  *
  */
 public class AttackRelation {
-	private ArgumentationKnowledgeBase kb;
+	private BeliefBase<Argument> kb;
 	private AttackStrategy strategy;
 	
 	/**
@@ -42,7 +42,7 @@ public class AttackRelation {
 	 * @param kb an argument knowledge base
 	 * @param strategy a notion of attack for arguments in the knowledgebase
 	 */
-	public AttackRelation(ArgumentationKnowledgeBase kb, AttackStrategy strategy) {
+	public AttackRelation(BeliefBase<Argument> kb, AttackStrategy strategy) {
 		this.kb = kb;
 		this.strategy = strategy;
 	}
@@ -81,7 +81,7 @@ public class AttackRelation {
 	public Set<Argument> getAttackingArguments(Argument a) {
 		Set<Argument> result = new HashSet<Argument>();
 		
-		for(Argument b : kb.getArguments()) {
+		for(Argument b : kb.getFormulas()) {
 			if(attacks(b, a)) {
 				result.add(b);
 			}

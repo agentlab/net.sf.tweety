@@ -43,7 +43,7 @@ public class MinimalInconsistentSubsetTest {
 		NaiveMusEnumerator<PropositionalFormula> enumerator = new NaiveMusEnumerator<PropositionalFormula>(SatSolver.getDefaultSolver());
 		
 		long millis = System.currentTimeMillis();		
-		System.out.println(enumerator.minimalInconsistentSubsets(kb));
+		System.out.println(enumerator.minimalInconsistentSubsets(kb.getFormulas()));
 		System.out.println(System.currentTimeMillis()-millis);		
 	}
 }

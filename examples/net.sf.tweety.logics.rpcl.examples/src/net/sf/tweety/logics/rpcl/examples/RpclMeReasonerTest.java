@@ -59,18 +59,18 @@ public class RpclMeReasonerTest {
 		
 		System.out.println(bs);
 				
-		RpclMeReasoner reasoner = new RpclMeReasoner(bs, new AggregatingSemantics(),sig);
+		RpclMeReasoner reasoner = new RpclMeReasoner(new AggregatingSemantics(),sig);
 		
 		
-		System.out.println(reasoner.getMeDistribution());
+		System.out.println(reasoner.getMeDistribution(bs));
 		
 		net.sf.tweety.logics.fol.syntax.FOLAtom atomAC = new net.sf.tweety.logics.fol.syntax.FOLAtom(a);
 		atomAC.addArgument(c1);
 		net.sf.tweety.logics.fol.syntax.FOLAtom atomBC = new net.sf.tweety.logics.fol.syntax.FOLAtom(b);
 		atomBC.addArgument(c1);
 		
-		System.out.println(reasoner.query(atomAC));
-		System.out.println(reasoner.query(atomBC));
+		System.out.println(reasoner.query(bs, atomAC));
+		System.out.println(reasoner.query(bs, atomBC));
 		
 		
 	}

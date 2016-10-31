@@ -115,7 +115,7 @@ class ArgumentCompletion extends DelpArgument{
 				FolFormula lit = literals.pop();
 				//if the literal is a fact, no rule is needed for that literal and
 				//the element can be put back on the stack (without that literal)
-				if(delp.contains(new DelpFact(lit)))
+				if(delp.getFormulas().contains(new DelpFact(lit)))
 					stack.push(v);
 				else{
 					//look for all rules (strict and defeasible) with the head

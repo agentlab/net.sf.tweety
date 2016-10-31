@@ -220,10 +220,16 @@ public class ReferenceWorld implements Interpretation, Map<Predicate,InstanceAss
 			InstanceAssignment ia = new InstanceAssignment(p);
 			for(Set<Constant> c: constants){
 				Integer value = 0;				
-				for(FOLAtom a: i)
-					if(a.getPredicate().equals(p))
-						if(c.contains(a.getArguments().get(0)))
-							value++;				
+				for(FolFormula a: i){
+					if(a instanceof FOLAtom){
+						FOLAtom atom = (FOLAtom) a;
+						if(atom.getPredicate().equals(p)){
+							if(c.contains(atom.getArguments().get(0))){
+								value++;
+							}
+						}
+					}
+				}
 				ia.put(c, value);
 			}
 			world.put(p, ia);
@@ -276,7 +282,7 @@ public class ReferenceWorld implements Interpretation, Map<Predicate,InstanceAss
 		if(!(beliefBase instanceof FolBeliefSet))
 			throw new IllegalArgumentException("First-order knowledge base expected.");
 		FolBeliefSet folkb = (FolBeliefSet) beliefBase;
-		for(Formula f: folkb)
+		for(Formula f: folkb.getFormulas())
 			if(!this.satisfies(f)) return false;
 		return true;
 	}

@@ -148,10 +148,10 @@ public class PropositionalLogicPlugin extends AbstractTweetyPlugin {
 				SelectionCommandParameter tmp = (SelectionCommandParameter) tempComParam;
 				if (tmp.getValue().equalsIgnoreCase("naive")) {
 					ClassicalEntailment naiveEntail = new ClassicalEntailment();
-					reasoner = new ClassicalInference(plbs, naiveEntail);
+					reasoner = new ClassicalInference(naiveEntail);
 				} else if (tmp.getValue().equalsIgnoreCase("sat4j")) {
 					SatSolver.setDefaultSolver(new Sat4jSolver());
-					reasoner = new SatReasoner(plbs);
+					reasoner = new SatReasoner();
 				} else if(tmp.getValue().equalsIgnoreCase("lingeling")){
 				// TODO: implement lingeling call
 				
@@ -181,7 +181,7 @@ public class PropositionalLogicPlugin extends AbstractTweetyPlugin {
 		}
 
 		for(PropositionalFormula pf : queries){
-			System.out.println(reasoner.query(pf));
+			System.out.println(reasoner.query(plbs, pf));
 		}
 		
 		// TODO: handle output and return appropriate representation

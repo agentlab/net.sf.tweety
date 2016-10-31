@@ -26,11 +26,9 @@ import java.util.LinkedList;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
-import net.sf.tweety.logics.pcl.analysis.MinimalViolationInconsistencyMeasure;
 import net.sf.tweety.logics.pcl.parser.PclParser;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.math.norm.ManhattanNorm;
@@ -50,7 +48,7 @@ public class MinimalViolationInconsistencyMeasureLPSolveTest {
 
 	double accuracy;
 	
-	InconsistencyMeasure<BeliefSet<ProbabilisticConditional>> inc;
+	InconsistencyMeasure<ProbabilisticConditional> inc;
 	
 	PclParser parser;
 	LinkedList<PclBeliefSet> kbs;

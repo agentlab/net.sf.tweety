@@ -42,33 +42,33 @@ public class IdealReasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public IdealReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public IdealReasoner(int inferenceType){
+		super(inferenceType);		
 	}
 	
 	/**
 	 * Creates a new ideal reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public IdealReasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public IdealReasoner(){
+		super();		
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(){
-		Set<Extension> admExt = new AdmissibleReasoner(this.getKnowledgeBase(), this.getInferenceType()).getExtensions();
-		Set<Extension> prefExt = new PreferredReasoner(this.getKnowledgeBase(), this.getInferenceType()).getExtensions();
+	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+		Set<Extension> admExt = new AdmissibleReasoner(this.getInferenceType()).getExtensions(beliefBase);
+		Set<Extension> prefExt = new PreferredReasoner(this.getInferenceType()).getExtensions(beliefBase);
 		Set<Labeling> potResult = new HashSet<Labeling>();
 		boolean potIdeal; 
 		for(Extension ext: admExt){
-			Labeling extLab = new Labeling((DungTheory) this.getKnowledgeBase(), ext);
+			Labeling extLab = new Labeling((DungTheory) beliefBase, ext);
 			// ext is ideal if
 			// 1. for every preferred labeling L both in and out are subsets of that sets in L
 			potIdeal = true;
 			for(Extension ext2: prefExt){
-				Labeling extLab2 = new Labeling((DungTheory) this.getKnowledgeBase(), ext2);
+				Labeling extLab2 = new Labeling((DungTheory) beliefBase, ext2);
 				if(!extLab2.getArgumentsOfStatus(ArgumentStatus.IN).containsAll(extLab.getArgumentsOfStatus(ArgumentStatus.IN))){
 					potIdeal = false;
 					break;
@@ -107,7 +107,7 @@ public class IdealReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.arg.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("Implement me!");
 	}
 }

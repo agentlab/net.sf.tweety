@@ -77,7 +77,7 @@ public class DefaultDungTheoryGenerator implements DungTheoryGenerator {
 			boolean inExtension = false;
 			do{
 				theory = this.generateTreeShape(arg);
-				inExtension = new GroundReasoner(theory).getExtensions().iterator().next().contains(arg);
+				inExtension = new GroundReasoner().getExtensions(theory).iterator().next().contains(arg);
 			}while(!inExtension);
 			return theory;
 		}		
@@ -92,7 +92,7 @@ public class DefaultDungTheoryGenerator implements DungTheoryGenerator {
 					Attack att = new Attack(a,b);
 					theory.add(att);
 					//Check whether this makes the argument out
-					if(!new GroundReasoner(theory).getExtensions().iterator().next().contains(arg))
+					if(!new GroundReasoner().getExtensions(theory).iterator().next().contains(arg))
 						theory.remove(att);
 				}
 			}
@@ -120,7 +120,7 @@ public class DefaultDungTheoryGenerator implements DungTheoryGenerator {
 		q.add(arg);
 		while(numOfArguments <= this.params.numberOfArguments){
 			Argument a = new Argument("a" + numOfArguments++);
-			theory.add(new Attack(a, (Argument)theory.toArray()[this.random.nextInt(numOfArguments-1)]));
+			theory.add(new Attack(a, (Argument)theory.getFormulas().toArray()[this.random.nextInt(numOfArguments-1)]));
 			theory.add(a);
 		}
 		return theory;

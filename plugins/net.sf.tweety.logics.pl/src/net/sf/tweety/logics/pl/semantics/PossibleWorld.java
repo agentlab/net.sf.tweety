@@ -22,11 +22,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.InterpretationSet;
 import net.sf.tweety.commons.util.SetTools;
-import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
 import net.sf.tweety.logics.pl.syntax.Contradiction;
 import net.sf.tweety.logics.pl.syntax.Disjunction;
@@ -36,117 +33,127 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
 import net.sf.tweety.logics.pl.syntax.Tautology;
 
-
 /**
- * This class represents a possible world of propositional logic, i.e.
- * some set of propositions.
+ * This class represents a possible world of propositional logic, i.e. some set
+ * of propositions.
  * 
  * @author Matthias Thimm
  */
-public class PossibleWorld extends InterpretationSet<Proposition> implements Comparable<PossibleWorld> {
-	
+public class PossibleWorld extends InterpretationSet<PropositionalFormula> implements Comparable<PossibleWorld> {
+
 	/**
 	 * Creates a new empty possible world.
 	 */
-	public PossibleWorld(){
-		this(new HashSet<Proposition>());
+	public PossibleWorld() {
+		// this(new HashSet<Proposition>());
 	}
-	
+
 	/**
 	 * Creates a new possible world with the given set of propositions.
-	 * @param propositions the propositions that are true in this possible world
+	 * 
+	 * @param propositions
+	 *            the propositions that are true in this possible world
 	 */
-	public PossibleWorld(Collection<? extends Proposition> propositions){
+	public PossibleWorld(Collection<? extends PropositionalFormula> propositions) {
 		super(propositions);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.tweety.kr.Interpretation#satisfies(net.sf.tweety.kr.Formula)
 	 */
 	@Override
-	public boolean satisfies(Formula formula) throws IllegalArgumentException {
-		if(!(formula instanceof PropositionalFormula))
-			 throw new IllegalArgumentException("Formula " + formula + " is not a propositional formula.");
-		if(formula instanceof Contradiction)
+	public boolean satisfies(PropositionalFormula formula) throws IllegalArgumentException {
+		if (!(formula instanceof PropositionalFormula))
+			throw new IllegalArgumentException("Formula " + formula + " is not a propositional formula.");
+		if (formula instanceof Contradiction)
 			return false;
-		if(formula instanceof Tautology)
+		if (formula instanceof Tautology)
 			return true;
-		if(formula instanceof Proposition)
+		if (formula instanceof Proposition)
 			return this.contains(formula);
-		if(formula instanceof Negation)
-			return !this.satisfies(((Negation)formula).getFormula());
-		if(formula instanceof Conjunction){
+		if (formula instanceof Negation)
+			return !this.satisfies(((Negation) formula).getFormula());
+		if (formula instanceof Conjunction) {
 			Conjunction c = (Conjunction) formula;
-			for(PropositionalFormula f : c)
-				if(!this.satisfies(f))
+			for (PropositionalFormula f : c)
+				if (!this.satisfies(f))
 					return false;
 			return true;
 		}
-		if(formula instanceof Disjunction){
+		if (formula instanceof Disjunction) {
 			Disjunction d = (Disjunction) formula;
-			for(PropositionalFormula f: d)
-				if(this.satisfies(f))
+			for (PropositionalFormula f : d)
+				if (this.satisfies(f))
 					return true;
 			return false;
 		}
 		throw new IllegalArgumentException("Propositional formula " + formula + " is of unknown type.");
 	}
 
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.kr.Interpretation#satisfies(net.sf.tweety.kr.BeliefBase)
-	 */
-	@Override
-	public boolean satisfies(BeliefBase beliefBase) throws IllegalArgumentException {
-		if(!(beliefBase instanceof PlBeliefSet))
-			throw new IllegalArgumentException("Propositional knowledge base expected.");
-		PlBeliefSet pKb = (PlBeliefSet) beliefBase;
-		for(Formula f: pKb)
-			if(!this.satisfies(f))
-				return false;
-		return true;
-	}
-	
+	// /*
+	// * (non-Javadoc)
+	// *
+	// * @see
+	// * net.sf.tweety.kr.Interpretation#satisfies(net.sf.tweety.kr.BeliefBase)
+	// */
+	// @Override
+	// public boolean satisfies(BeliefBase<PropositionalFormula> beliefBase)
+	// throws IllegalArgumentException {
+	// for (PropositionalFormula f : beliefBase.getFormulas())
+	// if (!this.satisfies(f))
+	// return false;
+	// return true;
+	// }
+
 	/**
-	 * Returns the set of all possible worlds for the
-	 * given propositional signature.
-	 * @param signature a propositional signature.
-	 * @return the set of all possible worlds for the
-	 * given propositional signature.
+	 * Returns the set of all possible worlds for the given propositional
+	 * signature.
+	 * 
+	 * @param signature
+	 *            a propositional signature.
+	 * @return the set of all possible worlds for the given propositional
+	 *         signature.
 	 */
-	public static Set<PossibleWorld> getAllPossibleWorlds(Collection<Proposition> signature){
+	public static Set<PossibleWorld> getAllPossibleWorlds(Collection<Proposition> signature) {
 		Set<PossibleWorld> possibleWorlds = new HashSet<PossibleWorld>();
 		Set<Set<Proposition>> propositions = new SetTools<Proposition>().subsets(signature);
-		for(Set<Proposition> p: propositions)
+		for (Set<Proposition> p : propositions)
 			possibleWorlds.add(new PossibleWorld(p));
 		return possibleWorlds;
 	}
-	
+
 	/**
 	 * Returns the complete conjunction representing this possible world wrt.
-	 * 	the give signature
-	 * @param a propositional signature
+	 * the give signature
+	 * 
+	 * @param a
+	 *            propositional signature
 	 * @return the complete conjunction representing this possible world wrt.
-	 * 	the give signature
+	 *         the give signature
 	 */
-	public PropositionalFormula getCompleteConjunction(PropositionalSignature sig){
+	public PropositionalFormula getCompleteConjunction(PropositionalSignature sig) {
 		Conjunction c = new Conjunction();
-		for(Proposition p: this)
+		for (PropositionalFormula p : this)
 			c.add(p);
 		Collection<Proposition> remaining = new HashSet<Proposition>(sig);
 		remaining.removeAll(this);
-		for(Proposition p: remaining)
-			c.add(new Negation(p));		
+		for (Proposition p : remaining)
+			c.add(new Negation(p));
 		return c;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
 	public int compareTo(PossibleWorld arg0) {
-		if(this.hashCode() < arg0.hashCode())
+		if (this.hashCode() < arg0.hashCode())
 			return -1;
-		if(this.hashCode() > arg0.hashCode())
+		if (this.hashCode() > arg0.hashCode())
 			return 1;
 		return 0;
 	}

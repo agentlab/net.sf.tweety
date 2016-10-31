@@ -21,7 +21,7 @@ package net.sf.tweety.logics.pl.examples;
 import java.io.IOException;
 
 import net.sf.tweety.commons.ParserException;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.analysis.ContensionInconsistencyMeasure;
 import net.sf.tweety.logics.pl.parser.PlParser;
@@ -48,7 +48,7 @@ public class ContensionTest {
 		kb.add((PropositionalFormula)parser.parseFormula("c"));
 		
 		// test contension inconsistency measure		
-		BeliefSetInconsistencyMeasure<PropositionalFormula> cont = new ContensionInconsistencyMeasure();
+		InconsistencyMeasure<PropositionalFormula> cont = new ContensionInconsistencyMeasure();
 		System.out.println("Cont: " + cont.inconsistencyMeasure(kb));
 	}
 }

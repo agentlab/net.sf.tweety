@@ -61,7 +61,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class RpclMeReasoner extends Reasoner {
+public class RpclMeReasoner implements Reasoner<RelationalProbabilisticConditional, Formula> {
 	
 	/**
 	 * Logger.
@@ -105,8 +105,8 @@ public class RpclMeReasoner extends Reasoner {
 	 * @param signature the fol signature for this reasoner.
 	 * @param inferenceType one of RpclMeReasoner.STANDARD_INFERENCE or RpclMeReasoner.LIFTED_INFERENCE 
 	 */
-	public RpclMeReasoner(BeliefBase beliefBase, RpclSemantics semantics, FolSignature signature, int inferenceType){
-		super(beliefBase);
+	public RpclMeReasoner(RpclSemantics semantics, FolSignature signature, int inferenceType){
+		super();
 		log.trace("Creating instance of 'RpclMeReasoner'.");
 		if(inferenceType != RpclMeReasoner.STANDARD_INFERENCE && inferenceType != RpclMeReasoner.LIFTED_INFERENCE){
 			log.error("The inference type must be either 'standard' or 'lifted'.");
@@ -115,21 +115,21 @@ public class RpclMeReasoner extends Reasoner {
 		this.signature = signature;
 		this.semantics = semantics;
 		this.inferenceType = inferenceType;
-		if(!(beliefBase instanceof RpclBeliefSet)){
-			log.error("Knowledge base of class 'RpclBeliefSet' expected but encountered '" + beliefBase.getClass() + "'.");
-			throw new IllegalArgumentException("Knowledge base of class 'RpclBeliefSet' expected but encountered '" + beliefBase.getClass() + "'.");
-		}
-		RpclBeliefSet beliefSet = (RpclBeliefSet) beliefBase;
-		if(!beliefSet.getSignature().isSubSignature(signature)){
-			log.error("Signature must be super-signature of the belief set's signature.");
-			throw new IllegalArgumentException("Signature must be super-signature of the belief set's signature.");
-		}
-		if(inferenceType == RpclMeReasoner.LIFTED_INFERENCE)
-			for(Predicate p: ((FolSignature)beliefSet.getSignature()).getPredicates())
-				if(p.getArity()>1){
-					log.error("Lifted inference only applicable for signatures containing only unary predicates.");
-					throw new IllegalArgumentException("Lifted inference only applicable for signatures containing only unary predicates.");
-				}
+//		if(!(beliefBase instanceof RpclBeliefSet)){
+//			log.error("Knowledge base of class 'RpclBeliefSet' expected but encountered '" + beliefBase.getClass() + "'.");
+//			throw new IllegalArgumentException("Knowledge base of class 'RpclBeliefSet' expected but encountered '" + beliefBase.getClass() + "'.");
+//		}
+//		RpclBeliefSet beliefSet = (RpclBeliefSet) beliefBase;
+//		if(!beliefSet.getSignature().isSubSignature(signature)){
+//			log.error("Signature must be super-signature of the belief set's signature.");
+//			throw new IllegalArgumentException("Signature must be super-signature of the belief set's signature.");
+//		}
+//		if(inferenceType == RpclMeReasoner.LIFTED_INFERENCE)
+//			for(Predicate p: ((FolSignature)beliefSet.getSignature()).getPredicates())
+//				if(p.getArity()>1){
+//					log.error("Lifted inference only applicable for signatures containing only unary predicates.");
+//					throw new IllegalArgumentException("Lifted inference only applicable for signatures containing only unary predicates.");
+//				}
 		log.trace("Finished creating instance of 'RpclReasoner'.");
 	}
 	
@@ -139,8 +139,8 @@ public class RpclMeReasoner extends Reasoner {
 	 * @param semantics the semantics for this reasoner.
 	 * @param signature the fol signature for this reasoner.
 	 */
-	public RpclMeReasoner(BeliefBase beliefBase, RpclSemantics semantics, FolSignature signature){
-		this(beliefBase,semantics,signature,RpclMeReasoner.STANDARD_INFERENCE);
+	public RpclMeReasoner(RpclSemantics semantics, FolSignature signature){
+		this(semantics, signature, RpclMeReasoner.STANDARD_INFERENCE);
 	}
 	
 	/**
@@ -156,9 +156,9 @@ public class RpclMeReasoner extends Reasoner {
 	 * Returns the ME-distribution this reasoner bases on.
 	 * @return the ME-distribution this reasoner bases on.
 	 */
-	public ProbabilityDistribution<?> getMeDistribution() throws ProblemInconsistentException{
+	public ProbabilityDistribution<?> getMeDistribution(BeliefBase<RelationalProbabilisticConditional> beliefBase) throws ProblemInconsistentException{
 		if(this.meDistribution == null)
-			this.meDistribution = this.computeMeDistribution();
+			this.meDistribution = this.computeMeDistribution(beliefBase);
 		return this.meDistribution;		
 	}
 
@@ -166,8 +166,8 @@ public class RpclMeReasoner extends Reasoner {
 	 * Computes the ME-distribution for this reasoner's knowledge base. 
 	 * @return the ME-distribution for this reasoner's knowledge base.
 	 */	
-	private ProbabilityDistribution<?> computeMeDistribution() throws ProblemInconsistentException{		
-		RpclBeliefSet kb = ((RpclBeliefSet)this.getKnowledgeBase());
+	private ProbabilityDistribution<?> computeMeDistribution(BeliefBase<RelationalProbabilisticConditional> beliefBase) throws ProblemInconsistentException{		
+		RpclBeliefSet kb = (RpclBeliefSet) beliefBase;
 		log.info("Computing ME-distribution using \"" + this.semantics.toString() + "\" and " + ((this.inferenceType==RpclMeReasoner.LIFTED_INFERENCE)?("lifted"):("standard")) + " inference for the knowledge base " + kb.toString() + ".");
 		// TODO extract common parts from the following if/else
 		log.info("Constructing optimization problem for finding the ME-distribution.");
@@ -207,7 +207,7 @@ public class RpclMeReasoner extends Reasoner {
 			constraints.add(norm);
 			//for each conditional, add the corresponding constraint		
 			// TODO remove conditionals with probability 0 or 1		
-			for(RelationalProbabilisticConditional r: kb)
+			for(RelationalProbabilisticConditional r: kb.getFormulas())
 				constraints.add(this.semantics.getSatisfactionStatement(r, this.signature, worlds2vars));	
 			// optimize for entropy
 			OptimizationProblem problem = new OptimizationProblem(OptimizationProblem.MAXIMIZE);
@@ -259,7 +259,7 @@ public class RpclMeReasoner extends Reasoner {
 			constraints.add(norm);
 			//for each conditional, add the corresponding constraint		
 			// TODO remove conditionals with probability 0 or 1		
-			for(RelationalProbabilisticConditional r: kb)
+			for(RelationalProbabilisticConditional r: kb.getFormulas())
 				constraints.add(this.semantics.getSatisfactionStatement(r, this.signature, worlds2vars));	
 			// optimize for entropy
 			OptimizationProblem problem = new OptimizationProblem(OptimizationProblem.MAXIMIZE);
@@ -292,10 +292,23 @@ public class RpclMeReasoner extends Reasoner {
 	 * @see net.sf.tweety.kr.Reasoner#query(net.sf.tweety.kr.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {
+	public Answer query(BeliefBase<RelationalProbabilisticConditional> beliefBase, Formula query) {
 		if(!(query instanceof FolFormula) && !(query instanceof RelationalConditional))
 			throw new IllegalArgumentException("Reasoning in relational probabilistic conditional logic is only defined for first-order queries or relational conditionals.");
-		ProbabilityDistribution<?> meDistribution = this.getMeDistribution();		
+		
+		if(!beliefBase.getSignature().isSubSignature(signature)){
+			log.error("Signature must be super-signature of the belief set's signature.");
+			throw new IllegalArgumentException("Signature must be super-signature of the belief set's signature.");
+		}
+
+		if(inferenceType == RpclMeReasoner.LIFTED_INFERENCE)
+			for(Predicate p: ((FolSignature)beliefBase.getSignature()).getPredicates())
+				if(p.getArity()>1){
+					log.error("Lifted inference only applicable for signatures containing only unary predicates.");
+					throw new IllegalArgumentException("Lifted inference only applicable for signatures containing only unary predicates.");
+				}
+		
+		ProbabilityDistribution<?> meDistribution = this.getMeDistribution(beliefBase);		
 		Probability prob;
 		if(query instanceof FolFormula){
 			prob = meDistribution.probability(query);
@@ -308,7 +321,7 @@ public class RpclMeReasoner extends Reasoner {
 				prob = new Probability(0d);
 			else prob = prob2.divide(prob1);
 		}				
-		Answer answer = new Answer(this.getKnowledgeBase(),query);			
+		Answer answer = new Answer(beliefBase, query);			
 		answer.setAnswer(prob.getValue());
 		answer.appendText("The probability of the query is " + prob + ".");
 		return answer;		

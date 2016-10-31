@@ -28,6 +28,7 @@ import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.ml.syntax.MlnFormula;
 
 /**
  * This MLN reasoner employs simple random sampling from
@@ -51,8 +52,8 @@ public class SimpleSamplingMlnReasoner extends AbstractMlnReasoner{
 	 * @param precision the precision
 	 * @param numOfPositiveTests the number of positive consecutive tests on precision
 	 */
-	public SimpleSamplingMlnReasoner(BeliefBase beliefBase,	FolSignature signature, double precision, int numOfPositiveTests) {
-		super(beliefBase, signature);
+	public SimpleSamplingMlnReasoner(FolSignature signature, double precision, int numOfPositiveTests) {
+		super(signature);
 		this.precision = precision;
 		this.numOfPositiveTests = numOfPositiveTests;
 	}
@@ -68,7 +69,7 @@ public class SimpleSamplingMlnReasoner extends AbstractMlnReasoner{
 	 * @see net.sf.tweety.logics.markovlogic.AbstractMlnReasoner#doQuery(net.sf.tweety.logics.firstorderlogic.syntax.FolFormula)
 	 */
 	@Override
-	protected double doQuery(FolFormula query) {
+	protected double doQuery(BeliefBase<MlnFormula> beliefBase, FolFormula query) {
 		// The Herbrand base of the signature
 		HerbrandBase hBase = new HerbrandBase(this.getSignature());
 		// for sampling
@@ -80,7 +81,7 @@ public class SimpleSamplingMlnReasoner extends AbstractMlnReasoner{
 		long satisfiedMass = 0;
 		do{
 			HerbrandInterpretation sample = new HerbrandInterpretation(it.next());
-			double weight = this.computeWeight(sample);
+			double weight = this.computeWeight(beliefBase, sample);
 			if(sample.satisfies(query))
 				satisfiedMass += weight;
 			completeMass += weight;

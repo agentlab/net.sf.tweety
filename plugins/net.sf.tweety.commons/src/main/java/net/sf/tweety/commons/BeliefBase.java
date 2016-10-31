@@ -44,13 +44,13 @@ public interface BeliefBase<T extends Formula> {
 
 	boolean add(T formula);
 
-	default boolean addAll(Collection<T> formulas) {
+	default boolean addAll(Collection<? extends T> formulas) {
 		return formulas.stream().map(formula -> add(formula)).reduce(false, (a, b) -> a || b);
 	}
 
 	boolean remove(T formula);
 
-	default boolean removeAll(Collection<T> formulas) {
+	default boolean removeAll(Collection<? extends T> formulas) {
 		return formulas.stream().map(formula -> remove(formula)).reduce(false, (a, b) -> a || b);
 	}
 

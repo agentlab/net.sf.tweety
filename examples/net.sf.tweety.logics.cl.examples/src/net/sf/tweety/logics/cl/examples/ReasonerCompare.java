@@ -103,11 +103,11 @@ public class ReasonerCompare {
 		beliefSets[0].add(new Conditional(p, b));
 		
 		beliefSets[1] = new ClBeliefSet();
-		beliefSets[1].addAll(beliefSets[0]);
+		beliefSets[1].addAll(beliefSets[0].getFormulas());
 		beliefSets[1].add(new Conditional(p, new Negation(f)));
 		
 		beliefSets[2] = new ClBeliefSet();
-		beliefSets[2].addAll(beliefSets[1]);
+		beliefSets[2].addAll(beliefSets[1].getFormulas());
 		beliefSets[2].add(new Conditional(k, b));
 		beliefSets[2].add(new Conditional(k, new Negation(w)));
 	}
@@ -129,9 +129,9 @@ public class ReasonerCompare {
 	private static void test(ClBeliefSet beliefset) {
 		System.out.println("Start Calculation RuleBased:");
 		long begin = System.nanoTime();
-		RuleBasedCReasoner rReasoner = new RuleBasedCReasoner(beliefset);
-		rReasoner.process();
-		RankingFunction cReprRuleBased = rReasoner.getSemantic();
+		RuleBasedCReasoner rReasoner = new RuleBasedCReasoner();
+		rReasoner.process(beliefset);
+		RankingFunction cReprRuleBased = rReasoner.getSemantic(beliefset);
 		long end = System.nanoTime();
 		long duration = (end-begin) / (1000*1000);
 		System.out.println("Finished RuleBased in '" + String.valueOf(duration) + "' ms");
@@ -147,8 +147,8 @@ public class ReasonerCompare {
 			
 			System.out.println("Start Calculation BruteForce:");
 			begin = System.nanoTime();
-			BruteForceCReasoner reasoner = new BruteForceCReasoner(beliefset);
-			RankingFunction cReprBruteForce = reasoner.getCRepresentation();
+			BruteForceCReasoner reasoner = new BruteForceCReasoner();
+			RankingFunction cReprBruteForce = reasoner.getCRepresentation(beliefset);
 			end = System.nanoTime();
 			duration = (end-begin) / (1000*1000);
 			System.out.println("Finished Bruteforce in '" + String.valueOf(duration) + "' ms");

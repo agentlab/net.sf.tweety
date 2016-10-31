@@ -56,7 +56,7 @@ public class ConvexAggregatingMeMachineShop implements BeliefBaseMachineShop<Pro
 			bs.add(pc);
 			// name the signature explicitly in order to ensure that the distributions
 			// are defined on the same set. 
-			distributions[cnt] = new DefaultMeReasoner(bs,beliefSet.getSignature()).getMeDistribution();			
+			distributions[cnt] = new DefaultMeReasoner().getMeDistribution(bs);			
 			cnt++;
 		}
 		double[] factors = new double[beliefSet.size()];

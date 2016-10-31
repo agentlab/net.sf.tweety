@@ -63,8 +63,8 @@ public class AlchemyMlnReasoner extends AbstractMlnReasoner {
 	 * Creates a new AlchemyMlnReasoner for the given Markov logic network.
 	 * @param beliefBase a Markov logic network. 
 	 */
-	public AlchemyMlnReasoner(BeliefBase beliefBase){
-		this(beliefBase, (FolSignature) beliefBase.getSignature());
+	public AlchemyMlnReasoner(){
+//		this(beliefBase, (FolSignature) beliefBase.getSignature());
 	}
 	
 	/**
@@ -73,8 +73,8 @@ public class AlchemyMlnReasoner extends AbstractMlnReasoner {
 	 * @param signature another signature (if the probability distribution should be defined 
 	 * on that one (that one should subsume the signature of the Markov logic network)
 	 */
-	public AlchemyMlnReasoner(BeliefBase beliefBase, FolSignature signature){
-		super(beliefBase, signature);		
+	public AlchemyMlnReasoner(FolSignature signature){
+		super(signature);		
 	}
 
 	/** Sets the console command for Alchemy inference (default is 'infer').
@@ -88,13 +88,13 @@ public class AlchemyMlnReasoner extends AbstractMlnReasoner {
 	 * @see net.sf.tweety.logics.markovlogic.AbstractMlnReasoner#doQuery(net.sf.tweety.logics.firstorderlogic.syntax.FolFormula)
 	 */
 	@Override
-	public double doQuery(FolFormula query) {
+	public double doQuery(BeliefBase<MlnFormula> beliefBase, FolFormula query) {
 		// NOTE: as the query formula might be an arbitrary formula
 		// and Alchemy only supports querying the probabilities
 		// of atoms, we need to encode the query in the MLN
 		// by stating it to be equivalent to some new atom
 		try{
-			File mlnFile = this.writeAlchemyMlnFile((MarkovLogicNetwork)this.getKnowledgeBase(), this.getSignature(), query);			
+			File mlnFile = this.writeAlchemyMlnFile(beliefBase, this.getSignature(), query);			
 			//empty evidence file needed
 			File evidenceFile = File.createTempFile("alchemy_ev",null);
 			evidenceFile.deleteOnExit();
@@ -182,7 +182,7 @@ public class AlchemyMlnReasoner extends AbstractMlnReasoner {
 	 * @return the file object of the Alchemy MLN file. 
 	 * @throws IOException if file writing fails.
 	 */
-	private File writeAlchemyMlnFile(MarkovLogicNetwork mln, FolSignature signature, FolFormula formula) throws IOException{
+	private File writeAlchemyMlnFile(BeliefBase<MlnFormula> mln, FolSignature signature, FolFormula formula) throws IOException{
 		File mlnFile = File.createTempFile("alchemy_mln",null);
 		mlnFile.deleteOnExit();		
 		FileWriter fstream = new FileWriter(mlnFile.getAbsoluteFile());
@@ -227,7 +227,7 @@ public class AlchemyMlnReasoner extends AbstractMlnReasoner {
 		// write query formula
 		out.append("tweetyQueryFormula(TWEETYQUERYCONSTANT) <=> " + this.alchemyStringForFormula(formula) + " .\n\n");
 		// write formulas
-		for(MlnFormula f: mln){
+		for(MlnFormula f: mln.getFormulas()){
 			if(f.isStrict())
 				out.append(this.alchemyStringForFormula(f.getFormula()) + " .\n");
 			else

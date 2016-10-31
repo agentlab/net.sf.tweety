@@ -57,8 +57,9 @@ public class GeneralizedMeMachineShop implements BeliefBaseMachineShop<Probabili
 //			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
 //		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		// Get generalized ME-model
-		GeneralizedMeReasoner reasoner = new GeneralizedMeReasoner(beliefSet,p);
-		ProbabilityDistribution<PossibleWorld> p =  reasoner.getMeDistribution();
+		GeneralizedMeReasoner reasoner = new GeneralizedMeReasoner();
+		reasoner.setMode(p);
+		ProbabilityDistribution<PossibleWorld> p =  reasoner.getMeDistribution(beliefSet);
 		PclBeliefSet result = new PclBeliefSet();
 		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
 			if(p.probability(new Conjunction(pc.getPremise())).doubleValue() <= Probability.PRECISION)

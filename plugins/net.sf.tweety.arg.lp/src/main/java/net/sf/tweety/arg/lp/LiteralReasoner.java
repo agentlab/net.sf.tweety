@@ -46,8 +46,8 @@ public class LiteralReasoner extends ArgumentationReasoner {
 	 * @param attack
 	 * @param defence
 	 */
-	public LiteralReasoner(BeliefBase beliefBase, AttackStrategy attack, AttackStrategy defence) {
-		super(beliefBase, attack, defence);
+	public LiteralReasoner(AttackStrategy attack, AttackStrategy defence) {
+		super(attack, defence);
 	}
 
 	/*
@@ -55,19 +55,19 @@ public class LiteralReasoner extends ArgumentationReasoner {
 	 * @see net.sf.tweety.argumentation.parameterisedhierarchy.ArgumentationReasoner#query(net.sf.tweety.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {
+	public Answer query(BeliefBase<Argument> beliefBase, Formula query) {
 		if(! (query instanceof DLPLiteral) ) {
 			throw new IllegalArgumentException("Reasoning with parameterised argumentation is only defined for literals.");
 		}
 		DLPLiteral literal = (DLPLiteral) query;
 		boolean answerValue = false;
-		for(Argument arg : super.getJustifiedArguments()) {
+		for(Argument arg : super.getJustifiedArguments(beliefBase)) {
 			if(arg.getConclusions().contains(literal)) {
 				answerValue = true;
 			}
 		}
 		
-		Answer answer = new Answer(super.getKnowledgeBase(), query);
+		Answer answer = new Answer(beliefBase, query);
 		answer.setAnswer(answerValue);
 		return answer;		
 	}
@@ -77,8 +77,8 @@ public class LiteralReasoner extends ArgumentationReasoner {
 	 * @param arg a literal
 	 * @return true iff arg is not x/y-overruled
 	 */
-	public boolean isOverruled(DLPLiteral arg) {
-		return !query(arg).getAnswerBoolean();
+	public boolean isOverruled(BeliefBase<Argument> beliefBase, DLPLiteral arg) {
+		return !query(beliefBase, arg).getAnswerBoolean();
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class LiteralReasoner extends ArgumentationReasoner {
 	 * @param arg a literal
 	 * @return true iff a x/y-justified argument with conclusion arg can be constructed from p 
 	 */
-	public boolean isJustified(DLPLiteral arg) {
-		return query(arg).getAnswerBoolean();
+	public boolean isJustified(BeliefBase<Argument> beliefBase, DLPLiteral arg) {
+		return query(beliefBase, arg).getAnswerBoolean();
 	}
 }

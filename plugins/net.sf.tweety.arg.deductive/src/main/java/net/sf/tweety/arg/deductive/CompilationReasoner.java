@@ -24,6 +24,7 @@ import net.sf.tweety.arg.deductive.semantics.ArgumentTree;
 import net.sf.tweety.arg.deductive.semantics.Compilation;
 import net.sf.tweety.arg.deductive.semantics.DeductiveArgument;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 
 /**
@@ -49,15 +50,15 @@ public class CompilationReasoner extends AbstractDeductiveArgumentationReasoner 
 	 * @param categorizer some categorizer.
 	 * @param accumulator some accumulator.
 	 */
-	public CompilationReasoner(BeliefBase beliefBase, Categorizer categorizer, Accumulator accumulator) {
-		super(beliefBase, categorizer, accumulator);		
-		this.compilation = new Compilation((DeductiveKnowledgeBase)beliefBase);
+	public CompilationReasoner(Categorizer categorizer, Accumulator accumulator) {
+		super(categorizer, accumulator);		
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.deductive.AbstractDeductiveArgumentationReasoner#getArgumentTree(net.sf.tweety.argumentation.deductive.semantics.DeductiveArgument)
 	 */
-	protected  ArgumentTree getArgumentTree(DeductiveArgument arg){
+	protected  ArgumentTree getArgumentTree(BeliefBase<PropositionalFormula> beliefBase, DeductiveArgument arg){
+		this.compilation = new Compilation((DeductiveKnowledgeBase)beliefBase);
 		return this.compilation.getArgumentTree(arg);
 	}
 	

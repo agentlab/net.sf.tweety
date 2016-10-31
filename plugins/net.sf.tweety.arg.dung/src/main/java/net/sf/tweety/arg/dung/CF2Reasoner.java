@@ -43,16 +43,16 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public CF2Reasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public CF2Reasoner(int inferenceType){
+		super(inferenceType);		
 	}
 	
 	/**
 	 * Creates a new CF2 reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public CF2Reasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public CF2Reasoner(){
+		super();		
 	}
 	
 	/**
@@ -62,21 +62,21 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 	 */
 	private Set<Extension> singleAFExtensions(DungTheory theory){
 		// an extension for a single scc is a conflict-free set with maximal arguments (minimality check is performed later)
-		ConflictFreeReasoner reasoner = new ConflictFreeReasoner(theory,this.getInferenceType());
-		return reasoner.getExtensions();
+		ConflictFreeReasoner reasoner = new ConflictFreeReasoner(this.getInferenceType());
+		return reasoner.getExtensions(theory);
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(){
-		Collection<Collection<Argument>> sccs = ((DungTheory)this.getKnowledgeBase()).getStronglyConnectedComponents();
+	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+		Collection<Collection<Argument>> sccs = ((DungTheory) beliefBase).getStronglyConnectedComponents();
 		Set<Extension> extensions = new HashSet<Extension>();
 		if(sccs.size() == 1){
 			// an extension for a single scc is a conflict-free set with maximal arguments
-			extensions = this.singleAFExtensions((DungTheory)this.getKnowledgeBase());
+			extensions = this.singleAFExtensions((DungTheory) beliefBase);
 		}else{
-			DungTheory af = (DungTheory) this.getKnowledgeBase();
+			DungTheory af = (DungTheory) beliefBase;
 			// for all strongly connected components, restrict the argumentation framework and get the corresponding extensions
 			Map<Collection<Argument>,Set<Extension>> exts = new HashMap<Collection<Argument>,Set<Extension>>();
 			for(Collection<Argument> scc: sccs){
@@ -84,7 +84,7 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 				t.addAll(this.getOutparents(af, scc));
 				DungTheory restTheory = new DungTheory(af.getRestriction(t));//this.getUP(af, scc, af));
 				Set<Extension> e = this.singleAFExtensions(restTheory);
-				exts.put(restTheory, e);
+				exts.put(restTheory.getFormulas(), e);
 			}
 			// combine all extensions from all sccs that are compatible
 			MapTools<Collection<Argument>,Extension> mapTools = new MapTools<Collection<Argument>,Extension>();			
@@ -153,7 +153,7 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.arg.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("Implement me!");
 	}
 }

@@ -21,14 +21,13 @@ package net.sf.tweety.logics.pl.examples;
 import java.io.IOException;
 
 import net.sf.tweety.commons.ParserException;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.analysis.PmInconsistencyMeasure;
 import net.sf.tweety.logics.pl.parser.PlParser;
 import net.sf.tweety.logics.pl.sat.MarcoMusEnumerator;
 import net.sf.tweety.logics.pl.sat.PlMusEnumerator;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
-
 
 public class PmMeasureTest {
 	public static void main(String[] args) throws ParserException, IOException{
@@ -45,7 +44,7 @@ public class PmMeasureTest {
 		
 				
 		// test Pm inconsistency measure		
-		BeliefSetInconsistencyMeasure<PropositionalFormula> pm = new PmInconsistencyMeasure();
+		InconsistencyMeasure<PropositionalFormula> pm = new PmInconsistencyMeasure();
 		System.out.println("Pm: " + pm.inconsistencyMeasure(kb));
 		
 	}

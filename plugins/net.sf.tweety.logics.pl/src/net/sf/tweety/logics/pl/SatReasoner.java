@@ -23,7 +23,6 @@ import java.util.HashSet;
 
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.sat.SatSolver;
 import net.sf.tweety.logics.pl.syntax.Negation;
@@ -31,28 +30,32 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * Uses the default SAT reasoner to perform reasoning in propositional logic
+ * 
  * @author Matthias Thimm
  */
-public class SatReasoner extends Reasoner {
+public class SatReasoner implements Reasoner<PropositionalFormula, PropositionalFormula> {
 
-	/**
-	 * Creates a new reasoner for the given belief base.
-	 * @param beliefBase
-	 */
-	public SatReasoner(BeliefBase beliefBase) {
-		super(beliefBase);
-		if(!(beliefBase instanceof PlBeliefSet))
-			throw new IllegalArgumentException("Instance of class PlBeliefSet expected.");
-	}
+	// /**
+	// * Creates a new reasoner for the given belief base.
+	// * @param beliefBase
+	// */
+	// public SatReasoner(BeliefBase beliefBase) {
+	// super(beliefBase);
+	// if(!(beliefBase instanceof PlBeliefSet))
+	// throw new IllegalArgumentException("Instance of class PlBeliefSet
+	// expected.");
+	// }
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.tweety.commons.Reasoner#query(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {
+	public Answer query(BeliefBase<PropositionalFormula> beliefBase, PropositionalFormula query) {
 		Collection<PropositionalFormula> formulas = new HashSet<PropositionalFormula>();
-		formulas.add(new Negation((PropositionalFormula)query));
-		Answer ans = new Answer(this.getKnowledgeBase(), query);
+		formulas.add(new Negation(query));
+		Answer ans = new Answer(beliefBase, query);
 		ans.setAnswer(!SatSolver.getDefaultSolver().isConsistent(formulas));
 		return ans;
 	}

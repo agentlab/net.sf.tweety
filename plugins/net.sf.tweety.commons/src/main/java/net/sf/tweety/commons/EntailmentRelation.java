@@ -55,7 +55,7 @@ public abstract class EntailmentRelation<T extends Formula> {
 	 * returns some model of it or, if it is inconsistent, null.
 	 * @return some model of the formulas or null.
 	 */
-	public abstract Interpretation getWitness(Collection<T> formulas);
+	public abstract Interpretation<T> getWitness(Collection<T> formulas);
 	
 	/** 
 	 * Checks whether the given set of formulas entails the other set of formulas.

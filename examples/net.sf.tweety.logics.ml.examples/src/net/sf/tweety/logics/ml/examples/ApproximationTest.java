@@ -22,6 +22,7 @@ import java.io.IOException;
 
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.commons.util.Pair;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
 import net.sf.tweety.logics.fol.syntax.RelationalFormula;
 import net.sf.tweety.logics.ml.MarkovLogicNetwork;
@@ -34,12 +35,12 @@ public class ApproximationTest {
 	public static void main(String[] args) throws ParserException, IOException, InterruptedException{
 		
 		Pair<MarkovLogicNetwork,FolSignature> ex = MlnTest.iterateExamples(1, 3);
-		SimpleSamplingMlnReasoner appReasoner = new SimpleSamplingMlnReasoner(ex.getFirst(),ex.getSecond(), 0.0001, 1000);
-		NaiveMlnReasoner naiReasoner = new NaiveMlnReasoner(ex.getFirst(),ex.getSecond());
+		SimpleSamplingMlnReasoner appReasoner = new SimpleSamplingMlnReasoner(ex.getSecond(), 0.0001, 1000);
+		NaiveMlnReasoner naiReasoner = new NaiveMlnReasoner(ex.getSecond());
 		naiReasoner.setTempDirectory("/Users/mthimm/Desktop/tmp/");
-		for(MlnFormula f: ex.getFirst()){
+		for(MlnFormula f: ex.getFirst().getFormulas()){
 			for(RelationalFormula groundFormula: f.getFormula().allGroundInstances(ex.getSecond().getConstants())){
-				System.out.println(appReasoner.query(groundFormula).getAnswerDouble() + "\t" + naiReasoner.query(groundFormula).getAnswerDouble());
+				System.out.println(appReasoner.query(ex.getFirst(),(FolFormula)groundFormula).getAnswerDouble() + "\t" + naiReasoner.query(ex.getFirst(),(FolFormula)groundFormula).getAnswerDouble());
 				Thread.sleep(10000);
 				//break;
 			}

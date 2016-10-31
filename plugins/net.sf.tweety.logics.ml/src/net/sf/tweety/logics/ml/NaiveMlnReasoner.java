@@ -39,6 +39,7 @@ import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.ml.syntax.MlnFormula;
 
 /**
  * This class implements a naive reasoner for MLNs.
@@ -61,8 +62,8 @@ public class NaiveMlnReasoner extends AbstractMlnReasoner {
 	 * Creates a new NaiveMlnReasoner for the given Markov logic network.
 	 * @param beliefBase a Markov logic network. 
 	 */
-	public NaiveMlnReasoner(BeliefBase beliefBase){
-		this(beliefBase, (FolSignature) beliefBase.getSignature());
+	public NaiveMlnReasoner(){
+//		this(beliefBase, (FolSignature) beliefBase.getSignature());
 	}
 	
 	/**
@@ -71,8 +72,8 @@ public class NaiveMlnReasoner extends AbstractMlnReasoner {
 	 * @param signature another signature (if the probability distribution should be defined 
 	 * on that one (that one should subsume the signature of the Markov logic network)
 	 */
-	public NaiveMlnReasoner(BeliefBase beliefBase, FolSignature signature){
-		super(beliefBase, signature);		
+	public NaiveMlnReasoner(FolSignature signature){
+		super(signature);		
 	}
 
 	/* (non-Javadoc)
@@ -92,7 +93,7 @@ public class NaiveMlnReasoner extends AbstractMlnReasoner {
 	/** Computes the model of the given MLN.
 	 * @return a file where the model is stored.
 	 */
-	private File computeModel(){
+	private File computeModel(BeliefBase<MlnFormula> beliefBase){
 		//1.) write all possible worlds of the signature into a text file
 		// (Note: we avoid doing this in memory due to exponential size)
 		try {
@@ -151,7 +152,7 @@ public class NaiveMlnReasoner extends AbstractMlnReasoner {
 					else emptyLine = true;
 				}
 				HerbrandInterpretation hInt = this.parseInterpretation(strLine);
-				weight = this.computeWeight(hInt);
+				weight = this.computeWeight(beliefBase, hInt);
 				sum += weight;
 				out.append(strLine + "#" + weight);
 				out.newLine();
@@ -197,9 +198,9 @@ public class NaiveMlnReasoner extends AbstractMlnReasoner {
 	 * @see net.sf.tweety.logics.markovlogic.AbstractMlnReasoner#doQuery(net.sf.tweety.logics.firstorderlogic.syntax.FolFormula)
 	 */
 	@Override
-	public double doQuery(FolFormula query) {		
+	public double doQuery(BeliefBase<MlnFormula> beliefBase, FolFormula query) {		
 		if(this.archivedFile == null)
-			this.archivedFile = this.computeModel();
+			this.archivedFile = this.computeModel(beliefBase);
 		
 		FileInputStream inStream;
 		try {

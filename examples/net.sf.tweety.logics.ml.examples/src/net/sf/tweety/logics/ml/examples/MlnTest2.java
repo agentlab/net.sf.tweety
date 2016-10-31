@@ -116,9 +116,9 @@ public class MlnTest2 {
 		FolSignature sig2 = ex2.getSecond();
 		MarkovLogicNetwork mln3 = ex3.getFirst();
 		FolSignature sig3 = ex3.getSecond();
-		NaiveMlnReasoner reasoner1 = new NaiveMlnReasoner(mln1,sig1);
-		NaiveMlnReasoner reasoner2 = new NaiveMlnReasoner(mln2,sig2);
-		NaiveMlnReasoner reasoner3 = new NaiveMlnReasoner(mln3,sig3);
+		NaiveMlnReasoner reasoner1 = new NaiveMlnReasoner(sig1);
+		NaiveMlnReasoner reasoner2 = new NaiveMlnReasoner(sig2);
+		NaiveMlnReasoner reasoner3 = new NaiveMlnReasoner(sig3);
 		reasoner1.setTempDirectory("/Users/mthimm/Desktop/tmp");
 		reasoner2.setTempDirectory("/Users/mthimm/Desktop/tmp");
 		reasoner3.setTempDirectory("/Users/mthimm/Desktop/tmp");
@@ -128,14 +128,14 @@ public class MlnTest2 {
 		System.out.println();
 		
 		MarkovLogicNetwork mergedMln = new MarkovLogicNetwork();
-		mergedMln.addAll(mln1);
-		mergedMln.addAll(mln2);
+		mergedMln.addAll(mln1.getFormulas());
+		mergedMln.addAll(mln2.getFormulas());
 		//mergedMln.addAll(mln3);
 		FolSignature mergedSig = new FolSignature();
 		mergedSig.addSignature(sig1);
 		mergedSig.addSignature(sig2);
 		//mergedSig.addSignature(sig3);
-		NaiveMlnReasoner mergedReasoner = new NaiveMlnReasoner(mergedMln,mergedSig);
+		NaiveMlnReasoner mergedReasoner = new NaiveMlnReasoner(mergedSig);
 		mergedReasoner.setTempDirectory("/Users/mthimm/Desktop/tmp");
 		System.out.println("Merged: Measure " + measure.toString() + ", coherence value " + measure.coherence(mergedMln, mergedReasoner, mergedSig));
 	}

@@ -25,7 +25,6 @@ import java.util.Map;
 
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.cl.semantics.RankingFunction;
@@ -163,7 +162,7 @@ public class BruteForceCReasoner implements Reasoner<Conditional, Formula> {
 	 */
 	private RankingFunction computeCRepresentation(BeliefBase<Conditional> beliefBase) {
 		ArrayList<PropositionalFormula> list = new ArrayList<PropositionalFormula>();
-		BeliefSet<Conditional> beliefset = beliefBase.clone();
+		BeliefBase<Conditional> beliefset = beliefBase.clone();
 		this.filter(list, beliefset);
 
 		this.numConditionals = beliefset.size();

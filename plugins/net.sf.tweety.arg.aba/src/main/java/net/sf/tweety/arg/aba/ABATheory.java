@@ -28,6 +28,16 @@ public class ABATheory <T extends Invertable> implements BeliefBase {
 	public DungTheory asDungTheory(){
 		return null;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public ABATheory<T> clone() {
+		try {
+			return (ABATheory<T>) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
 
 
 	@Override

@@ -76,11 +76,6 @@ public class AnswerSet extends BeliefSet<DLPLiteral> {
 	}
 	
 	@Override
-	public Object clone() {
-		return new AnswerSet(this);
-	}
-
-	@Override
 	public Signature getSignature() {
 		FolSignature reval = new FolSignature();
 		for(DLPLiteral lit : formulas) {

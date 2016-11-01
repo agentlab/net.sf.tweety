@@ -32,7 +32,7 @@ import java.util.Iterator;
  * @author Tim Janus
  * @author Dmitriy Shishkin
  */
-public interface BeliefBase<T extends Formula> extends Collection<T> {
+public interface BeliefBase<T extends Formula> extends Collection<T>, Cloneable {
 
 	/**
 	 * Returns the signature of the language of this knowledge base.
@@ -49,7 +49,7 @@ public interface BeliefBase<T extends Formula> extends Collection<T> {
 	default boolean removeAll(Collection<?> formulas) {
 		return formulas.stream().map(formula -> remove(formula)).reduce(false, (a, b) -> a || b);
 	}
-	
+
 	@Override
 	default boolean contains(Object o) {
 		return stream().filter(formula -> formula.equals(o)).findFirst().isPresent();
@@ -59,7 +59,7 @@ public interface BeliefBase<T extends Formula> extends Collection<T> {
 	default <E> E[] toArray(E[] a) {
 		return stream().toArray(size -> a);
 	}
-	
+
 	@Override
 	default Object[] toArray() {
 		return stream().toArray();
@@ -74,10 +74,12 @@ public interface BeliefBase<T extends Formula> extends Collection<T> {
 	default int size() {
 		return (int) stream().count();
 	}
-	
+
 	@Override
 	default Iterator<T> iterator() {
 		return stream().iterator();
 	}
+	
+	BeliefBase<T> clone();
 
 }

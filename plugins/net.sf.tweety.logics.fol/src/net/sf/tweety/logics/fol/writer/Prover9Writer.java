@@ -5,9 +5,9 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Iterator;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Variable;
-import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.AssociativeFOLFormula;
 import net.sf.tweety.logics.fol.syntax.Conjunction;
 import net.sf.tweety.logics.fol.syntax.Contradiction;
@@ -73,7 +73,7 @@ public class Prover9Writer implements FolWriter {
 	 * (non-Javadoc)
 	 * @see net.sf.tweety.logics.fol.writer.FolWriter#printBase(net.sf.tweety.logics.fol.FolBeliefSet)
 	 */
-	public void printBase(FolBeliefSet b)  throws IOException {
+	public void printBase(BeliefBase<FolFormula> b)  throws IOException {
 			writer.write("formulas(sos).\n");
 			
 			// print types

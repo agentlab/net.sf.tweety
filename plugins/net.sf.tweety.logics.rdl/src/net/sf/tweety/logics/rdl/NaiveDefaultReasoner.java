@@ -63,7 +63,7 @@ public class NaiveDefaultReasoner implements Reasoner<FolFormula, FolFormula> {
 		for (Collection<FolFormula> extension : getAllExtensions(beliefBase)) {
 			FolBeliefSet fbs = (FolBeliefSet) extension;
 			FolTheoremProver prover = FolTheoremProver.getDefaultProver();
-			if (prover.query(fbs, (FolFormula) query)) {
+			if (prover.query(fbs, (FolFormula) query).getAnswerBoolean()) {
 				answer.setAnswer(true);
 				break;
 			}

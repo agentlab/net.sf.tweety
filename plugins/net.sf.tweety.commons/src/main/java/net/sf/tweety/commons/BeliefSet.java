@@ -42,12 +42,23 @@ public abstract class BeliefSet<T extends Formula> implements BeliefBase<T> {
 	/**
 	 * The set of formulas of this belief base.
 	 */
-	protected final Set<T> formulas = new HashSet<T>();
+	protected final Set<T> formulas;
 
 	/**
 	 * Creates a new (empty) belief set.
 	 */
 	public BeliefSet() {
+		this.formulas = new HashSet<T>();
+	}
+
+	/**
+	 * Creates a new belief set with the given collection of formulae.
+	 * 
+	 * @param c
+	 *            a collection of formulae.
+	 */
+	public BeliefSet(Set<T> formulas) {
+		this.formulas = formulas;
 	}
 
 	/**
@@ -57,6 +68,7 @@ public abstract class BeliefSet<T extends Formula> implements BeliefBase<T> {
 	 *            a collection of formulae.
 	 */
 	public BeliefSet(Collection<? extends T> formulas) {
+		this.formulas = new HashSet<T>();
 		this.formulas.addAll(formulas);
 	}
 
@@ -80,7 +92,7 @@ public abstract class BeliefSet<T extends Formula> implements BeliefBase<T> {
 		return formulas.toString();
 	}
 
-	public  void forEach(Consumer<? super T> action) {
+	public void forEach(Consumer<? super T> action) {
 		formulas.forEach(action);
 	}
 
@@ -145,22 +157,33 @@ public abstract class BeliefSet<T extends Formula> implements BeliefBase<T> {
 	}
 
 	@Override
-	public  Spliterator<T> spliterator() {
+	public Spliterator<T> spliterator() {
 		return formulas.spliterator();
 	}
 
 	@Override
-	public  boolean removeIf(Predicate<? super T> filter) {
+	public boolean removeIf(Predicate<? super T> filter) {
 		return formulas.removeIf(filter);
 	}
 
 	@Override
-	public  Stream<T> stream() {
+	public Stream<T> stream() {
 		return formulas.stream();
 	}
 
 	@Override
-	public  Stream<T> parallelStream() {
+	public Stream<T> parallelStream() {
 		return formulas.parallelStream();
 	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public BeliefSet<T> clone(){
+		try {
+			return (BeliefSet<T>) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+	
 }

@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
@@ -50,8 +49,7 @@ import net.sf.tweety.math.term.Variable;
  */
 public class PclDefaultConsistencyTester implements ConsistencyTester<ProbabilisticConditional> {
 
-	@Override
-	public boolean isConsistent(BeliefBase<ProbabilisticConditional> beliefBase) {
+	private boolean isConsistent(PclBeliefSet beliefBase) {
 		if (beliefBase.isEmpty()) {
 			return true;
 		}
@@ -76,7 +74,7 @@ public class PclDefaultConsistencyTester implements ConsistencyTester<Probabilis
 		normConstraint = normConstraint.add(new IntegerConstant(-1));
 		functions.add(normConstraint);
 		// add constraints implied by the conditionals
-		for (ProbabilisticConditional c : beliefBase.getFormulas()) {
+		for (ProbabilisticConditional c : beliefBase) {
 			Term leftSide = null;
 			Term rightSide = null;
 			if (c.isFact()) {

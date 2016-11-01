@@ -44,6 +44,6 @@ public class MusTest {
 		
 		MusEnumerator<PropositionalFormula> enumerator = new MarcoMusEnumerator("/Users/mthimm/Projects/misc_bins/marco_py-1.0/marco.py");
 		
-		System.out.println(enumerator.minimalInconsistentSubsets(beliefSet.getFormulas()));		
+		System.out.println(enumerator.minimalInconsistentSubsets(beliefSet));		
 	}
 }

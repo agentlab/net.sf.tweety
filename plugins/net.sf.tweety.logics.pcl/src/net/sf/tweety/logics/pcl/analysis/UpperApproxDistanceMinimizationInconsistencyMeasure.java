@@ -61,8 +61,7 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure implements Inco
 	 */
 	private Map<BeliefBase<ProbabilisticConditional>,Double> archive = new HashMap<BeliefBase<ProbabilisticConditional>,Double>();
 	
-	@Override
-	public Double inconsistencyMeasure(BeliefBase<ProbabilisticConditional> beliefSet) {
+	private Double inconsistencyMeasure(PclBeliefSet beliefSet) {
 		log.trace("Starting to compute minimal distance inconsistency measure for '" + beliefSet + "'.");
 		// check archive
 		if(this.archive.containsKey(beliefSet))
@@ -97,7 +96,7 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure implements Inco
 		Map<ProbabilisticConditional,Variable> nus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable mu = new FloatVariable("m" + i,0,1);
 			FloatVariable nu = new FloatVariable("n" + i++,0,1);
 			mus.put(c, mu);
@@ -149,7 +148,7 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure implements Inco
 			// transform into eta values
 			String values = "Eta-values for the solution:\n===BEGIN===\n";
 			Double result = 0d;
-			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+			for(ProbabilisticConditional pc: beliefSet){
 				Double eta = solution.get(mus.get(pc)).doubleValue() - solution.get(nus.get(pc)).doubleValue();
 				Double denom = 0d;
 				if(eta != 0){					

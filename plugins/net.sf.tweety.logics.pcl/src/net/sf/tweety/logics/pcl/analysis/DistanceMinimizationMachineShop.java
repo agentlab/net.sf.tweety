@@ -62,11 +62,11 @@ public class DistanceMinimizationMachineShop implements BeliefBaseMachineShop<Pr
 //			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
 //		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
-		if(tester.isConsistent(beliefSet.getFormulas()))
+		if(tester.isConsistent(beliefSet))
 			return beliefSet;
 		PclBeliefSet newBeliefSet = new PclBeliefSet();
 		DistanceMinimizationInconsistencyMeasure m = new DistanceMinimizationInconsistencyMeasure(this.p);
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			newBeliefSet.add(new ProbabilisticConditional(pc, new Probability(pc.getProbability().doubleValue()+m.getDeviation(beliefSet, pc))));		
 		return newBeliefSet;
 	}

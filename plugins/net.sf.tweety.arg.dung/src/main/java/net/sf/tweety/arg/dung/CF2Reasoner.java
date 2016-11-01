@@ -84,7 +84,7 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 				t.addAll(this.getOutparents(af, scc));
 				DungTheory restTheory = new DungTheory(af.getRestriction(t));//this.getUP(af, scc, af));
 				Set<Extension> e = this.singleAFExtensions(restTheory);
-				exts.put(restTheory.getFormulas(), e);
+				exts.put(restTheory, e);
 			}
 			// combine all extensions from all sccs that are compatible
 			MapTools<Collection<Argument>,Extension> mapTools = new MapTools<Collection<Argument>,Extension>();			

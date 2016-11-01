@@ -70,7 +70,7 @@ public class PenalizingCreepingMachineShop extends AbstractCreepingMachineShop {
 		DistanceMinimizationInconsistencyMeasure inconMeasure = new DistanceMinimizationInconsistencyMeasure();
 		MeanDistanceCulpabilityMeasure agMeasure = new MeanDistanceCulpabilityMeasure(false);
 		this.culpVector = new HashMap<ProbabilisticConditional,Double>();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+		for(ProbabilisticConditional pc: beliefSet){
 			this.culpVector.put(pc, agMeasure.sign(beliefSet, pc) * agMeasure.culpabilityMeasure(beliefSet, pc));
 		}
 		log.debug("Finished determining culpability vector of '" + beliefSet + "'.");		
@@ -140,7 +140,7 @@ public class PenalizingCreepingMachineShop extends AbstractCreepingMachineShop {
 	@Override
 	protected Map<ProbabilisticConditional, Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet) {
 		Map<ProbabilisticConditional,Probability> values = new HashMap<ProbabilisticConditional,Probability>();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			values.put(pc, new Probability(this.u(pc.getProbability().getValue()+(delta*this.culpVector.get(pc)))));
 		return values;
 	}

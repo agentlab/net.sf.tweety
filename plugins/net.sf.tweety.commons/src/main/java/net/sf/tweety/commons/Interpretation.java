@@ -65,6 +65,6 @@ public interface Interpretation<T extends Formula> {
 	 *             language.
 	 */
 	default boolean satisfies(BeliefBase<T> beliefBase) {
-		return beliefBase.getFormulas().stream().allMatch(this::satisfies);
+		return beliefBase.stream().allMatch(this::satisfies);
 	}
 }

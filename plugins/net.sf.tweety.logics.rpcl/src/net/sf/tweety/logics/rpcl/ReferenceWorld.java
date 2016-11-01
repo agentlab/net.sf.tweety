@@ -282,7 +282,7 @@ public class ReferenceWorld implements Interpretation, Map<Predicate,InstanceAss
 		if(!(beliefBase instanceof FolBeliefSet))
 			throw new IllegalArgumentException("First-order knowledge base expected.");
 		FolBeliefSet folkb = (FolBeliefSet) beliefBase;
-		for(Formula f: folkb.getFormulas())
+		for(Formula f: folkb)
 			if(!this.satisfies(f)) return false;
 		return true;
 	}

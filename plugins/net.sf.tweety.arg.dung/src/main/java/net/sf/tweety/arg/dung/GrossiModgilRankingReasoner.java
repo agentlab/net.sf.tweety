@@ -100,7 +100,7 @@ public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument>
 	public Collection<Argument> gradedNeutrality(BeliefBase<Argument> theory, Collection<Argument> args, int m){
 //		DungTheory theory = ((DungTheory)this.getKnowledgeBase());
 		Collection<Argument> result = new HashSet<>();
-		for(Argument arg: theory.getFormulas())
+		for(Argument arg: theory)
 			if(this.numOfAttackers(theory, arg, args) < m)
 				result.add(arg);
 		return result;
@@ -173,7 +173,7 @@ public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument>
 	 * @return "true" iff args is mn-grounded
 	 */
 	public boolean isMNGrounded(BeliefBase<Argument> args, int m, int n){
-		return this.getAllMNGroundedExtensions(args, m, n).contains(new Extension(args.getFormulas()));
+		return this.getAllMNGroundedExtensions(args, m, n).contains(new Extension(args));
 	}
 	
 	/**
@@ -185,7 +185,7 @@ public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument>
 	 * @return "true" iff args is mn-preferred
 	 */
 	public boolean isMNPreferred(BeliefBase<Argument> args, int m, int n){
-		return this.getAllMNPreferredExtensions(args, m, n).contains(new Extension(args.getFormulas()));
+		return this.getAllMNPreferredExtensions(args, m, n).contains(new Extension(args));
 	}
 	
 	/**
@@ -197,7 +197,7 @@ public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument>
 	public Collection<Extension> getAllMNCompleteExtensions(BeliefBase<Argument> theory, int m, int n){
 //		DungTheory theory = ((DungTheory)theory);
 		Collection<Extension> result = new HashSet<>();
-		for(Collection<Argument> set : new SetTools<Argument>().subsets(theory.getFormulas())){
+		for(Collection<Argument> set : new SetTools<Argument>().subsets(theory)){
 			if(this.isMNComplete(theory, set, m, n))
 				result.add(new Extension(set));
 		}
@@ -261,7 +261,7 @@ public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument>
 	public Collection<Extension> getAllMStableExtensions(BeliefBase<Argument> theory, int m){
 //		DungTheory theory = ((DungTheory)theory);
 		Collection<Extension> result = new HashSet<>();
-		for(Collection<Argument> set : new SetTools<Argument>().subsets(theory.getFormulas())){
+		for(Collection<Argument> set : new SetTools<Argument>().subsets(theory)){
 			if(this.isMStable(theory, set, m))
 				result.add(new Extension(set));
 		}
@@ -294,9 +294,9 @@ public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument>
 		for(int m = 1; m < theory.size(); m++)
 			for(int n=1; n < theory.size(); n++)
 				allExt.put(new Point(m,n), this.getAllMNCompleteExtensions(theory, m, n));
-		LatticeArgumentRanking ranking = new LatticeArgumentRanking(theory.getFormulas());
-		for(Argument a: theory.getFormulas())
-			for(Argument b: theory.getFormulas())
+		LatticeArgumentRanking ranking = new LatticeArgumentRanking(theory);
+		for(Argument a: theory)
+			for(Argument b: theory)
 				if(a != b){
 					boolean a_implies_b = true;
 					boolean b_implies_a = true;

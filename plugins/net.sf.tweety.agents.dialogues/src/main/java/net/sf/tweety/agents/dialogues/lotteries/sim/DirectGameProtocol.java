@@ -67,13 +67,13 @@ public class DirectGameProtocol extends SynchronousProtocol implements GameProto
 		// get theory of audience
 		for(Agent b: this.getMultiAgentSystem())
 			if(b instanceof DummyLotteryAgent){
-				theory.addAll(((DummyLotteryAgent)b).getTheory().getFormulas());
+				theory.addAll(((DummyLotteryAgent)b).getTheory());
 				theory.addAllAttacks(((DummyLotteryAgent)b).getTheory().getAttacks());
 				break;
 			}
 		// get disclosed arguments and attacks
 		for(DungTheory action: ((LotteryArgumentationEnvironment)this.getMultiAgentSystem().getEnvironment()).getDialogueTrace().getElements()){
-			theory.addAll(action.getFormulas());
+			theory.addAll(action);
 			theory.addAllAttacks(action.getAttacks());
 		}
 		// get utility				

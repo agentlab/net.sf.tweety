@@ -57,7 +57,7 @@ public interface BaseRevisionOperator<T extends Formula> {
 	 * @return the revised collection.
 	 */
 	default Collection<T> revise(BeliefBase<T> base, T formula) {
-		return revise(base.getFormulas(), formula);
+		return revise(base, formula);
 	}
 
 }

@@ -146,7 +146,7 @@ public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Ar
 		Map<Argument,Proposition> out = new HashMap<Argument,Proposition>();
 		Map<Argument,Proposition> undec = new HashMap<Argument,Proposition>();
 		PlBeliefSet beliefSet = new PlBeliefSet();
-		for(Argument a: beliefBase.getFormulas()){
+		for(Argument a: beliefBase){
 			in.put(a, new Proposition("in_" + a.getName()));
 			out.put(a, new Proposition("out_" + a.getName()));
 			undec.put(a, new Proposition("undec_" + a.getName()));
@@ -156,7 +156,7 @@ public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Ar
 			beliefSet.add((PropositionalFormula)in.get(a).combineWithAnd(undec.get(a)).complement());
 			beliefSet.add((PropositionalFormula)out.get(a).combineWithAnd(undec.get(a)).complement());
 		}
-		beliefSet.addAll(this.getPropositionalCharacterisationBySemantics(beliefBase, in, out, undec).getFormulas());
+		beliefSet.addAll(this.getPropositionalCharacterisationBySemantics(beliefBase, in, out, undec));
 		return beliefSet;
 	}
 	

@@ -38,7 +38,7 @@ public class ApproximationTest {
 		SimpleSamplingMlnReasoner appReasoner = new SimpleSamplingMlnReasoner(ex.getSecond(), 0.0001, 1000);
 		NaiveMlnReasoner naiReasoner = new NaiveMlnReasoner(ex.getSecond());
 		naiReasoner.setTempDirectory("/Users/mthimm/Desktop/tmp/");
-		for(MlnFormula f: ex.getFirst().getFormulas()){
+		for(MlnFormula f: ex.getFirst()){
 			for(RelationalFormula groundFormula: f.getFormula().allGroundInstances(ex.getSecond().getConstants())){
 				System.out.println(appReasoner.query(ex.getFirst(),(FolFormula)groundFormula).getAnswerDouble() + "\t" + naiReasoner.query(ex.getFirst(),(FolFormula)groundFormula).getAnswerDouble());
 				Thread.sleep(10000);

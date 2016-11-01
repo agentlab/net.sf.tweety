@@ -61,7 +61,7 @@ public class FolLanguage extends Language {
 	@Override
 	public boolean isRepresentable(BeliefBase<?> beliefBase){
 		if(!(beliefBase instanceof FolBeliefSet)) return false;
-		for(Formula f : beliefBase.getFormulas())
+		for(Formula f : beliefBase)
 			if(!this.isRepresentable(f))
 				return false;
 		return true;

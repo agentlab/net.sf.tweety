@@ -150,7 +150,7 @@ public class ZReasoner implements Reasoner<Conditional, Formula> {
 		Map<Conditional,Integer> zValue = new HashMap<Conditional,Integer>();
 		
 		for( int index = 0; index < tolerancePartition.size(); index++ ){
-			for( Conditional c : tolerancePartition.get(index).getFormulas() ) {   
+			for( Conditional c : tolerancePartition.get(index) ) {   
 				zValue.put(c, index);
 			}
 		}
@@ -191,7 +191,7 @@ public class ZReasoner implements Reasoner<Conditional, Formula> {
 			
 			ClBeliefSet partition = new ClBeliefSet();
 			
-			for( Conditional f: knowledgebase.getFormulas() ){
+			for( Conditional f: knowledgebase ){
 				// if the current conditional is tolerated by the remaining set of conditionals in the
 				// knowledge base, add it to the current partition
 				if( isTolerated(f,knowledgebase) ) {
@@ -211,7 +211,7 @@ public class ZReasoner implements Reasoner<Conditional, Formula> {
 			// and remove all conditionals of this partition from the remaining conditional set
 			tolerancePartition.add( partition );
 			
-			for( Conditional f : partition.getFormulas() ){
+			for( Conditional f : partition ){
 				knowledgebase.remove(f);
 			}
 		}
@@ -245,7 +245,7 @@ public class ZReasoner implements Reasoner<Conditional, Formula> {
 				continue;
 			}
 
-			for( Conditional c : kb.getFormulas() ){
+			for( Conditional c : kb ){
 							
 				// Test whether the current world which satisfies the given formula f does also
 				// satisfy the material implication of the current conditional c. 

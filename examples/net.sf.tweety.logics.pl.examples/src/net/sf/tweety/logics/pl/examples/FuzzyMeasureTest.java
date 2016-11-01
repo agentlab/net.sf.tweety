@@ -47,7 +47,7 @@ public class FuzzyMeasureTest {
 		
 		System.out.println();
 		
-		System.out.println(mes.getOptimalInterpretation(bs.getFormulas()));
+		System.out.println(mes.getOptimalInterpretation(bs));
 		
 	}
 }

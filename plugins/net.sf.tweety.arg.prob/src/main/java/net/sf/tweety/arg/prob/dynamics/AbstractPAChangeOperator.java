@@ -99,7 +99,7 @@ public abstract class AbstractPAChangeOperator implements ChangeOperator {
 	public abstract ProbabilisticExtension change(PartialProbabilityAssignment ppa, DungTheory theory);
 
 	protected void prepareOptimizationProblem(PartialProbabilityAssignment ppa, DungTheory theory, OptimizationProblem problem, Map<Collection<Argument>,FloatVariable> varsComp, Map<Collection<Argument>,FloatVariable> varsSem, Vector<Term> varsCompVector, Vector<Term> varsSemVector){
-		Set<Set<Argument>> configurations = new SetTools<Argument>().subsets(theory.getFormulas());
+		Set<Set<Argument>> configurations = new SetTools<Argument>().subsets(theory);
 		Term normConstraintComp = null;
 		Term normConstraintSem = null;
 		for(Set<Argument> w: configurations){

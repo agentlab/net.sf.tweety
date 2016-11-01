@@ -193,7 +193,7 @@ public class RuleBasedCReasoner implements Reasoner<Conditional, Formula> {
 	 */
 	public void prepare(BeliefBase<Conditional> beliefBase) {
 		if(cs == null) {
-			cs = new ConditionalStructure(beliefBase.getFormulas());
+			cs = new ConditionalStructure(beliefBase);
 			ConditionalStructureKappaBuilder builder = new ConditionalStructureKappaBuilder(!humanFriendly);
 			kappas = new HashMap<Conditional, KappaValue>(builder.build(cs));
 			

@@ -126,7 +126,7 @@ public class DefaultMeReasoner implements Reasoner<ProbabilisticConditional, For
 		}
 		problem.add(new Equation(normConstraint,new FloatConstant(1)));
 		// add constraint imposed by conditionals
-		for(ProbabilisticConditional pc: beliefBase.getFormulas()){
+		for(ProbabilisticConditional pc: beliefBase){
 			Term leftSide = null;
 			Term rightSide = null;			
 			if(pc.isFact()){

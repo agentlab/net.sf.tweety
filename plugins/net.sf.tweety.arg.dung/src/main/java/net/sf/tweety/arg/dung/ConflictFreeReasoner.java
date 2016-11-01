@@ -60,7 +60,7 @@ public class ConflictFreeReasoner extends AbstractExtensionReasoner {
 		Set<Extension> extensions = new HashSet<Extension>();
 		DungTheory theory = (DungTheory) beliefBase;
 		// Check all subsets
-		for(Set<Argument> ext: new SetTools<Argument>().subsets(theory.getFormulas()))
+		for(Set<Argument> ext: new SetTools<Argument>().subsets(theory))
 			if(new Extension(ext).isConflictFree(theory))
 				extensions.add(new Extension(ext));
 		return extensions;

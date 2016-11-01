@@ -62,7 +62,7 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	 */
 	protected Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){	
 		Extension ext = new Extension();
-		for(Argument f: beliefBase.getFormulas())
+		for(Argument f: beliefBase)
 			ext.add(f);
 		return this.getStableExtensions(beliefBase, ext);
 	}

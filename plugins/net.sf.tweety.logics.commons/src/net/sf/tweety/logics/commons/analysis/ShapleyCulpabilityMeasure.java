@@ -86,7 +86,7 @@ public class ShapleyCulpabilityMeasure<S extends Formula> implements Culpability
 	 */
 	private Set<Pair<Collection<S>,Collection<S>>> getSubsets(BeliefBase<S> kb, S f){
 		Set<Pair<Collection<S>,Collection<S>>> result = new HashSet<Pair<Collection<S>,Collection<S>>>();
-		Set<Set<S>> subsets = new SetTools<S>().subsets(kb.getFormulas());
+		Set<Set<S>> subsets = new SetTools<S>().subsets(kb);
 		for(Set<S> subset: subsets)
 			if(!subset.contains(f)){
 				Pair<Collection<S>,Collection<S>> pair = new Pair<Collection<S>,Collection<S>>();

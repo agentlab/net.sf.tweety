@@ -54,7 +54,7 @@ public class DefaultCompatibilityMeasure implements CompatibilityMeasure{
 		FolSignature mergedSig = new FolSignature();
 		for(int i = 0; i < mlns.size(); i++){
 			result -=  this.coherenceMeasure.coherence(mlns.get(i), reasoner, signatures.get(i));
-			mergedMLN.addAll(mlns.get(i).getFormulas());
+			mergedMLN.addAll(mlns.get(i));
 			mergedSig.addAll(signatures.get(i).getConstants());
 			mergedSig.addAll(signatures.get(i).getPredicates());
 			mergedSig.addAll(signatures.get(i).getFunctors());

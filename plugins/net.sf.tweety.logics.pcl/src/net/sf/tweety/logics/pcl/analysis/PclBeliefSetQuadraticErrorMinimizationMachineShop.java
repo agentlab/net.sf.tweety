@@ -106,7 +106,7 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable tau = new FloatVariable("t" + i++,-1,1);
 			taus.put(c, tau);
 			// the target function is the quadratic sums of the deviations
@@ -149,7 +149,7 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 			problem.add(new Equation(leftSide,rightSide));
 		}		
 		// add constraints to ensure conformity
-		for(Set<ProbabilisticConditional> pair: new SetTools<ProbabilisticConditional>().subsets(beliefSet.getFormulas(), 2)){
+		for(Set<ProbabilisticConditional> pair: new SetTools<ProbabilisticConditional>().subsets(beliefSet, 2)){
 			Iterator<ProbabilisticConditional> it = pair.iterator();
 			ProbabilisticConditional pc1 = it.next();
 			ProbabilisticConditional pc2 = it.next();
@@ -165,7 +165,7 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 			log.trace("Problem solved, modifying belief set.");
 			// Modify belief set
 			PclBeliefSet newBeliefSet = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+			for(ProbabilisticConditional pc: beliefSet){
 				Double p = pc.getProbability().getValue();
 				p += solution.get(taus.get(pc)).doubleValue();
 				newBeliefSet.add(new ProbabilisticConditional(pc,new Probability(p)));

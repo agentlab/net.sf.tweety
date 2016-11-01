@@ -175,7 +175,7 @@ public class GeneralizedMeReasoner implements Reasoner<ProbabilisticConditional,
 		cnt = 0;
 		// violation variables
 		Vector<Term> vioVars = new Vector<Term>(); 
-		for(ProbabilisticConditional pc: beliefBase.getFormulas()){
+		for(ProbabilisticConditional pc: beliefBase){
 			Variable vio = new FloatVariable("x" + cnt++,-1,1);
 			vioVars.add(vio);
 			Term leftSide = null;

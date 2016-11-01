@@ -79,15 +79,15 @@ public class CrMasTest {
 						new KernelContractionOperator<PropositionalFormula>(new RandomIncisionFunction<PropositionalFormula>(), new ClassicalEntailment()),
 						new DefaultMultipleBaseExpansionOperator<PropositionalFormula>()
 						));
-		System.out.println("PRIO       :\t " + rev.revise(bs.getFormulas(), newInformation));
+		System.out.println("PRIO       :\t " + rev.revise(bs, newInformation));
 		
 		// simple non-prioritized revision (with credibilities)
 		CrMasSimpleRevisionOperator rev2 = new CrMasSimpleRevisionOperator();
-		System.out.println("N-PRIO CRED:\t " + rev2.revise(bs.getFormulas(), newInformation));
+		System.out.println("N-PRIO CRED:\t " + rev2.revise(bs, newInformation));
 		
 		// credibility-based argumentative revision
 		CrMasArgumentativeRevisionOperator theRevision = new CrMasArgumentativeRevisionOperator();		
-		System.out.println("ARG        :\t " + theRevision.revise(bs.getFormulas(), newInformation));
+		System.out.println("ARG        :\t " + theRevision.revise(bs, newInformation));
 		
 	}
 }

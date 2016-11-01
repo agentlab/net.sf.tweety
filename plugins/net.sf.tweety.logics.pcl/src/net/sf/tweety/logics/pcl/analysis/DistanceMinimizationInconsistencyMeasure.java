@@ -97,7 +97,7 @@ public class DistanceMinimizationInconsistencyMeasure implements InconsistencyMe
 	 */
 	public Double getDeviation(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional pc){
 		if(!this.archiveDevs.containsKey(beliefSet))
-			this.inconsistencyMeasure(beliefSet.getFormulas());
+			this.inconsistencyMeasure(beliefSet);
 		return this.archiveDevs.get(beliefSet).get(pc);
 	}
 	
@@ -141,7 +141,7 @@ public class DistanceMinimizationInconsistencyMeasure implements InconsistencyMe
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable eta = new FloatVariable("e" + i,0,1);
 			FloatVariable tau = new FloatVariable("t" + i++,0,1);
 			etas.put(c, eta);
@@ -193,7 +193,7 @@ public class DistanceMinimizationInconsistencyMeasure implements InconsistencyMe
 			log.debug("Problem solved, the measure is '" + result + "'.");
 			String values = "Eta/Tau-values for the solution:\n===BEGIN===\n";
 			this.archiveDevs.put(beliefSet, new HashMap<ProbabilisticConditional,Double>());
-			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+			for(ProbabilisticConditional pc: beliefSet){
 				values += pc + "\teta: " + solution.get(etas.get(pc)) + "\ttau: " + solution.get(taus.get(pc)) +  "\n";
 				this.archiveDevs.get(beliefSet).put(pc, solution.get(etas.get(pc)).doubleValue() - solution.get(taus.get(pc)).doubleValue() );
 			}

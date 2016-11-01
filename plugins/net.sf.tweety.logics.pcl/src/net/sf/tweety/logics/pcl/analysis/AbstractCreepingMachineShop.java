@@ -104,7 +104,7 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 	 */
 	protected BeliefBase<ProbabilisticConditional> characteristicFunction(BeliefBase<ProbabilisticConditional> beliefSet, Map<ProbabilisticConditional,Probability> values){
 		PclBeliefSet result = new PclBeliefSet();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			result.add(new ProbabilisticConditional(pc,values.get(pc)));
 		return result;
 	}

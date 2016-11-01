@@ -95,7 +95,7 @@ public class Division extends Pair<Extension,Extension>{
 			for(Division d: Division.getDivisions(AbstractExtensionReasoner.getReasonerForSemantics(semantics, Semantics.CREDULOUS_INFERENCE).getExtensions(sub), sub)){
 				if(d.getFirst().equals(this.getFirst())){
 					Extension e = new Extension(this.getSecond());
-					e.retainAll(sub.getFormulas());
+					e.retainAll(sub);
 					if(e.equals(d.getSecond()))
 						result.add(sub);					
 				}
@@ -125,7 +125,7 @@ public class Division extends Pair<Extension,Extension>{
 	 */
 	public static Collection<Division> getDivisions(Extension ext, DungTheory aaf){
 		Collection<Division> result = new HashSet<Division>();
-		Collection<Argument> remaining = new HashSet<Argument>(aaf.getFormulas());
+		Collection<Argument> remaining = new HashSet<Argument>(aaf);
 		remaining.removeAll(ext);
 		SetTools<Argument> setTools = new SetTools<Argument>();
 		Set<Set<Argument>> subsetsExt = setTools.subsets(ext);
@@ -189,8 +189,8 @@ public class Division extends Pair<Extension,Extension>{
 		if(Division.archivedDivisons.containsKey(theory))
 			return Division.archivedDivisons.get(theory);
 		Collection<Division> result = new HashSet<Division>();
-		for(Set<Argument> args: new SetTools<Argument>().subsets(theory.getFormulas())){
-			Collection<Argument> retainer = new HashSet<Argument>(theory.getFormulas());
+		for(Set<Argument> args: new SetTools<Argument>().subsets(theory)){
+			Collection<Argument> retainer = new HashSet<Argument>(theory);
 			retainer.removeAll(args);
 			result.add(new Division(new Extension(args), new Extension(retainer)));
 		}

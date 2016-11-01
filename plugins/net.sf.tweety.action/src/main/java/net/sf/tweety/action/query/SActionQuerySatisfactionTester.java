@@ -89,8 +89,8 @@ public class SActionQuerySatisfactionTester
     String program = "";
     program += getTransitionSystemRules( transitionSystem );
     SActionQuerySet qset = (SActionQuerySet) actionQueries;
-    program += getRules( qset.getFormulas() );
-    program += getConstraints( qset.getFormulas() );
+    program += getRules( qset );
+    program += getConstraints( qset );
     
     // TODO: Add satisfiable term to new asp lib version:
     boolean result = false;

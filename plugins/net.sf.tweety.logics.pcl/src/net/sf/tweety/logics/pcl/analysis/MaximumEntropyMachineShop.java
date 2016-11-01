@@ -88,7 +88,7 @@ public class MaximumEntropyMachineShop implements BeliefBaseMachineShop<Probabil
 		Map<ProbabilisticConditional,Variable> nus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable mu = new FloatVariable("m" + i,0,1);
 			FloatVariable nu = new FloatVariable("n" + i++,0,1);
 			mus.put(c, mu);
@@ -138,7 +138,7 @@ public class MaximumEntropyMachineShop implements BeliefBaseMachineShop<Probabil
 		try{			
 			Map<Variable,Term> solution = Solver.getDefaultGeneralSolver().solve(problem);
 			// insert the mu/nu solution into the optimization problem
-			for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+			for(ProbabilisticConditional pc: beliefSet){
 				problem.add(new Equation(mus.get(pc),solution.get(mus.get(pc))));
 				problem.add(new Equation(nus.get(pc),solution.get(nus.get(pc))));
 			}
@@ -158,7 +158,7 @@ public class MaximumEntropyMachineShop implements BeliefBaseMachineShop<Probabil
 				meDistribution.put(world, new Probability(solution.get(worlds2vars.get(world)).doubleValue()));
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet.getFormulas())
+			for(ProbabilisticConditional pc: beliefSet)
 				result.add(new ProbabilisticConditional(pc,meDistribution.probability(pc)));							
 			return result;			
 		}catch (GeneralMathException e){

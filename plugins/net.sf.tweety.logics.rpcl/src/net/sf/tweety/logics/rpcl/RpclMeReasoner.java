@@ -207,7 +207,7 @@ public class RpclMeReasoner implements Reasoner<RelationalProbabilisticCondition
 			constraints.add(norm);
 			//for each conditional, add the corresponding constraint		
 			// TODO remove conditionals with probability 0 or 1		
-			for(RelationalProbabilisticConditional r: kb.getFormulas())
+			for(RelationalProbabilisticConditional r: kb)
 				constraints.add(this.semantics.getSatisfactionStatement(r, this.signature, worlds2vars));	
 			// optimize for entropy
 			OptimizationProblem problem = new OptimizationProblem(OptimizationProblem.MAXIMIZE);
@@ -259,7 +259,7 @@ public class RpclMeReasoner implements Reasoner<RelationalProbabilisticCondition
 			constraints.add(norm);
 			//for each conditional, add the corresponding constraint		
 			// TODO remove conditionals with probability 0 or 1		
-			for(RelationalProbabilisticConditional r: kb.getFormulas())
+			for(RelationalProbabilisticConditional r: kb)
 				constraints.add(this.semantics.getSatisfactionStatement(r, this.signature, worlds2vars));	
 			// optimize for entropy
 			OptimizationProblem problem = new OptimizationProblem(OptimizationProblem.MAXIMIZE);

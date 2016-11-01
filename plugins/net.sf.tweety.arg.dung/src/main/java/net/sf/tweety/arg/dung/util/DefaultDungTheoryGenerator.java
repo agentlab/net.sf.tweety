@@ -120,7 +120,7 @@ public class DefaultDungTheoryGenerator implements DungTheoryGenerator {
 		q.add(arg);
 		while(numOfArguments <= this.params.numberOfArguments){
 			Argument a = new Argument("a" + numOfArguments++);
-			theory.add(new Attack(a, (Argument)theory.getFormulas().toArray()[this.random.nextInt(numOfArguments-1)]));
+			theory.add(new Attack(a, (Argument)theory.toArray()[this.random.nextInt(numOfArguments-1)]));
 			theory.add(a);
 		}
 		return theory;

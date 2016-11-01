@@ -117,7 +117,7 @@ public class ProbabilisticLotteryAgent extends AbstractLotteryAgent {
 		Extension e = null;
 		double bestUtility = Double.NEGATIVE_INFINITY;
 		if(this.updatestrategy == ProbabilisticLotteryAgent.UPDATE_NAIVE){
-			Set<Set<Argument>> subsets =  new SetTools<Argument>().subsets(this.theory.getFormulas());
+			Set<Set<Argument>> subsets =  new SetTools<Argument>().subsets(this.theory);
 			for(Set<Argument> posMove: subsets){
 				Extension move = new Extension(posMove);
 				SubgraphProbabilityFunction updFunc = this.prob.naiveUpdate(move);				

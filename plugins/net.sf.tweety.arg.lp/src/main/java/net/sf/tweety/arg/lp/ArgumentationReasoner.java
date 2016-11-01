@@ -135,7 +135,7 @@ public class ArgumentationReasoner implements Reasoner<Argument, Formula> {
 	 */
 	public Set<Argument> getJustifiedArguments(BeliefBase<Argument> kb) {
 //		ArgumentationKnowledgeBase kb = (ArgumentationKnowledgeBase) beliefBase;
-		Collection<Argument> arguments = kb.getFormulas();
+		Collection<Argument> arguments = kb;
 		Set<Argument> result = new HashSet<Argument>();
 		
 		// fixpoint calculation: add defended arguments until nothing changes
@@ -161,7 +161,7 @@ public class ArgumentationReasoner implements Reasoner<Argument, Formula> {
 	 */
 	public Set<Argument> getOverruledArguments(BeliefBase<Argument> kb) {
 //		ArgumentationKnowledgeBase kb = (ArgumentationKnowledgeBase) this.getKnowledgeBase();
-		Collection<Argument> arguments = kb.getFormulas();
+		Collection<Argument> arguments = kb;
 		Set<Argument> result = new HashSet<Argument>();
 		Set<Argument> justifiedArguments = getJustifiedArguments(kb);
 		for(Argument candidate : arguments) {
@@ -182,7 +182,7 @@ public class ArgumentationReasoner implements Reasoner<Argument, Formula> {
 	public Set<Argument> getDefensibleArguments(BeliefBase<Argument> kb) {
 //		ArgumentationKnowledgeBase kb = (ArgumentationKnowledgeBase) this.getKnowledgeBase();
 		Set<Argument> result = new HashSet<Argument>();
-		Collection<Argument> arguments = kb.getFormulas();
+		Collection<Argument> arguments = kb;
 		Set<Argument> justifiedArguments = getJustifiedArguments(kb);
 		Set<Argument> overruledArguments = getOverruledArguments(kb);
 		for(Argument candidate : arguments) {

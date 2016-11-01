@@ -70,7 +70,7 @@ public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineSh
 		// and add constraints to ensure those are actual probability functions that satisfy their given conditional
 		Map<ProbabilisticConditional,Map<PossibleWorld,Variable>> pc2vars = new HashMap<ProbabilisticConditional,Map<PossibleWorld,Variable>>();
 		int cnt = 0;
-		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+		for(ProbabilisticConditional pc: beliefSet){
 			Map<PossibleWorld,Variable> prob = new HashMap<PossibleWorld,Variable>();
 			Term t = null;
 			int w_cnt = 0;
@@ -133,7 +133,7 @@ public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineSh
 		// construct target function: minimize sum of squared cross-entropies
 		// from each p_i to p
 		Term targetFunction = null;
-		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+		for(ProbabilisticConditional pc: beliefSet){
 			t = null;
 			for(PossibleWorld w: worlds){
 				if(t == null)
@@ -153,7 +153,7 @@ public class MinimumAggregatedDistanceMachineShop implements BeliefBaseMachineSh
 				p.put(w, new Probability(solution.get(prob_main.get(w)).doubleValue()));
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet.getFormulas())
+			for(ProbabilisticConditional pc: beliefSet)
 				result.add(new ProbabilisticConditional(pc,p.probability(pc)));							
 			return result;					
 		}catch (GeneralMathException e){

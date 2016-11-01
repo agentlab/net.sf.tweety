@@ -99,7 +99,7 @@ public class LowerApproxDistanceMinimizationInconsistencyMeasure implements Inco
 		Map<ProbabilisticConditional,Variable> nus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable mu = new FloatVariable("m" + i,0,1);
 			FloatVariable nu = new FloatVariable("n" + i++,0,1);
 			mus.put(c, mu);

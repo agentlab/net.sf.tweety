@@ -55,7 +55,7 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 	 * @param kb some deductive knowledge base.
 	 */
 	public Compilation(DeductiveKnowledgeBase kb){		
-		Collection<Collection<PropositionalFormula>> minInconSets = PlMusEnumerator.getDefaultEnumerator().minimalInconsistentSubsets(kb.getFormulas());
+		Collection<Collection<PropositionalFormula>> minInconSets = PlMusEnumerator.getDefaultEnumerator().minimalInconsistentSubsets(kb);
 		for(Collection<PropositionalFormula> set: minInconSets)
 			this.add(new CompilationNode(set));
 		Stack<CompilationNode> stackNodes = new Stack<CompilationNode>();
@@ -65,8 +65,8 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 			if(stackNodes.isEmpty())
 				break;
 			for(CompilationNode nodeB: stackNodes){
-				PlBeliefSet temp = new PlBeliefSet(nodeA.getFormulas());
-				temp.getFormulas().retainAll(nodeB.getFormulas());
+				PlBeliefSet temp = new PlBeliefSet(nodeA);
+				temp.retainAll(nodeB);
 				if(!temp.isEmpty())
 					this.add(new UndirectedEdge<CompilationNode>(nodeA,nodeB));
 			}
@@ -84,7 +84,7 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 		argTree.add(argNode);
 		Set<CompilationNode> firstLevelNodes = this.firstLevel(arg);
 		for(CompilationNode node: firstLevelNodes){
-			Set<PropositionalFormula> support = new HashSet<PropositionalFormula>(node.getFormulas());
+			Set<PropositionalFormula> support = new HashSet<PropositionalFormula>(node);
 			support.removeAll(arg.getSupport());
 			DeductiveArgument undercut = new DeductiveArgument(support,new Negation(new Conjunction(arg.getSupport())));
 			DeductiveArgumentNode undercutNode = new DeductiveArgumentNode(undercut); 
@@ -106,7 +106,7 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 	private Set<CompilationNode> firstLevel(DeductiveArgument arg){
 		Stack<CompilationNode> candidates = new Stack<CompilationNode>();
 		for(CompilationNode node: this){
-			Set<PropositionalFormula> set = new HashSet<PropositionalFormula>(node.getFormulas());
+			Set<PropositionalFormula> set = new HashSet<PropositionalFormula>(node);
 			set.retainAll(arg.getSupport());
 			if(!set.isEmpty())
 				candidates.add(node);
@@ -116,8 +116,8 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 			CompilationNode node = candidates.pop();
 			boolean addToResult = true;
 			for(CompilationNode node2: candidates){
-				Set<PropositionalFormula> set1 = new HashSet<PropositionalFormula>(node.getFormulas());
-				Set<PropositionalFormula> set2 = new HashSet<PropositionalFormula>(node2.getFormulas());
+				Set<PropositionalFormula> set1 = new HashSet<PropositionalFormula>(node);
+				Set<PropositionalFormula> set2 = new HashSet<PropositionalFormula>(node2);
 				set1.removeAll(arg.getSupport());
 				set2.removeAll(arg.getSupport());
 				if(set2.containsAll(set1)){
@@ -127,8 +127,8 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 			}
 			if(addToResult)
 				for(CompilationNode node2: result){
-					Set<PropositionalFormula> set1 = new HashSet<PropositionalFormula>(node.getFormulas());
-					Set<PropositionalFormula> set2 = new HashSet<PropositionalFormula>(node2.getFormulas());
+					Set<PropositionalFormula> set1 = new HashSet<PropositionalFormula>(node);
+					Set<PropositionalFormula> set2 = new HashSet<PropositionalFormula>(node2);
 					set1.removeAll(arg.getSupport());
 					set2.removeAll(arg.getSupport());
 					if(set2.containsAll(set1)){
@@ -155,18 +155,18 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 		for(CompilationNode node: remainingNodes){
 			UndirectedEdge<CompilationNode> edge = new UndirectedEdge<CompilationNode>(current,node);
 			if(this.contains(edge)){
-				if(!currentSupport.containsAll(node.getFormulas())){
+				if(!currentSupport.containsAll(node)){
 					Set<PropositionalFormula> set = new HashSet<PropositionalFormula>(argNode.getSupport());
-					set.retainAll(node.getFormulas());
+					set.retainAll(node);
 					if(!set.isEmpty()){
 						boolean properUndercut = true;
 						for(Edge<CompilationNode> edge2: this.getEdges()){
 							if(!edge2.equals(edge) && (edge2.getNodeA() == current || edge2.getNodeB() == current)){
-								Set<PropositionalFormula> set1 = new HashSet<PropositionalFormula>(node.getFormulas());
+								Set<PropositionalFormula> set1 = new HashSet<PropositionalFormula>(node);
 								Set<PropositionalFormula> set2;
 								if(edge2.getNodeA() == current)
-									set2 = new  HashSet<PropositionalFormula>(edge2.getNodeB().getFormulas());
-								else set2 = new  HashSet<PropositionalFormula>(edge2.getNodeA().getFormulas());
+									set2 = new  HashSet<PropositionalFormula>(edge2.getNodeB());
+								else set2 = new  HashSet<PropositionalFormula>(edge2.getNodeA());
 								set1.retainAll(argNode.getSupport());
 								set2.retainAll(argNode.getSupport());
 								if(set1.containsAll(set2)){
@@ -176,7 +176,7 @@ public class Compilation extends DefaultGraph<CompilationNode>{
 							}
 						}
 						if(properUndercut){
-							Set<PropositionalFormula> support = new HashSet<PropositionalFormula>(node.getFormulas());
+							Set<PropositionalFormula> support = new HashSet<PropositionalFormula>(node);
 							support.removeAll(argNode.getSupport());
 							DeductiveArgument undercut = new DeductiveArgument(support,new Negation(new Conjunction(argNode.getSupport())));
 							DeductiveArgumentNode undercutNode = new DeductiveArgumentNode(undercut); 

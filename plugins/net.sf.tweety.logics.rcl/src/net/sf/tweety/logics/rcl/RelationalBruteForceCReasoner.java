@@ -181,10 +181,10 @@ public class RelationalBruteForceCReasoner implements Reasoner<RelationalConditi
 	 * @return a minimal c-representation for this reasoner's knowledge base.
 	 */
 	private RelationalRankingFunction computeCRepresentation(BeliefBase<RelationalConditional> beliefBase) {
-		this.numConditionals = beliefBase.getFormulas().size();
+		this.numConditionals = beliefBase.size();
 		int i = 0;
 		this.indexToConditional = new HashMap<Integer, RelationalConditional>();
-		for (RelationalConditional f : beliefBase.getFormulas()) {
+		for (RelationalConditional f : beliefBase) {
 			this.indexToConditional.put(i++, f);
 			if (!this.simple)
 				this.indexToConditional.put(i++, f);

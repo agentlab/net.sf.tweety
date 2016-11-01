@@ -86,7 +86,7 @@ public class MinimalViolationInconsistencyMeasure implements InconsistencyMeasur
 		// add a constraint P(A_i B_i) - p_i P(A_i) = d_i		
 		Map<ProbabilisticConditional,Variable> vio = new HashMap<ProbabilisticConditional,Variable>();		
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable v = new FloatVariable("v" + i,-1,1);
 			vio.put(c, v);
 			Term leftSide = null;

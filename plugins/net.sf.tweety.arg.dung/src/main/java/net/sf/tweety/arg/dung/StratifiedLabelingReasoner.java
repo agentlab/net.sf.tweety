@@ -142,7 +142,7 @@ public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> 
 			}else{
 				for(Argument arg: extension)
 					labeling.put(arg, 0);
-				Extension remainingArguments = new Extension(theory.getFormulas());
+				Extension remainingArguments = new Extension(theory);
 				remainingArguments.removeAll(extension);
 				DungTheory remainingTheory = new DungTheory(theory.getRestriction(remainingArguments));
 				StratifiedLabelingReasoner sReasoner = new StratifiedLabelingReasoner(this.semantics, this.inferenceType);

@@ -53,7 +53,7 @@ public class ClassicalInference implements Reasoner<PropositionalFormula, Propos
 	@Override
 	public Answer query(BeliefBase<PropositionalFormula> beliefBase, PropositionalFormula query) {
 		Answer answer = new Answer(beliefBase, query);
-		if (this.entailment.entails(beliefBase.getFormulas(), query)) {
+		if (this.entailment.entails(beliefBase, query)) {
 			answer.setAnswer(true);
 			answer.appendText("The answer is: true");
 		} else {

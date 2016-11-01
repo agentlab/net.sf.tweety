@@ -226,7 +226,7 @@ public class CredibilityRevision extends CredibilityRevisionNonIterative<Rule> {
 		lastProjectedAnswersets = (AnswerSetList)lastAnswersets.clone();
 		for(AnswerSet as : lastProjectedAnswersets) {
 			Set<DLPLiteral> toRemove = new HashSet<DLPLiteral>();
-			for(DLPLiteral literal : as.getFormulas()) {
+			for(DLPLiteral literal : as) {
 				if(literal.getName().startsWith(predCredibilityPrefix)) {
 					toRemove.add(literal);
 				}

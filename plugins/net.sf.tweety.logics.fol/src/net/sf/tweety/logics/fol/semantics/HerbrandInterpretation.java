@@ -254,7 +254,7 @@ public class HerbrandInterpretation extends InterpretationSet<FolFormula> {
 		// throw new IllegalArgumentException("First-order knowledge base
 		// expected.");
 		FolBeliefSet folkb = (FolBeliefSet) beliefBase;
-		for (FolFormula f : folkb.getFormulas())
+		for (FolFormula f : folkb)
 			if (!this.satisfies(f))
 				return false;
 		return true;

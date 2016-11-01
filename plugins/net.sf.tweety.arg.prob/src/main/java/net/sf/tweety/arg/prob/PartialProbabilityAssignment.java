@@ -18,12 +18,14 @@
  */
 package net.sf.tweety.arg.prob;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.DungSignature;
 import net.sf.tweety.arg.prob.semantics.ProbabilisticExtension;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.math.probability.Probability;
 
@@ -61,4 +63,5 @@ public class PartialProbabilityAssignment extends HashMap<Argument,Probability> 
 			sig.add(a);
 		return sig;
 	}
+
 }

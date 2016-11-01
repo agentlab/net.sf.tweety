@@ -58,7 +58,7 @@ public class AggregatingCoherenceMeasure extends AbstractCoherenceMeasure {
 	@Override
 	public double coherence(MarkovLogicNetwork mln, Reasoner reasoner, FolSignature signature) {
 		List<Double> distances = new ArrayList<Double>();
-		for(MlnFormula f: mln.getFormulas()){
+		for(MlnFormula f: mln){
 			List<Double> intended = new ArrayList<Double>();
 			List<Double> observed = new ArrayList<Double>();
 			Double pObserved;

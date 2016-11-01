@@ -128,8 +128,8 @@ public class MlnTest2 {
 		System.out.println();
 		
 		MarkovLogicNetwork mergedMln = new MarkovLogicNetwork();
-		mergedMln.addAll(mln1.getFormulas());
-		mergedMln.addAll(mln2.getFormulas());
+		mergedMln.addAll(mln1);
+		mergedMln.addAll(mln2);
 		//mergedMln.addAll(mln3);
 		FolSignature mergedSig = new FolSignature();
 		mergedSig.addSignature(sig1);

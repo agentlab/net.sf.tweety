@@ -53,7 +53,7 @@ public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineS
 		if(tester.isConsistent(beliefSet))
 			return beliefSet;
 		MusEnumerator<ProbabilisticConditional> mu = new NaiveMusEnumerator<ProbabilisticConditional>(tester);
-		Collection<Collection<ProbabilisticConditional>> maxCons = mu.maximalConsistentSubsets(beliefSet.getFormulas());
+		Collection<Collection<ProbabilisticConditional>> maxCons = mu.maximalConsistentSubsets(beliefSet);
 		// for each maximal consistent subset determine its ME-distribution
 		@SuppressWarnings("unchecked")
 		ProbabilityDistribution<PossibleWorld>[] distributions = new ProbabilityDistribution[maxCons.size()];
@@ -73,7 +73,7 @@ public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineS
 		ProbabilityDistribution<PossibleWorld> p = ProbabilityDistribution.convexCombination(factors, distributions);
 		// prepare result
 		PclBeliefSet result = new PclBeliefSet();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			result.add(new ProbabilisticConditional(pc, p.probability(pc)));
 		return result;
 	}

@@ -234,7 +234,7 @@ public class StreamInconsistencyEvaluation {
 				throw new RuntimeException(e);
 			}	
 			for(StreamBasedInconsistencyMeasure<PropositionalFormula> sbim: measures){
-				InconsistencyMeasurementProcess<PropositionalFormula> imp = sbim.getInconsistencyMeasureProcess(new DefaultFormulaStream<PropositionalFormula>(bs.getFormulas(),true));
+				InconsistencyMeasurementProcess<PropositionalFormula> imp = sbim.getInconsistencyMeasureProcess(new DefaultFormulaStream<PropositionalFormula>(bs,true));
 				imp.start();
 				Thread.sleep(2000);
 				while(imp.isAlive()){

@@ -67,7 +67,7 @@ public class IssReasoner implements Reasoner<Argument, Argument>{
 	 */
 	private double dist(SocialMapping<Double> sm1, SocialMapping<Double> sm2, BeliefBase<Argument> args){
 		double dist = 0;
-		for(Argument a: args.getFormulas()){
+		for(Argument a: args){
 			if(Math.abs(sm1.get(a)-sm2.get(a)) > dist)
 				dist = Math.abs(sm1.get(a)-sm2.get(a));
 		}

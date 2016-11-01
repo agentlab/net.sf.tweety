@@ -85,7 +85,7 @@ public class OjAlgoPclUtils {
 		
 		Access2D.Builder<PrimitiveMatrix> aBuilder = PrimitiveMatrix.FACTORY.getBuilder(beliefSet.size(), worlds.size());
 		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()) {
+		for(ProbabilisticConditional c: beliefSet) {
 			
 			int j = 0; 
 			double p = c.getProbability().doubleValue();

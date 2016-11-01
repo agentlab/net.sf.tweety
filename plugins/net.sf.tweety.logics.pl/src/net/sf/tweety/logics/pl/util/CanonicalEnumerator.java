@@ -296,7 +296,7 @@ public class CanonicalEnumerator implements Iterator<PlBeliefSet>{
 			Pair<PropositionalFormula,Integer> p = parseFormula(s,idx,sig);
 			if(p == null)
 				return null;
-			if(result.getFormulas().contains(p.getFirst()))
+			if(result.contains(p.getFirst()))
 				return null;
 			current_end = p.getSecond()-1;
 			if(prev_start != 0){
@@ -377,7 +377,7 @@ public class CanonicalEnumerator implements Iterator<PlBeliefSet>{
 		int idx = 1;
 		for(Proposition p: (PropositionalSignature)bs.getSignature())
 			prop.put(p, idx++);
-		for(PropositionalFormula f: bs.getFormulas())
+		for(PropositionalFormula f: bs)
 			s += CanonicalEnumerator.formula2String(f,prop);
 		return ConversionTools.binaryString2BitSet(s);
 	}

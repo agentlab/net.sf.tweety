@@ -81,7 +81,7 @@ public class AttackRelation {
 	public Set<Argument> getAttackingArguments(Argument a) {
 		Set<Argument> result = new HashSet<Argument>();
 		
-		for(Argument b : kb.getFormulas()) {
+		for(Argument b : kb) {
 			if(attacks(b, a)) {
 				result.add(b);
 			}

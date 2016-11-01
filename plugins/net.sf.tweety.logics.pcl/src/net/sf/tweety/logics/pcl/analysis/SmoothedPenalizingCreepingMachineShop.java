@@ -59,7 +59,7 @@ public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachi
 	@Override
 	protected Map<ProbabilisticConditional, Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet) {
 		Map<ProbabilisticConditional,Probability> values = new HashMap<ProbabilisticConditional,Probability>();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			values.put(pc, new Probability(this.v(this.culpabilityMeasure.culpabilityMeasure(beliefSet, pc), pc.getUniformProbability().getValue(), pc.getProbability().getValue(), delta)));
 		return values;
 	}
@@ -87,7 +87,7 @@ public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachi
 	protected void init(BeliefBase<ProbabilisticConditional> beliefSet){
 		// init scaling parameter
 		boolean first = true;
-		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+		for(ProbabilisticConditional pc: beliefSet){
 			if(this.culpabilityMeasure.culpabilityMeasure(beliefSet, pc) == 0)
 				continue;
 			double current = Math.abs(pc.getProbability().getValue() - pc.getUniformProbability().getValue()) / this.culpabilityMeasure.culpabilityMeasure(beliefSet, pc);

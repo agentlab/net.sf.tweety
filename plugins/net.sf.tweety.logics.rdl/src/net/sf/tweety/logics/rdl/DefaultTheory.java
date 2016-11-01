@@ -145,17 +145,12 @@ public class DefaultTheory implements BeliefBase<FolFormula> {
 	}
 
 	@Override
-	public Collection<FolFormula> getFormulas() {
-		return facts.getFormulas();
-	}
-
-	@Override
 	public boolean add(FolFormula formula) {
 		return facts.add(formula);
 	}
 
 	@Override
-	public boolean remove(FolFormula formula) {
+	public boolean remove(Object formula) {
 		return facts.remove(formula);
 	}
 

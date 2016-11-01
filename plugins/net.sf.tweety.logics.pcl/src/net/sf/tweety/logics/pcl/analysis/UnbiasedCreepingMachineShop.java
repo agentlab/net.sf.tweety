@@ -39,7 +39,7 @@ public class UnbiasedCreepingMachineShop extends AbstractCreepingMachineShop {
 	@Override
 	protected Map<ProbabilisticConditional,Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet){
 		Map<ProbabilisticConditional,Probability> values = new HashMap<ProbabilisticConditional,Probability>();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			values.put(pc, new Probability((1-delta) * pc.getProbability().getValue() + delta * pc.getUniformProbability().getValue()));
 		return values;
 	}

@@ -70,11 +70,11 @@ public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticC
 //			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
 //		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
-		if(tester.isConsistent(beliefSet.getFormulas()))
+		if(tester.isConsistent(beliefSet))
 			return beliefSet;		
 		// get culpability values
 		Map<ProbabilisticConditional,Double> culpMeasures = new HashMap<ProbabilisticConditional,Double>();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			culpMeasures.put(pc, this.culpabilityMeasure.culpabilityMeasure(beliefSet, pc));		
 		// Do a distance minimization but incorporate conformity constraints
 		// -----------
@@ -100,7 +100,7 @@ public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticC
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		Term targetFunction = null;
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable eta = new FloatVariable("e" + i,0,1);
 			FloatVariable tau = new FloatVariable("t" + i++,0,1);
 			etas.put(c, eta);
@@ -145,7 +145,7 @@ public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticC
 		}
 		// add conformity constraints
 		Stack<ProbabilisticConditional> stack = new Stack<ProbabilisticConditional>();
-		stack.addAll(beliefSet.getFormulas());
+		stack.addAll(beliefSet);
 		while(!stack.isEmpty()){
 			ProbabilisticConditional pc1 = stack.pop();
 			for(ProbabilisticConditional pc2: stack){
@@ -171,7 +171,7 @@ public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticC
 			Map<Variable,Term> solution = Solver.getDefaultGeneralSolver().solve(problem);
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet.getFormulas())
+			for(ProbabilisticConditional pc: beliefSet)
 				result.add(new ProbabilisticConditional(pc,new Probability(pc.getProbability().doubleValue() + solution.get(etas.get(pc)).doubleValue() - solution.get(taus.get(pc)).doubleValue())));							
 			return result;
 		}catch (GeneralMathException e){

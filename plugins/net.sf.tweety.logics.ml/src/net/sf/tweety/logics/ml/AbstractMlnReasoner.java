@@ -111,7 +111,7 @@ public abstract class AbstractMlnReasoner implements Reasoner<MlnFormula, FolFor
 	protected double computeWeight(BeliefBase<MlnFormula> beliefBase, HerbrandInterpretation hInt) {
 		int num;
 		double weight = 0;
-		for (MlnFormula f : beliefBase.getFormulas()) {
+		for (MlnFormula f : beliefBase) {
 			num = this.numberOfGroundSatisfactions(f.getFormula(), hInt);
 			if (f.isStrict()) {
 				if (num != f.getFormula().allGroundInstances(this.getSignature().getConstants()).size())

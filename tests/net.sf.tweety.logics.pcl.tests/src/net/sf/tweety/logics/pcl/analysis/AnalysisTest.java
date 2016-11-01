@@ -38,7 +38,7 @@ public class AnalysisTest {
 		System.out.println(beliefSet);
 		System.out.println(dist.inconsistencyMeasure(beliefSet));
 		
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			System.out.println(pc + "\t" + cp.culpabilityMeasure(beliefSet, pc));
 		
 		PenalizingCreepingMachineShop ms = new PenalizingCreepingMachineShop();

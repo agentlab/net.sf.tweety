@@ -84,7 +84,7 @@ public class IsoSafeEnumeratingDungTheoryGenerator implements DungTheoryGenerato
 					for(Argument b: theory){
 						if(!theory.isAttackedBy(b, a)){
 							DungTheory newTheory = new DungTheory();
-							newTheory.addAll(theory.getFormulas());
+							newTheory.addAll(theory);
 							newTheory.addAllAttacks(theory.getAttacks());
 							newTheory.add(new Attack(a,b));
 							if(!this.isIsomorphic(newTheory, newTheories))

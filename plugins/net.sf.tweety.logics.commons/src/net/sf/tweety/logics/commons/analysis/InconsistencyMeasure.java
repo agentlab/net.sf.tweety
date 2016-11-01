@@ -21,7 +21,6 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 import java.util.Collections;
 
-import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 
 /**
@@ -31,7 +30,6 @@ import net.sf.tweety.commons.Formula;
  *            The type of belief bases this measure supports.
  * 
  * @author Matthias Thimm
- * @author Dmitriy Shishkin
  */
 public interface InconsistencyMeasure<T extends Formula> {
 
@@ -40,17 +38,6 @@ public interface InconsistencyMeasure<T extends Formula> {
 
 	default Double inconsistencyMeasure(T formula) {
 		return inconsistencyMeasure(Collections.singleton(formula));
-	}
-
-	/**
-	 * This method measures the inconsistency of the given belief base.
-	 * 
-	 * @param formula
-	 *            a belief base.
-	 * @return a Double indicating the degree of inconsistency.
-	 */
-	default Double inconsistencyMeasure(BeliefBase<T> beliefBase) {
-		return this.inconsistencyMeasure(beliefBase.getFormulas());
 	}
 
 	/**

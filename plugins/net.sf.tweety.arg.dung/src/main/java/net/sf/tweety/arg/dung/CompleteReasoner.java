@@ -93,7 +93,7 @@ public class CompleteReasoner extends AbstractExtensionReasoner {
 		if(this.useSatSolver)
 			return this.computeExtensionsBySatSolving(beliefBase);
 		Extension groundedExtension = new GroundReasoner(this.getInferenceType()).getExtensions(beliefBase).iterator().next();
-		Set<Argument> remaining = new HashSet<Argument>(beliefBase.getFormulas());
+		Set<Argument> remaining = new HashSet<Argument>(beliefBase);
 		remaining.removeAll(groundedExtension);
 		return this.getCompleteExtensions(beliefBase, groundedExtension, remaining);
 	}

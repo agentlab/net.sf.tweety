@@ -78,8 +78,8 @@ public class DeductiveKnowledgeBase extends PlBeliefSet{
 				if(!SatSolver.getDefaultSolver().isConsistent(candidate)) continue;
 				// check for entailment
 				ClassicalEntailment entailment = new ClassicalEntailment();
-				if(entailment.entails(candidate.getFormulas(), claim))
-					arguments.add(new DeductiveArgument(candidate.getFormulas(),claim));
+				if(entailment.entails(candidate, claim))
+					arguments.add(new DeductiveArgument(candidate,claim));
 			}
 		}
 		return arguments;

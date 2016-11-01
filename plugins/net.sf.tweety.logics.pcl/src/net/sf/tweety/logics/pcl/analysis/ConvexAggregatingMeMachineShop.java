@@ -45,13 +45,13 @@ public class ConvexAggregatingMeMachineShop implements BeliefBaseMachineShop<Pro
 //			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
 //		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
-		if(tester.isConsistent(beliefSet.getFormulas()))
+		if(tester.isConsistent(beliefSet))
 			return beliefSet;
 		// for each conditional determine its ME-distribution
 		@SuppressWarnings("unchecked")
 		ProbabilityDistribution<PossibleWorld>[] distributions = new ProbabilityDistribution[beliefSet.size()];
 		int cnt = 0;
-		for(ProbabilisticConditional pc: beliefSet.getFormulas()){
+		for(ProbabilisticConditional pc: beliefSet){
 			PclBeliefSet bs = new PclBeliefSet();
 			bs.add(pc);
 			// name the signature explicitly in order to ensure that the distributions
@@ -65,7 +65,7 @@ public class ConvexAggregatingMeMachineShop implements BeliefBaseMachineShop<Pro
 		ProbabilityDistribution<PossibleWorld> p = ProbabilityDistribution.convexCombination(factors, distributions);
 		// prepare result
 		PclBeliefSet result = new PclBeliefSet();
-		for(ProbabilisticConditional pc: beliefSet.getFormulas())
+		for(ProbabilisticConditional pc: beliefSet)
 			result.add(new ProbabilisticConditional(pc, p.probability(pc)));
 		return result;
 	}

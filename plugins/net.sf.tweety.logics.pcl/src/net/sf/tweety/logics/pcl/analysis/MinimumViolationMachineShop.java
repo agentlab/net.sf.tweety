@@ -87,7 +87,7 @@ public class MinimumViolationMachineShop implements BeliefBaseMachineShop<Probab
 		// add a constraint P(A_i B_i) - p_i P(A_i) = d_i		
 		Map<ProbabilisticConditional,Variable> vio = new HashMap<ProbabilisticConditional,Variable>();		
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable v = new FloatVariable("v" + i,-1,1);
 			vio.put(c, v);
 			Term leftSide = null;
@@ -114,7 +114,7 @@ public class MinimumViolationMachineShop implements BeliefBaseMachineShop<Probab
 				p.put(world, new Probability(solution.get(worlds2vars.get(world)).doubleValue()));
 			// prepare result
 			PclBeliefSet result = new PclBeliefSet();
-			for(ProbabilisticConditional pc: beliefSet.getFormulas())
+			for(ProbabilisticConditional pc: beliefSet)
 				result.add(new ProbabilisticConditional(pc,p.probability(pc)));
 			return result;
 		}catch (GeneralMathException e){

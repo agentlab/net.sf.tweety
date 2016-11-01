@@ -165,7 +165,7 @@ public class SubgraphProbabilityFunction extends ProbabilityFunction<DungTheory>
 	public SubgraphProbabilityFunction naiveUpdate(Extension e){
 		SubgraphProbabilityFunction func = new SubgraphProbabilityFunction(this.theory);
 		for(DungTheory t: this.keySet())
-			if(t.getFormulas().containsAll(e))
+			if(t.containsAll(e))
 				func.put(t, this.probability(t));
 			else func.put(t, new Probability(0d));
 		func.normalize();
@@ -191,7 +191,7 @@ public class SubgraphProbabilityFunction extends ProbabilityFunction<DungTheory>
 		SubgraphProbabilityFunction func = new SubgraphProbabilityFunction(this.theory);
 		double p;
 		for(DungTheory t: this.keySet()){
-			if(t.getFormulas().containsAll(theory.getFormulas())){
+			if(t.containsAll(theory)){
 				p = 0;
 				Collection<Graph<Argument>> subtheories = t.getSubgraphs();
 				for(Graph<Argument> sub: subtheories){
@@ -217,13 +217,13 @@ public class SubgraphProbabilityFunction extends ProbabilityFunction<DungTheory>
 		SubgraphProbabilityFunction func = new SubgraphProbabilityFunction(this.theory);
 		double p;
 		for(DungTheory t: this.keySet()){
-			if(t.getFormulas().containsAll(theory.getFormulas())){
+			if(t.containsAll(theory)){
 				p = 0;
 				Collection<Graph<Argument>> subtheories = t.getSubgraphs();
 				for(Graph<Argument> sub: subtheories){
 					DungTheory subTheory = new DungTheory(sub);
 					subTheory.add(theory);
-					if(t.getFormulas().containsAll(subTheory.getFormulas())){
+					if(t.containsAll(subTheory)){
 						Set<Attack> superGraphs = this.superGraphs(this.theory, subTheory, theory);
 						SetTools<Attack> setTools = new SetTools<Attack>();
 						Collection<Set<Attack>> subsets = setTools.subsets(superGraphs);

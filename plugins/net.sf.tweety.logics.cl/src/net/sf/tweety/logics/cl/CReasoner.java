@@ -146,7 +146,7 @@ public class CReasoner implements Reasoner<Conditional, Formula> {
 		Map<Conditional, IntegerVariable> kappa_pos = new HashMap<Conditional, IntegerVariable>();
 		Map<Conditional, IntegerVariable> kappa_neg = new HashMap<Conditional, IntegerVariable>();
 		i = 1;
-		for (Conditional f : beliefBase.getFormulas()) {
+		for (Conditional f : beliefBase) {
 			kappa_pos.put(f, new IntegerVariable("kp" + i));
 			kappa_neg.put(f, new IntegerVariable("km" + i));
 			i++;
@@ -168,7 +168,7 @@ public class CReasoner implements Reasoner<Conditional, Formula> {
 		}
 		problem.setTargetFunction(targetFunction);
 		// for every conditional "cond" in "kb", "crep" should accept "cond"
-		for (Conditional f : beliefBase.getFormulas())
+		for (Conditional f : beliefBase)
 			problem.add(this.getAcceptanceConstraint(f, ranks));
 		// the ranking function should be indifferent to kb, i.e.
 		// for every possible world "w" the rank of the world should obey the

@@ -64,7 +64,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	@Override
 	public Double culpabilityMeasure(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional) {
 		// determine the mindev inconsistency measure (and add some tolerance)
-		double incVal =	new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet.getFormulas()) + InconsistencyMeasure.MEASURE_TOLERANCE;
+		double incVal =	new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet) + InconsistencyMeasure.MEASURE_TOLERANCE;
 		if(incVal == 0)
 			return 0d;
 		if(this.normalized)
@@ -78,7 +78,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 	@Override
 	public Double sign(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional) {
 		// determine the mindev inconsistency measure
-		double incVal = new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet.getFormulas()) + InconsistencyMeasure.MEASURE_TOLERANCE;
+		double incVal = new DistanceMinimizationInconsistencyMeasure().inconsistencyMeasure(beliefSet) + InconsistencyMeasure.MEASURE_TOLERANCE;
 		if(incVal == 0)	return 0d;
 		return Math.signum(this.getMinimumValue(beliefSet, conditional, incVal) + this.getMaximumValue(beliefSet, conditional, incVal));		
 	}
@@ -147,7 +147,7 @@ public class MeanDistanceCulpabilityMeasure implements SignedCulpabilityMeasure 
 		Map<ProbabilisticConditional,Variable> etas = new HashMap<ProbabilisticConditional,Variable>();
 		Map<ProbabilisticConditional,Variable> taus = new HashMap<ProbabilisticConditional,Variable>();
 		i = 0;		
-		for(ProbabilisticConditional c: beliefSet.getFormulas()){
+		for(ProbabilisticConditional c: beliefSet){
 			FloatVariable eta = new FloatVariable("e" + i,0,1);
 			FloatVariable tau = new FloatVariable("t" + i++,0,1);
 			etas.put(c, eta);

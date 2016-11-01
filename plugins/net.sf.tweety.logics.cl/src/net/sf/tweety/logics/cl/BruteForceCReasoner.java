@@ -169,7 +169,7 @@ public class BruteForceCReasoner implements Reasoner<Conditional, Formula> {
 		this.numConditionals = beliefset.size();
 		int i = 0;
 		this.indexToConditional = new HashMap<Integer, Conditional>();
-		for (Conditional f : beliefset.getFormulas()) {
+		for (Conditional f : beliefset) {
 			this.indexToConditional.put(i++, f);
 			if (!this.simple)
 				this.indexToConditional.put(i++, f);
@@ -202,7 +202,7 @@ public class BruteForceCReasoner implements Reasoner<Conditional, Formula> {
 
 	private void filter(ArrayList<PropositionalFormula> list, BeliefBase<Conditional> beliefset) {
 		BeliefBase<Conditional> copy = beliefset.clone();
-		for (Conditional c : copy.getFormulas()) {
+		for (Conditional c : copy) {
 			if (c.getConclusion() instanceof Contradiction) {
 				System.out.println("list add: " + c.getPremise().toString() + " remove: " + c.toString());
 				list.addAll(c.getPremise());

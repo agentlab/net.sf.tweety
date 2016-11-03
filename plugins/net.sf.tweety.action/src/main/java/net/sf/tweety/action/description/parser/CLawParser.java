@@ -23,6 +23,8 @@ import java.io.Reader;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.action.description.CActionDescription;
 import net.sf.tweety.action.description.syntax.CLaw;
 import net.sf.tweety.action.description.syntax.DynamicLaw;
@@ -58,11 +60,16 @@ import net.sf.tweety.logics.fol.syntax.Tautology;
  * 
  * @author Sebastian Homann
  */
+@Component(service = Parser.class)
 public class CLawParser extends Parser<CActionDescription> {
 
   protected ActionSignature signature;
 
-  /**
+  public CLawParser() {
+	super();
+}
+
+/**
    * This parser needs a valid action signature to parse causal laws.
    * @param signature
    */

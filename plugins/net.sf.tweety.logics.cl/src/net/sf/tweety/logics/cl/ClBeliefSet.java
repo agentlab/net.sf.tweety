@@ -20,6 +20,9 @@ package net.sf.tweety.logics.cl;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.logics.cl.syntax.Conditional;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
@@ -30,6 +33,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class ClBeliefSet extends BeliefSet<Conditional> {
 	
 	/**

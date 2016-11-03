@@ -17,3 +17,26 @@ Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
  net.sf.tweety.plugin;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/net.sf.tweety.logics.pl.parser.PlParser.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.sat.LingelingSolver.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.sat.Sat4jSolver.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.sat.MarcoMusEnumerator.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.sat.MimusMusEnumerator.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.NaiveReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.SatReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.ClassicalInference.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.analysis.ContensionInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.analysis.FuzzyInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.analysis.MusVarInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.analysis.PmInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.PlBeliefSet.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.CnfSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.ContensionSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.EnumeratingPlBeliefSetSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.HsSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.MiSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.RandomPlBeliefSetSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.SyntacticEnumeratingPlBeliefSetSampler.xml,
+ OSGI-INF/net.sf.tweety.logics.pl.util.SyntacticRandomPlBeliefSetSampler.xml

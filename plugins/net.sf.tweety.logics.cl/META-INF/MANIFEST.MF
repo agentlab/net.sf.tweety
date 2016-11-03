@@ -13,3 +13,12 @@ Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=
  net.sf.tweety.logics.pl;bundle-version="1.0.0",
  net.sf.tweety.logics.fol;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Service-Component: OSGI-INF/net.sf.tweety.logics.cl.BruteForceCReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.cl.CReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.cl.RelevanceReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.cl.RuleBasedCReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.cl.ZReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.cl.parser.ClParser.xml,
+ OSGI-INF/net.sf.tweety.logics.cl.ClBeliefSet.xml
+Bundle-ActivationPolicy: lazy

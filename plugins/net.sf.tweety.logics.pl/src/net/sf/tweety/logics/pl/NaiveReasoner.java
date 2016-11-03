@@ -18,11 +18,16 @@
  */
 package net.sf.tweety.logics.pl;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.Reasoner;
+
 /**
  * Naive classical inference (checks all interpretations for satisfiability).
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class NaiveReasoner extends ClassicalInference {
 
 	public NaiveReasoner() {

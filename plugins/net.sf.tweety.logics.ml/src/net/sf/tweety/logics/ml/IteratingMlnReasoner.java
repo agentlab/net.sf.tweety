@@ -21,7 +21,10 @@ package net.sf.tweety.logics.ml;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.ml.syntax.MlnFormula;
 
@@ -31,6 +34,7 @@ import net.sf.tweety.logics.ml.syntax.MlnFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class IteratingMlnReasoner extends AbstractMlnReasoner{ 
 
 	/** The reasoner inside this reasoner. */
@@ -42,6 +46,10 @@ public class IteratingMlnReasoner extends AbstractMlnReasoner{
 	/** For archiving previous results. */
 	private Map<FolFormula,Double> archive;
 	
+	public IteratingMlnReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new IteratingMlnReasoner for the given MLN reaasoner.
 	 * @param reasoner some MLN reasoner.

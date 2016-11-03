@@ -23,6 +23,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBaseSampler;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -40,6 +42,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBaseSampler.class)
 public class EnumeratingPlBeliefSetSampler extends BeliefBaseSampler<PlBeliefSet> {
 
 	/** The currently used min length. */
@@ -54,6 +57,10 @@ public class EnumeratingPlBeliefSetSampler extends BeliefBaseSampler<PlBeliefSet
 	/** The current indices of the worlds that construct the formulas. */
 	private BitSet indices;
 	
+	public EnumeratingPlBeliefSetSampler() {
+		super();
+	}
+
 	/**
 	 * Creates a new sampler for the given signature
 	 * @param signature some signature

@@ -20,6 +20,9 @@ package net.sf.tweety.arg.deductive.semantics;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.graphs.Node;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
@@ -31,8 +34,13 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class CompilationNode extends PlBeliefSet implements Node {
 	
+	public CompilationNode() {
+		super();
+	}
+
 	/**
 	 * Creates a new compilation node with the given
 	 * set of formulas.

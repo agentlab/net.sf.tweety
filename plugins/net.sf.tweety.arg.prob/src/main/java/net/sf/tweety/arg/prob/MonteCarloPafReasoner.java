@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.arg.prob;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.AbstractExtensionReasoner;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.semantics.Extension;
@@ -35,6 +37,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class MonteCarloPafReasoner implements Reasoner<Argument, Argument> {
 
 	/** Semantics for plain AAFs. */
@@ -45,6 +48,10 @@ public class MonteCarloPafReasoner implements Reasoner<Argument, Argument> {
 	 * 	of single arguments (credulous or skeptical inference).*/
 	private int inferenceType;
 	
+	public MonteCarloPafReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new reasoner for the given framework
 	 * @param aaf some probabilistic argumentation framework

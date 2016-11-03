@@ -18,7 +18,10 @@
  */
 package net.sf.tweety.beliefdynamics.mas;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.agents.Agent;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
@@ -32,6 +35,7 @@ import net.sf.tweety.graphs.orders.Order;
  *
  * @param <T> The type of formulas in information objects.
  */
+@Component(service = BeliefBase.class)
 public class CrMasBeliefSet<T extends Formula> extends BeliefSet<InformationObject<T>> {
 
 	/**
@@ -39,6 +43,10 @@ public class CrMasBeliefSet<T extends Formula> extends BeliefSet<InformationObje
 	 */
 	private Order<Agent> credibilityOrder;
 	
+	public CrMasBeliefSet() {
+		super();
+	}
+
 	/**
 	 * Creates a new belief set with the given credibility order.
 	 * @param credibilityOrder some credibility order.

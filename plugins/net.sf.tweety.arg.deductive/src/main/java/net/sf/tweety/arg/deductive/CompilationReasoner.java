@@ -18,12 +18,15 @@
  */
 package net.sf.tweety.arg.deductive;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.deductive.accumulator.Accumulator;
 import net.sf.tweety.arg.deductive.categorizer.Categorizer;
 import net.sf.tweety.arg.deductive.semantics.ArgumentTree;
 import net.sf.tweety.arg.deductive.semantics.Compilation;
 import net.sf.tweety.arg.deductive.semantics.DeductiveArgument;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 
@@ -39,11 +42,16 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class CompilationReasoner extends AbstractDeductiveArgumentationReasoner {
 
 	/** The compilation of the knowledge base. */
 	private Compilation compilation;
 	
+	public CompilationReasoner() {
+		super();
+	}
+
 	/** Creates a new compilation reasoner for the given belief base,
 	 * categorizer, and accumulator.
 	 * @param beliefBase some belief base (must be of class DeductiveKnowledgebase).

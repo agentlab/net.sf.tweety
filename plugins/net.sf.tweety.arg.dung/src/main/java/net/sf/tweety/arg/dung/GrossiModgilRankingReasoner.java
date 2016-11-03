@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.semantics.ArgumentRanking;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.LatticeArgumentRanking;
@@ -41,6 +43,7 @@ import net.sf.tweety.commons.util.SetTools;
  *  
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class GrossiModgilRankingReasoner implements Reasoner<Argument, Argument> {
 
 	/**

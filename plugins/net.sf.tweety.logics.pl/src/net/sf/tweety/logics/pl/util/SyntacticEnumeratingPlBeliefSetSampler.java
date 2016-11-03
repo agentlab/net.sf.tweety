@@ -25,6 +25,8 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBaseSampler;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.commons.util.IncreasingSubsetIterator;
@@ -43,6 +45,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBaseSampler.class)
 public class SyntacticEnumeratingPlBeliefSetSampler extends BeliefBaseSampler<PlBeliefSet> {
 
 	/** the maximal length of each formula (each proposition, negation, conjunction, and
@@ -63,6 +66,10 @@ public class SyntacticEnumeratingPlBeliefSetSampler extends BeliefBaseSampler<Pl
 	private int previousMinLength = -1;
 	private int previousMaxLength = -1;
 	
+	public SyntacticEnumeratingPlBeliefSetSampler() {
+		super();
+	}
+
 	/** Creates a new sampler.
 	 * @param signature the signature for formulas of the generated belief set.
 	 * @param formulaLength the maximal length of each formula (each proposition, negation, conjunction, and

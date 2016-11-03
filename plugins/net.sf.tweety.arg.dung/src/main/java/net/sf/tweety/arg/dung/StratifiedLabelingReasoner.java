@@ -21,6 +21,8 @@ package net.sf.tweety.arg.dung;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.semantics.StratifiedLabeling;
@@ -33,6 +35,7 @@ import net.sf.tweety.commons.Reasoner;
  * This class implements a stratified labeling reasoner.
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> {
 
 	/** The set of stratified labelings this reasoner is based upon. */

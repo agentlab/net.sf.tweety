@@ -22,6 +22,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.util.DefaultSubsetIterator;
 import net.sf.tweety.commons.util.SetTools;
 import net.sf.tweety.commons.util.SubsetIterator;
@@ -45,11 +47,16 @@ import net.sf.tweety.lp.asp.util.AnswerSetList;
  * @author Matthias Thimm
  *
  */
+@Component(service = InconsistencyMeasure.class)
 public class SdInconsistencyMeasure implements InconsistencyMeasure<Program>{
 
 	/** The ASP solver used for determining inconsistency */
 	private Solver solver;
 		
+	public SdInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new inconsistency measure based on the given
 	 * solver. 

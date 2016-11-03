@@ -23,7 +23,10 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.lp.syntax.Argument;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.lp.asp.syntax.DLPElement;
@@ -37,6 +40,7 @@ import net.sf.tweety.lp.asp.syntax.Rule;
  * @author Sebastian Homann
  *
  */
+@Component(service = BeliefBase.class)
 public class ArgumentationKnowledgeBase extends BeliefSet<Argument> {
 	private Program program;
 //	private Set<Argument> arguments = new HashSet<Argument>();
@@ -54,6 +58,10 @@ public class ArgumentationKnowledgeBase extends BeliefSet<Argument> {
 		}
 	}
 	
+	public ArgumentationKnowledgeBase() {
+		super();
+	}
+
 	/**
 	 * Returns all minimal arguments constructible from the extended logic program 
 	 */

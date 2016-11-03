@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.fol.parser.FolParser;
@@ -49,6 +51,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  *  @author Matthias Thimm
  */
+@Component(service = Parser.class)
 public class RpclParser extends Parser<RpclBeliefSet> {
 
 	/** For parsing FOL fragments. */

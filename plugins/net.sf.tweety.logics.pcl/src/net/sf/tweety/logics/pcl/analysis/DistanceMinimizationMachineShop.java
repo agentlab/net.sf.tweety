@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
@@ -31,6 +33,7 @@ import net.sf.tweety.math.probability.Probability;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class DistanceMinimizationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional>  {
 
 	/**

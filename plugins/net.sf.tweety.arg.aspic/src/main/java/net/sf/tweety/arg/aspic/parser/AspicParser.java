@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.aspic.AspicArgumentationTheory;
 import net.sf.tweety.arg.aspic.order.SimpleAspicOrder;
 import net.sf.tweety.arg.aspic.ruleformulagenerator.RuleFormulaGenerator;
@@ -51,18 +53,23 @@ import net.sf.tweety.logics.commons.syntax.interfaces.Invertable;
  * 
  * @param <T>	is the type of the language that the ASPIC theory's rules range over 
  */
+@Component(service = Parser.class)
 public class AspicParser <T extends Invertable> extends Parser<AspicArgumentationTheory<T>>{
 	
 	/**
 	 * Used to parse formulae
 	 */
-	private final Parser<? extends BeliefBase> formulaparser;
+	private Parser<? extends BeliefBase> formulaparser;
 	private RuleFormulaGenerator<T> rfg;
 	
 	private String symbolStrict = "->", 
 			symbolDefeasible = "=>", 
 			symbolComma = ",";
 	
+	public AspicParser() {
+		super();
+	}
+
 	/**
 	 * Constructs a new instance
 	 * @param formulaparser	parses the bodies and the heads of the ASPIC argumentation systems rules

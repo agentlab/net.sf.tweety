@@ -25,6 +25,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.math.GeneralMathException;
 import net.sf.tweety.math.equation.Equation;
@@ -50,6 +52,7 @@ import net.sf.tweety.math.term.Variable;
  *
  * @param <S> The specific type of formulas
  */
+@Component(service = InconsistencyMeasure.class)
 public class CspInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 	
 	/** The MUS enumerator used for the measure. */
@@ -59,6 +62,10 @@ public class CspInconsistencyMeasure<S extends Formula> implements Inconsistency
 	/** Used for weighing the cardinalities of the Pi*/
 	private SimpleFunction<Double,Double> measureFunction;
 	
+	public CspInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new measure that uses the given measure function, MUS enumerator, and
 	 * Integer programming solver

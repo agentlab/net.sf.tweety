@@ -24,6 +24,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.util.Pair;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pl.semantics.FuzzyInterpretation;
@@ -50,6 +52,7 @@ import net.sf.tweety.math.term.Variable;
  * @author Matthias Thimm
  *
  */
+@Component(service = InconsistencyMeasure.class)
 public class FuzzyInconsistencyMeasure implements InconsistencyMeasure<PropositionalFormula>{
 
 	/** static constant for the T-version of the measure */
@@ -65,6 +68,10 @@ public class FuzzyInconsistencyMeasure implements InconsistencyMeasure<Propositi
 	/** One of TFUZZY_MEASURE, SUMFUZZY_MEASURE */
 	private byte measure_version;
 	
+	public FuzzyInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new measure for the given T-norm and T-conorm.
 	 * @param tnorm some T-norm

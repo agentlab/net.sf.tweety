@@ -21,6 +21,8 @@ package net.sf.tweety.arg.prob;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.DungSignature;
 import net.sf.tweety.arg.prob.semantics.ProbabilisticExtension;
@@ -33,6 +35,7 @@ import net.sf.tweety.math.probability.Probability;
  * A partial probability assignment for abstract argumentation theories.
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class PartialProbabilityAssignment extends HashMap<Argument,Probability> implements BeliefBase{
 
 	/** For serialization.*/

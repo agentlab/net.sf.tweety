@@ -21,12 +21,15 @@ package net.sf.tweety.arg.deductive;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.deductive.accumulator.Accumulator;
 import net.sf.tweety.arg.deductive.categorizer.Categorizer;
 import net.sf.tweety.arg.deductive.semantics.ArgumentTree;
 import net.sf.tweety.arg.deductive.semantics.DeductiveArgument;
 import net.sf.tweety.arg.deductive.semantics.DeductiveArgumentNode;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.graphs.DirectedEdge;
 import net.sf.tweety.graphs.Edge;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
@@ -40,7 +43,12 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class SimpleReasoner extends AbstractDeductiveArgumentationReasoner {
+
+	public SimpleReasoner() {
+		super();
+	}
 
 	/** Creates a new reasoner for the given belief base,
 	 * categorizer, and accumulator.

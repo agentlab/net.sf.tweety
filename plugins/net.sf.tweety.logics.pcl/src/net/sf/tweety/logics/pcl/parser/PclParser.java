@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +47,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  *  @author Matthias Thimm
  */
+@Component(service = Parser.class)
 public class PclParser extends Parser<PclBeliefSet>{
 
 	/**

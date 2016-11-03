@@ -21,6 +21,8 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 
 /**
@@ -31,11 +33,16 @@ import net.sf.tweety.commons.Formula;
  *
  * @param <S> The type of formulas.
  */
+@Component(service = ConsistencyTester.class)
 public class NaiveMusEnumerator<S extends Formula> implements MusEnumerator<S>{
 	
 	/** Used for making consistency checks. */
 	private ConsistencyTester<S> tester;
 	
+	public NaiveMusEnumerator() {
+		super();
+	}
+
 	/**
 	 * Creates a new naive MusEnumerator that uses the given consistency tester.
 	 * @param tester some consistency tester

@@ -54,6 +54,10 @@ public abstract class AbstractDeductiveArgumentationReasoner
 	/** The accumulator used for reasoning. */
 	private Accumulator accumulator;
 
+	public AbstractDeductiveArgumentationReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new reasoner for the given belief base, categorizer, and
 	 * accumulator.

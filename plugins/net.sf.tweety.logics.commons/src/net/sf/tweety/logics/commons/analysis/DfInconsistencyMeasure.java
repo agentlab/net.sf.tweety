@@ -21,6 +21,8 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.util.MathTools;
 import net.sf.tweety.math.func.SimpleFunction;
@@ -34,6 +36,7 @@ import net.sf.tweety.math.func.SimpleFunction;
  *
  * @param <S> The specific type of formulas
  */
+@Component(service = InconsistencyMeasure.class)
 public class DfInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
@@ -43,6 +46,10 @@ public class DfInconsistencyMeasure<S extends Formula> implements InconsistencyM
 	 * inconsistent subsets. */
 	private SimpleFunction<double[],Double> measureFunction;
 	
+	public DfInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new inconsistency measure.
 	 * @param measureFunction the measure function used to aggregate the normalized cardinalities of minimal

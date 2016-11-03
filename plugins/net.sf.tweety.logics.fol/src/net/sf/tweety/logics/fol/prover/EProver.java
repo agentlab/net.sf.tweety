@@ -22,8 +22,11 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.util.Shell;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
@@ -38,6 +41,7 @@ import net.sf.tweety.logics.fol.writer.TptpWriter;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class EProver extends FolTheoremProver {
 
 	/**
@@ -56,6 +60,10 @@ public class EProver extends FolTheoremProver {
 	 * Shell to run eprover
 	 */
 	private Shell bash;
+	
+	public EProver() {
+		super();
+	}
 
 	/**
 	 * Constructs a new instance pointing to a specific eprover

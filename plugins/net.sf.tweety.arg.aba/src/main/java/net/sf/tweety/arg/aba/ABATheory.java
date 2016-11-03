@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.aba.syntax.InferenceRule;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.interfaces.Invertable;
 
+@Component(service = BeliefBase.class)
 public class ABATheory <T extends Invertable> implements BeliefBase {
 	
 	private Collection<InferenceRule<T>> rules = new ArrayList<>();

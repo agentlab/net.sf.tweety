@@ -12,3 +12,7 @@ Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
  net.sf.tweety.logics.commons;bundle-version="1.7.0",
  net.sf.tweety.math;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/net.sf.tweety.arg.social.IssReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.social.SocialAbstractArgumentationFramework.xml

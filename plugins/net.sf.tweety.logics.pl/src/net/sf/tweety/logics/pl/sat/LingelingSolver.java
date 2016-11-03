@@ -25,8 +25,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.util.NativeShell;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
@@ -39,11 +42,16 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  *  
  * @author Matthias Thimm
  */
+@Component(service = ConsistencyTester.class)
 public class LingelingSolver extends SatSolver {
 
 	/** The binary location of Lingeling. */
 	private String binaryLocation;
 	
+	public LingelingSolver() {
+		super();
+	}
+
 	/**
 	 * Creates a new solver based on the Lingeling
 	 * executable given as a parameter. 

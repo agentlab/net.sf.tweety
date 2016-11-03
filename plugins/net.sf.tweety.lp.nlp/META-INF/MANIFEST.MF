@@ -12,3 +12,6 @@ Require-Bundle: org.junit;bundle-version="4.12.0",
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
  net.sf.tweety.math;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Service-Component: OSGI-INF/net.sf.tweety.lp.nlp.syntax.NLPProgram.xml
+Bundle-ActivationPolicy: lazy

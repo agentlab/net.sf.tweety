@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBaseSampler;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -38,6 +40,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBaseSampler.class)
 public class RandomPlBeliefSetSampler extends BeliefBaseSampler<PlBeliefSet> {
 
 	/** All possible worlds */
@@ -47,6 +50,10 @@ public class RandomPlBeliefSetSampler extends BeliefBaseSampler<PlBeliefSet> {
 	/** Probability of selecting any world as a model of a formula*/
 	private double worldProb;
 	
+	public RandomPlBeliefSetSampler() {
+		super();
+	}
+
 	/**
 	 * Creates a new sampler for the given signature
 	 * @param signature some signature

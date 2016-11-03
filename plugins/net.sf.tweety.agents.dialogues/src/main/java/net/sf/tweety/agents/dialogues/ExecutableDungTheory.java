@@ -18,14 +18,18 @@
  */
 package net.sf.tweety.agents.dialogues;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.agents.Executable;
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.commons.BeliefBase;
 
 /**
  * This class packs a Dung theory into an executable object.
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class ExecutableDungTheory extends DungTheory implements Executable {
 
 	/**

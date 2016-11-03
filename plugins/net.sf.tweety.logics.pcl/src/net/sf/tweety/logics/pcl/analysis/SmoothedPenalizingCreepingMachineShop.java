@@ -21,7 +21,10 @@ package net.sf.tweety.logics.pcl.analysis;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.commons.analysis.CulpabilityMeasure;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.math.probability.Probability;
@@ -33,6 +36,7 @@ import net.sf.tweety.math.probability.Probability;
  * see [PhD thesis, Thimm] for details.
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachineShop {
 
 	/**
@@ -45,6 +49,10 @@ public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachi
 	 */
 	private CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure;
 		
+	public SmoothedPenalizingCreepingMachineShop() {
+		super();
+	}
+
 	/**
 	 * Creates a new creeping machine shop based on the given culpability measure.
 	 * @param culpabilityMeasure a culpability measure.

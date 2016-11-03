@@ -22,6 +22,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
@@ -34,6 +37,7 @@ import net.sf.tweety.lp.asp.syntax.DLPLiteral;
  * 
  * @author Tim Janus
  */
+@Component(service = BeliefBase.class)
 public class AnswerSet extends BeliefSet<DLPLiteral> {
 	public final int level;
 	public final int weight;	

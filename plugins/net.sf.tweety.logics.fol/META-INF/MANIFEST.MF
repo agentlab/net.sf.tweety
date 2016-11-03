@@ -15,3 +15,11 @@ Export-Package: net.sf.tweety.logics.fol,
 Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,
  net.sf.tweety.plugin;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Service-Component: OSGI-INF/net.sf.tweety.logics.fol.prover.EProver.xml,
+ OSGI-INF/net.sf.tweety.logics.fol.prover.NaiveProver.xml,
+ OSGI-INF/net.sf.tweety.logics.fol.prover.Prover9.xml,
+ OSGI-INF/net.sf.tweety.logics.fol.ClassicalInference.xml,
+ OSGI-INF/net.sf.tweety.logics.fol.parser.FolParser.xml,
+ OSGI-INF/net.sf.tweety.logics.fol.FolBeliefSet.xml
+Bundle-ActivationPolicy: lazy
+Import-Package: org.osgi.service.component.annotations;version="1.2.0"

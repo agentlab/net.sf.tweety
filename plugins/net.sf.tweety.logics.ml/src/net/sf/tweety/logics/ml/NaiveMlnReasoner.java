@@ -31,8 +31,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.fol.parser.FolParser;
 import net.sf.tweety.logics.fol.semantics.HerbrandBase;
 import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
@@ -50,6 +53,7 @@ import net.sf.tweety.logics.ml.syntax.MlnFormula;
  * @author mthimm
  *
  */
+@Component(service = Reasoner.class)
 public class NaiveMlnReasoner extends AbstractMlnReasoner {
 
 	/** Directory for temporary files. */

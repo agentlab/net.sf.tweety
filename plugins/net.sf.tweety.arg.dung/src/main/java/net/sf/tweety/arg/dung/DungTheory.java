@@ -27,10 +27,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.arg.dung.syntax.DungSignature;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
@@ -54,6 +57,7 @@ import net.sf.tweety.math.term.IntegerConstant;
  * @author Matthias Thimm, Tjitze Rienstra
  *
  */
+@Component(service = BeliefBase.class)
 public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, Comparable<DungTheory> {
 
 	/**

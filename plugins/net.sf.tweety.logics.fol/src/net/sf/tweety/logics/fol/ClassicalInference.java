@@ -20,6 +20,8 @@ package net.sf.tweety.logics.fol;
 
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
@@ -36,6 +38,7 @@ import net.sf.tweety.logics.fol.syntax.ForallQuantifiedFormula;
  * model of the knowledge base is also a model of the query.
  * @author Matthias Thimm, Nils Geilen
  */
+@Component(service = Reasoner.class)
 public class ClassicalInference implements Reasoner<FolFormula, FolFormula> {
 	
 //	/**

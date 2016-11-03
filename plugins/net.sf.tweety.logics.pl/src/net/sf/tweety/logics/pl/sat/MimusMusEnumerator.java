@@ -24,7 +24,10 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.util.NativeShell;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pl.parser.PlParser;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
@@ -35,11 +38,16 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * @author Matthias Thimm
  *
  */
+@Component(service = ConsistencyTester.class)
 public class MimusMusEnumerator extends PlMusEnumerator  {
 
 	/** The Mimus executable. */
 	private String pathToMimus;
 	
+	public MimusMusEnumerator() {
+		super();
+	}
+
 	/**
 	 * Creates a new MUs enumerator.
 	 * @param pathToMimus the path to the MIMUS executable.

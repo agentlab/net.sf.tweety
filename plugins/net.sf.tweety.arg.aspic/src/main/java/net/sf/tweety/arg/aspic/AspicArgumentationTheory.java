@@ -23,6 +23,8 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.aspic.ruleformulagenerator.RuleFormulaGenerator;
 import net.sf.tweety.arg.aspic.semantics.AspicAttack;
 import net.sf.tweety.arg.aspic.syntax.AspicArgument;
@@ -55,6 +57,7 @@ import net.sf.tweety.logics.commons.syntax.interfaces.Invertable;
  *
  * @param <T>	is the type of the language that the ASPIC theory's rules range over 
  */
+@Component(service = BeliefBase.class)
 public class AspicArgumentationTheory<T extends Invertable> implements BeliefBase<InferenceRule<T>> {
 	
 	/**
@@ -73,6 +76,10 @@ public class AspicArgumentationTheory<T extends Invertable> implements BeliefBas
 	 */
 	private RuleFormulaGenerator<T> rfgen ;
 	
+	public AspicArgumentationTheory() {
+		super();
+	}
+
 	/**
 	 * Constructs a new ASPIC argumentation theory
 	 * @param rfgen	function to map defeasible rules to labels

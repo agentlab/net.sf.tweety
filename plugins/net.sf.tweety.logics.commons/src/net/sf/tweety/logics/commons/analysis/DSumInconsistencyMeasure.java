@@ -20,6 +20,8 @@ package net.sf.tweety.logics.commons.analysis;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.InterpretationIterator;
@@ -36,6 +38,7 @@ import net.sf.tweety.commons.analysis.InterpretationDistance;
  *
  * @param <S> The type of formulas supported
  */
+@Component(service = InconsistencyMeasure.class)
 public class DSumInconsistencyMeasure<T extends Interpretation,S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The distance used by this measure. */
@@ -43,6 +46,10 @@ public class DSumInconsistencyMeasure<T extends Interpretation,S extends Formula
 	/** For iterating over interpretations. */
 	private InterpretationIterator<T> it;
 	
+	public DSumInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new d-sum inconsistency measure using the given distance and interpretations
 	 * provided from the given interpretation iterator.

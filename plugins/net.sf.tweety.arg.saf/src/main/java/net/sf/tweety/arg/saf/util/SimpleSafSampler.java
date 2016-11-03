@@ -20,6 +20,8 @@ package net.sf.tweety.arg.saf.util;
 
 import java.util.Random;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
 import net.sf.tweety.arg.saf.syntax.BasicArgument;
@@ -35,7 +37,12 @@ import net.sf.tweety.commons.Signature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBaseSampler.class)
 public class SimpleSafSampler extends BeliefBaseSampler<StructuredArgumentationFramework> {
+
+	public SimpleSafSampler() {
+		super();
+	}
 
 	/**
 	 * Creates a new SimpleSafSampler for the given signature. 

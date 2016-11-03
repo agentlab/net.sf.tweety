@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.action.grounding.GroundingRequirement;
 import net.sf.tweety.action.grounding.parser.GroundingRequirementsParser;
 import net.sf.tweety.action.query.SActionQuerySet;
@@ -76,11 +78,16 @@ import net.sf.tweety.logics.pl.syntax.Tautology;
  * @author Sebastian Homann
  * @author Tim Janus (change constant LogicalSymbols to dynamic)
  */
+@Component(service = Parser.class)
 public class ActionQueryParser
   extends Parser<SActionQuerySet> {
   private ActionSignature signature;
   
-  public ActionQueryParser(ActionSignature signature) {
+  public ActionQueryParser() {
+	super();
+  }
+
+public ActionQueryParser(ActionSignature signature) {
     this.signature = signature;
   }
   

@@ -21,6 +21,9 @@ package net.sf.tweety.logics.ml;
 import java.io.Serializable;
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.Constant;
@@ -32,6 +35,7 @@ import net.sf.tweety.logics.ml.syntax.MlnFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class MarkovLogicNetwork extends BeliefSet<MlnFormula> implements Serializable {
 
 	private static final long serialVersionUID = 3313039501304912746L;

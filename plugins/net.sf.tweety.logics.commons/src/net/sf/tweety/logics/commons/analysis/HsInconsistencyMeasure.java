@@ -21,6 +21,8 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.InterpretationIterator;
@@ -36,11 +38,16 @@ import net.sf.tweety.commons.InterpretationIterator;
  * @param <S> some formula type
  * @param <T> some belief set type
  */
+@Component(service = InconsistencyMeasure.class)
 public class HsInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** Used for iterating over interpretations of the underlying language. */
 	private InterpretationIterator<?> it;
 	
+	public HsInconsistencyMeasure() {
+		super();
+	}
+
 	/** 
 	 * Creates a new inconsistency measure that uses the interpretations given
 	 * by the given iterator.

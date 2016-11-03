@@ -23,6 +23,8 @@ import java.util.Deque;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.delp.semantics.ComparisonCriterion;
 import net.sf.tweety.arg.delp.semantics.DialecticalTree;
 import net.sf.tweety.arg.delp.semantics.EmptyCriterion;
@@ -41,6 +43,7 @@ import net.sf.tweety.logics.fol.syntax.FolFormula;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class DelpReasoner implements Reasoner<DelpRule, FolFormula> {
 
 	/**
@@ -49,6 +52,10 @@ public class DelpReasoner implements Reasoner<DelpRule, FolFormula> {
 	private ComparisonCriterion comparisonCriterion = new EmptyCriterion();
 
     private DefeasibleLogicProgram groundDelp;
+
+	public DelpReasoner() {
+		super();
+	}
 
 	/**
 	 * Creates a new DelpReasoner for the given delp.

@@ -21,8 +21,11 @@ package net.sf.tweety.arg.social;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.graphs.Graph;
 
 /**
@@ -32,6 +35,7 @@ import net.sf.tweety.graphs.Graph;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class SocialAbstractArgumentationFramework extends DungTheory{
 
 	/** The number of positive votes of arguments */

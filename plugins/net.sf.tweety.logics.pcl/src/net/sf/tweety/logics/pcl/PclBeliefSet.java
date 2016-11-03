@@ -20,6 +20,9 @@ package net.sf.tweety.logics.pcl;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
@@ -33,6 +36,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class PclBeliefSet extends BeliefSet<ProbabilisticConditional> {
 
 	/**

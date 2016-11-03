@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.logics.pl;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.EntailmentRelation;
@@ -32,10 +34,15 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class ClassicalInference implements Reasoner<PropositionalFormula, PropositionalFormula> {
 
 	/** The actual reasoning mechanism. */
 	private EntailmentRelation<PropositionalFormula> entailment;
+
+	public ClassicalInference() {
+		super();
+	}
 
 	public ClassicalInference(EntailmentRelation<PropositionalFormula> entailment) {
 		// super(beliefBase);

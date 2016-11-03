@@ -21,7 +21,10 @@ package net.sf.tweety.logics.pcl.analysis;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.math.probability.Probability;
 
@@ -31,6 +34,7 @@ import net.sf.tweety.math.probability.Probability;
  * the original belief set towards an uniform belief set, see [Diss, Thimm] for details.
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class UnbiasedCreepingMachineShop extends AbstractCreepingMachineShop {
 	
 	/* (non-Javadoc)

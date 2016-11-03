@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
@@ -75,6 +77,7 @@ import net.sf.tweety.logics.fol.syntax.Tautology;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Parser.class)
 public class FolParser extends Parser<FolBeliefSet> {
 
 	/**

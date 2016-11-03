@@ -26,8 +26,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.util.NativeShell;
 import net.sf.tweety.commons.util.Pair;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
@@ -38,11 +41,16 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * @author Matthias Thimm
  *
  */
+@Component(service = ConsistencyTester.class)
 public class MarcoMusEnumerator extends PlMusEnumerator {
 
 	/** The MARCO executable. */
 	private String pathToMarco;
 	
+	public MarcoMusEnumerator() {
+		super();
+	}
+
 	/**
 	 * Creates a new MUs enumerator.
 	 * @param pathToMarco the path to the MARCO executable.

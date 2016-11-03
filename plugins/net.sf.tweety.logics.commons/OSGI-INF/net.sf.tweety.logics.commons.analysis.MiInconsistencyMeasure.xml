@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.sf.tweety.logics.commons.analysis.MiInconsistencyMeasure">
+   <service>
+      <provide interface="net.sf.tweety.logics.commons.analysis.InconsistencyMeasure"/>
+   </service>
+   <implementation class="net.sf.tweety.logics.commons.analysis.MiInconsistencyMeasure"/>
+</scr:component>

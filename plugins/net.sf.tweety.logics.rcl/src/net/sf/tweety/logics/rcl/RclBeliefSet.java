@@ -20,6 +20,9 @@ package net.sf.tweety.logics.rcl;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
@@ -34,6 +37,7 @@ import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class RclBeliefSet extends BeliefSet<RelationalConditional> {
 
 	/**

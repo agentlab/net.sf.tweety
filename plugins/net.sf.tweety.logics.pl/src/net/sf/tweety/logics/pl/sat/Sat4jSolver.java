@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.specs.ContradictionException;
@@ -29,6 +30,7 @@ import org.sat4j.specs.ISolver;
 import org.sat4j.specs.TimeoutException;
 
 import net.sf.tweety.commons.Interpretation;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
 import net.sf.tweety.logics.pl.syntax.Contradiction;
@@ -44,6 +46,7 @@ import net.sf.tweety.logics.pl.syntax.Tautology;
  * @author Matthias Thimm
  *
  */
+@Component(service = ConsistencyTester.class)
 public class Sat4jSolver extends SatSolver{
 
 	/** Default value for max number of variables for asolver. */

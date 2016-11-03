@@ -24,6 +24,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.util.SetTools;
 
@@ -37,11 +39,16 @@ import net.sf.tweety.commons.util.SetTools;
  * 
  * @author Matthias Thimm
  */
+@Component(service = InconsistencyMeasure.class)
 public class McscInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
 	private MusEnumerator<S> enumerator;
 	
+	public McscInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new inconsistency measure.
 	 * @param enumerator some MUs enumerator

@@ -24,8 +24,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.streams.FormulaStream;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 
 /**
  * Implements a stream-based inconsistency measure on a given class of
@@ -35,6 +38,7 @@ import net.sf.tweety.commons.streams.FormulaStream;
  * @param <S> The type of formulas
  * @param <T> The type of belief bases.
  */
+@Component(service = InconsistencyMeasure.class)
 public class DefaultStreamBasedInconsistencyMeasure<S extends Formula> extends StreamBasedInconsistencyMeasure<S> {
 
 	/** The class of inconsistency measurement processes. */
@@ -44,6 +48,10 @@ public class DefaultStreamBasedInconsistencyMeasure<S extends Formula> extends S
 	/** Configuration options for to be given to the inconsistency measurement process. */
 	private Map<String,Object> config;
 	
+	public DefaultStreamBasedInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new inconsistency measure based on the given process class.
 	 * @param clazz some inconsistency measurement process class. 

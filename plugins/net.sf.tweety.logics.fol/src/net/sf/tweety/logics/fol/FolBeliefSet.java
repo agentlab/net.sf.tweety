@@ -20,6 +20,9 @@ package net.sf.tweety.logics.fol;
 
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
@@ -32,6 +35,7 @@ import net.sf.tweety.logics.fol.syntax.FolSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class FolBeliefSet extends BeliefSet<FolFormula> {
 
 	/**

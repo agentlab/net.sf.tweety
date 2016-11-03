@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.logics.cl;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
@@ -33,6 +35,7 @@ import net.sf.tweety.logics.cl.syntax.Conditional;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class RelevanceReasoner implements Reasoner<Conditional, Formula> {
 
 	/**

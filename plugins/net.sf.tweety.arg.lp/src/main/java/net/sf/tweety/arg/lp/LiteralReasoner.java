@@ -18,11 +18,14 @@
  */
 package net.sf.tweety.arg.lp;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.lp.semantics.attack.AttackStrategy;
 import net.sf.tweety.arg.lp.syntax.Argument;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.lp.asp.syntax.DLPLiteral;
 
 /**
@@ -34,8 +37,13 @@ import net.sf.tweety.lp.asp.syntax.DLPLiteral;
  * @author Sebastian Homann
  *
  */
+@Component(service = Reasoner.class)
 public class LiteralReasoner extends ArgumentationReasoner {
 	
+	public LiteralReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new reasoner for reasoning about literals in an
 	 * extended logic program given by the beliefBase. The argumentation

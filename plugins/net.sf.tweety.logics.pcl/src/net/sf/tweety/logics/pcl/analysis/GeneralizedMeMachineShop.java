@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.GeneralizedMeReasoner;
@@ -33,12 +35,16 @@ import net.sf.tweety.math.probability.Probability;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class GeneralizedMeMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 	
 	/** Parameter p for p-norm. */
 	private int p;
 	
-	
+	public GeneralizedMeMachineShop() {
+		super();
+	}
+
 	/**
 	 * Creates a new machine shop with the given norm.
 	 * @param norm some norm.

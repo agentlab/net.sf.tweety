@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.prob.PartialProbabilityAssignment;
@@ -49,6 +51,7 @@ import net.sf.tweety.math.term.Variable;
  * @author Matthias Thimm
  *
  */
+@Component(service = InconsistencyMeasure.class)
 public class PAInconsistencyMeasure implements InconsistencyMeasure<PartialProbabilityAssignment> {
 		
 	/** The norm used for measuring the distances. */
@@ -58,6 +61,10 @@ public class PAInconsistencyMeasure implements InconsistencyMeasure<PartialProba
 	/** The semantics against which the inconsistency of partial probability assignments are measured. */
 	private PASemantics semantics;
 	
+	public PAInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new inconsinstency measure which uses the given norm and
 	 * measures wrt. the given theory.

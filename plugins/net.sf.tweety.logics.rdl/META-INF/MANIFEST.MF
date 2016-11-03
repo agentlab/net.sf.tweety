@@ -10,3 +10,8 @@ Export-Package: net.sf.tweety.logics.rdl,
 Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,
  net.sf.tweety.logics.fol;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/net.sf.tweety.logics.rdl.NaiveDefaultReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.rdl.parser.RdlParser.xml,
+ OSGI-INF/net.sf.tweety.logics.rdl.DefaultTheory.xml

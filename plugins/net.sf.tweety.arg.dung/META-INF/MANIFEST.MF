@@ -18,3 +18,21 @@ Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
  net.sf.tweety.graphs;bundle-version="1.7.0",
  net.sf.tweety.logics.pl;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/net.sf.tweety.arg.dung.AdmissibleReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.CF2Reasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.CompleteReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.PreferredReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.StageReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.StableReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.SemiStableReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.SccCompleteReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.IdealReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.GroundReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.ConflictFreeReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.GrossiModgilRankingReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.StratifiedLabelingReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.parser.DungParser.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.parser.ApxParser.xml,
+ OSGI-INF/net.sf.tweety.arg.dung.DungTheory.xml

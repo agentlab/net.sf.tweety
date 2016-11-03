@@ -26,6 +26,7 @@ import org.ojalgo.matrix.PrimitiveMatrix;
 import org.ojalgo.optimisation.Expression;
 import org.ojalgo.optimisation.ExpressionsBasedModel;
 import org.ojalgo.optimisation.Variable;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * 
  * @author Nico Potyka
  */
+@Component(service = InconsistencyMeasure.class)
 public class MinimalViolation2InconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 

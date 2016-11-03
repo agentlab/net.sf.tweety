@@ -22,6 +22,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.lp.semantics.AttackRelation;
 import net.sf.tweety.arg.lp.semantics.attack.AttackStrategy;
 import net.sf.tweety.arg.lp.syntax.Argument;
@@ -52,6 +54,7 @@ import net.sf.tweety.commons.Reasoner;
  * 
  * @author Sebastian Homann
  */
+@Component(service = Reasoner.class)
 public class ArgumentationReasoner implements Reasoner<Argument, Formula> {
 	private AttackRelation attack;
 	private AttackRelation defense;
@@ -59,6 +62,10 @@ public class ArgumentationReasoner implements Reasoner<Argument, Formula> {
 	private AttackStrategy attackStrategy;
 	private AttackStrategy defenceStrategy;
 	
+	public ArgumentationReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new ArgumentationReasoner for the given belief base and parameterised
 	 * by a notion of attack for the opponent and another notion of attack for the defense

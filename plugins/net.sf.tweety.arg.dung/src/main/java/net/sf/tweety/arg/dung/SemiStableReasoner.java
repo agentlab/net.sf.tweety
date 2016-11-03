@@ -42,27 +42,27 @@ public class SemiStableReasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public SemiStableReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public SemiStableReasoner(int inferenceType){
+		super(inferenceType);		
 	}
 	
 	/**
 	 * Creates a new semi-stable reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public SemiStableReasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public SemiStableReasoner(){
+		super();		
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(){
+	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
 		// check all complete extensions and remove those sets with non-mininal set of undecided arguments
-		Set<Extension> exts = new CompleteReasoner(this.getKnowledgeBase(),this.getInferenceType()).getExtensions();
+		Set<Extension> exts = new CompleteReasoner(this.getInferenceType()).getExtensions(beliefBase);
 		Map<Extension,Extension> extUndec = new HashMap<Extension,Extension>();
 		for(Extension ext: exts)
-			extUndec.put(ext, new Labeling((DungTheory) this.getKnowledgeBase(),ext).getArgumentsOfStatus(ArgumentStatus.UNDECIDED));
+			extUndec.put(ext, new Labeling((DungTheory) beliefBase, ext).getArgumentsOfStatus(ArgumentStatus.UNDECIDED));
 		boolean b;
 		for(Extension ext: extUndec.keySet()){
 			b = false;
@@ -83,7 +83,7 @@ public class SemiStableReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.arg.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("Implement me!");
 	}
 }

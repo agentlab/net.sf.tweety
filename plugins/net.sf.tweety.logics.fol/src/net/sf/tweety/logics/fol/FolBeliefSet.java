@@ -25,37 +25,40 @@ import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
 
-
 /**
- * This class models a first-order knowledge base, i.e. a set of formulas
- * in first-order logic.
+ * This class models a first-order knowledge base, i.e. a set of formulas in
+ * first-order logic.
+ * 
  * @author Matthias Thimm
  *
  */
-public class FolBeliefSet extends BeliefSet<FolFormula>{
-	
+public class FolBeliefSet extends BeliefSet<FolFormula> {
+
 	/**
 	 * Creates a new and empty first-order knowledge base.
 	 */
-	public FolBeliefSet(){
+	public FolBeliefSet() {
 		super();
 	}
-	
+
 	/**
 	 * Creates a new first-order knowledge base with the given set of formulas.
+	 * 
 	 * @param formulas
 	 */
-	public FolBeliefSet(Set<FolFormula> formulas){
+	public FolBeliefSet(Set<FolFormula> formulas) {
 		super(formulas);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.tweety.kr.BeliefBase#getSignature()
 	 */
 	@Override
-	public Signature getSignature(){
+	public Signature getSignature() {
 		FolSignature sig = new FolSignature();
-		sig.addAll(this);
+		sig.addAll(formulas);
 		return sig;
 	}
 }

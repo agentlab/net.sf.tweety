@@ -41,24 +41,24 @@ public class ConflictFreeReasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public ConflictFreeReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public ConflictFreeReasoner(int inferenceType){
+		super(inferenceType);		
 	}
 	
 	/**
 	 * Creates a new conflict-free reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public ConflictFreeReasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public ConflictFreeReasoner(){
+		super();		
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(){
+	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
 		Set<Extension> extensions = new HashSet<Extension>();
-		DungTheory theory = (DungTheory) this.getKnowledgeBase();
+		DungTheory theory = (DungTheory) beliefBase;
 		// Check all subsets
 		for(Set<Argument> ext: new SetTools<Argument>().subsets(theory))
 			if(new Extension(ext).isConflictFree(theory))
@@ -70,7 +70,7 @@ public class ConflictFreeReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.arg.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("Implement me!");
 	}
 }

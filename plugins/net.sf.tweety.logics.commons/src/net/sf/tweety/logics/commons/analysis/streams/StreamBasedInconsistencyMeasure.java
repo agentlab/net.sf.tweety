@@ -22,7 +22,7 @@ import java.util.Collection;
 
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.streams.FormulaStream;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 
 /**
  * General interface for inconsistency measures working on streams.
@@ -31,7 +31,7 @@ import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
  * @param <S> The type of formulas
  * @param <T> The type of belief bases 
  */
-public abstract class StreamBasedInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S>{
+public abstract class StreamBasedInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S>{
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)

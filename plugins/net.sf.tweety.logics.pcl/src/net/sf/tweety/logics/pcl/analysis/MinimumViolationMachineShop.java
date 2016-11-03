@@ -47,7 +47,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class MinimumViolationMachineShop implements BeliefBaseMachineShop {
+public class MinimumViolationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/** The norm. */
 	private RealVectorNorm norm;
@@ -64,10 +64,10 @@ public class MinimumViolationMachineShop implements BeliefBaseMachineShop {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		// Create variables for the probability of each possible world and
 		// set up the optimization problem for computing the minimal violation.
 		OptimizationProblem problem = new OptimizationProblem(OptimizationProblem.MINIMIZE);

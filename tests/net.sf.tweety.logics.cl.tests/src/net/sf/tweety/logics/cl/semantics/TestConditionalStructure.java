@@ -31,6 +31,7 @@ import net.sf.tweety.logics.cl.semantics.ConditionalStructure.Generator;
 import net.sf.tweety.logics.cl.syntax.Conditional;
 import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Proposition;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 /**
  * 
@@ -60,7 +61,7 @@ public class TestConditionalStructure {
 		
 		Map<NicePossibleWorld, Generator> map = cs.getConditionalGenerators(cond);
 		
-		Set<Proposition> set = new HashSet<Proposition>();
+		Set<PropositionalFormula> set = new HashSet<>();
 		set.add(a);
 		NicePossibleWorld falsifies = new NicePossibleWorld(set, cs.getSignature());
 		set.add(b);
@@ -80,7 +81,7 @@ public class TestConditionalStructure {
 		Conditional cond = new Conditional(a, b);
 		cs.addConditional(cond);
 		
-		Set<Proposition> set = new HashSet<Proposition>();
+		Set<PropositionalFormula> set = new HashSet<>();
 		set.add(a);
 		NicePossibleWorld falsifies = new NicePossibleWorld(set, cs.getSignature());
 		set.add(b);
@@ -95,7 +96,7 @@ public class TestConditionalStructure {
 		assertEquals(1, map.size());
 		assertEquals(Generator.CG_PLUS, map.get(cond));
 		
-		NicePossibleWorld npw = new NicePossibleWorld(new HashSet<Proposition>(), cs.getSignature());
+		NicePossibleWorld npw = new NicePossibleWorld(new HashSet<PropositionalFormula>(), cs.getSignature());
 		assertEquals(0, cs.getWorldGenerators(npw).size());
 	}
 }

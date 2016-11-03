@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
+import net.sf.tweety.commons.Answer;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.util.Shell;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
@@ -52,27 +54,6 @@ public class Prover9 extends FolTheoremProver {
 	 */
 	public Prover9(String binaryLocation) {
 		this(binaryLocation, Shell.getNativeShell());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.sf.tweety.logics.fol.prover.FolTheoremProver#query(net.sf.tweety.
-	 * logics.fol.FolBeliefSet, net.sf.tweety.logics.fol.syntax.FolFormula)
-	 */
-	@Override
-	public boolean query(FolBeliefSet kb, FolFormula query) {
-		try {
-			File file = File.createTempFile("tmp", ".txt");
-			Prover9Writer printer = new Prover9Writer(new PrintWriter(file));
-			printer.printBase(kb);
-			printer.printQuery(query);
-			printer.close();
-			return eval(file);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	/*
@@ -135,5 +116,30 @@ public class Prover9 extends FolTheoremProver {
 	 */
 	public void setBinaryLocation(String binaryLocation) {
 		this.binaryLocation = binaryLocation;
+	}
+
+	@Override
+	public Answer query(BeliefBase<FolFormula> beliefBase, FolFormula query) {
+		try {
+			File file = File.createTempFile("tmp", ".txt");
+			Prover9Writer printer = new Prover9Writer(new PrintWriter(file));
+			printer.printBase(beliefBase);
+			printer.printQuery(query);
+			printer.close();
+			boolean result = eval(file);
+			if(result){
+				Answer answer = new Answer(beliefBase, query);
+				answer.setAnswer(true);
+				answer.appendText("The answer is: true");
+				return answer;
+			} else {
+				Answer answer = new Answer(beliefBase, query);
+				answer.setAnswer(false);
+				answer.appendText("The answer is: false");
+				return answer;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.logics.fol.prover;
 
+import net.sf.tweety.commons.Answer;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.fol.ClassicalInference;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
@@ -29,18 +31,16 @@ import net.sf.tweety.logics.fol.syntax.FolFormula;
  */
 public class NaiveProver extends FolTheoremProver{
 
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.fol.prover.FolTheoremProver#query(net.sf.tweety.logics.fol.FolBeliefSet, net.sf.tweety.logics.fol.syntax.FolFormula)
-	 */
-	@Override
-	public boolean query(FolBeliefSet kb, FolFormula query) {
-		ClassicalInference inf = new ClassicalInference(kb);
-		return inf.query(query).getAnswerBoolean();
-	}
+	ClassicalInference inf = new ClassicalInference();
 
 	@Override
 	public boolean equivalent(FolBeliefSet kb, FolFormula a, FolFormula b) {
 		return ClassicalInference.equivalent(a, b);
+	}
+
+	@Override
+	public Answer query(BeliefBase<FolFormula> beliefBase, FolFormula query) {
+		return inf.query(beliefBase, query);
 	}
 
 	

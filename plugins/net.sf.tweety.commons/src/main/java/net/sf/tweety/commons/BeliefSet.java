@@ -22,223 +22,168 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
- * This class models a belief set, i.e. a set of formulae
- * of some formalism.
+ * This class models a belief set, i.e. a set of formulae of some formalism.
+ * 
+ * @param <T>
+ *            The type of the beliefs in this belief set.
  * 
  * @author Matthias Thimm
  * @author Tim Janus
- * 
- * @param <T> The type of the beliefs in this belief set.
+ * @author Dmitriy Shishkin
  */
-public abstract class BeliefSet<T extends Formula> implements BeliefBase, Collection<T> {
+public abstract class BeliefSet<T extends Formula> implements BeliefBase<T> {
 
 	/**
 	 * The set of formulas of this belief base.
 	 */
-	private Set<T> formulas;
-	
+	protected final Set<T> formulas;
+
 	/**
 	 * Creates a new (empty) belief set.
 	 */
-	public BeliefSet(){
-		this(new HashSet<T>());
+	public BeliefSet() {
+		this.formulas = new HashSet<T>();
 	}
-	
+
 	/**
-	 * Creates a new belief set with the given collection of
-	 * formulae.
-	 * @param c a collection of formulae.
+	 * Creates a new belief set with the given collection of formulae.
+	 * 
+	 * @param c
+	 *            a collection of formulae.
 	 */
-	public BeliefSet(Collection<? extends T> c){
-		this.formulas = instantiateSet();
-		this.formulas.addAll(c);
+	public BeliefSet(Set<T> formulas) {
+		this.formulas = formulas;
 	}
-	
+
 	/**
-	 * instantiates the set which is used as data holder for the belief set.
-	 * Subclasses might override this method if the do not want to use HashSet
-	 * as container implementation
+	 * Creates a new belief set with the given collection of formulae.
+	 * 
+	 * @param c
+	 *            a collection of formulae.
 	 */
-	protected Set<T> instantiateSet() {
-		return new HashSet<T>();
+	public BeliefSet(Collection<? extends T> formulas) {
+		this.formulas = new HashSet<T>();
+		this.formulas.addAll(formulas);
 	}
-	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.kr.BeliefBase#getSignature()
-	 */
+
 	@Override
-	public abstract Signature getSignature();
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#add(java.lang.Object)
-	 */
-	@Override
-	public boolean add(T f){
+	public boolean add(T f) {
 		return this.formulas.add(f);
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#addAll(java.util.Collection)
-	 */
+
 	@Override
-	public boolean addAll(Collection<? extends T> c){
-		boolean result = true;
-		for(T t: c){
-			boolean sub = this.add(t);
-			result = result && sub;
-		}
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#clear()
-	 */
-	@Override
-	public void clear(){
+	public void clear() {
 		this.formulas.clear();
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#contains(java.lang.Object)
-	 */
-	@Override
-	public boolean contains(Object o){
-		return this.formulas.contains(o);
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#containsAll(java.util.Collection)
-	 */
-	@Override
-	public boolean containsAll(Collection<?> c){
-		return this.formulas.containsAll(c);
-	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((formulas == null) ? 0 : formulas.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BeliefSet<?> other = (BeliefSet<?>) obj;
-		if (formulas == null) {
-			if (other.formulas != null)
-				return false;
-		} else if (!formulas.equals(other.formulas))
-			return false;
-		return true;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#isEmpty()
-	 */
-	@Override
-	public boolean isEmpty(){
-		return this.formulas.isEmpty();
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#iterator()
-	 */
-	@Override
-	public Iterator<T> iterator(){
-		return this.formulas.iterator();
-	}
-
-	/* (non-Javadoc)
-	 * @see java.util.Collection#remove(java.lang.Object)
-	 */
-	@Override
-	public boolean remove(Object o){
+	public boolean remove(Object o) {
 		return this.formulas.remove(o);
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#removeAll(java.util.Collection)
-	 */
-	@Override
-	public boolean removeAll(Collection<?> c){
-		boolean result = true;
-		for(Object t: c){
-			boolean sub = this.remove(t);
-			result = result && sub;
-		}
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#retainAll(java.util.Collection)
-	 */
-	@Override
-	public boolean retainAll(Collection<?> c){
-		boolean result = false;
-		Collection<T> newFormulas = new HashSet<T>(this.formulas);
-		for(Object t: this){
-			if(!c.contains(t)){
-				newFormulas.remove(t);
-				result = true;
-			}
-		}
-		this.clear();
-		this.addAll(newFormulas);
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#size()
-	 */
-	@Override
-	public int size(){
-		return this.formulas.size();
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#toArray()
-	 */
-	@Override
-	public Object[] toArray(){
-		return this.formulas.toArray();
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#toArray(T[])
-	 */
-	@Override
-	public <S> S[] toArray(S[] a) {
-		return this.formulas.toArray(a);
-	}
-	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.kr.BeliefBase#toString()
-	 */
+
 	@Override
 	public String toString() {
-		String s = "{ ";
-		Iterator<T> it = this.iterator();
-		if(it.hasNext())
-			s += it.next();
-		while(it.hasNext())
-			s += ", " + it.next();
-		s += " }";
-		return s;
+		return formulas.toString();
 	}
+
+	public void forEach(Consumer<? super T> action) {
+		formulas.forEach(action);
+	}
+
+	@Override
+	public int size() {
+		return formulas.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return formulas.isEmpty();
+	}
+
+	@Override
+	public boolean contains(Object o) {
+		return formulas.contains(o);
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return formulas.iterator();
+	}
+
+	@Override
+	public Object[] toArray() {
+		return formulas.toArray();
+	}
+
+	@Override
+	public <E> E[] toArray(E[] a) {
+		return formulas.toArray(a);
+	}
+
+	@Override
+	public boolean containsAll(Collection<?> c) {
+		return formulas.containsAll(c);
+	}
+
+	@Override
+	public boolean addAll(Collection<? extends T> c) {
+		return formulas.addAll(c);
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> c) {
+		return formulas.retainAll(c);
+	}
+
+	@Override
+	public boolean removeAll(Collection<?> c) {
+		return formulas.removeAll(c);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return formulas.equals(o);
+	}
+
+	@Override
+	public int hashCode() {
+		return formulas.hashCode();
+	}
+
+	@Override
+	public Spliterator<T> spliterator() {
+		return formulas.spliterator();
+	}
+
+	@Override
+	public boolean removeIf(Predicate<? super T> filter) {
+		return formulas.removeIf(filter);
+	}
+
+	@Override
+	public Stream<T> stream() {
+		return formulas.stream();
+	}
+
+	@Override
+	public Stream<T> parallelStream() {
+		return formulas.parallelStream();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public BeliefSet<T> clone(){
+		try {
+			return (BeliefSet<T>) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+	
 }

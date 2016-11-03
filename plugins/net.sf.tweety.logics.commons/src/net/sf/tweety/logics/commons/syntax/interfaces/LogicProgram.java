@@ -34,7 +34,7 @@ import net.sf.tweety.commons.util.rules.Rule;
  * @param <P>	The type of the formulas used for the premise
  * @param <T>	The type of the rules used in the program
  */
-public interface LogicProgram<C extends Formula, P extends Formula, T extends Rule<?,?>> extends BeliefBase{
+public interface LogicProgram<C extends Formula, P extends Formula, T extends Rule<?,?>> extends BeliefBase<Rule<?,?>>{
 	/**
 	 * Adds the given fact to the program
 	 * @param fact

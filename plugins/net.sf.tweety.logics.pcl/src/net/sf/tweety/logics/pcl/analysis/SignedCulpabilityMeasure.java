@@ -18,8 +18,8 @@
  */
 package net.sf.tweety.logics.pcl.analysis;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.analysis.CulpabilityMeasure;
-import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 
 /**
@@ -30,14 +30,8 @@ import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
  * 
  * @author Matthias Thimm
  */
-public interface SignedCulpabilityMeasure extends CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> {
+public interface SignedCulpabilityMeasure extends CulpabilityMeasure<ProbabilisticConditional> {
 
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.CulpabilityMeasure#culpabilityMeasure(net.sf.tweety.BeliefSet, net.sf.tweety.Formula)
-	 */
-	@Override
-	public Double culpabilityMeasure(PclBeliefSet beliefSet, ProbabilisticConditional conditional);
-	
 	/**
 	 * Determines the sign of the culpability of the given conditional
 	 * in the given belief set, i.e. one of {-1,0,1}.
@@ -45,5 +39,5 @@ public interface SignedCulpabilityMeasure extends CulpabilityMeasure<Probabilist
 	 * @param conditional a conditional
 	 * @return one of {-1,0,1}
 	 */
-	public Double sign(PclBeliefSet beliefSet, ProbabilisticConditional conditional);
+	public Double sign(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional conditional);
 }

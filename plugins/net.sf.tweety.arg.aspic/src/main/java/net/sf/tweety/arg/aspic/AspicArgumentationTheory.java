@@ -55,7 +55,7 @@ import net.sf.tweety.logics.commons.syntax.interfaces.Invertable;
  *
  * @param <T>	is the type of the language that the ASPIC theory's rules range over 
  */
-public class AspicArgumentationTheory<T extends Invertable> implements BeliefBase {
+public class AspicArgumentationTheory<T extends Invertable> implements BeliefBase<InferenceRule<T>> {
 	
 	/**
 	 * The inference rules this system's arguments will be created from,
@@ -186,6 +186,36 @@ public class AspicArgumentationTheory<T extends Invertable> implements BeliefBas
 	public Signature getSignature() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean add(InferenceRule<T> e) {
+		return rules.add(e);
+	}
+
+	public boolean remove(Object o) {
+		return rules.remove(o);
+	}
+
+	public boolean containsAll(Collection<?> c) {
+		return rules.containsAll(c);
+	}
+
+	public boolean retainAll(Collection<?> c) {
+		return rules.retainAll(c);
+	}
+
+	public void clear() {
+		rules.clear();
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public AspicArgumentationTheory<T> clone()  {
+		try {
+			return (AspicArgumentationTheory<T>) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	

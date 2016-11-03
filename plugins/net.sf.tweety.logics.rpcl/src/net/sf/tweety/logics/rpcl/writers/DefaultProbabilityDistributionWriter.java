@@ -25,6 +25,7 @@ import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.Writer;
 import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
+import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.rpcl.semantics.RpclProbabilityDistribution;
 
 
@@ -61,7 +62,7 @@ public class DefaultProbabilityDistributionWriter extends Writer {
 		for(Interpretation interpretation: distribution.keySet()){
 			result += "{";
 			boolean first = true;
-			for(FOLAtom a: (HerbrandInterpretation)interpretation)
+			for(FolFormula a: (HerbrandInterpretation)interpretation)
 				if(first){
 					result += a.toString();
 					first = false;

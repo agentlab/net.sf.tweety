@@ -64,7 +64,7 @@ public class ClassicalEntailment extends EntailmentRelation<PropositionalFormula
 	 * @see net.sf.tweety.EntailmentRelation#getWitness(java.util.Collection)
 	 */
 	@Override
-	public Interpretation getWitness(Collection<PropositionalFormula> formulas) {
+	public Interpretation<PropositionalFormula> getWitness(Collection<PropositionalFormula> formulas) {
 		PropositionalSignature signature = new PropositionalSignature();
 		for(PropositionalFormula f: formulas)
 			signature.addAll(f.getAtoms());		

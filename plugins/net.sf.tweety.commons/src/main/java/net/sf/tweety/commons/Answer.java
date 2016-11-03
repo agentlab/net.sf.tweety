@@ -44,7 +44,7 @@ public class Answer {
 	/**
 	 * The knowledge base of the original query. 
 	 */
-	private BeliefBase beliefBase;
+	private BeliefBase<?> beliefBase;
 	
 	/**
 	 * A textual description of the answer to the query.
@@ -55,7 +55,7 @@ public class Answer {
 	 * Creates an empty answer for the given query.
 	 * @param query a query.
 	 */
-	public Answer(BeliefBase beliefBase, Formula query){
+	public Answer(BeliefBase<?> beliefBase, Formula query){
 		this.beliefBase = beliefBase;
 		this.query = query;
 		this.text = new String();
@@ -121,7 +121,7 @@ public class Answer {
 	 * Returns the knowledge base this answer relates to.
 	 * @return the knowledge base this answer relates to.
 	 */
-	public BeliefBase getKnowledgeBase(){
+	public BeliefBase<?> getKnowledgeBase(){
 		return this.beliefBase;
 	}
 	

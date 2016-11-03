@@ -147,9 +147,10 @@ public class ConditionalStructureKappaBuilder {
 		conds.add(new Conditional(b, w));
 		
 		
-		RuleBasedCReasoner reasoner = new RuleBasedCReasoner(conds, true);
+		ClBeliefSet beliefBase = new ClBeliefSet(conds);
+		RuleBasedCReasoner reasoner = new RuleBasedCReasoner(true);
 		Long before = System.currentTimeMillis();
-		reasoner.prepare();
+		reasoner.prepare(beliefBase);
 		Long duration = System.currentTimeMillis() - before;
 		System.out.println("Generated in " + duration + "ms:");
 		System.out.println("Conditional Structure:");
@@ -161,19 +162,20 @@ public class ConditionalStructureKappaBuilder {
 		}
 		
 		before = System.currentTimeMillis();
-		reasoner.process();
+		reasoner.process(beliefBase);
 		duration = System.currentTimeMillis() - before;
 		System.out.println("Evaluated in " + duration + "ms:");
 		for(KappaValue kv : reasoner.getKappas()) {
 			System.out.println(kv.fullString());
 		}
 		System.out.println("Ranking-Function:");
-		System.out.println(reasoner.getSemantic());
+		System.out.println(reasoner.getSemantic(beliefBase));
 		System.out.println("");
 		
-		BruteForceCReasoner bfReasoner = new BruteForceCReasoner(new ClBeliefSet(conds));
+		ClBeliefSet clBeliefSet = beliefBase;
+		BruteForceCReasoner bfReasoner = new BruteForceCReasoner();
 		before = System.currentTimeMillis();
-		RankingFunction rf = bfReasoner.getCRepresentation();
+		RankingFunction rf = bfReasoner.getCRepresentation(clBeliefSet);
 		duration = System.currentTimeMillis() - before;
 		System.out.println("Brute-Force Evaluation in " + duration + "ms:");
 		System.out.println(rf);

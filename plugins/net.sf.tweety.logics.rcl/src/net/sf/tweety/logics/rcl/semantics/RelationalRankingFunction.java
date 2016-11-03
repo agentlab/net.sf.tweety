@@ -312,18 +312,18 @@ public class RelationalRankingFunction implements Interpretation {
 		return prototypes;
 	}
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.Interpretation#satisfies(net.sf.tweety.BeliefBase)
-	 */
-	@Override
-	public boolean satisfies(BeliefBase beliefBase)	throws IllegalArgumentException {
-		if(!(beliefBase instanceof RclBeliefSet))
-			throw new IllegalArgumentException("Knowledge base is not a relational conditional knowledge base.");
-		for(Formula f: ((RclBeliefSet)beliefBase))
-			if(!this.satisfies(f))
-				return false;
-		return true;
-	}
+//	/* (non-Javadoc)
+//	 * @see net.sf.tweety.Interpretation#satisfies(net.sf.tweety.BeliefBase)
+//	 */
+//	@Override
+//	public boolean satisfies(BeliefBase beliefBase)	throws IllegalArgumentException {
+//		if(!(beliefBase instanceof RclBeliefSet))
+//			throw new IllegalArgumentException("Knowledge base is not a relational conditional knowledge base.");
+//		for(Formula f: ((RclBeliefSet)beliefBase).getFormulas())
+//			if(!this.satisfies(f))
+//				return false;
+//		return true;
+//	}
 
 	/**
 	 * Returns the minimal rank of this OCF.

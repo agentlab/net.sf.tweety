@@ -18,24 +18,68 @@
  */
 package net.sf.tweety.commons;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
- * This class captures an abstract knowledge base, i.e. some set of
- * formulas in a given knowledge representation language, that can be asked
- * queries.
+ * This class captures an abstract knowledge base, i.e. some set of formulas in
+ * a given knowledge representation language, that can be asked queries.
+ * 
+ * @param <T>
+ *            The type of the beliefs in this belief base.
+ * 
  * @author Matthias Thimm
  * @author Tim Janus
+ * @author Dmitriy Shishkin
  */
-public interface BeliefBase {
-	
+public interface BeliefBase<T extends Formula> extends Collection<T>, Cloneable {
+
 	/**
 	 * Returns the signature of the language of this knowledge base.
+	 * 
 	 * @return the signature of the language of this knowledge base.
 	 */
-	public Signature getSignature();
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	Signature getSignature();
+
+	default boolean addAll(Collection<? extends T> formulas) {
+		return formulas.stream().map(formula -> add(formula)).reduce(false, (a, b) -> a || b);
+	}
+
 	@Override
-	public String toString();
+	default boolean removeAll(Collection<?> formulas) {
+		return formulas.stream().map(formula -> remove(formula)).reduce(false, (a, b) -> a || b);
+	}
+
+	@Override
+	default boolean contains(Object o) {
+		return stream().filter(formula -> formula.equals(o)).findFirst().isPresent();
+	}
+
+	@Override
+	default <E> E[] toArray(E[] a) {
+		return stream().toArray(size -> a);
+	}
+
+	@Override
+	default Object[] toArray() {
+		return stream().toArray();
+	}
+
+	@Override
+	default boolean isEmpty() {
+		return stream().count() == 0;
+	}
+
+	@Override
+	default int size() {
+		return (int) stream().count();
+	}
+
+	@Override
+	default Iterator<T> iterator() {
+		return stream().iterator();
+	}
+	
+	BeliefBase<T> clone();
+
 }

@@ -26,7 +26,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -48,7 +49,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class UpperApproxDistanceMinimizationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -58,14 +59,9 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefS
 	/**
 	 * For archiving.
 	 */
-	private Map<PclBeliefSet,Double> archive = new HashMap<PclBeliefSet,Double>();
+	private Map<BeliefBase<ProbabilisticConditional>,Double> archive = new HashMap<BeliefBase<ProbabilisticConditional>,Double>();
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)
-	 */
-	@Override
-	public Double inconsistencyMeasure(Collection<ProbabilisticConditional> formulas) {
-		PclBeliefSet beliefSet = new PclBeliefSet(formulas);
+	private Double inconsistencyMeasure(PclBeliefSet beliefSet) {
 		log.trace("Starting to compute minimal distance inconsistency measure for '" + beliefSet + "'.");
 		// check archive
 		if(this.archive.containsKey(beliefSet))
@@ -178,6 +174,14 @@ public class UpperApproxDistanceMinimizationInconsistencyMeasure extends BeliefS
 			// This should not happen as the optimization problem is guaranteed to be feasible
 			throw new RuntimeException("Fatal error: Optimization problem to compute the minimal distance to a consistent knowledge base is not feasible.");
 		}		
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)
+	 */
+	@Override
+	public Double inconsistencyMeasure(Collection<ProbabilisticConditional> formulas) {
+		return inconsistencyMeasure(new PclBeliefSet(formulas));
 	}
 }
 

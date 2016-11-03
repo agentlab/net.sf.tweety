@@ -21,8 +21,8 @@ package net.sf.tweety.logics.pl.examples;
 import java.io.IOException;
 
 import net.sf.tweety.commons.ParserException;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
 import net.sf.tweety.logics.commons.analysis.DfInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.parser.PlParser;
 import net.sf.tweety.logics.pl.sat.MarcoMusEnumerator;
@@ -42,7 +42,7 @@ public class DfInconsistencyMeasureTest {
 		
 				
 		// test Df inconsistency measure		
-		BeliefSetInconsistencyMeasure<PropositionalFormula> df = new DfInconsistencyMeasure<PropositionalFormula>(new FracAggrFunction(), new MarcoMusEnumerator("/Users/mthimm/Projects/misc_bins/marco_py-1.0/marco.py"));
+		InconsistencyMeasure<PropositionalFormula> df = new DfInconsistencyMeasure<PropositionalFormula>(new FracAggrFunction(), new MarcoMusEnumerator("/Users/mthimm/Projects/misc_bins/marco_py-1.0/marco.py"));
 		System.out.println("Df: " + df.inconsistencyMeasure(kb));
 		
 	}

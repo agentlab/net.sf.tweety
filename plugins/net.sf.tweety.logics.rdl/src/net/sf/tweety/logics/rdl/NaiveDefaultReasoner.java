@@ -22,7 +22,6 @@ import java.util.Collection;
 
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.prover.FolTheoremProver;
@@ -30,37 +29,41 @@ import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.rdl.semantics.DefaultProcessTree;
 
 /**
- * Implements a naive reasoner for default logic based on exhaustive 
- * application of defaults in process trees.
+ * Implements a naive reasoner for default logic based on exhaustive application
+ * of defaults in process trees.
  * 
  * @author Matthias Thimm, Nils Geilen
  */
-public class NaiveDefaultReasoner extends Reasoner{
-	
-	DefaultProcessTree tree ;
+public class NaiveDefaultReasoner implements Reasoner<FolFormula, FolFormula> {
 
-	public NaiveDefaultReasoner(BeliefBase beliefBase) {
-		super(beliefBase);
-		if( ! (beliefBase instanceof DefaultTheory))
-			throw new IllegalArgumentException("BeliefBase has to be a DefaultTheory");
-		 tree = new DefaultProcessTree((DefaultTheory)beliefBase);
-	}
+//	 DefaultProcessTree tree;
+	//
+	// public NaiveDefaultReasoner(BeliefBase beliefBase) {
+	// super(beliefBase);
+	// if (!(beliefBase instanceof DefaultTheory))
+	// throw new IllegalArgumentException("BeliefBase has to be a
+	// DefaultTheory");
+	// tree = new DefaultProcessTree((DefaultTheory) beliefBase);
+	// }
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.tweety.commons.Reasoner#query(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {
-		if(!(query instanceof FolFormula))
-			throw new IllegalArgumentException("NaiveDefaultReasoner is only defined for first-order queries.");
-		if(!((FolFormula)query).isGround())
+	public Answer query(BeliefBase<FolFormula> beliefBase, FolFormula query) {
+		if (!query.isGround())
 			throw new IllegalArgumentException("Query is not grounded.");
-		Answer answer = new Answer(this.getKnowledgeBase(),query);
+		if (!(beliefBase instanceof DefaultTheory)) {
+			throw new IllegalArgumentException("BeliefBase has to be a DefaultTheory");
+		}
+		Answer answer = new Answer(beliefBase, query);
 		answer.setAnswer(false);
-		for (Collection<FolFormula> extension: tree.getExtensions()){
-			FolBeliefSet fbs = (FolBeliefSet)extension;
+		for (Collection<FolFormula> extension : getAllExtensions(beliefBase)) {
+			FolBeliefSet fbs = (FolBeliefSet) extension;
 			FolTheoremProver prover = FolTheoremProver.getDefaultProver();
-			if(prover.query(fbs, (FolFormula)query)){
+			if (prover.query(fbs, (FolFormula) query).getAnswerBoolean()) {
 				answer.setAnswer(true);
 				break;
 			}
@@ -68,12 +71,12 @@ public class NaiveDefaultReasoner extends Reasoner{
 		return answer;
 	}
 
-	
-	/**
-	 * 	@return all extensions of the default theory
+	 /**
+	 * @return all extensions of the default theory
 	 */
-	public Collection<Collection<FolFormula>> getAllExtensions(){
-		return tree.getExtensions();
-	}
-	
+	 public Collection<Collection<FolFormula>> getAllExtensions(BeliefBase<FolFormula> beliefBase) {
+		 DefaultProcessTree tree = new DefaultProcessTree((DefaultTheory) beliefBase);
+		 return tree.getExtensions();
+	 }
+
 }

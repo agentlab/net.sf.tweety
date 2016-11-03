@@ -29,7 +29,7 @@ import org.ojalgo.optimisation.Variable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pcl.util.OjAlgoPclUtils;
@@ -42,7 +42,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * 
  * @author Nico Potyka
  */
-public class MinimalViolation2InconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class MinimalViolation2InconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 
 	/**

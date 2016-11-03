@@ -19,13 +19,13 @@
 package net.sf.tweety.action.description;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Set;
 
-import net.sf.tweety.action.ActionDescription;
-import net.sf.tweety.action.ActionDescriptionConsistencyTester;
-import net.sf.tweety.action.description.syntax.CLaw;
+import net.sf.tweety.action.CausalLaw;
 import net.sf.tweety.action.signature.ActionSignature;
 import net.sf.tweety.action.transitionsystem.State;
+import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.lp.asp.solver.AspInterface;
 
 /**
@@ -38,50 +38,37 @@ import net.sf.tweety.lp.asp.solver.AspInterface;
  * @author Sebastian Homann
  * @author Matthias Thimm
  */
-public class CActionDescriptionConsistencyTester
-  implements ActionDescriptionConsistencyTester<CLaw>
-{
-  private AspInterface aspsolver;
-  
-  /**
-   * Creates a new consistency tester which will use the given answer set
-   * solver.
-   * 
-   * @param aspsolver
-   */
-  public CActionDescriptionConsistencyTester( AspInterface aspsolver )
-  {
-    this.aspsolver = aspsolver;
-  }
-  
-  /**
-   * Checks, whether the given action description in the action language C is
-   * consistent.
-   * 
-   * @param actionDescription an action description.
-   * @return true iff the action description is consistent.
-   */
-  public boolean isConsistent( CActionDescription actionDescription )
-  {
-    CTransitionSystemCalculator tcalc =
-      new CTransitionSystemCalculator( aspsolver );
-    Set< State > states = null;
-    try {
-      states =
-        tcalc.calculateStates( actionDescription,
-          (ActionSignature) actionDescription.getSignature() );
-    }
-    catch ( IOException e ) {
-      e.printStackTrace();
-    }
-    return !states.isEmpty();
-  }
-  
-  /* (non-Javadoc)
-   * @see net.sf.tweety.action.ActionDescriptionConsistencyTester#isConsistent(net.sf.tweety.action.ActionDescription)
-   */
-  @Override
-  public boolean isConsistent(ActionDescription<CLaw> causalRules) {
-	  return this.isConsistent(new CActionDescription(causalRules));
-  }  
+public class CActionDescriptionConsistencyTester implements ConsistencyTester<CausalLaw> {
+	private AspInterface aspsolver;
+
+	/**
+	 * Creates a new consistency tester which will use the given answer set
+	 * solver.
+	 * 
+	 * @param aspsolver
+	 */
+	public CActionDescriptionConsistencyTester(AspInterface aspsolver) {
+		this.aspsolver = aspsolver;
+	}
+
+	/**
+	 * Checks, whether the given action description in the action language C is
+	 * consistent.
+	 * 
+	 * @param actionDescription
+	 *            an action description.
+	 * @return true iff the action description is consistent.
+	 */
+	@Override
+	public boolean isConsistent(Collection<CausalLaw> formulas) {
+		CActionDescription actionDescription = new CActionDescription(formulas);
+		CTransitionSystemCalculator tcalc = new CTransitionSystemCalculator(aspsolver);
+		Set<State> states = null;
+		try {
+			states = tcalc.calculateStates(actionDescription, (ActionSignature) actionDescription.getSignature());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return !states.isEmpty();
+	}
 }

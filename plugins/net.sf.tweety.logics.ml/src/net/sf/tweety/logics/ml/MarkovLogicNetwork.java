@@ -58,7 +58,7 @@ public class MarkovLogicNetwork extends BeliefSet<MlnFormula> implements Seriali
 	@Override
 	public Signature getSignature() {
 		FolSignature sig = new FolSignature();
-		for(MlnFormula formula: this){
+		for(MlnFormula formula: formulas){
 			sig.addAll(formula.getPredicates());
 			sig.addAll(formula.getTerms(Constant.class));
 			sig.addAll(formula.getFunctors());

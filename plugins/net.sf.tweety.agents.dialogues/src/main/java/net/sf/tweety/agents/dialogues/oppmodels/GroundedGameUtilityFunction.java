@@ -98,7 +98,7 @@ public class GroundedGameUtilityFunction extends UtilityFunction<Argument,Extens
 	@Override
 	public double getUtility(DialogueTrace<Argument,Extension> trace) {		
 		DungTheory theory = new DungTheory(this.theory.getRestriction(trace.getElements()));
-		Extension groundedExtension = new GroundReasoner(theory).getExtensions().iterator().next();
+		Extension groundedExtension = new GroundReasoner().getExtensions(theory).iterator().next();
 		return this.getUtility(groundedExtension, trace);
 	}
 
@@ -110,7 +110,7 @@ public class GroundedGameUtilityFunction extends UtilityFunction<Argument,Extens
 		DungTheory theory = new DungTheory(this.theory.getRestriction(trace.getElements()));
 		theory.addAll(additionalArguments);
 		theory.addAllAttacks(additionalAttacks);
-		Extension groundedExtension = new GroundReasoner(theory).getExtensions().iterator().next();
+		Extension groundedExtension = new GroundReasoner().getExtensions(theory).iterator().next();
 		return this.getUtility(groundedExtension, trace);
 	}
 	

@@ -23,7 +23,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.sf.tweety.commons.BeliefSet;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
@@ -59,8 +58,8 @@ public class PlBeliefSet extends BeliefSet<PropositionalFormula> {
 	@Override
 	public Signature getSignature() {
 		PropositionalSignature signature = new PropositionalSignature();
-		for(Formula f: this)
-			signature.addAll(((PropositionalFormula)f).getAtoms());
+		for(PropositionalFormula f: formulas)
+			signature.addAll(f.getAtoms());
 		return signature;
 	}
 	
@@ -71,7 +70,7 @@ public class PlBeliefSet extends BeliefSet<PropositionalFormula> {
      */
 	public Conjunction toCnf(){
 		Conjunction conj = new Conjunction();
-		for(PropositionalFormula f: this)
+		for(PropositionalFormula f: formulas)
 			conj.add(f);
 		return conj.toCnf();
 	}
@@ -84,7 +83,7 @@ public class PlBeliefSet extends BeliefSet<PropositionalFormula> {
 	 */
 	public Collection<PlBeliefSet> getSyntaxComponents(){
 		List<PlBeliefSet> sets = new LinkedList<PlBeliefSet>();
-		for(PropositionalFormula f: this){
+		for(PropositionalFormula f: formulas){
 			PlBeliefSet s = new PlBeliefSet();
 			s.add(f);
 			sets.add(s);
@@ -96,7 +95,7 @@ public class PlBeliefSet extends BeliefSet<PropositionalFormula> {
 				for(int j = i+1; j< sets.size(); j++){
 					if(sets.get(i).getSignature().isOverlappingSignature(sets.get(j).getSignature())){
 						changed = true;
-						sets.get(i).addAll(sets.get(j));
+						sets.get(i).addAll(sets.get(j).formulas);
 						sets.remove(j);
 						break;
 					}					

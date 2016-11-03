@@ -27,7 +27,6 @@ import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.saf.syntax.ArgumentStructure;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 
@@ -41,7 +40,7 @@ import net.sf.tweety.logics.pl.syntax.Proposition;
  * 
  * @author Matthias Thimm
  */
-public class OutputReasoner extends Reasoner {
+public class OutputReasoner implements Reasoner<Argument, Proposition> {
 
 	/**
 	 * The output of this reasoner.
@@ -57,31 +56,31 @@ public class OutputReasoner extends Reasoner {
 	 * Creates a new reasoner for the given knowledge base.
 	 * @param beliefBase a knowledge base.
 	 */
-	public OutputReasoner(BeliefBase beliefBase, Class<? extends AbstractExtensionReasoner> reasonerClass) {
-		super(beliefBase);
-		if(!(beliefBase instanceof StructuredArgumentationFramework))
-			throw new IllegalArgumentException("Knowledge base of class StructuredArgumentationFramework expected.");
+	public OutputReasoner(AbstractExtensionReasoner reasoner) {
+		super();
+//		if(!(beliefBase instanceof StructuredArgumentationFramework))
+//			throw new IllegalArgumentException("Knowledge base of class StructuredArgumentationFramework expected.");
 		//instantiate new reasoner
-		Class<?>[] parameterTypes = new Class[1];
-		parameterTypes[0] = BeliefBase.class;		
-		Object[] parameters = new Object[1];
-		parameters[0] = ((StructuredArgumentationFramework)beliefBase).toDungTheory();
-		try{
-			this.reasoner = (AbstractExtensionReasoner) reasonerClass.getConstructor(parameterTypes).newInstance(parameters);
-		}catch(Exception e){
-			throw new IllegalArgumentException("Reasoner class is not valid.");
-		}			
+//		Class<?>[] parameterTypes = new Class[1];
+//		parameterTypes[0] = BeliefBase.class;		
+//		Object[] parameters = new Object[1];
+//		parameters[0] = ((StructuredArgumentationFramework)beliefBase).toDungTheory();
+//		try{
+			this.reasoner = reasoner;//(AbstractExtensionReasoner) reasonerClass.getConstructor(parameterTypes).newInstance(parameters);
+//		}catch(Exception e){
+//			throw new IllegalArgumentException("Reasoner class is not valid.");
+//		}			
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.Reasoner#query(net.sf.tweety.kr.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {		
-		if(!(query instanceof Proposition))
-			throw new IllegalArgumentException("Reasoning in structured argumentation frameworls is only defined for propositional queries.");
-		Answer answer = new Answer(this.getKnowledgeBase(),query);
-		boolean bAnswer = this.getOutput().contains(query);
+	public Answer query(BeliefBase<Argument> beliefBase, Proposition query) {		
+//		if(!(query instanceof Proposition))
+//			throw new IllegalArgumentException("Reasoning in structured argumentation frameworls is only defined for propositional queries.");
+		Answer answer = new Answer(beliefBase, query);
+		boolean bAnswer = this.getOutput(beliefBase).contains(query);
 		answer.setAnswer(bAnswer);
 		answer.appendText("The answer is: " + bAnswer);
 		return answer;
@@ -91,11 +90,11 @@ public class OutputReasoner extends Reasoner {
 	 * Returns the output this reasoner bases upon.
 	 * @return the output this reasoner bases upon.
 	 */
-	public Set<Proposition> getOutput(){
+	public Set<Proposition> getOutput(BeliefBase<Argument> beliefBase){
 		if(this.output == null){
-			Set<Extension> extensions = this.reasoner.getExtensions();			
+			Set<Extension> extensions = this.reasoner.getExtensions(beliefBase);			
 			this.output = new HashSet<Proposition>();			
-			for(Proposition p: ((StructuredArgumentationFramework)this.getKnowledgeBase()).getSignature()){
+			for(Proposition p: ((StructuredArgumentationFramework)beliefBase).getSignature()){
 				boolean isOutput = true;
 				for(Extension e: extensions){
 					boolean isInExtension = false;

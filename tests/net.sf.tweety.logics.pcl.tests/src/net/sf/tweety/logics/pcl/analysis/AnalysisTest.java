@@ -22,12 +22,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import net.sf.tweety.commons.ParserException;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
-import net.sf.tweety.logics.pcl.analysis.BalancedMachineShop;
-import net.sf.tweety.logics.pcl.analysis.DistanceMinimizationInconsistencyMeasure;
-import net.sf.tweety.logics.pcl.analysis.MeanDistanceCulpabilityMeasure;
-import net.sf.tweety.logics.pcl.analysis.PenalizingCreepingMachineShop;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 
 public class AnalysisTest {
@@ -37,7 +33,7 @@ public class AnalysisTest {
 		
 		PclBeliefSet beliefSet = (PclBeliefSet) new net.sf.tweety.logics.pcl.parser.PclParser().parseBeliefBaseFromFile("/Users/mthimm/Desktop/test.pcl");
 	
-		BeliefSetInconsistencyMeasure<ProbabilisticConditional> dist = new DistanceMinimizationInconsistencyMeasure();
+		InconsistencyMeasure<ProbabilisticConditional> dist = new DistanceMinimizationInconsistencyMeasure();
 		MeanDistanceCulpabilityMeasure cp = new MeanDistanceCulpabilityMeasure(false);
 		System.out.println(beliefSet);
 		System.out.println(dist.inconsistencyMeasure(beliefSet));

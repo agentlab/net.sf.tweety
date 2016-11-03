@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -44,7 +44,7 @@ import net.sf.tweety.math.term.Variable;
  * cf. [Potyka, 2014]. It accepts any real vector norm and the used solver can be configured.
  * @author Nico Potyka, Matthias Thimm
  */
-public class MinimalViolationInconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class MinimalViolationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/** The norm. */
 	private RealVectorNorm norm;

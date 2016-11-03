@@ -30,13 +30,14 @@ import org.junit.Test;
 import net.sf.tweety.commons.util.Pair;
 import net.sf.tweety.logics.pl.semantics.NicePossibleWorld;
 import net.sf.tweety.logics.pl.syntax.Proposition;
+import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 
 public class NicePossibleWorldTest {
 	
-	static private Set<Proposition> worldProps = new HashSet<Proposition>();
+	static private Set<PropositionalFormula> worldProps = new HashSet<>();
 	
-	static private Set<Proposition> signature = new HashSet<Proposition>();
+	static private Set<Proposition> signature = new HashSet<>();
 	
 	private NicePossibleWorld world;
 	

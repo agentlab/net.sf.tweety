@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.sf.tweety.commons.util.Pair;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pl.semantics.FuzzyInterpretation;
 import net.sf.tweety.logics.pl.syntax.Conjunction;
 import net.sf.tweety.logics.pl.syntax.Contradiction;
@@ -50,7 +50,7 @@ import net.sf.tweety.math.term.Variable;
  * @author Matthias Thimm
  *
  */
-public class FuzzyInconsistencyMeasure extends BeliefSetInconsistencyMeasure<PropositionalFormula>{
+public class FuzzyInconsistencyMeasure implements InconsistencyMeasure<PropositionalFormula>{
 
 	/** static constant for the T-version of the measure */
 	public static final byte TFUZZY_MEASURE = 0;

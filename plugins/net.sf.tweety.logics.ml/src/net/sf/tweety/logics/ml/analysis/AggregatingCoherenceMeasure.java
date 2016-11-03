@@ -66,7 +66,7 @@ public class AggregatingCoherenceMeasure extends AbstractCoherenceMeasure {
 				pObserved = 1d;
 			else pObserved = (Math.exp(f.getWeight())/(f.getFormula().getSatisfactionRatio()+Math.exp(f.getWeight())));
 			for(RelationalFormula groundFormula: f.getFormula().allGroundInstances(signature.getConstants())){
-				observed.add(reasoner.query(groundFormula).getAnswerDouble());
+				observed.add(reasoner.query(mln, groundFormula).getAnswerDouble());
 				intended.add(pObserved);
 			}			
 			distances.add(this.distance.distance(intended, observed));

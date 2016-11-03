@@ -63,7 +63,7 @@ public class DeductiveKnowledgeBase extends PlBeliefSet{
 		Set<DeductiveArgument> arguments = new HashSet<DeductiveArgument>();
 		SetTools<PropositionalFormula> setTools = new SetTools<PropositionalFormula>();
 		for(int card = 1; card <= this.size(); card++){
-			Set<Set<PropositionalFormula>> sets = setTools.subsets(this, card);
+			Set<Set<PropositionalFormula>> sets = setTools.subsets(formulas, card);
 			for(Set<PropositionalFormula> set: sets){
 				// test if we already have a subset in arguments
 				boolean properSet = true;
@@ -93,7 +93,7 @@ public class DeductiveKnowledgeBase extends PlBeliefSet{
 		Set<DeductiveArgument> arguments = new HashSet<DeductiveArgument>();
 		SetTools<PropositionalFormula> setTools = new SetTools<PropositionalFormula>();
 		for(int card = 1; card <= this.size(); card++){
-			Set<Set<PropositionalFormula>> sets = setTools.subsets(this, card);
+			Set<Set<PropositionalFormula>> sets = setTools.subsets(formulas, card);
 			for(Set<PropositionalFormula> set: sets){				
 				// check for consistency
 				PlBeliefSet candidate = new PlBeliefSet(set);

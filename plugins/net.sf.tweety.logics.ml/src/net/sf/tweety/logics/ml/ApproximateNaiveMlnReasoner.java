@@ -30,6 +30,7 @@ import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
 import net.sf.tweety.logics.fol.syntax.FOLAtom;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.ml.syntax.MlnFormula;
 import net.sf.tweety.logics.pcl.semantics.ProbabilityDistribution;
 import net.sf.tweety.math.probability.Probability;
 
@@ -89,8 +90,8 @@ public class ApproximateNaiveMlnReasoner extends AbstractMlnReasoner{
 	 * are the subset of the interpretations selected with maximum weight. Is -1
 	 * if all interpretations are used for the model. It has to be maxNumberOfSelectedInterpretations >= maxNumberOfInterpretationsForModel.
 	 */
-	public ApproximateNaiveMlnReasoner(BeliefBase beliefBase, FolSignature signature, long maxNumberOfSelectedInterpretations, long maxNumberOfInterpretationsForModel){
-		super(beliefBase, signature);		
+	public ApproximateNaiveMlnReasoner(FolSignature signature, long maxNumberOfSelectedInterpretations, long maxNumberOfInterpretationsForModel){
+		super(signature);		
 		this.maxNumberOfSelectedInterpretations = maxNumberOfSelectedInterpretations;
 		this.maxNumberOfInterpretationsForModel = maxNumberOfInterpretationsForModel;
 	}
@@ -106,16 +107,16 @@ public class ApproximateNaiveMlnReasoner extends AbstractMlnReasoner{
 	 * @see net.sf.tweety.logics.markovlogic.AbstractMlnReasoner#doQuery(net.sf.tweety.logics.firstorderlogic.syntax.FolFormula)
 	 */
 	@Override
-	protected double doQuery(FolFormula query) {
+	protected double doQuery(BeliefBase<MlnFormula> beliefBase, FolFormula query) {
 		if(this.prob == null)
-			this.prob = this.computeModel();
+			this.prob = this.computeModel(beliefBase);
 		return this.prob.probability(query).doubleValue();
 	}
 
 	/** Computes the model of the given MLN wrt. the optimization parameters.
 	 * @return the model of the given MLN wrt. the optimization parameters.
 	 */
-	private ProbabilityDistribution<HerbrandInterpretation> computeModel(){
+	private ProbabilityDistribution<HerbrandInterpretation> computeModel(BeliefBase<MlnFormula> beliefBase){
 		// Queue used for storing the interpretations with maximum weight
 		PriorityQueue<WeightedHerbrandInterpretation> pq = new PriorityQueue<WeightedHerbrandInterpretation>();
 		// The Herbrand base of the signature
@@ -133,7 +134,7 @@ public class ApproximateNaiveMlnReasoner extends AbstractMlnReasoner{
 			hInt = new HerbrandInterpretation(it.next());
 			whInt = new WeightedHerbrandInterpretation();
 			whInt.interpretation = hInt;
-			whInt.weight = this.computeWeight(hInt);
+			whInt.weight = this.computeWeight(beliefBase, hInt);
 			pq.add(whInt);
 			sumOfWeights += whInt.weight;			
 			while(pq.size() > this.maxNumberOfInterpretationsForModel){

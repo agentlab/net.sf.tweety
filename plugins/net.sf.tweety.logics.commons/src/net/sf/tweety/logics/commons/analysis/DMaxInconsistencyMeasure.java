@@ -36,7 +36,7 @@ import net.sf.tweety.commons.analysis.InterpretationDistance;
  *
  * @param <S> The type of formulas supported
  */
-public class DMaxInconsistencyMeasure<T extends Interpretation,S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class DMaxInconsistencyMeasure<T extends Interpretation,S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The distance used by this measure. */
 	private InterpretationDistance<T,S> distance;

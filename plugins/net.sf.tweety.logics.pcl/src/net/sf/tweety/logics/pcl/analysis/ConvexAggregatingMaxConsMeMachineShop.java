@@ -39,13 +39,13 @@ import net.sf.tweety.logics.pl.semantics.PossibleWorld;
  * 
  * @author Matthias Thimm
  */
-public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineShop {
+public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefBase) {
 		if(!(beliefBase instanceof PclBeliefSet))
 			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
 		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
@@ -64,7 +64,7 @@ public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineS
 				bs.add((ProbabilisticConditional) f);
 			// name the signature explicitly in order to ensure that the distributions
 			// are defined on the same set. 
-			distributions[cnt] = new DefaultMeReasoner(bs,beliefSet.getSignature()).getMeDistribution();			
+			distributions[cnt] = new DefaultMeReasoner().getMeDistribution(bs);			
 			cnt++;
 		}
 		double[] factors = new double[maxCons.size()];

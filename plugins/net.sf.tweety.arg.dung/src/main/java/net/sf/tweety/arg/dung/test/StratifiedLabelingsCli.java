@@ -46,17 +46,17 @@ public class StratifiedLabelingsCli {
 		DungParser parser = new DungParser();
 		DungTheory theory = (DungTheory) parser.parseBeliefBaseFromFile(args[0]);
 		
-		StratifiedLabelingReasoner reasoner = new StratifiedLabelingReasoner(theory,StratifiedLabelingsCli.getSemantics(args[1]), Semantics.CREDULOUS_INFERENCE);
+		StratifiedLabelingReasoner reasoner = new StratifiedLabelingReasoner(StratifiedLabelingsCli.getSemantics(args[1]), Semantics.CREDULOUS_INFERENCE);
 		
 		
 		System.out.println("Argumentation framework:\n" + theory);
 		
 		System.out.println("\nStratified " + args[1] + " labelings:");
 		
-		for(StratifiedLabeling labeling: reasoner.getLabelings()){
+		for(StratifiedLabeling labeling: reasoner.getLabelings(theory)){
 			System.out.println(labeling);			
 		}
-		if(reasoner.getLabelings().isEmpty())
+		if(reasoner.getLabelings(theory).isEmpty())
 			System.out.println("no labelings found.");
 		
 		

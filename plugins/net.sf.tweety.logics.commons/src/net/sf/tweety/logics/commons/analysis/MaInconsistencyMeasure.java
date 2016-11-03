@@ -32,7 +32,7 @@ import net.sf.tweety.commons.util.SetTools;
  * 
  * @author Matthias Thimm
  */
-public class MaInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class MaInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
 	private MusEnumerator<S> enumerator;

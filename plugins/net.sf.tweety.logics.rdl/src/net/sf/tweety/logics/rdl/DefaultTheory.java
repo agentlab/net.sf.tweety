@@ -36,7 +36,7 @@ import net.sf.tweety.logics.rdl.syntax.DefaultRule;
  * @author Matthias Thimm, Nils Geilen
  *
  */
-public class DefaultTheory implements BeliefBase{
+public class DefaultTheory implements BeliefBase<FolFormula> {
 
 	/** The set of facts (first-order formulas). */
 	private FolBeliefSet facts;
@@ -142,6 +142,22 @@ public class DefaultTheory implements BeliefBase{
 	 */
 	public FolBeliefSet getFacts(){
 		return facts;
+	}
+
+	@Override
+	public boolean add(FolFormula formula) {
+		return facts.add(formula);
+	}
+
+	@Override
+	public boolean remove(Object formula) {
+		return facts.remove(formula);
+	}
+
+	@Override
+	public void clear() {
+		facts.clear();
+		defaults.clear();
 	}
 	
 	

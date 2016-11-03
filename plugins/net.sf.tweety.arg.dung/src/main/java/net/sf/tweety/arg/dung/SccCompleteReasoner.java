@@ -47,16 +47,16 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public SccCompleteReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public SccCompleteReasoner(int inferenceType){
+		super(inferenceType);		
 	}
 	
 	/**
 	 * Creates a new complete reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public SccCompleteReasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public SccCompleteReasoner(){
+		super();		
 	}
 	
 	/**
@@ -69,14 +69,14 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 	 * @param undec all arguments currently undecided
 	 * @return the set of extensions
 	 */
-	private Set<Extension> computeExtensionsViaSccs(DungTheory theory, List<Collection<Argument>> sccs, int idx, Collection<Argument> in, Collection<Argument> out, Collection<Argument> undec){
+	private Set<Extension> computeExtensionsViaSccs(BeliefBase<Argument> beliefBase, DungTheory theory, List<Collection<Argument>> sccs, int idx, Collection<Argument> in, Collection<Argument> out, Collection<Argument> undec){
 		if(idx >= sccs.size()){
 			Set<Extension> result = new HashSet<Extension>();
 			result.add(new Extension(in));
 			return result;
 		}
 		// construct theory
-		DungTheory subTheory = (DungTheory) ((DungTheory)this.getKnowledgeBase()).getRestriction(sccs.get(idx));
+		DungTheory subTheory = (DungTheory) ((DungTheory) beliefBase).getRestriction(sccs.get(idx));
 		// remove all out arguments
 		subTheory.removeAll(out);
 		// for all arguments that are attacked by an already undecided argument outside the scc, add attack
@@ -88,7 +88,7 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 			if(theory.isAttacked(a, new Extension(undec)))				
 				subTheory.add(new Attack(aux,a));
 		// compute complete extensions of sub theory
-		Set<Extension> subExt = new CompleteReasoner(subTheory).computeExtensions();
+		Set<Extension> subExt = new CompleteReasoner().computeExtensions(subTheory);
 		Set<Extension> result = new HashSet<Extension>();
 		Collection<Argument> new_in, new_out, new_undec, attacked;
 		for(Extension ext: subExt){
@@ -103,7 +103,7 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 			for(Argument a: subTheory)
 				if(a != aux && !ext.contains(a) && !attacked.contains(a))
 					new_undec.add(a);			
-			result.addAll(this.computeExtensionsViaSccs(theory, sccs, idx+1, new_in, new_out, new_undec));
+			result.addAll(this.computeExtensionsViaSccs(beliefBase, theory, sccs, idx+1, new_in, new_out, new_undec));
 		}		
 		return result;
 	}
@@ -111,8 +111,8 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(){
-		DungTheory theory = (DungTheory) this.getKnowledgeBase();
+	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+		DungTheory theory = (DungTheory) beliefBase;
 		List<Collection<Argument>> sccs = new ArrayList<Collection<Argument>>(theory.getStronglyConnectedComponents());		
 		// order SCCs in a DAG
 		boolean[][] dag = new boolean[sccs.size()][sccs.size()];
@@ -144,15 +144,15 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 				}
 			}
 		}		
-		return this.computeExtensionsViaSccs(theory, sccs_ordered, 0, new HashSet<Argument>(), new HashSet<Argument>(), new HashSet<Argument>());
+		return this.computeExtensionsViaSccs(beliefBase, theory, sccs_ordered, 0, new HashSet<Argument>(), new HashSet<Argument>(), new HashSet<Argument>());
 	}
 		
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
-		return new CompleteReasoner(this.getKnowledgeBase()).getPropositionalCharacterisationBySemantics(in, out, undec);
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+		return new CompleteReasoner().getPropositionalCharacterisationBySemantics(beliefBase, in, out, undec);
 	}
 	
 }

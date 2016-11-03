@@ -65,7 +65,7 @@ public class InconsistencyMeasurementValueDistributionTest {
 		PlParser parser = new PlParser();
 		PlBeliefSet bs;
 		Map<Double,Integer> distr;
-		InconsistencyMeasure<BeliefSet<PropositionalFormula>> im;
+		InconsistencyMeasure<PropositionalFormula> im;
 		double v;
 		for(Measure m: InconsistencyMeasureFactory.Measure.values()){
 			//skip drastic

@@ -27,7 +27,7 @@ import net.sf.tweety.commons.Formula;
  * 
  * @author Matthias Thimm
  */
-public class MicInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class MicInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
 	private MusEnumerator<S> enumerator;

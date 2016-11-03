@@ -27,7 +27,6 @@ import net.sf.tweety.beliefdynamics.LeviMultipleBaseRevisionOperator;
 import net.sf.tweety.beliefdynamics.MultipleBaseRevisionOperator;
 import net.sf.tweety.beliefdynamics.kernels.KernelContractionOperator;
 import net.sf.tweety.beliefdynamics.kernels.RandomIncisionFunction;
-import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.pl.ClassicalEntailment;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -49,16 +48,16 @@ public class AbstractArgumentationTest {
 		theory.add(new Attack(c,b));
 		theory.add(new Attack(c,a));
 		
-		CompleteReasoner reasoner = new CompleteReasoner(theory);
+		CompleteReasoner reasoner = new CompleteReasoner();
 		
-		System.out.println(reasoner.getExtensions());
+		System.out.println(reasoner.getExtensions(theory));
 		System.out.println();
 				
-		PlBeliefSet beliefSet = reasoner.getPropositionalCharacterisation(); 
+		PlBeliefSet beliefSet = reasoner.getPropositionalCharacterisation(theory); 
 		System.out.println(beliefSet);
 		System.out.println();
 		for(PossibleWorld w: PossibleWorld.getAllPossibleWorlds((PropositionalSignature)beliefSet.getSignature())){
-			if(w.satisfies((BeliefBase)beliefSet))
+			if(w.satisfies(beliefSet))
 				System.out.println(w);
 		}
 		
@@ -71,7 +70,7 @@ public class AbstractArgumentationTest {
 		System.out.println(beliefSet2);
 		System.out.println();
 		for(PossibleWorld w: PossibleWorld.getAllPossibleWorlds((PropositionalSignature)beliefSet2.getSignature())){
-			if(w.satisfies((BeliefBase)beliefSet2))
+			if(w.satisfies(beliefSet2))
 				System.out.println(w);
 		}
 	

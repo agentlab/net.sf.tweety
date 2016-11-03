@@ -18,14 +18,11 @@
  */
 package net.sf.tweety.arg.social;
 
-import java.util.Collection;
-
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.social.semantics.SimpleProductSemantics;
 import net.sf.tweety.arg.social.semantics.SocialMapping;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 
 /**
@@ -37,7 +34,7 @@ import net.sf.tweety.commons.Reasoner;
  * @author Matthias Thimm
  *
  */
-public class IssReasoner extends Reasoner{
+public class IssReasoner implements Reasoner<Argument, Argument>{
 
 	/** The semantics used by this reasoner. */
 	private SimpleProductSemantics semantics;
@@ -54,10 +51,7 @@ public class IssReasoner extends Reasoner{
 	 * @param the simple product semantics used
 	 * @param the tolerance of the ISS algorithm. 
 	 */
-	public IssReasoner(BeliefBase beliefBase, SimpleProductSemantics semantics, double tolerance) {
-		super(beliefBase);
-		if(!(beliefBase instanceof SocialAbstractArgumentationFramework))
-			throw new IllegalArgumentException("Belief base of type 'SocialAbstractArgumentationFramework' expected.");
+	public IssReasoner(SimpleProductSemantics semantics, double tolerance) {
 		this.semantics = semantics;
 		this.tolerance = tolerance;
 	}
@@ -71,7 +65,7 @@ public class IssReasoner extends Reasoner{
 	 * @return the maximum-norm distance between the two social
 	 * mappings
 	 */
-	private double dist(SocialMapping<Double> sm1, SocialMapping<Double> sm2, Collection<Argument> args){
+	private double dist(SocialMapping<Double> sm1, SocialMapping<Double> sm2, BeliefBase<Argument> args){
 		double dist = 0;
 		for(Argument a: args){
 			if(Math.abs(sm1.get(a)-sm2.get(a)) > dist)
@@ -84,9 +78,9 @@ public class IssReasoner extends Reasoner{
 	 * Returns the social model computed by the ISS algorithm.
 	 * @return the social model computed by the ISS algorithm.
 	 */
-	public SocialMapping<Double> getSocialModel(){
+	public SocialMapping<Double> getSocialModel(BeliefBase<Argument> beliefBase){
 		if(this.mapping == null){
-			SocialAbstractArgumentationFramework saf = (SocialAbstractArgumentationFramework) this.getKnowledgeBase();
+			SocialAbstractArgumentationFramework saf = (SocialAbstractArgumentationFramework) beliefBase;
 			this.mapping = new SocialMapping<Double>(this.semantics);
 			for(Argument a: saf)
 				this.mapping.put(a, 0.5);
@@ -113,10 +107,11 @@ public class IssReasoner extends Reasoner{
 	 * @see net.sf.tweety.commons.Reasoner#query(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {
-		Answer answer = new Answer(this.getKnowledgeBase(), query);
-		answer.setAnswer(this.getSocialModel().satisfies(query));
-		answer.setAnswer(this.getSocialModel().get((Argument)query));
+	public Answer query(BeliefBase<Argument> beliefBase, Argument query) {
+		Answer answer = new Answer(beliefBase, query);
+		SocialMapping<Double> socialModel = this.getSocialModel(beliefBase);
+		answer.setAnswer(socialModel.satisfies(query));
+		answer.setAnswer(socialModel.get(query));
 		return answer;
 	}
 

@@ -20,8 +20,8 @@ package net.sf.tweety.logics.pl.analysis;
 
 import java.util.Collection;
 
-import net.sf.tweety.logics.commons.analysis.AbstractMusEnumerator;
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
+import net.sf.tweety.logics.commons.analysis.MusEnumerator;
 import net.sf.tweety.logics.pl.sat.PlMusEnumerator;
 import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
@@ -35,7 +35,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
-public class MusVarInconsistencyMeasure extends BeliefSetInconsistencyMeasure<PropositionalFormula>{
+public class MusVarInconsistencyMeasure implements InconsistencyMeasure<PropositionalFormula>{
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)
@@ -45,7 +45,7 @@ public class MusVarInconsistencyMeasure extends BeliefSetInconsistencyMeasure<Pr
 		// check empty set of formulas
 		if(formulas.isEmpty())
 			return 0d;		
-		AbstractMusEnumerator<PropositionalFormula> musEnum = PlMusEnumerator.getDefaultEnumerator();
+		MusEnumerator<PropositionalFormula> musEnum = PlMusEnumerator.getDefaultEnumerator();
 		Collection<Collection<PropositionalFormula>> muses = musEnum.minimalInconsistentSubsets(formulas);
 		PropositionalSignature allSig = new PropositionalSignature();
 		PropositionalSignature musSig = new PropositionalSignature();

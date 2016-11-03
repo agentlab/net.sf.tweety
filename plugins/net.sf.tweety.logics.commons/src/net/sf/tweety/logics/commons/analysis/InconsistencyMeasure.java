@@ -18,24 +18,34 @@
  */
 package net.sf.tweety.logics.commons.analysis;
 
-import net.sf.tweety.commons.BeliefBase;
+import java.util.Collection;
+import java.util.Collections;
+
+import net.sf.tweety.commons.Formula;
 
 /**
- * Classes implementing this interface represent inconsistency measures
- * on belief bases.
+ * Classes implementing this interface represent inconsistency measures on
+ * belief bases.
+ * @param <T>
+ *            The type of belief bases this measure supports.
  * 
  * @author Matthias Thimm
- * @param <T> The type of belief bases this measure supports.
  */
-public interface InconsistencyMeasure<T extends BeliefBase> {
+public interface InconsistencyMeasure<T extends Formula> {
 
 	/** Tolerance. */
 	public static final double MEASURE_TOLERANCE = 0.005;
-	
+
+	default Double inconsistencyMeasure(T formula) {
+		return inconsistencyMeasure(Collections.singleton(formula));
+	}
+
 	/**
-	 * This method measures the inconsistency of the given belief base.
-	 * @param beliefBase a belief base.
+	 * This method measures the inconsistency of the given set of formulas.
+	 * 
+	 * @param formulas
+	 *            a collection of formulas.
 	 * @return a Double indicating the degree of inconsistency.
 	 */
-	public Double inconsistencyMeasure(T beliefBase);	
+	Double inconsistencyMeasure(Collection<T> formulas);
 }

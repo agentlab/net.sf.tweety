@@ -21,8 +21,8 @@ package net.sf.tweety.logics.pcl.analysis;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.analysis.CulpabilityMeasure;
-import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.math.probability.Probability;
 
@@ -43,13 +43,13 @@ public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachi
 	/**
 	 * The culpability measure used by this machine shop.
 	 */
-	private CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure;
+	private CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure;
 		
 	/**
 	 * Creates a new creeping machine shop based on the given culpability measure.
 	 * @param culpabilityMeasure a culpability measure.
 	 */
-	public SmoothedPenalizingCreepingMachineShop(CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure){
+	public SmoothedPenalizingCreepingMachineShop(CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure){
 		this.culpabilityMeasure = culpabilityMeasure;
 	}
 	
@@ -57,7 +57,7 @@ public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachi
 	 * @see net.sf.tweety.logics.probabilisticconditionallogic.analysis.AbstractCreepingMachineShop#getValues(double, net.sf.tweety.logics.probabilisticconditionallogic.PclBeliefSet)
 	 */
 	@Override
-	protected Map<ProbabilisticConditional, Probability> getValues(double delta, PclBeliefSet beliefSet) {
+	protected Map<ProbabilisticConditional, Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet) {
 		Map<ProbabilisticConditional,Probability> values = new HashMap<ProbabilisticConditional,Probability>();
 		for(ProbabilisticConditional pc: beliefSet)
 			values.put(pc, new Probability(this.v(this.culpabilityMeasure.culpabilityMeasure(beliefSet, pc), pc.getUniformProbability().getValue(), pc.getProbability().getValue(), delta)));
@@ -84,7 +84,7 @@ public class SmoothedPenalizingCreepingMachineShop extends AbstractCreepingMachi
 	 * @see net.sf.tweety.logics.probabilisticconditionallogic.analysis.AbstractCreepingMachineShop#init(net.sf.tweety.logics.probabilisticconditionallogic.PclBeliefSet)
 	 */
 	@Override
-	protected void init(PclBeliefSet beliefSet){
+	protected void init(BeliefBase<ProbabilisticConditional> beliefSet){
 		// init scaling parameter
 		boolean first = true;
 		for(ProbabilisticConditional pc: beliefSet){

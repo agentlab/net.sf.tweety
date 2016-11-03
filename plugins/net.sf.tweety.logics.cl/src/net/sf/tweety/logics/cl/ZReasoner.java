@@ -62,7 +62,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * 
  * @author Katharina Diekmann
  */
-public class ZReasoner extends Reasoner {
+public class ZReasoner implements Reasoner<Conditional, Formula> {
 
 	/**
 	 * The ranking function for this knowledge base based
@@ -77,43 +77,46 @@ public class ZReasoner extends Reasoner {
 	
 	
 	
-	/**
-	 * Creates a new System Z reasoner for the given knowledge base.
-	 * @param beliefBase a knowledge base.
-	 */
-	public ZReasoner(BeliefBase beliefBase){
-		super(beliefBase);
-		
-		this.omega = PossibleWorld.getAllPossibleWorlds( (PropositionalSignature) beliefBase.getSignature() );
-		
-		if(!(beliefBase instanceof ClBeliefSet))
-			throw new IllegalArgumentException("Knowledge base of class ClBeliefSet expected."); 
-	}
+//	/**
+//	 * Creates a new System Z reasoner for the given knowledge base.
+//	 * @param beliefBase a knowledge base.
+//	 */
+//	public ZReasoner(BeliefBase beliefBase){
+//		super(beliefBase);
+//		
+//		this.omega = PossibleWorld.getAllPossibleWorlds( (PropositionalSignature) beliefBase.getSignature() );
+//		
+//		if(!(beliefBase instanceof ClBeliefSet))
+//			throw new IllegalArgumentException("Knowledge base of class ClBeliefSet expected."); 
+//	}
 
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.Reasoner#query(net.sf.tweety.logic.Formula)
 	 */
 	@Override
-	public Answer query(Formula query) {
-		if(!(query instanceof Conditional) && !(query instanceof PropositionalFormula))
-			throw new IllegalArgumentException("Reasoning in conditional logic is only defined for conditional and propositional queries.");
-		RankingFunction ocf = this.getOCF();
+	public Answer query(BeliefBase<Conditional> beliefBase, Formula query) {
+		this.omega = PossibleWorld.getAllPossibleWorlds( (PropositionalSignature) beliefBase.getSignature() );
+		
+//		if(!(query instanceof Conditional) && !(query instanceof PropositionalFormula))
+		RankingFunction ocf = this.getOCF(beliefBase);
 		if(query instanceof Conditional){
-			Answer answer = new Answer(this.getKnowledgeBase(),query);
-			boolean bAnswer = ocf.satisfies(query);
+			Conditional conditional = (Conditional) query;
+			Answer answer = new Answer(beliefBase, conditional);
+			boolean bAnswer = ocf.satisfies(conditional);
 			answer.setAnswer(bAnswer);
 			answer.appendText("The answer is: " + bAnswer);
 			return answer;			
 		}
 		if(query instanceof PropositionalFormula){
 			int rank = ocf.rank(query);
-			Answer answer = new Answer(this.getKnowledgeBase(),query);			
+			Answer answer = new Answer(beliefBase, query);			
 			answer.setAnswer(rank==0);
 			answer.appendText("The rank of the query is " + rank + " (the query is " + ((rank==0)?(""):("not ")) + "believed)");
 			return answer;
-		}				
-		return null;
+		}			
+		throw new IllegalArgumentException("Reasoning in conditional logic is only defined for conditional and propositional queries.");	
+//		return null;
 	}
 	
 	
@@ -121,9 +124,9 @@ public class ZReasoner extends Reasoner {
 	 * Returns the ranking function this reasoner bases on.
 	 * @return the ranking function this reasoner bases on.
 	 */
-	public RankingFunction getOCF(){
+	public RankingFunction getOCF(BeliefBase<Conditional> beliefBase){
 		if(this.ocf == null)
-			this.ocf = this.computeOCF();
+			this.ocf = this.computeOCF(beliefBase);
 		return this.ocf;
 	}
 	
@@ -132,14 +135,14 @@ public class ZReasoner extends Reasoner {
 	 * Returns a ranking functions based on penalty points of System Z.
 	 * @return A ranking function for this reasoner's knowledge base.
 	 */
-	private RankingFunction computeOCF(){
+	private RankingFunction computeOCF(BeliefBase<Conditional> beliefBase){
 		
-		RankingFunction ocf = new RankingFunction((PropositionalSignature) this.getKnowledgeBase().getSignature());
+		RankingFunction ocf = new RankingFunction((PropositionalSignature) beliefBase.getSignature());
 		
 		// Compute partitioning of the knowledge base
-		ArrayList<ClBeliefSet> tolerancePartition = partition( this.getKnowledgeBase() );
+		ArrayList<ClBeliefSet> tolerancePartition = partition( beliefBase );
 		if( tolerancePartition.isEmpty() ){
-			System.out.println("The belief base " + this.getKnowledgeBase() + " is not consistent.");
+			System.out.println("The belief base " + beliefBase + " is not consistent.");
 			return null;
 		}
 		
@@ -176,13 +179,13 @@ public class ZReasoner extends Reasoner {
 	 * @param Knowledge base that needs to be partitioned
 	 * @return ArrayList containing consistent belief sets
 	 */
-	private ArrayList<ClBeliefSet> partition( BeliefBase kb ){
+	private ArrayList<ClBeliefSet> partition(BeliefBase<Conditional> knowledgebase){
 		
 		// create empty set of belief bases for the partitioning
 		ArrayList<ClBeliefSet> tolerancePartition = new ArrayList<ClBeliefSet>();
 		
 		// Copy knowledge base to a second set from which we can remove tolerated conditionals
-		ClBeliefSet knowledgebase = (ClBeliefSet)this.getKnowledgeBase();
+//		ClBeliefSet knowledgebase = (ClBeliefSet)this.getKnowledgeBase();
 		
 		while( !knowledgebase.isEmpty() ){
 			
@@ -226,7 +229,7 @@ public class ZReasoner extends Reasoner {
 	 * @param ClBeliefSet kb - corresponding knowledge base 
 	 * @return true if the Conditional f is tolerated, false otherwise
 	 */
-	private boolean isTolerated( Conditional f, ClBeliefSet kb ) {
+	private boolean isTolerated( Conditional f, BeliefBase<Conditional> kb ) {
 		
 		boolean tolerated = true;
 		

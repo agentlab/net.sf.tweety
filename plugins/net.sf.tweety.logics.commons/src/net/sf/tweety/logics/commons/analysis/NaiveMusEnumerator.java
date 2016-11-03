@@ -31,16 +31,16 @@ import net.sf.tweety.commons.Formula;
  *
  * @param <S> The type of formulas.
  */
-public class NaiveMusEnumerator<S extends Formula> extends AbstractMusEnumerator<S>{
+public class NaiveMusEnumerator<S extends Formula> implements MusEnumerator<S>{
 	
 	/** Used for making consistency checks. */
-	private BeliefSetConsistencyTester<S> tester;
+	private ConsistencyTester<S> tester;
 	
 	/**
 	 * Creates a new naive MusEnumerator that uses the given consistency tester.
 	 * @param tester some consistency tester
 	 */
-	public NaiveMusEnumerator(BeliefSetConsistencyTester<S> tester){
+	public NaiveMusEnumerator(ConsistencyTester<S> tester){
 		this.tester = tester;
 	}
 	

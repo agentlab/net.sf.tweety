@@ -39,6 +39,7 @@ public class Program extends RuleSet<Rule> implements LogicProgram<DLPHead, DLPE
 	
 	/** kill warning */
 	private static final long serialVersionUID = -5078398905222624805L;
+	
 	/** The signature of the logic program */
 	private FolSignature signature;
 	

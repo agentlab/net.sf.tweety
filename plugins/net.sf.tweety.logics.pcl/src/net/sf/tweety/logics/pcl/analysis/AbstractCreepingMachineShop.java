@@ -34,7 +34,7 @@ import net.sf.tweety.math.probability.Probability;
  * @author Matthias Thimm
  *
  */
-public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineShop {
+public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -55,10 +55,10 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {		
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {		
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
 		if(tester.isConsistent(beliefSet))
 			return beliefSet;		
@@ -66,8 +66,8 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 		this.init(beliefSet);
 		double lowerBound = this.getLowerBound();
 		double upperBound = this.getUpperBound();		
-		PclBeliefSet lastConsistentBeliefSet = beliefSet;
-		PclBeliefSet newBeliefSet;
+		BeliefBase<ProbabilisticConditional> lastConsistentBeliefSet = beliefSet;
+		BeliefBase<ProbabilisticConditional> newBeliefSet;
 		int cnt = 0;
 		while(upperBound - lowerBound > AbstractCreepingMachineShop.PRECISION){
 			double delta = (upperBound + lowerBound)/2;
@@ -82,7 +82,7 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 			}
 			cnt++;
 			if(cnt >= AbstractCreepingMachineShop.MAX_ITERATIONS)
-				throw new RuntimeException("Consistent knowledge base cannot be found for '" + beliefBase + "'.");
+				throw new RuntimeException("Consistent knowledge base cannot be found for '" + beliefSet + "'.");
 		}
 		log.debug("Repair complete, final knowledge base: " + lastConsistentBeliefSet);
 		return lastConsistentBeliefSet;
@@ -93,7 +93,7 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 	 * to restore consistency. 
 	 * @param beliefSet a PCL belief set.
 	 */
-	protected void init(PclBeliefSet beliefSet){ }
+	protected void init(BeliefBase<ProbabilisticConditional> beliefSet){ }
 	
 	/**
 	 * Returns a modified belief base that replaces each conditionals probability
@@ -102,7 +102,7 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 	 * @param values a map from conditionals to probabilities.
 	 * @return a modified belief set.
 	 */
-	protected PclBeliefSet characteristicFunction(PclBeliefSet beliefSet, Map<ProbabilisticConditional,Probability> values){
+	protected BeliefBase<ProbabilisticConditional> characteristicFunction(BeliefBase<ProbabilisticConditional> beliefSet, Map<ProbabilisticConditional,Probability> values){
 		PclBeliefSet result = new PclBeliefSet();
 		for(ProbabilisticConditional pc: beliefSet)
 			result.add(new ProbabilisticConditional(pc,values.get(pc)));
@@ -115,7 +115,7 @@ public abstract class AbstractCreepingMachineShop implements BeliefBaseMachineSh
 	 * @param beliefSet the belief set.
 	 * @return a map mapping conditionals to probabilities.
 	 */
-	protected abstract Map<ProbabilisticConditional,Probability> getValues(double delta, PclBeliefSet beliefSet);
+	protected abstract Map<ProbabilisticConditional,Probability> getValues(double delta, BeliefBase<ProbabilisticConditional> beliefSet);
 	
 	/**
 	 * Retrieves the lower bound for delta for this machine shop.

@@ -26,7 +26,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure;
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 import net.sf.tweety.logics.pl.semantics.PossibleWorld;
@@ -50,7 +51,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
-public class DistanceMinimizationInconsistencyMeasure extends BeliefSetInconsistencyMeasure<ProbabilisticConditional> {
+public class DistanceMinimizationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/**
 	 * Logger.
@@ -94,7 +95,7 @@ public class DistanceMinimizationInconsistencyMeasure extends BeliefSetInconsist
 	 * @param pc a probabilistic conditional.
 	 * @return a double.
 	 */
-	public Double getDeviation(PclBeliefSet beliefSet, ProbabilisticConditional pc){
+	public Double getDeviation(BeliefBase<ProbabilisticConditional> beliefSet, ProbabilisticConditional pc){
 		if(!this.archiveDevs.containsKey(beliefSet))
 			this.inconsistencyMeasure(beliefSet);
 		return this.archiveDevs.get(beliefSet).get(pc);

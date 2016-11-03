@@ -21,7 +21,9 @@ package net.sf.tweety.logics.ml;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
+import net.sf.tweety.logics.ml.syntax.MlnFormula;
 
 /**
  * This MLN reasoner takes another MLN reasoner and performs several iterations
@@ -46,7 +48,7 @@ public class IteratingMlnReasoner extends AbstractMlnReasoner{
 	 * @param numberOfIterations the number of iterations for the reasoner 
 	 */
 	public IteratingMlnReasoner(AbstractMlnReasoner reasoner, long numberOfIterations){
-		super(reasoner.getKnowledgeBase(), reasoner.getSignature());
+		super(reasoner.getSignature());
 		this.reasoner = reasoner;
 		this.numberOfIterations = numberOfIterations;
 		this.archive = new HashMap<FolFormula,Double>();		
@@ -64,13 +66,13 @@ public class IteratingMlnReasoner extends AbstractMlnReasoner{
 	 * @see net.sf.tweety.logics.markovlogic.AbstractMlnReasoner#doQuery(net.sf.tweety.logics.firstorderlogic.syntax.FolFormula)
 	 */
 	@Override
-	protected double doQuery(FolFormula query) {
+	protected double doQuery(BeliefBase<MlnFormula> beliefBase, FolFormula query) {
 		if(this.archive.containsKey(query))
 			return this.archive.get(query);
 		double resultSum = 0;
 		for(long i = 0; i < this.numberOfIterations; i++){
 			this.reasoner.reset();
-			resultSum += this.reasoner.doQuery(query);
+			resultSum += this.reasoner.doQuery(beliefBase, query);
 		}
 		double result = resultSum/this.numberOfIterations;
 		this.archive.put(query, result);

@@ -25,7 +25,6 @@ import java.util.Set;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Contradiction;
 import net.sf.tweety.logics.pl.syntax.Proposition;
@@ -46,26 +45,26 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	 * @param beliefBase a knowledge base.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public StableReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase, inferenceType);		
+	public StableReasoner(int inferenceType){
+		super(inferenceType);		
 	}
 
 	/**
 	 * Creates a new stable reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public StableReasoner(BeliefBase beliefBase){
-		super(beliefBase);		
+	public StableReasoner(){
+		super();		
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	protected Set<Extension> computeExtensions(){	
+	protected Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){	
 		Extension ext = new Extension();
-		for(Formula f: ((DungTheory)this.getKnowledgeBase()))
-			ext.add((Argument) f);
-		return this.getStableExtensions(ext);
+		for(Argument f: beliefBase)
+			ext.add(f);
+		return this.getStableExtensions(beliefBase, ext);
 	}
 	
 	/**
@@ -73,11 +72,11 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	 * @param arguments a set of arguments to be refined to yield a stable extension
 	 * @return the set of stable extensions that are a subset of <source>arguments</source>
 	 */
-	private Set<Extension> getStableExtensions(Extension ext){
-		Set<Extension> completeExtensions = new SccCompleteReasoner((DungTheory)this.getKnowledgeBase()).getExtensions();
+	private Set<Extension> getStableExtensions(BeliefBase<Argument> beliefBase, Extension ext){
+		Set<Extension> completeExtensions = new SccCompleteReasoner().getExtensions(beliefBase);
 		Set<Extension> result = new HashSet<Extension>();
 		for(Extension e: completeExtensions)
-			if(((DungTheory)this.getKnowledgeBase()).isAttackingAllOtherArguments(e))
+			if(((DungTheory) beliefBase).isAttackingAllOtherArguments(e))
 				result.add(e);
 		return result;	
 	}
@@ -86,8 +85,8 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
-		DungTheory theory = (DungTheory) this.getKnowledgeBase();
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+		DungTheory theory = (DungTheory) beliefBase;
 		PlBeliefSet beliefSet = new PlBeliefSet();
 		// an argument is in iff all attackers are out, and
 		// no argument is undecided

@@ -34,7 +34,7 @@ import net.sf.tweety.commons.Formula;
  *
  * @param <S> The type of formulas
  */
-public class NConsInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class NConsInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
 	private MusEnumerator<S> enumerator;

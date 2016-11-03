@@ -19,8 +19,7 @@
 package net.sf.tweety.beliefdynamics;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collections;
 
 import net.sf.tweety.commons.Formula;
 
@@ -39,9 +38,7 @@ public abstract class MultipleBaseRevisionOperator<T extends Formula> implements
 	 * @see net.sf.tweety.beliefdynamics.BaseRevisionOperator#revise(java.util.Collection, net.sf.tweety.Formula)
 	 */
 	public Collection<T> revise(Collection<T> base, T formula) {
-		Set<T> formulas = new HashSet<T>();
-		formulas.add(formula);
-		return this.revise(base, formulas);
+		return this.revise(base, Collections.singleton(formula));
 	}
 
 	/**

@@ -63,9 +63,9 @@ public class SccCompleteReasonerTest {
 		theory.add(new Attack(h,i));
 		
 		
-		SccCompleteReasoner reasoner = new SccCompleteReasoner(theory);
+		SccCompleteReasoner reasoner = new SccCompleteReasoner();
 		
-		System.out.println(reasoner.getExtensions());
+		System.out.println(reasoner.getExtensions(theory));
 		
 	}
 }

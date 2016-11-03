@@ -24,10 +24,10 @@ import java.io.Writer;
 import java.util.Collection;
 import java.util.Iterator;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Functor;
 import net.sf.tweety.logics.commons.syntax.Variable;
-import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.AssociativeFOLFormula;
 import net.sf.tweety.logics.fol.syntax.Conjunction;
 import net.sf.tweety.logics.fol.syntax.Contradiction;
@@ -90,7 +90,7 @@ public class TptpWriter implements FolWriter {
 	 * (non-Javadoc)
 	 * @see net.sf.tweety.logics.fol.writer.FolWriter#printBase(net.sf.tweety.logics.fol.FolBeliefSet)
 	 */
-	public void printBase(FolBeliefSet b) throws IOException {
+	public void printBase(BeliefBase<FolFormula> b) throws IOException {
 			// print types
 			FolSignature sig = (FolSignature) b.getSignature();
 			for (Constant c : sig.getConstants())

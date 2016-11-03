@@ -73,7 +73,7 @@ public class CActionDescription
   public Signature getSignature()
   {
     ActionSignature sig = new ActionSignature();
-    for ( CLaw r : this )
+    for ( CLaw r : formulas )
       sig.addAll( r.getFormulas() );
     return sig;
   }
@@ -87,7 +87,7 @@ public class CActionDescription
   public CActionDescription ground()
   {
     Set< CLaw > laws = new HashSet< CLaw >();
-    for ( CLaw law : this ) {
+    for ( CLaw law : formulas ) {
       laws.addAll( law.getAllGrounded() );
     }
     return new CActionDescription( laws );
@@ -105,7 +105,7 @@ public class CActionDescription
     throws IllegalStateException
   {
     Set< CLaw > laws = new HashSet< CLaw >();
-    for ( CLaw law : this ) {
+    for ( CLaw law : formulas ) {
       laws.addAll( law.toDefinite() );
     }
     return new CActionDescription( laws );
@@ -118,7 +118,7 @@ public class CActionDescription
    */
   public boolean isGround()
   {
-    for ( CLaw law : this )
+    for ( CLaw law : formulas )
       if ( !law.isGround() )
         return false;
     return true;
@@ -131,7 +131,7 @@ public class CActionDescription
    */
   public boolean isDefinite()
   {
-    for ( CLaw law : this )
+    for ( CLaw law : formulas )
       if ( !law.isDefinite() )
         return false;
     return true;
@@ -145,7 +145,7 @@ public class CActionDescription
   public Set< StaticLaw > getStaticLaws()
   {
     Set< StaticLaw > result = new HashSet< StaticLaw >();
-    for ( CLaw r : this ) {
+    for ( CLaw r : formulas ) {
       if ( r instanceof StaticLaw )
         result.add( (StaticLaw) r );
     }
@@ -160,7 +160,7 @@ public class CActionDescription
   public Set< DynamicLaw > getDynamicLaws()
   {
     Set< DynamicLaw > result = new HashSet< DynamicLaw >();
-    for ( CLaw r : this ) {
+    for ( CLaw r : formulas ) {
       if ( r instanceof DynamicLaw )
         result.add( (DynamicLaw) r );
     }

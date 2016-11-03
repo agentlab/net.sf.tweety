@@ -59,9 +59,9 @@ public class DeductiveTest {
 		
 		System.out.println(kb);
 		
-		Reasoner reasoner = new SimpleReasoner(kb, new ClassicalCategorizer(), new SimpleAccumulator());
+		Reasoner<PropositionalFormula, PropositionalFormula> reasoner = new SimpleReasoner(new ClassicalCategorizer(), new SimpleAccumulator());
 		
-		System.out.println(reasoner.query(parser.parseFormula("v && h")).getAnswerDouble());
+		System.out.println(reasoner.query(kb, (PropositionalFormula) parser.parseFormula("v && h")).getAnswerDouble());
 		
 	}
 	

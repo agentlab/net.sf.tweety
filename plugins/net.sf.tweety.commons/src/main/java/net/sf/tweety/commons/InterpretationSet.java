@@ -32,18 +32,18 @@ import java.util.Set;
  * 
  * @author Matthias Thimm
  */
-public abstract class InterpretationSet<T extends Formula> implements Interpretation, Collection<T> {
+public abstract class InterpretationSet<T extends Formula> implements Interpretation<T>, Collection<T> {
 
 	/**
 	 * The set of formulas of this interpretation.
 	 */
-	private Set<T> formulas;
+	private final Set<T> formulas = new HashSet<T>();
 
 	/**
 	 * Creates a new empty interpretation.
 	 */
 	public InterpretationSet(){
-		this(new HashSet<T>());
+//		this(new HashSet<T>());
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public abstract class InterpretationSet<T extends Formula> implements Interpreta
 	 * @param formulas a collection of formulas
 	 */
 	public InterpretationSet(Collection<? extends T> formulas){
-		this.formulas = new HashSet<T>(formulas);
+		this.formulas.addAll(formulas);// = new HashSet<T>(formulas);
 	}
 	
 	/* (non-Javadoc)

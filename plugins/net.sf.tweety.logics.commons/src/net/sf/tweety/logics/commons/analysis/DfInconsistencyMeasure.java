@@ -34,7 +34,7 @@ import net.sf.tweety.math.func.SimpleFunction;
  *
  * @param <S> The specific type of formulas
  */
-public class DfInconsistencyMeasure<S extends Formula> extends BeliefSetInconsistencyMeasure<S> {
+public class DfInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
 	private MusEnumerator<S> enumerator;

@@ -116,8 +116,12 @@ public class ContensionInconsistencyMeasurementProcess extends InconsistencyMeas
 			// adjust candidate
 			if(!w.satisfies(formula)){
 				PossibleWorld pw = (PossibleWorld)this.witnessProvider.getWitness(formula);
-				for(Proposition p: pw)
-					if(w.get(p).equals(TruthValue.FALSE)) w.set(p, TruthValue.BOTH);
+				for(PropositionalFormula p: pw){
+					if (p instanceof Proposition){
+						Proposition p2 = (Proposition) p;
+						if(w.get(p2).equals(TruthValue.FALSE)) w.set(p2, TruthValue.BOTH);
+					}
+				}
 				PropositionalSignature sig2 = new PropositionalSignature(formula.getSignature());
 				sig2.removeAll(pw);
 				for(Proposition p: sig2)

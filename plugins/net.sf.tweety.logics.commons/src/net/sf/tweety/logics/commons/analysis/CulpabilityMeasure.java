@@ -18,7 +18,7 @@
  */
 package net.sf.tweety.logics.commons.analysis;
 
-import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 
 /**
@@ -28,7 +28,7 @@ import net.sf.tweety.commons.Formula;
  * 
  * @author Matthias Thimm
  */
-public interface CulpabilityMeasure<S extends Formula, T extends BeliefSet<S>> {
+public interface CulpabilityMeasure<S extends Formula> {
 	
 	/**
 	 * Returns the degree of responsibility of the given formula to cause
@@ -39,5 +39,5 @@ public interface CulpabilityMeasure<S extends Formula, T extends BeliefSet<S>> {
 	 * @return a Double indicating the degree of inconsistency (NOTE: if the given formula
 	 * does not appear in the given belief set the degree is defined to be zero).
 	 */
-	public Double culpabilityMeasure(T beliefSet, S conditional);
+	public Double culpabilityMeasure(BeliefBase<S> beliefSet, S conditional);
 }

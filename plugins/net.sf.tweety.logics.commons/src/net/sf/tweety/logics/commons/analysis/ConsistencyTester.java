@@ -18,21 +18,33 @@
  */
 package net.sf.tweety.logics.commons.analysis;
 
-import net.sf.tweety.commons.BeliefBase;
+import java.util.Collection;
+import java.util.Collections;
+
+import net.sf.tweety.commons.Formula;
 
 /**
- * Classes implementing this interface are capable of testing
- * whether a given belief base is consistent.
+ * Classes extending this abstract class are capable of testing
+ * whether a given belief set is consistent. 
  * 
  * @author Matthias Thimm
  * @author Tim Janus
  */
-public interface ConsistencyTester<T extends BeliefBase> {
+public interface ConsistencyTester<S extends Formula> {
+
+	/**
+	 * Checks whether the given collection of formulas is consistent.
+	 * @param formulas a collection of formulas.
+	 * @return "true" iff the given collection of formulas is consistent.
+	 */
+	boolean isConsistent(Collection<S> formulas);
 	
 	/**
-	 * Checks whether the given belief base is consistent.
-	 * @param beliefBase a belief base.
-	 * @return "true" iff the given belief base is consistent.
+	 * Checks whether the given formula is consistent.
+	 * @param formula a formulas.
+	 * @return "true" iff the formula is consistent.
 	 */
-	boolean isConsistent(T beliefBase);
+	default boolean isConsistent(S formula){
+		return isConsistent(Collections.singleton(formula));
+	}
 }

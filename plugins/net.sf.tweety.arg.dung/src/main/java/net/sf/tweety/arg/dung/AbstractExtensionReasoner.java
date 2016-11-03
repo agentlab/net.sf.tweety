@@ -27,7 +27,6 @@ import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Proposition;
@@ -38,7 +37,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * This class models an abstract extension reasoner used for Dung theories.
  * @author Matthias Thimm
  */
-public abstract class AbstractExtensionReasoner extends Reasoner {
+public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Argument> {
 	
 	/**
 	 * The extensions this reasoner bases upon.
@@ -56,10 +55,10 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	 * @param beliefBase The knowledge base for this reasoner.
 	 * @param inferenceType The inference type for this reasoner.
 	 */
-	public AbstractExtensionReasoner(BeliefBase beliefBase, int inferenceType){
-		super(beliefBase);
-		if(!(beliefBase instanceof DungTheory))
-			throw new IllegalArgumentException("Knowledge base of class DungTheory expected.");
+	public AbstractExtensionReasoner(int inferenceType){
+		super();
+//		if(!(beliefBase instanceof DungTheory))
+//			throw new IllegalArgumentException("Knowledge base of class DungTheory expected.");
 		if(inferenceType != Semantics.CREDULOUS_INFERENCE && inferenceType != Semantics.SCEPTICAL_INFERENCE)
 			throw new IllegalArgumentException("Inference type must be either sceptical or credulous.");
 		this.inferenceType = inferenceType;
@@ -69,8 +68,8 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	 * Creates a new reasoner for the given knowledge base using sceptical inference.
 	 * @param beliefBase The knowledge base for this reasoner.
 	 */
-	public AbstractExtensionReasoner(BeliefBase beliefBase){
-		this(beliefBase,Semantics.SCEPTICAL_INFERENCE);		
+	public AbstractExtensionReasoner(){
+		this(Semantics.SCEPTICAL_INFERENCE);		
 	}	
 	
 	/**
@@ -80,18 +79,18 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	 * @param inferenceType an inference type
 	 * @return a reasoner for the given Dung theory, inference type, and semantics
 	 */
-	public static AbstractExtensionReasoner getReasonerForSemantics(BeliefBase beliefBase, int semantics, int inferenceType){
+	public static AbstractExtensionReasoner getReasonerForSemantics(int semantics, int inferenceType){
 		switch(semantics){
-			case Semantics.COMPLETE_SEMANTICS: return new CompleteReasoner(beliefBase, inferenceType);
-			case Semantics.GROUNDED_SEMANTICS: return new GroundReasoner(beliefBase, inferenceType);
-			case Semantics.PREFERRED_SEMANTICS: return new PreferredReasoner(beliefBase, inferenceType);
-			case Semantics.STABLE_SEMANTICS: return new StableReasoner(beliefBase, inferenceType);
-			case Semantics.ADMISSIBLE_SEMANTICS: return new AdmissibleReasoner(beliefBase, inferenceType);
-			case Semantics.CONFLICTFREE_SEMANTICS: return new ConflictFreeReasoner(beliefBase, inferenceType);
-			case Semantics.SEMISTABLE_SEMANTICS: return new SemiStableReasoner(beliefBase, inferenceType);
-			case Semantics.IDEAL_SEMANTICS: return new IdealReasoner(beliefBase, inferenceType);
-			case Semantics.STAGE_SEMANTICS: return new StageReasoner(beliefBase, inferenceType);
-			case Semantics.CF2_SEMANTICS: return new CF2Reasoner(beliefBase, inferenceType);
+			case Semantics.COMPLETE_SEMANTICS: return new CompleteReasoner(inferenceType);
+			case Semantics.GROUNDED_SEMANTICS: return new GroundReasoner(inferenceType);
+			case Semantics.PREFERRED_SEMANTICS: return new PreferredReasoner(inferenceType);
+			case Semantics.STABLE_SEMANTICS: return new StableReasoner(inferenceType);
+			case Semantics.ADMISSIBLE_SEMANTICS: return new AdmissibleReasoner(inferenceType);
+			case Semantics.CONFLICTFREE_SEMANTICS: return new ConflictFreeReasoner(inferenceType);
+			case Semantics.SEMISTABLE_SEMANTICS: return new SemiStableReasoner(inferenceType);
+			case Semantics.IDEAL_SEMANTICS: return new IdealReasoner(inferenceType);
+			case Semantics.STAGE_SEMANTICS: return new StageReasoner(inferenceType);
+			case Semantics.CF2_SEMANTICS: return new CF2Reasoner(inferenceType);
 		}
 		throw new IllegalArgumentException("Unknown semantics.");
 	}
@@ -99,13 +98,13 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.Reasoner#query(net.sf.tweety.kr.Formula)
 	 */
-	public Answer query(Formula query){
-		if(!(query instanceof Argument))
-			throw new IllegalArgumentException("Formula of class argument expected");
-		Argument arg = (Argument) query;
+	public Answer query(BeliefBase<Argument> beliefBase, Argument arg){
+//		if(!(query instanceof Argument))
+//			throw new IllegalArgumentException("Formula of class argument expected");
+//		Argument arg = (Argument) query;
 		if(this.inferenceType == Semantics.SCEPTICAL_INFERENCE){
-			Answer answer = new Answer(this.getKnowledgeBase(),arg);
-			for(Extension e: this.getExtensions()){
+			Answer answer = new Answer(beliefBase, arg);
+			for(Extension e: this.getExtensions(beliefBase)){
 				if(!e.contains(arg)){
 					answer.setAnswer(false);
 					answer.appendText("The answer is: false");
@@ -117,8 +116,8 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 			return answer;
 		}
 		// so its credulous semantics
-		Answer answer = new Answer(this.getKnowledgeBase(),arg);
-		for(Extension e: this.getExtensions()){
+		Answer answer = new Answer(beliefBase, arg);
+		for(Extension e: this.getExtensions(beliefBase)){
 			if(e.contains(arg)){
 				answer.setAnswer(true);
 				answer.appendText("The answer is: true");
@@ -142,12 +141,12 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	 * add the constraint in_A => out_B1 ^ ... ^ out_BN.    
 	 * @return a propositional belief set.
 	 */
-	public PlBeliefSet getPropositionalCharacterisation(){
+	public PlBeliefSet getPropositionalCharacterisation(BeliefBase<Argument> beliefBase){
 		Map<Argument,Proposition> in = new HashMap<Argument,Proposition>();
 		Map<Argument,Proposition> out = new HashMap<Argument,Proposition>();
 		Map<Argument,Proposition> undec = new HashMap<Argument,Proposition>();
 		PlBeliefSet beliefSet = new PlBeliefSet();
-		for(Argument a: (DungTheory) this.getKnowledgeBase()){
+		for(Argument a: beliefBase){
 			in.put(a, new Proposition("in_" + a.getName()));
 			out.put(a, new Proposition("out_" + a.getName()));
 			undec.put(a, new Proposition("undec_" + a.getName()));
@@ -157,7 +156,7 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 			beliefSet.add((PropositionalFormula)in.get(a).combineWithAnd(undec.get(a)).complement());
 			beliefSet.add((PropositionalFormula)out.get(a).combineWithAnd(undec.get(a)).complement());
 		}
-		beliefSet.addAll(this.getPropositionalCharacterisationBySemantics(in,out,undec));
+		beliefSet.addAll(this.getPropositionalCharacterisationBySemantics(beliefBase, in, out, undec));
 		return beliefSet;
 	}
 	
@@ -170,15 +169,15 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	 * @return the semantic-specific propositional characterization of the underlying Dung
 	 * theory, see <code>getPropositionalCharacterisation</code>.
 	 */
-	protected abstract PlBeliefSet getPropositionalCharacterisationBySemantics(Map<Argument,Proposition> in, Map<Argument,Proposition> out, Map<Argument,Proposition> undec);
+	protected abstract PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec);
 	
 	/**
 	 * Returns the extensions this reasoner bases upon.
 	 * @return the extensions this reasoner bases upon.
 	 */
-	public Set<Extension> getExtensions(){
+	public Set<Extension> getExtensions(BeliefBase<Argument> beliefBase){
 		if(this.extensions == null)
-			this.extensions = this.computeExtensions();
+			this.extensions = this.computeExtensions(beliefBase);
 		return this.extensions;
 	}
 	
@@ -194,5 +193,5 @@ public abstract class AbstractExtensionReasoner extends Reasoner {
 	 * Computes the extensions this reasoner bases upon.
 	 * @return A set of extensions.
 	 */
-	protected abstract Set<Extension> computeExtensions();
+	protected abstract Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase);
 }

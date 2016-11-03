@@ -49,11 +49,11 @@ public class AnalysisTest {
 		
 		for(int i = 0; i < 40; i++){
 			DungTheory theory = gen.generate();
-			reasoner = new StableReasoner(theory);			
+			reasoner = new StableReasoner();			
 			
 			ComplexNumber[] eigenvalues = GraphUtil.eigenvalues(theory);
 			System.out.print(theory + "\t" +
-					reasoner.getExtensions().size() + "\t" +
+					reasoner.getExtensions(theory).size() + "\t" +
 					eigenvalues.length + "\t");			 
 			for(ComplexNumber n: eigenvalues){
 				System.out.print(n +"\t");
@@ -71,8 +71,8 @@ public class AnalysisTest {
 			DungTheory theory = gen.generate();
 			// skip theories with selfloops for now
 			if(theory.hasSelfLoops()) continue;
-			reasoner = new GroundReasoner(theory);
-			Labeling lab = new Labeling(theory,reasoner.getExtensions().iterator().next());
+			reasoner = new GroundReasoner();
+			Labeling lab = new Labeling(theory,reasoner.getExtensions(theory).iterator().next());
 			
 			DungTheory invertedTheory = theory;//.getComplementGraph(Graph.IGNORE_SELFLOOPS);
 			//System.out.println(theory + "\t\t" + invertedTheory);
@@ -111,8 +111,8 @@ public class AnalysisTest {
 				prev = next;
 			}
 			
-			reasoner = new GroundReasoner(theory);
-			Labeling lab = new Labeling(theory,reasoner.getExtensions().iterator().next());
+			reasoner = new GroundReasoner();
+			Labeling lab = new Labeling(theory,reasoner.getExtensions(theory).iterator().next());
 			
 			DungTheory invertedTheory = theory.getComplementGraph(Graph.IGNORE_SELFLOOPS);
 			System.out.println(theory + "\t\t" + invertedTheory);
@@ -189,8 +189,8 @@ public class AnalysisTest {
 			DungTheory theory = gen.generate();
 			// skip theories with selfloops for now
 			if(theory.hasSelfLoops()) continue;
-			reasoner = new GroundReasoner(theory);
-			Labeling lab = new Labeling(theory,reasoner.getExtensions().iterator().next());
+			reasoner = new GroundReasoner();
+			Labeling lab = new Labeling(theory,reasoner.getExtensions(theory).iterator().next());
 			System.out.println(theory);
 			for(Argument arg: theory){
 				System.out.print(arg + " " + lab.get(arg) + " " + AnalysisTest.pageRankInverted(theory, arg, 0.99, 0.01) + "\t");
@@ -264,8 +264,8 @@ public class AnalysisTest {
 			DungTheory theory = gen.generate();
 			// skip theories with selfloops for now
 			if(theory.hasSelfLoops()) continue;
-			reasoner = new GroundReasoner(theory);
-			Labeling lab = new Labeling(theory,reasoner.getExtensions().iterator().next());
+			reasoner = new GroundReasoner();
+			Labeling lab = new Labeling(theory,reasoner.getExtensions(theory).iterator().next());
 			System.out.println(theory);
 			for(Argument arg: theory){
 				System.out.print(arg + " " + lab.get(arg) + " " + AnalysisTest.hitsRankInverted(theory, arg, 0.01, true) + " " + AnalysisTest.hitsRankInverted(theory, arg, 0.01, false) + "\t");

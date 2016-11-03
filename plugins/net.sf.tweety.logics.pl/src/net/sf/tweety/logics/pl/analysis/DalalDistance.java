@@ -39,8 +39,8 @@ public class DalalDistance extends PossibleWorldDistance {
 	public double distance(PossibleWorld a, PossibleWorld b) {
 		int n = 0;
 		PropositionalSignature sig = new PropositionalSignature();
-		sig.addAll(a);
-		sig.addAll(b);
+		a.stream().filter(p -> p instanceof Proposition).map(p -> (Proposition)p).forEach(sig::add);
+		b.stream().filter(p -> p instanceof Proposition).map(p -> (Proposition)p).forEach(sig::add);
 		for(Proposition p: sig){
 			if(a.contains(p) && !b.contains(p))
 				n++;

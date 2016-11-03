@@ -65,7 +65,7 @@ public class SActionQuerySet
   public Signature getSignature()
   {
     ActionSignature sig = new ActionSignature();
-    for ( SActionQuery q : this )
+    for ( SActionQuery q : formulas )
       sig.add( q.getActionSignature() );
     return sig;
   }
@@ -80,7 +80,7 @@ public class SActionQuerySet
   public SActionQuerySet ground()
   {
     Set< SActionQuery > queries = new HashSet< SActionQuery >();
-    for ( SActionQuery query : this ) {
+    for ( SActionQuery query : formulas ) {
       queries.addAll( query.getAllGrounded() );
     }
     return new SActionQuerySet( queries );
@@ -97,7 +97,7 @@ public class SActionQuerySet
     Conjunction result = new Conjunction();
     Set< GroundingRequirement > requirements =
       new HashSet< GroundingRequirement >();
-    for ( SActionQuery q : this ) {
+    for ( SActionQuery q : formulas ) {
       result.add( q.getFormula() );
       requirements.addAll( q.getGroundingRequirements() );
     }

@@ -47,7 +47,7 @@ import net.sf.tweety.math.term.Variable;
  * This class implements a consistency restorer using balanced distance minimization, see [Diss, Thimm] for details.
  * @author Matthias Thimm
  */
-public class BalancedMachineShop implements BeliefBaseMachineShop {
+public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/** The precision for comparing culpability values. */
 	public static final double PRECISIONCULP = 0.01;
@@ -55,9 +55,9 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 	public static final double PRECISIONOPT = 0.002;
 	
 	/** The culpability measure used by this machine shop. */
-	private CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure;
+	private CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure;
 	
-	public BalancedMachineShop(CulpabilityMeasure<ProbabilisticConditional,PclBeliefSet> culpabilityMeasure){
+	public BalancedMachineShop(CulpabilityMeasure<ProbabilisticConditional> culpabilityMeasure){
 		this.culpabilityMeasure = culpabilityMeasure;
 	}
 	
@@ -65,10 +65,10 @@ public class BalancedMachineShop implements BeliefBaseMachineShop {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		PclDefaultConsistencyTester tester = new PclDefaultConsistencyTester();
 		if(tester.isConsistent(beliefSet))
 			return beliefSet;		

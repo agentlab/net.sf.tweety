@@ -33,7 +33,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  * @author Matthias Thimm
  */
-public class GeneralizedMeMachineShop implements BeliefBaseMachineShop {
+public class GeneralizedMeMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 	
 	/** Parameter p for p-norm. */
 	private int p;
@@ -52,13 +52,14 @@ public class GeneralizedMeMachineShop implements BeliefBaseMachineShop {
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */
 	@Override
-	public BeliefBase repair(BeliefBase beliefBase) {
-		if(!(beliefBase instanceof PclBeliefSet))
-			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
-		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
+	public BeliefBase<ProbabilisticConditional> repair(BeliefBase<ProbabilisticConditional> beliefSet) {
+//		if(!(beliefBase instanceof PclBeliefSet))
+//			throw new IllegalArgumentException("Belief base of type 'PclBeliefSet' expected.");
+//		PclBeliefSet beliefSet = (PclBeliefSet) beliefBase;
 		// Get generalized ME-model
-		GeneralizedMeReasoner reasoner = new GeneralizedMeReasoner(beliefSet,p);
-		ProbabilityDistribution<PossibleWorld> p =  reasoner.getMeDistribution();
+		GeneralizedMeReasoner reasoner = new GeneralizedMeReasoner();
+		reasoner.setMode(p);
+		ProbabilityDistribution<PossibleWorld> p =  reasoner.getMeDistribution(beliefSet);
 		PclBeliefSet result = new PclBeliefSet();
 		for(ProbabilisticConditional pc: beliefSet){
 			if(p.probability(new Conjunction(pc.getPremise())).doubleValue() <= Probability.PRECISION)

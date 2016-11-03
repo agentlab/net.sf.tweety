@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.sf.tweety.cli.ConsistencyTesterCommands">
+   <property name="osgi.command.scope" type="String" value="tweety"/>
+   <property name="osgi.command.function" type="String">testers
+tester
+   </property>
+   <service>
+      <provide interface="net.sf.tweety.cli.ConsistencyTesterCommands"/>
+   </service>
+   <reference bind="bindConsistencyTester" cardinality="0..n" interface="net.sf.tweety.logics.commons.analysis.ConsistencyTester" name="ConsistencyTester" policy="dynamic" unbind="unbindConsistencyTester"/>
+   <implementation class="net.sf.tweety.cli.ConsistencyTesterCommands"/>
+</scr:component>

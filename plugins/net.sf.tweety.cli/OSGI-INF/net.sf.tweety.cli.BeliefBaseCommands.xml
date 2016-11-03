@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.sf.tweety.cli.BeliefBaseCommands">
+   <property name="osgi.command.scope" type="String" value="tweety"/>
+   <property name="osgi.command.function" type="String">bases
+base
+   </property>
+   <service>
+      <provide interface="net.sf.tweety.cli.BeliefBaseCommands"/>
+   </service>
+   <reference bind="bindBeliefBase" cardinality="0..n" interface="net.sf.tweety.commons.BeliefBase" name="BeliefBase" policy="dynamic" unbind="unbindBeliefBase"/>
+   <implementation class="net.sf.tweety.cli.BeliefBaseCommands"/>
+</scr:component>

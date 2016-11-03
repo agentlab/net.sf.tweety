@@ -11,5 +11,16 @@ Require-Bundle: net.sf.tweety.logics.rpcl;bundle-version="1.0.0",
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
  net.sf.tweety.math;bundle-version="1.7.0",
  net.sf.tweety.logics.pcl;bundle-version="1.7.0",
- net.sf.tweety.plugin;bundle-version="1.7.0"
+ net.sf.tweety.plugin;bundle-version="1.7.0",
+ org.apache.felix.gogo.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.framework;version="1.8.0",
+ org.osgi.service.component.annotations
+Service-Component: OSGI-INF/net.sf.tweety.cli.InconsistencyMeasureCommands.xml,
+ OSGI-INF/net.sf.tweety.cli.BeliefBaseMachineShopCommands.xml,
+ OSGI-INF/net.sf.tweety.cli.ConsistencyTesterCommands.xml,
+ OSGI-INF/net.sf.tweety.cli.ReasonerCommands.xml,
+ OSGI-INF/net.sf.tweety.cli.ParserCommands.xml,
+ OSGI-INF/net.sf.tweety.cli.BeliefBaseCommands.xml,
+ OSGI-INF/net.sf.tweety.cli.BeliefBaseSamplerCommands.xml
+Bundle-ActivationPolicy: lazy

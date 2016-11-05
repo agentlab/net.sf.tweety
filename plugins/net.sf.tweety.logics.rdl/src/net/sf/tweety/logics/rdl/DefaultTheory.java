@@ -23,6 +23,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.fol.FolBeliefSet;
@@ -36,6 +38,7 @@ import net.sf.tweety.logics.rdl.syntax.DefaultRule;
  * @author Matthias Thimm, Nils Geilen
  *
  */
+@Component(service = BeliefBase.class)
 public class DefaultTheory implements BeliefBase<FolFormula> {
 
 	/** The set of facts (first-order formulas). */

@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
@@ -47,11 +49,16 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class MinimumViolationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/** The norm. */
 	private RealVectorNorm norm;
 	
+	public MinimumViolationMachineShop() {
+		super();
+	}
+
 	/**
 	 * Creates a new machine shop for the norm
 	 * @param norm some norm.

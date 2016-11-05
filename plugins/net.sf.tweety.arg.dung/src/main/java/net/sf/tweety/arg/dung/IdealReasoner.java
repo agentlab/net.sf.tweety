@@ -22,11 +22,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.semantics.ArgumentStatus;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Labeling;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Proposition;
 
@@ -35,6 +38,7 @@ import net.sf.tweety.logics.pl.syntax.Proposition;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class IdealReasoner extends AbstractExtensionReasoner {
 
 	/**

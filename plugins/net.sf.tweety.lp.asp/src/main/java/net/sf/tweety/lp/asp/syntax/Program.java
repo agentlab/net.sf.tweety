@@ -22,6 +22,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.util.rules.RuleSet;
 import net.sf.tweety.logics.commons.syntax.interfaces.LogicProgram;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
@@ -35,6 +38,7 @@ import net.sf.tweety.logics.fol.syntax.FolSignature;
  * @author Thomas Vengels
  *
  */
+@Component(service = BeliefBase.class)
 public class Program extends RuleSet<Rule> implements LogicProgram<DLPHead, DLPElement, Rule> {
 	
 	/** kill warning */

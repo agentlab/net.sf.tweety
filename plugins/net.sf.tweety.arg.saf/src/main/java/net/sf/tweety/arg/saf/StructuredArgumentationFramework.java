@@ -21,11 +21,14 @@ package net.sf.tweety.arg.saf;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.arg.saf.syntax.ArgumentStructure;
 import net.sf.tweety.arg.saf.syntax.BasicArgument;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.util.rules.Derivation;
 import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
@@ -36,6 +39,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class StructuredArgumentationFramework extends DungTheory{
 	
 	/**

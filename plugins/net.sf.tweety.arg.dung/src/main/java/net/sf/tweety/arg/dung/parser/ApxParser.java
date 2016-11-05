@@ -22,6 +22,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
@@ -40,6 +42,7 @@ import net.sf.tweety.commons.ParserException;
  *  
  * @author Matthias Thimm
  */
+@Component(service = Parser.class)
 public class ApxParser extends Parser<DungTheory>{
 
 	/* (non-Javadoc)

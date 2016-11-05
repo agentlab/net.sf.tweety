@@ -21,6 +21,8 @@ package net.sf.tweety.logics.commons.analysis;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 
 /**
@@ -30,11 +32,16 @@ import net.sf.tweety.commons.Formula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = InconsistencyMeasure.class)
 public class PrInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 
 	/** The MUs enumerator. */
 	private MusEnumerator<S> enumerator;
 	
+	public PrInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new drastic inconsistency measure.
 	 * @param enumerator some MUs enumerator

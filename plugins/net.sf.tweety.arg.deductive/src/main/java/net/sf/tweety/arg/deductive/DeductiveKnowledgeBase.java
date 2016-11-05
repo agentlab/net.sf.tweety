@@ -22,7 +22,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.deductive.semantics.DeductiveArgument;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.util.SetTools;
 import net.sf.tweety.logics.pl.ClassicalEntailment;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -36,6 +39,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class DeductiveKnowledgeBase extends PlBeliefSet{
 
 	/**

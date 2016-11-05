@@ -12,3 +12,24 @@ Export-Package: net.sf.tweety.logics.commons,
 Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0";visibility:=reexport,
  net.sf.tweety.math;bundle-version="1.7.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Service-Component: OSGI-INF/net.sf.tweety.logics.commons.analysis.NaiveMusEnumerator.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.CcInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.CspInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.DfInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.DHitInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.DMaxInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.DrasticInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.DSumInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.HsInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.EtaInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.MaInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.McscInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.MicInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.MiInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.NConsInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.NormalizedMiInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.PrInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.NormalizedMicInconsistencyMeasure.xml,
+ OSGI-INF/net.sf.tweety.logics.commons.analysis.streams.DefaultStreamBasedInconsistencyMeasure.xml
+Bundle-ActivationPolicy: lazy

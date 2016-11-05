@@ -20,6 +20,9 @@ package net.sf.tweety.logics.pcl.analysis;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
 
 /**
@@ -27,6 +30,7 @@ import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
  * 
  * @author Matthias Thimm
  */
+@Component(service = InconsistencyMeasure.class)
 public class NormalizedUpperApproxDistanceMinimizationInconsistencyMeasure extends UpperApproxDistanceMinimizationInconsistencyMeasure {
 
 	/* (non-Javadoc)

@@ -21,6 +21,8 @@ package net.sf.tweety.logics.pl.analysis;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.util.IncreasingSubsetIterator;
 import net.sf.tweety.commons.util.SubsetIterator;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
@@ -45,9 +47,11 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * the process is repeated with all pairs "p1,p2" of propositions, then triples, etc.  
  * @author Matthias Thimm
  */
+@Component(service = InconsistencyMeasure.class)
 public class ContensionInconsistencyMeasure implements InconsistencyMeasure<PropositionalFormula> {
 
-
+	private SatSolver solver = SatSolver.getDefaultSolver();
+	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.logics.commons.analysis.BeliefSetInconsistencyMeasure#inconsistencyMeasure(java.util.Collection)
 	 */
@@ -64,7 +68,7 @@ public class ContensionInconsistencyMeasure implements InconsistencyMeasure<Prop
 					if(f.getAtoms().contains(p))
 						newCnf.remove(f);
 			}
-			if(SatSolver.getDefaultSolver().isConsistent((PropositionalFormula)newCnf))
+			if(solver.isConsistent((PropositionalFormula)newCnf))
 				return new Double(props.size());
 		}
 		// this should not happen as at least the paraconsistent interpretation which assigns
@@ -72,6 +76,14 @@ public class ContensionInconsistencyMeasure implements InconsistencyMeasure<Prop
 		throw new RuntimeException("Unforeseen exception in computing the contension inconsistency measure: no paraconsistent model found.");
 	}
 	
+	public SatSolver getSolver() {
+		return solver;
+	}
+
+	public void setSolver(SatSolver solver) {
+		this.solver = solver;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

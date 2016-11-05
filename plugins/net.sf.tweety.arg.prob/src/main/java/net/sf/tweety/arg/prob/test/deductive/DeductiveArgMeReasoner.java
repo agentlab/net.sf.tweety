@@ -21,6 +21,9 @@ package net.sf.tweety.arg.prob.test.deductive;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.osgi.service.component.annotations.Component;
+
 import java.util.Set;
 
 import net.sf.tweety.arg.deductive.semantics.DeductiveArgument;
@@ -50,6 +53,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class DeductiveArgMeReasoner extends Reasoner {
 
 	/** The ME-distribution this reasoner bases on. */

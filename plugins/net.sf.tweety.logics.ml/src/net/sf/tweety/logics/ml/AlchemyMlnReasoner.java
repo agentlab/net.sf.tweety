@@ -30,7 +30,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Predicate;
 import net.sf.tweety.logics.commons.syntax.Sort;
@@ -54,6 +57,7 @@ import net.sf.tweety.logics.ml.syntax.MlnFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class AlchemyMlnReasoner extends AbstractMlnReasoner {
 
 	/** The console command for Alchemy inference. */

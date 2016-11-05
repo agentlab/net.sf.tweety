@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.arg.social;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.social.semantics.SimpleProductSemantics;
 import net.sf.tweety.arg.social.semantics.SocialMapping;
@@ -34,6 +36,7 @@ import net.sf.tweety.commons.Reasoner;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class IssReasoner implements Reasoner<Argument, Argument>{
 
 	/** The semantics used by this reasoner. */
@@ -45,6 +48,10 @@ public class IssReasoner implements Reasoner<Argument, Argument>{
 	/** The tolerance of the ISS algorithm. */
 	private double tolerance;
 	
+	public IssReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new reasoner for the given social abstract argumentation framework
 	 * @param beliefBase a social abstract argumentation framework

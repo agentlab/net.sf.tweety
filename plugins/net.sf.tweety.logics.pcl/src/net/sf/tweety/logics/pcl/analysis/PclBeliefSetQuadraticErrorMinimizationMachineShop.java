@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,6 +54,7 @@ import net.sf.tweety.math.term.Variable;
  * distance to the original belief set using some culpability measure, see [Diss, Thimm] for details.
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/**
@@ -60,6 +62,10 @@ public class PclBeliefSetQuadraticErrorMinimizationMachineShop implements Belief
 	 */
 	static private Logger log = LoggerFactory.getLogger(PclBeliefSetQuadraticErrorMinimizationMachineShop.class);
 	
+	public PclBeliefSetQuadraticErrorMinimizationMachineShop() {
+		super();
+	}
+
 	/**
 	 * The culpability measure this machine shop bases on.
 	 */

@@ -21,6 +21,8 @@ package net.sf.tweety.logics.pl.util;
 import java.util.HashSet;
 import java.util.Random;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBaseSampler;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -55,6 +57,7 @@ import net.sf.tweety.math.probability.ProbabilityFunction;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBaseSampler.class)
 public class SyntacticRandomPlBeliefSetSampler extends BeliefBaseSampler<PlBeliefSet> {
 	/** The probability function modeling the random decisions.*/
 	private ProbabilityFunction<Byte> prob;
@@ -70,6 +73,10 @@ public class SyntacticRandomPlBeliefSetSampler extends BeliefBaseSampler<PlBelie
 	
 	private Random rand = new Random();
 	
+	public SyntacticRandomPlBeliefSetSampler() {
+		super();
+	}
+
 	/**
 	 * 
 	 * Creates a new sampler.

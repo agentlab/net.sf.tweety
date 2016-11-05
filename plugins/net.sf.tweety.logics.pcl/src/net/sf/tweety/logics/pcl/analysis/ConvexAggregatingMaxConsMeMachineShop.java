@@ -20,6 +20,8 @@ package net.sf.tweety.logics.pcl.analysis;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.commons.Formula;
@@ -39,6 +41,7 @@ import net.sf.tweety.logics.pl.semantics.PossibleWorld;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class ConvexAggregatingMaxConsMeMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)

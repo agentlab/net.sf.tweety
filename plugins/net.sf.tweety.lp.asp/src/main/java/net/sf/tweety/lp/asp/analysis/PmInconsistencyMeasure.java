@@ -21,6 +21,8 @@ package net.sf.tweety.lp.asp.analysis;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.util.IncreasingSubsetIterator;
 import net.sf.tweety.commons.util.SubsetIterator;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
@@ -42,11 +44,16 @@ import net.sf.tweety.lp.asp.syntax.Rule;
  * @author Matthias Thimm
  *
  */
+@Component(service = InconsistencyMeasure.class)
 public class PmInconsistencyMeasure implements InconsistencyMeasure<Program>{
 
 	/** The ASP solver used for determining inconsistency */
 	private Solver solver;
 		
+	public PmInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new inconsistency measure based on the given
 	 * solver. 

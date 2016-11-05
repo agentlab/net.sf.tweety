@@ -21,6 +21,8 @@ package net.sf.tweety.arg.dung.parser;
 
 import java.io.Reader;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
@@ -50,6 +52,7 @@ import net.sf.tweety.commons.ParserException;
 
   */
 @SuppressWarnings("all")
+@Component(service = Parser.class)
 public class DungParser extends Parser implements DungParserConstants {
 
         public DungParser(){

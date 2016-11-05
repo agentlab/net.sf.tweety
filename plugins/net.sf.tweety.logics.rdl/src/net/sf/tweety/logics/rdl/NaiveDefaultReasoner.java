@@ -20,6 +20,8 @@ package net.sf.tweety.logics.rdl;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
@@ -34,6 +36,7 @@ import net.sf.tweety.logics.rdl.semantics.DefaultProcessTree;
  * 
  * @author Matthias Thimm, Nils Geilen
  */
+@Component(service = Reasoner.class)
 public class NaiveDefaultReasoner implements Reasoner<FolFormula, FolFormula> {
 
 //	 DefaultProcessTree tree;

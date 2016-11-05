@@ -24,6 +24,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
   * This class implements a parser for defeasible logic programs. The BNF for defeasible
   * logic program files is given by (start symbol is THEORY)
@@ -46,6 +48,7 @@ import java.util.Set;
   * QUOTED_STRING is all characters between double quotes.
   * </pre>
   */
+@Component(service = Parser.class)
 public class DelpParser extends Parser<DefeasibleLogicProgram> implements DelpParserConstants {
 
         private FolSignature signature = new FolSignature();

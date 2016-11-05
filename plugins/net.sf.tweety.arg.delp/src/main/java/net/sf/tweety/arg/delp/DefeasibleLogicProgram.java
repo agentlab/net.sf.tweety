@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
+import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.delp.parser.DelpParser;
 import net.sf.tweety.arg.delp.semantics.ComparisonCriterion;
@@ -48,6 +49,7 @@ import net.sf.tweety.arg.delp.syntax.StrictRule;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
@@ -62,6 +64,7 @@ import net.sf.tweety.logics.fol.syntax.FolSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class DefeasibleLogicProgram extends BeliefSet<DelpRule>{
 
 	/**

@@ -21,6 +21,8 @@ package net.sf.tweety.action.description.parser;
 import java.io.IOException;
 import java.io.Reader;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.action.description.CActionDescription;
 import net.sf.tweety.action.signature.ActionSignature;
 import net.sf.tweety.action.signature.parser.ActionSignatureParser;
@@ -36,6 +38,7 @@ import net.sf.tweety.commons.ParserException;
  * where SIGNATURE is parsed by CSignatureParser and LAWS is parsed by CLawParser.
  * @author Sebastian Homann
  */
+@Component(service = Parser.class)
 public class CParser
   extends Parser<CActionDescription> {
   protected ActionSignature signature;

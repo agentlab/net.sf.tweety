@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.sf.tweety.arg.social.SocialAbstractArgumentationFramework">
+   <service>
+      <provide interface="net.sf.tweety.commons.BeliefBase"/>
+   </service>
+   <implementation class="net.sf.tweety.arg.social.SocialAbstractArgumentationFramework"/>
+</scr:component>

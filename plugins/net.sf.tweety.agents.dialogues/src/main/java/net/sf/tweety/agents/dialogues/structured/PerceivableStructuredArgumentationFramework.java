@@ -18,8 +18,11 @@
  */
 package net.sf.tweety.agents.dialogues.structured;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.agents.Perceivable;
 import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
+import net.sf.tweety.commons.BeliefBase;
 
 /**
  * This class packs a structured argumentation framework into a
@@ -28,5 +31,6 @@ import net.sf.tweety.arg.saf.StructuredArgumentationFramework;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class PerceivableStructuredArgumentationFramework extends StructuredArgumentationFramework implements Perceivable {
 }

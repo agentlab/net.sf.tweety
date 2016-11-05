@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,6 +62,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class RpclMeReasoner implements Reasoner<RelationalProbabilisticConditional, Formula> {
 	
 	/**
@@ -98,6 +100,10 @@ public class RpclMeReasoner implements Reasoner<RelationalProbabilisticCondition
 	 */
 	private int inferenceType;
 	
+	public RpclMeReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new reasoner for the given knowledge base.
 	 * @param beliefBase a knowledge base.

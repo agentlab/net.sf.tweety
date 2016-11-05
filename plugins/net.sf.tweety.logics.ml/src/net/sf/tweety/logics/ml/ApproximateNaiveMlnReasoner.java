@@ -22,7 +22,10 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.util.DefaultSubsetIterator;
 import net.sf.tweety.commons.util.RandomSubsetIterator;
 import net.sf.tweety.logics.fol.semantics.HerbrandBase;
@@ -42,6 +45,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class ApproximateNaiveMlnReasoner extends AbstractMlnReasoner{
 
 	/** The approximated model of the MLN (saved for avoid double
@@ -58,6 +62,10 @@ public class ApproximateNaiveMlnReasoner extends AbstractMlnReasoner{
 	 * maxNumberOfSelectedInterpretations >= maxNumberOfInterpretationsForModel. */
 	private long maxNumberOfInterpretationsForModel = -1;
 	
+	public ApproximateNaiveMlnReasoner() {
+		super();
+	}
+
 	/**
 	 * A Herbrand interpretation with an annotated weight.
 	 * @author Matthias Thimm

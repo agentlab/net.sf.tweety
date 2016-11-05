@@ -10,3 +10,11 @@ Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0",
  net.sf.tweety.logics.fol;bundle-version="1.7.0",
  net.sf.tweety.logics.pcl;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.service.component.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/net.sf.tweety.logics.ml.AlchemyMlnReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.ml.ApproximateNaiveMlnReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.ml.NaiveMlnReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.ml.IteratingMlnReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.ml.SimpleSamplingMlnReasoner.xml,
+ OSGI-INF/net.sf.tweety.logics.ml.MarkovLogicNetwork.xml

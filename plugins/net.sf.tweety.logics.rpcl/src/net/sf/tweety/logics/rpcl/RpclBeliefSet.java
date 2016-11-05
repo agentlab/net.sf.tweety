@@ -23,6 +23,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.commons.syntax.Constant;
@@ -38,6 +41,7 @@ import net.sf.tweety.logics.rpcl.syntax.RelationalProbabilisticConditional;
  * @author Matthias Thimm
  *
  */
+@Component(service = BeliefBase.class)
 public class RpclBeliefSet extends BeliefSet<RelationalProbabilisticConditional> {
 
 	/**

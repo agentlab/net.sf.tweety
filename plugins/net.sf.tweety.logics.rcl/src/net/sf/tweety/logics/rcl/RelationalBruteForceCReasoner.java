@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,6 +64,7 @@ import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class RelationalBruteForceCReasoner implements Reasoner<RelationalConditional, Formula> {
 
 	/** Logger. */
@@ -99,6 +101,10 @@ public class RelationalBruteForceCReasoner implements Reasoner<RelationalConditi
 	 * indicates whether the computed c-representation is simple.
 	 */
 	private boolean simple = false;
+
+	public RelationalBruteForceCReasoner() {
+		super();
+	}
 
 	/**
 	 * Creates a new relational c-representation reasoner for the given

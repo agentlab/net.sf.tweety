@@ -22,6 +22,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.math.GeneralMathException;
 import net.sf.tweety.math.equation.Inequation;
@@ -44,6 +46,7 @@ import net.sf.tweety.math.term.Variable;
  *
  * @param <S> The specific type of formulas
  */
+@Component(service = InconsistencyMeasure.class)
 public class CcInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S> {
 	
 	/** The MUS enumerator used for the measure. */
@@ -51,6 +54,10 @@ public class CcInconsistencyMeasure<S extends Formula> implements InconsistencyM
 	/** A solver for integer linear programs. */
 	private Solver solver;
 	
+	public CcInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new measure that uses the given MUS enumerator and
 	 * Integer programming solver

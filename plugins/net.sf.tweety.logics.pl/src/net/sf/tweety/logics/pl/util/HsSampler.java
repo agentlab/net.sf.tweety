@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBaseSampler;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Negation;
@@ -37,6 +39,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseSampler.class)
 public class HsSampler extends BeliefBaseSampler<PlBeliefSet>{
 
 	/**
@@ -45,6 +48,10 @@ public class HsSampler extends BeliefBaseSampler<PlBeliefSet>{
 	 */
 	private int incvalue;
 	
+	public HsSampler() {
+		super();
+	}
+
 	/**
 	 * Creates a new sample for the given signature
 	 * which generates propositional belief sets with the 

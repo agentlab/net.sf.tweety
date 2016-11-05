@@ -21,6 +21,8 @@ package net.sf.tweety.arg.prob.test.deductive;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.deductive.DeductiveKnowledgeBase;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Signature;
@@ -36,6 +38,7 @@ import net.sf.tweety.math.probability.Probability;
  *  
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class DeductiveProbabilisticKnowledgebase implements BeliefBase {
 
 	/** The deductive knowledge base. */

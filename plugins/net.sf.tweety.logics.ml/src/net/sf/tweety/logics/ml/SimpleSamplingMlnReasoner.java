@@ -21,7 +21,10 @@ package net.sf.tweety.logics.ml;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.util.RandomSubsetIterator;
 import net.sf.tweety.logics.fol.semantics.HerbrandBase;
 import net.sf.tweety.logics.fol.semantics.HerbrandInterpretation;
@@ -37,6 +40,7 @@ import net.sf.tweety.logics.ml.syntax.MlnFormula;
  * @author Matthias Thimm
  *
  */
+@Component(service = Reasoner.class)
 public class SimpleSamplingMlnReasoner extends AbstractMlnReasoner{
 
 	/** The computation is aborted when the given precision is reached for at least
@@ -44,6 +48,10 @@ public class SimpleSamplingMlnReasoner extends AbstractMlnReasoner{
 	private double precision = 0.00001;	
 	private int numOfPositiveTests = 1000;
 	
+	public SimpleSamplingMlnReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new SimpleSamplingMlnReasoner for the given Markov logic network.
 	 * @param beliefBase a Markov logic network. 

@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.LogicalSymbols;
@@ -48,6 +50,7 @@ import net.sf.tweety.logics.pl.syntax.Tautology;
  *  @author Matthias Thimm
  *  @author Bastian Wolf
  */
+@Component(service = Parser.class)
 public class PlParser extends Parser<PlBeliefSet> {
 
 	/* (non-Javadoc)

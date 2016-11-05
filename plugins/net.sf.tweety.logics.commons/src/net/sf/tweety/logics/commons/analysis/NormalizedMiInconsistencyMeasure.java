@@ -20,6 +20,8 @@ package net.sf.tweety.logics.commons.analysis;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.util.MathTools;
 
@@ -28,7 +30,12 @@ import net.sf.tweety.commons.util.MathTools;
  * 
  * @author Matthias Thimm
  */
+@Component(service = InconsistencyMeasure.class)
 public class NormalizedMiInconsistencyMeasure<S extends Formula> extends MiInconsistencyMeasure<S> {
+
+	public NormalizedMiInconsistencyMeasure() {
+		super();
+	}
 
 	/**
 	 * Creates a new inconsistency measure with the given consistency tester

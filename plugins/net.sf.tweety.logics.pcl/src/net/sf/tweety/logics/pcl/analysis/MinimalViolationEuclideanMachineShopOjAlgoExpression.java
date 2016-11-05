@@ -25,8 +25,10 @@ import org.ojalgo.matrix.PrimitiveMatrix;
 import org.ojalgo.optimisation.Expression;
 import org.ojalgo.optimisation.ExpressionsBasedModel;
 import org.ojalgo.optimisation.Variable;
+import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.semantics.ProbabilityDistribution;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
@@ -43,6 +45,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  * @author Nico Potyka
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class MinimalViolationEuclideanMachineShopOjAlgoExpression extends MinimalViolationEuclideanMachineShop {
 
 

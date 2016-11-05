@@ -21,10 +21,13 @@ package net.sf.tweety.arg.prob;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.arg.prob.lotteries.SubgraphProbabilityFunction;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.graphs.Graph;
 import net.sf.tweety.math.probability.Probability;
 
@@ -34,6 +37,7 @@ import net.sf.tweety.math.probability.Probability;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBase.class)
 public class ProbabilisticArgumentationFramework extends DungTheory{
 
 	/** Probability assignments to arguments (with independence assumption). */

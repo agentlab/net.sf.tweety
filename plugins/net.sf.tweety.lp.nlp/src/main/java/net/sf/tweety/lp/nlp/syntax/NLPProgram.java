@@ -22,6 +22,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.util.rules.RuleSet;
 import net.sf.tweety.logics.commons.syntax.interfaces.LogicProgram;
 import net.sf.tweety.logics.commons.syntax.interfaces.Term;
@@ -32,6 +35,7 @@ import net.sf.tweety.logics.fol.syntax.FolSignature;
  * A nested logic program
  * @author Tim Janus
  */
+@Component(service = BeliefBase.class)
 public class NLPProgram 
 	extends RuleSet<NLPRule> 
 	implements LogicProgram<FolFormula, FolFormula, NLPRule> {

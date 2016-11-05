@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
@@ -44,6 +46,7 @@ import net.sf.tweety.math.term.Variable;
  * cf. [Potyka, 2014]. It accepts any real vector norm and the used solver can be configured.
  * @author Nico Potyka, Matthias Thimm
  */
+@Component(service = InconsistencyMeasure.class)
 public class MinimalViolationInconsistencyMeasure implements InconsistencyMeasure<ProbabilisticConditional> {
 
 	/** The norm. */
@@ -52,6 +55,10 @@ public class MinimalViolationInconsistencyMeasure implements InconsistencyMeasur
 	/** The solver used for solving the optimization problem*/
 	private Solver solver;
 	
+	public MinimalViolationInconsistencyMeasure() {
+		super();
+	}
+
 	/**
 	 * Creates a new measure the given norm
 	 * @param norm some norm.

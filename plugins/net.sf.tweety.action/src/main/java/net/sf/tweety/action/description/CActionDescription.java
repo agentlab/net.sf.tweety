@@ -22,12 +22,15 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.action.ActionDescription;
 import net.sf.tweety.action.CausalLaw;
 import net.sf.tweety.action.description.syntax.CLaw;
 import net.sf.tweety.action.description.syntax.DynamicLaw;
 import net.sf.tweety.action.description.syntax.StaticLaw;
 import net.sf.tweety.action.signature.ActionSignature;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Signature;
 
 /**
@@ -36,6 +39,7 @@ import net.sf.tweety.commons.Signature;
  * 
  * @author Sebastian Homann
  */
+@Component(service = BeliefBase.class)
 public class CActionDescription
   extends ActionDescription< CLaw >
 {

@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.commons.ParserException;
@@ -54,6 +56,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class MaximumEntropyMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/* (non-Javadoc)

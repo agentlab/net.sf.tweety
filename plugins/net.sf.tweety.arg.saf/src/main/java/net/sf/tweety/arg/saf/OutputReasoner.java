@@ -21,6 +21,8 @@ package net.sf.tweety.arg.saf;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.arg.dung.AbstractExtensionReasoner;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
@@ -40,6 +42,7 @@ import net.sf.tweety.logics.pl.syntax.Proposition;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class OutputReasoner implements Reasoner<Argument, Proposition> {
 
 	/**
@@ -52,6 +55,10 @@ public class OutputReasoner implements Reasoner<Argument, Proposition> {
 	 */
 	private AbstractExtensionReasoner reasoner;
 	
+	public OutputReasoner() {
+		super();
+	}
+
 	/**
 	 * Creates a new reasoner for the given knowledge base.
 	 * @param beliefBase a knowledge base.

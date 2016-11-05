@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
@@ -48,6 +50,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  *  
  * @author Tim Janus
  */
+@Component(service = Reasoner.class)
 public class RuleBasedCReasoner implements Reasoner<Conditional, Formula> {
 	
 	/** 

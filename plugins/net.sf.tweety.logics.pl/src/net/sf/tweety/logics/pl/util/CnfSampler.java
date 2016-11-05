@@ -20,6 +20,8 @@ package net.sf.tweety.logics.pl.util;
 
 import java.util.Random;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBaseSampler;
 import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -36,11 +38,16 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * 
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseSampler.class)
 public class CnfSampler extends BeliefBaseSampler<PlBeliefSet>{
 
 	/** The maximum ratio of variables appearing in a single formula. */
 	private double maxVariableRatio;
 	
+	public CnfSampler() {
+		super();
+	}
+
 	/**
 	 * Creates a new sampler for the given signature.
 	 * @param signature

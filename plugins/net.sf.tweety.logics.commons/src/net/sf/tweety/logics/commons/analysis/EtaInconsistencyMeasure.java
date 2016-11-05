@@ -22,6 +22,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Interpretation;
 import net.sf.tweety.commons.InterpretationIterator;
@@ -42,11 +44,16 @@ import net.sf.tweety.math.term.Variable;
  *
  * @param <S> The type of formula
  */
+@Component(service = InconsistencyMeasure.class)
 public class EtaInconsistencyMeasure<S extends Formula> implements InconsistencyMeasure<S>{
 
 	/** Used for enumerating the interpretations of the underlying language. */
 	private InterpretationIterator<?> it;
 	
+	public EtaInconsistencyMeasure() {
+		super();
+	}
+
 	/** 
 	 * Creates a new inconsistency measure that uses the interpretations given
 	 * by the given iterator.

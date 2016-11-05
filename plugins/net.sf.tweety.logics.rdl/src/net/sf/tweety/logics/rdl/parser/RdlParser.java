@@ -25,6 +25,8 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
@@ -40,6 +42,7 @@ import net.sf.tweety.logics.rdl.syntax.DefaultRule;
  * @author Nils Geilen
  *
  */
+@Component(service = Parser.class)
 public class RdlParser extends Parser<DefaultTheory> {
 
 	/**

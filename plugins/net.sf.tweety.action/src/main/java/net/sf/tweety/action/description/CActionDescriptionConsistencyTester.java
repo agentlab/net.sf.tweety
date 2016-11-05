@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.action.CausalLaw;
 import net.sf.tweety.action.signature.ActionSignature;
 import net.sf.tweety.action.transitionsystem.State;
@@ -38,8 +40,13 @@ import net.sf.tweety.lp.asp.solver.AspInterface;
  * @author Sebastian Homann
  * @author Matthias Thimm
  */
+@Component(service = ConsistencyTester.class)
 public class CActionDescriptionConsistencyTester implements ConsistencyTester<CausalLaw> {
 	private AspInterface aspsolver;
+
+	public CActionDescriptionConsistencyTester() {
+		super();
+	}
 
 	/**
 	 * Creates a new consistency tester which will use the given answer set

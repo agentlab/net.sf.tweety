@@ -17,3 +17,8 @@ Require-Bundle: net.sf.tweety.logics.fol;bundle-version="1.0.0",
  org.kohsuke.args4j;bundle-version="2.33.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
+Import-Package: org.osgi.service.component.annotations
+Service-Component: OSGI-INF/net.sf.tweety.arg.delp.DelpReasoner.xml,
+ OSGI-INF/net.sf.tweety.arg.delp.parser.DelpParser.xml,
+ OSGI-INF/net.sf.tweety.arg.delp.DefeasibleLogicProgram.xml
+Bundle-ActivationPolicy: lazy

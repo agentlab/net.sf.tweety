@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.sf.tweety.cli.ReasonerCommands">
+   <property name="osgi.command.scope" type="String" value="tweety"/>
+   <property name="osgi.command.function" type="String">reasoners
+reasoner
+   </property>
+   <service>
+      <provide interface="net.sf.tweety.cli.ReasonerCommands"/>
+   </service>
+   <reference bind="bindReasoner" cardinality="0..n" interface="net.sf.tweety.commons.Reasoner" name="Reasoner" policy="dynamic" unbind="unbindReasoner"/>
+   <implementation class="net.sf.tweety.cli.ReasonerCommands"/>
+</scr:component>

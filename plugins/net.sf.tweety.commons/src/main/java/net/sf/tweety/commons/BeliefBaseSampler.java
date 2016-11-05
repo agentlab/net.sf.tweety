@@ -52,6 +52,10 @@ public abstract class BeliefBaseSampler<S extends BeliefBase> {
 	 */
 	public static final int DEFAULT_MINIMUM_BELIEFBASE_LENGTH = 15;
 	
+	public BeliefBaseSampler() {
+		super();
+	}
+
 	/**
 	 * Creates a new belief base sampler for the given signature.
 	 * @param signature a signature.
@@ -99,5 +103,9 @@ public abstract class BeliefBaseSampler<S extends BeliefBase> {
 	 */
 	public Signature getSignature(){
 		return this.signature;
+	}
+
+	public void setSignature(Signature signature) {
+		this.signature = signature;
 	}
 }

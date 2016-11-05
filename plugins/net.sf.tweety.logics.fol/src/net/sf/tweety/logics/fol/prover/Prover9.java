@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.util.Shell;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
@@ -18,7 +21,7 @@ import net.sf.tweety.logics.fol.writer.Prover9Writer;
  * @author Nils Geilen
  *
  */
-
+@Component(service = Reasoner.class)
 public class Prover9 extends FolTheoremProver {
 
 	/**
@@ -31,6 +34,10 @@ public class Prover9 extends FolTheoremProver {
 	 * Shell to run prover9
 	 */
 	private Shell bash;
+	
+	public Prover9() {
+		super();
+	}
 
 	/**
 	 * Constructs a new instance pointing to a specific prover 9

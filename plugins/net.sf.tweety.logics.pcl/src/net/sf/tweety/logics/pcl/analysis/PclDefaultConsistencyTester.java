@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.logics.commons.analysis.ConsistencyTester;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
 import net.sf.tweety.logics.pcl.syntax.ProbabilisticConditional;
@@ -47,6 +49,7 @@ import net.sf.tweety.math.term.Variable;
  * 
  * @author Matthias Thimm
  */
+@Component(service = ConsistencyTester.class)
 public class PclDefaultConsistencyTester implements ConsistencyTester<ProbabilisticConditional> {
 
 	private boolean isConsistent(PclBeliefSet beliefBase) {

@@ -21,6 +21,8 @@ package net.sf.tweety.logics.pl;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
@@ -33,6 +35,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  * 
  * @author Matthias Thimm
  */
+@Component(service = Reasoner.class)
 public class SatReasoner implements Reasoner<PropositionalFormula, PropositionalFormula> {
 
 	// /**

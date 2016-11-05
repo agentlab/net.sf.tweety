@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.BeliefBaseMachineShop;
 import net.sf.tweety.logics.commons.analysis.CulpabilityMeasure;
@@ -47,6 +49,7 @@ import net.sf.tweety.math.term.Variable;
  * This class implements a consistency restorer using balanced distance minimization, see [Diss, Thimm] for details.
  * @author Matthias Thimm
  */
+@Component(service = BeliefBaseMachineShop.class)
 public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticConditional> {
 
 	/** The precision for comparing culpability values. */
@@ -61,6 +64,10 @@ public class BalancedMachineShop implements BeliefBaseMachineShop<ProbabilisticC
 		this.culpabilityMeasure = culpabilityMeasure;
 	}
 	
+	public BalancedMachineShop() {
+		super();
+	}
+
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.BeliefBaseMachineShop#repair(net.sf.tweety.BeliefBase)
 	 */

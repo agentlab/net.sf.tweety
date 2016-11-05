@@ -20,6 +20,8 @@ package net.sf.tweety.logics.pl.analysis;
 
 import java.util.Collection;
 
+import org.osgi.service.component.annotations.Component;
+
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.commons.analysis.MusEnumerator;
 import net.sf.tweety.logics.pl.sat.PlMusEnumerator;
@@ -35,6 +37,7 @@ import net.sf.tweety.logics.pl.syntax.PropositionalSignature;
  * @author Matthias Thimm
  *
  */
+@Component(service = InconsistencyMeasure.class)
 public class MusVarInconsistencyMeasure implements InconsistencyMeasure<PropositionalFormula>{
 
 	/* (non-Javadoc)

@@ -37,6 +37,11 @@ public class ParserCommands {
 
 	@Descriptor("get all parsers")
 	public void parsers() {
+		if (parsers.isEmpty()){
+			System.out.println("There is no Belief Base Parsers registered");
+		} else {
+			System.out.println("ID	Belief Base Parsers");
+		}
 		IntStream
 				.range(0, parsers.size())
 				.mapToObj(i -> i + "	" + parsers.get(i).getProperty("component.name"))

@@ -38,6 +38,11 @@ public class InconsistencyMeasureCommands {
 
 	@Descriptor("get all parsers")
 	public void measures() {
+		if (measures.isEmpty()){
+			System.out.println("There is no Belief Base Inconsistency Measures registered");
+		} else {
+			System.out.println("ID	Belief Base Inconsistency Measures");
+		}
 		IntStream
 				.range(0, measures.size())
 				.mapToObj(i -> i + "	" + measures.get(i).getProperty("component.name"))

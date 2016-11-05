@@ -37,6 +37,11 @@ public class BeliefBaseCommands {
 
 	@Descriptor("get all belief bases")
 	public void bases() {
+		if (bases.isEmpty()){
+			System.out.println("There is no Belief Bases registered");
+		} else {
+			System.out.println("ID	Belief Bases");
+		}
 		IntStream
 				.range(0, bases.size())
 				.mapToObj(i -> i + "	" + bases.get(i).getProperty("component.name"))

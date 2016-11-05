@@ -37,6 +37,11 @@ public class BeliefBaseMachineShopCommands {
 
 	@Descriptor("get all belief base machine shops")
 	public void shops() {
+		if (shops.isEmpty()){
+			System.out.println("There is no Belief Base Shops registered");
+		} else {
+			System.out.println("ID	Belief Base Shops");
+		}
 		IntStream
 				.range(0, shops.size())
 				.mapToObj(i -> i + "	" + shops.get(i).getProperty("component.name"))

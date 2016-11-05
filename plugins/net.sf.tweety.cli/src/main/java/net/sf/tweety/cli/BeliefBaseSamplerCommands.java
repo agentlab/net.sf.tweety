@@ -37,6 +37,11 @@ public class BeliefBaseSamplerCommands {
 
 	@Descriptor("get all parsers")
 	public void samplers() {
+		if (samplers.isEmpty()){
+			System.out.println("There is no Belief Base Sampler registered");
+		} else {
+			System.out.println("ID	Belief Base Sampler");
+		}
 		IntStream
 				.range(0, samplers.size())
 				.mapToObj(i -> i + "	" + samplers.get(i).getProperty("component.name"))

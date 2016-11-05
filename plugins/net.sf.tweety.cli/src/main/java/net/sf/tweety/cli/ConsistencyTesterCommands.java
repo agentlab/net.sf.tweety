@@ -38,6 +38,11 @@ public class ConsistencyTesterCommands {
 
 	@Descriptor("get all parsers")
 	public void testers() {
+		if (testers.isEmpty()){
+			System.out.println("There is no Belief Base Consistency Testers registered");
+		} else {
+			System.out.println("ID	Belief Base Consistency Testers");
+		}
 		IntStream
 				.range(0, testers.size())
 				.mapToObj(i -> i + "	" + testers.get(i).getProperty("component.name"))

@@ -37,6 +37,11 @@ public class ReasonerCommands {
 
 	@Descriptor("get all reasoners")
 	public void reasoners() {
+		if (reasoners.isEmpty()){
+			System.out.println("There is no Belief Base Reasoners registered");
+		} else {
+			System.out.println("ID	Belief Base Reasoners");
+		}
 		IntStream
 				.range(0, reasoners.size())
 				.mapToObj(i -> i + "	" + reasoners.get(i).getProperty("component.name"))

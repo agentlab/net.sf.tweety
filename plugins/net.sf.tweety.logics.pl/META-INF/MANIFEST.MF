@@ -8,14 +8,12 @@ Export-Package: net.sf.tweety.logics.pl,
  net.sf.tweety.logics.pl.error,
  net.sf.tweety.logics.pl.lang,
  net.sf.tweety.logics.pl.parser,
- net.sf.tweety.logics.pl.plugin,
  net.sf.tweety.logics.pl.sat,
  net.sf.tweety.logics.pl.semantics,
  net.sf.tweety.logics.pl.syntax,
  net.sf.tweety.logics.pl.util
 Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,
- net.sf.tweety.logics.fol;bundle-version="1.7.0",
- net.sf.tweety.plugin;bundle-version="1.7.0"
+ net.sf.tweety.logics.fol;bundle-version="1.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.osgi.service.component.annotations
 Bundle-ActivationPolicy: lazy

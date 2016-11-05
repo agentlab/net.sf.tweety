@@ -3,16 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tweety (Command Line Interface)
 Bundle-SymbolicName: net.sf.tweety.cli
 Bundle-Version: 1.7.0.qualifier
-Export-Package: net.sf.tweety.cli,
- net.sf.tweety.cli.plugins
-Require-Bundle: net.sf.tweety.logics.rpcl;bundle-version="1.0.0",
+Export-Package: net.sf.tweety.cli
+Require-Bundle: org.apache.felix.gogo.runtime,
  net.sf.tweety.commons;bundle-version="1.0.0",
- org.slf4j.api;bundle-version="1.7.2",
- net.sf.tweety.logics.fol;bundle-version="1.7.0",
- net.sf.tweety.math;bundle-version="1.7.0",
- net.sf.tweety.logics.pcl;bundle-version="1.7.0",
- net.sf.tweety.plugin;bundle-version="1.7.0",
- org.apache.felix.gogo.runtime
+ net.sf.tweety.logics.commons,
+ org.slf4j.api;bundle-version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.osgi.framework;version="1.8.0",
  org.osgi.service.component.annotations

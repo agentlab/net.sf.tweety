@@ -7,12 +7,10 @@ Export-Package: net.sf.tweety.preferences,
  net.sf.tweety.preferences.aggregation,
  net.sf.tweety.preferences.events,
  net.sf.tweety.preferences.io,
- net.sf.tweety.preferences.plugin,
  net.sf.tweety.preferences.ranking,
  net.sf.tweety.preferences.unittesting,
  net.sf.tweety.preferences.update
 Require-Bundle: net.sf.tweety.math;bundle-version="1.7.0",
- net.sf.tweety.plugin;bundle-version="1.7.0",
  org.hamcrest.core;bundle-version="1.3.0",
  org.junit;bundle-version="4.12.0",
  net.sf.tweety.commons;bundle-version="1.7.0"

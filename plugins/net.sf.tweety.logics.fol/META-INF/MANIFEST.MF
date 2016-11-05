@@ -7,13 +7,11 @@ Bundle-Vendor: www.agentlab.ru
 Export-Package: net.sf.tweety.logics.fol,
  net.sf.tweety.logics.fol.lang,
  net.sf.tweety.logics.fol.parser,
- net.sf.tweety.logics.fol.plugin,
  net.sf.tweety.logics.fol.prover,
  net.sf.tweety.logics.fol.semantics,
  net.sf.tweety.logics.fol.syntax,
  net.sf.tweety.logics.fol.writer
-Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport,
- net.sf.tweety.plugin;bundle-version="1.7.0"
+Require-Bundle: net.sf.tweety.logics.commons;bundle-version="1.7.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Service-Component: OSGI-INF/net.sf.tweety.logics.fol.prover.EProver.xml,
  OSGI-INF/net.sf.tweety.logics.fol.prover.NaiveProver.xml,

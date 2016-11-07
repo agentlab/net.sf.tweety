@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.machinelearning.test;
+package net.sf.tweety.machinelearning.examples;
 
 import java.io.File;
 import java.io.IOException;

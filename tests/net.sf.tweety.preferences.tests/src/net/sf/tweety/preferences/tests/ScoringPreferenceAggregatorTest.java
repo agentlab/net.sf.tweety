@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.preferences.unittesting;
+package net.sf.tweety.preferences.tests;
 
 import static org.junit.Assert.assertNotNull;
 

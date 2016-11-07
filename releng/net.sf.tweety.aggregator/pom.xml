@@ -57,9 +57,12 @@
 		<module>../../tests/net.sf.tweety.logics.pl.tests</module>
 		<module>../../tests/net.sf.tweety.logics.rdl.tests</module>
 		<module>../../tests/net.sf.tweety.logics.translators.tests</module>
-		<module>../../tests/net.sf.tweety.logics.machinelearning.tests</module>
-		<module>../../tests/net.sf.tweety.logics.math.tests</module>
-		<module>../../tests/net.sf.tweety.logics.preferences.tests</module>
+		<module>../../tests/net.sf.tweety.lp.asp.tests</module>
+		<module>../../tests/net.sf.tweety.lp.asp.beliefdynamics.tests</module>
+		<module>../../tests/net.sf.tweety.lp.nlp.tests</module>
+		<module>../../tests/net.sf.tweety.machinelearning.tests</module>
+		<module>../../tests/net.sf.tweety.math.tests</module>
+		<module>../../tests/net.sf.tweety.preferences.tests</module>
 		
 		<module>../../examples/net.sf.tweety.logics.cl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.fol.examples</module>
@@ -68,7 +71,8 @@
 		<module>../../examples/net.sf.tweety.logics.rcl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.rdl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.rpcl.examples</module>
-		<module>../../examples/net.sf.tweety.logics.machinelearning.examples</module>
+		<module>../../examples/net.sf.tweety.lp.asp.examples</module>
+		<module>../../examples/net.sf.tweety.machinelearning.examples</module>
 
 		<!-- <module>../../releng/net.sf.tweety.repository</module> -->
 		<module>../../releng/net.sf.tweety.target</module>

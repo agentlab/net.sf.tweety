@@ -28,7 +28,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<outputDirectory>src/main/java</outputDirectory>
+					<outputDirectory>src</outputDirectory>
 				</configuration>
 				<dependencies>
 					<dependency>

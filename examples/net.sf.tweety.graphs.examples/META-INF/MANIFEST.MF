@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety Graphs Examples
+Bundle-SymbolicName: net.sf.tweety.graphs.examples
+Bundle-Version: 1.7.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: net.sf.tweety.graphs.test
+Require-Bundle: net.sf.tweety.graphs,
+ net.sf.tweety.math

@@ -6,7 +6,6 @@ Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.commons,
  net.sf.tweety.commons.analysis,
  net.sf.tweety.commons.streams,
- net.sf.tweety.commons.test,
  net.sf.tweety.commons.util,
  net.sf.tweety.commons.util.rules
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

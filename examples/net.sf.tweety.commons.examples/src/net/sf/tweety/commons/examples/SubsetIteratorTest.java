@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.commons.test;
+package net.sf.tweety.commons.examples;
 
 import java.util.HashSet;
 import java.util.Set;

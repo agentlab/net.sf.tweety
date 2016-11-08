@@ -16,11 +16,13 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.arg.prob.test.deductive;
+package net.sf.tweety.arg.prob.test;
 
 import java.io.IOException;
 
 import net.sf.tweety.arg.deductive.semantics.attacks.DirectDefeat;
+import net.sf.tweety.arg.prob.test.deductive.DeductiveArgMeReasoner;
+import net.sf.tweety.arg.prob.test.deductive.DeductiveProbabilisticKnowledgebase;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.TweetyConfiguration;

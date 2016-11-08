@@ -8,7 +8,6 @@ Export-Package: net.sf.tweety.arg.prob,
  net.sf.tweety.arg.prob.dynamics,
  net.sf.tweety.arg.prob.lotteries,
  net.sf.tweety.arg.prob.semantics,
- net.sf.tweety.arg.prob.test,
  net.sf.tweety.arg.prob.test.deductive
 Require-Bundle: net.sf.tweety.arg.deductive;bundle-version="1.7.0",
  net.sf.tweety.arg.dung;bundle-version="1.7.0",

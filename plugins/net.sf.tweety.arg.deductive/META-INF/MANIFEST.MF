@@ -7,8 +7,7 @@ Export-Package: net.sf.tweety.arg.deductive,
  net.sf.tweety.arg.deductive.accumulator,
  net.sf.tweety.arg.deductive.categorizer,
  net.sf.tweety.arg.deductive.semantics,
- net.sf.tweety.arg.deductive.semantics.attacks,
- net.sf.tweety.arg.deductive.test
+ net.sf.tweety.arg.deductive.semantics.attacks
 Require-Bundle: net.sf.tweety.logics.pl;bundle-version="1.7.0",
  net.sf.tweety.graphs;bundle-version="1.7.0",
  net.sf.tweety.commons;bundle-version="1.7.0",

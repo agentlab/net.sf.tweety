@@ -65,6 +65,7 @@
 		<module>../../tests/net.sf.tweety.preferences.tests</module>
 		
 		<module>../../examples/net.sf.tweety.commons.examples</module>
+		<module>../../examples/net.sf.tweety.agents.dialogues.examples</module>
 		<module>../../examples/net.sf.tweety.logics.cl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.fol.examples</module>
 		<module>../../examples/net.sf.tweety.logics.ml.examples</module>

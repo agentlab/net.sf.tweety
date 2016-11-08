@@ -53,6 +53,7 @@
 		<module>../../tests/net.sf.tweety.arg.aba.tests</module>
 		<module>../../tests/net.sf.tweety.arg.aspic.tests</module>
 		<module>../../tests/net.sf.tweety.arg.delp.tests</module>
+		<module>../../tests/net.sf.tweety.arg.lp.tests</module>
 		<module>../../tests/net.sf.tweety.logics.cl.tests</module>
 		<module>../../tests/net.sf.tweety.logics.commons.tests</module>
 		<module>../../tests/net.sf.tweety.logics.fol.tests</module>

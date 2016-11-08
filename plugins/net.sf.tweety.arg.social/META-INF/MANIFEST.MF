@@ -4,8 +4,7 @@ Bundle-Name: Tweety (Social Abstract Argumentation Library)
 Bundle-SymbolicName: net.sf.tweety.arg.social
 Bundle-Version: 1.7.0.qualifier
 Export-Package: net.sf.tweety.arg.social,
- net.sf.tweety.arg.social.semantics,
- net.sf.tweety.arg.social.test
+ net.sf.tweety.arg.social.semantics
 Require-Bundle: net.sf.tweety.commons;bundle-version="1.7.0",
  net.sf.tweety.graphs;bundle-version="1.7.0",
  net.sf.tweety.arg.dung;bundle-version="1.7.0",

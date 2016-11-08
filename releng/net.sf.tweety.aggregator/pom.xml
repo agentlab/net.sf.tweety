@@ -71,6 +71,7 @@
 		<module>../../examples/net.sf.tweety.arg.deductive.examples</module>
 		<module>../../examples/net.sf.tweety.arg.dung.examples</module>
 		<module>../../examples/net.sf.tweety.arg.prob.examples</module>
+		<module>../../examples/net.sf.tweety.arg.social.examples</module>
 		<module>../../examples/net.sf.tweety.commons.examples</module>
 		<module>../../examples/net.sf.tweety.agents.dialogues.examples</module>
 		<module>../../examples/net.sf.tweety.logics.cl.examples</module>

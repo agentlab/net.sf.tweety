@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety Agent Dialogues Examples
+Bundle-SymbolicName: net.sf.tweety.agents.dialogues.examples
+Bundle-Version: 1.7.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: net.sf.tweety.agents.dialogues.test
+Require-Bundle: net.sf.tweety.agents,
+ net.sf.tweety.arg.dung,
+ net.sf.tweety.agents.dialogues,
+ net.sf.tweety.commons

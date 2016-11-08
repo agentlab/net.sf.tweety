@@ -16,7 +16,7 @@
  *
  *  Copyright 2016 The Tweety Project Team <http://tweetyproject.org/contact/>
  */
-package net.sf.tweety.argumentation.parameterisedhierarchy;
+package net.sf.tweety.arg.lp;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

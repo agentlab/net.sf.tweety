@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tweety Arg LP Tests
+Bundle-SymbolicName: net.sf.tweety.arg.lp.tests
+Bundle-Version: 1.7.0.qualifier
+Fragment-Host: net.sf.tweety.arg.lp;bundle-version="1.7.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ org.hamcrest;bundle-version="1.1.0"

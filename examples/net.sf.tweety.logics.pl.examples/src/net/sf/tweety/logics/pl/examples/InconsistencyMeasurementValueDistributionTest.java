@@ -25,9 +25,9 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
-import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.analysis.InconsistencyMeasureFactory;
 import net.sf.tweety.logics.pl.analysis.InconsistencyMeasureFactory.Measure;
 import net.sf.tweety.logics.pl.parser.PlParser;
@@ -61,7 +61,7 @@ public class InconsistencyMeasurementValueDistributionTest {
 		
 		
 		PlParser parser = new PlParser();
-		PlBeliefSet bs;
+		BeliefBase<PropositionalFormula> bs;
 		Map<Double,Integer> distr;
 		InconsistencyMeasure<PropositionalFormula> im;
 		double v;

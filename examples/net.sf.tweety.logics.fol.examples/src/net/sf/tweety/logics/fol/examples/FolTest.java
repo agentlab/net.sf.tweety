@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.tweety.commons.BeliefBase;
+import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Predicate;
@@ -48,18 +50,18 @@ public class FolTest {
 		sig.add(new Constant("b", animal));
 		sig.add(new Constant("c", animal));
 		parser.setSignature(sig);
-		bs.add((FolFormula) parser.parseFormula("forall X: (forall Y: ((!A(X,Y) || A(Y,X)) && (!A(Y,X) || A(X,Y))))"));
-		bs.add((FolFormula) parser.parseFormula("A(b,c)"));
+		bs.add(parser.parseFormula("forall X: (forall Y: ((!A(X,Y) || A(Y,X)) && (!A(Y,X) || A(X,Y))))"));
+		bs.add(parser.parseFormula("A(b,c)"));
 		FolTheoremProver prover = FolTheoremProver.getDefaultProver();
-		System.out.println(prover.query(bs, (FolFormula) parser.parseFormula("A(c,b)")));
+		System.out.println(prover.query(bs, parser.parseFormula("A(c,b)")));
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, ParserException, IOException {
 		// test();System.exit(1);
-		FolParser parser = new FolParser();
-		FolBeliefSet b = parser.parseBeliefBaseFromFile("examplebeliefbase.fologic");
+		Parser<FolFormula> parser = new FolParser();
+		BeliefBase<FolFormula> b = parser.parseBeliefBaseFromFile("examplebeliefbase.fologic");
 		System.out.println(b);
 		FolTheoremProver prover = FolTheoremProver.getDefaultProver();
-		System.out.println(prover.query(b, (FolFormula) parser.parseFormula("Knows(martin,carl)")));
+		System.out.println(prover.query(b, parser.parseFormula("Knows(martin,carl)")));
 	}
 }

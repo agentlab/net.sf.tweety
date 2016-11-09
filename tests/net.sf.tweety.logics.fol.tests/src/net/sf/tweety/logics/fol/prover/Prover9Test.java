@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.parser.FolParser;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
@@ -26,13 +27,13 @@ public class Prover9Test {
 	public void test1() throws Exception {
 		FolParser parser = new FolParser();
 		String source = "type(a) \n type(b) \n type(c) \n" + "a \n !b";
-		FolBeliefSet b = parser.parseBeliefBase(source);
+		BeliefBase<FolFormula> b = parser.parseBeliefBase(source);
 		// printer.printBase(b);
 		System.out.println(printer);
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("b")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("a")).getAnswerBoolean());
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("c")).getAnswerBoolean());
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("!c")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("b")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("a")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("c")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("!c")).getAnswerBoolean());
 	}
 
 	@Test
@@ -40,13 +41,13 @@ public class Prover9Test {
 		FolParser parser = new FolParser();
 		String source = "Animal = {horse, cow, lion} \n" + "type(Tame(Animal)) \n" + "type(Ridable(Animal)) \n"
 				+ "Tame(cow) \n" + "!Tame(lion) \n" + "Ridable(horse) \n" + "forall X: (!Ridable(X) || Tame(X)) \n";
-		FolBeliefSet b = parser.parseBeliefBase(source);
+		BeliefBase<FolFormula> b = parser.parseBeliefBase(source);
 		printer.printBase(b);
 		System.out.println(printer);
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("Tame(cow)")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("exists X: (Tame(X))")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("Tame(horse)")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("!Ridable(lion)")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("Tame(cow)")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("exists X: (Tame(X))")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("Tame(horse)")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("!Ridable(lion)")).getAnswerBoolean());
 	}
 
 	@Test
@@ -55,33 +56,33 @@ public class Prover9Test {
 		String source = "Animal = {horse, cow, lion} \n" + "Plant = {grass, tree} \n" + "type(Eats(Animal, Plant)) \n"
 				+ "forall X: (!Eats(X,tree)) \n" + "Eats(cow, grass) \n"
 				+ "forall X: (!Eats(cow, X) || Eats(horse, X)) \n" + "exists X: (Eats(lion, X))";
-		FolBeliefSet b = parser.parseBeliefBase(source);
+		BeliefBase<FolFormula> b = parser.parseBeliefBase(source);
 		printer.printBase(b);
 		System.out.println(printer);
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("Eats(lion, tree)")).getAnswerBoolean());
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("!Eats(lion, grass)")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("Eats(lion, tree)")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("!Eats(lion, grass)")).getAnswerBoolean());
 		// is not true according to the solver
 		// assertTrue(e.query(b, (FolFormula)parser.parseFormula("Eats(lion,
 		// grass)")));
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("Eats(horse, tree)")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("!Eats(horse, tree)")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("Eats(horse, grass)")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("exists X: (forall Y: (!Eats(Y, X)))")).getAnswerBoolean());
-		assertFalse(e.query(b, (FolFormula) parser.parseFormula("forall X: (forall Y: (Eats(Y, X)))")).getAnswerBoolean());
-		assertTrue(e.query(b, (FolFormula) parser.parseFormula("!(forall X: (forall Y: (Eats(Y, X))))")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("Eats(horse, tree)")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("!Eats(horse, tree)")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("Eats(horse, grass)")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("exists X: (forall Y: (!Eats(Y, X)))")).getAnswerBoolean());
+		assertFalse(e.query(b, parser.parseFormula("forall X: (forall Y: (Eats(Y, X)))")).getAnswerBoolean());
+		assertTrue(e.query(b, parser.parseFormula("!(forall X: (forall Y: (Eats(Y, X))))")).getAnswerBoolean());
 	}
 
 	@Test
 	public void test4() throws Exception {
 		FolParser parser = new FolParser();
 		String source = "type(a) \n type(b) \n type(c) \n" + "a \n !b";
-		FolBeliefSet b = parser.parseBeliefBase(source);
+		BeliefBase<FolFormula> b = parser.parseBeliefBase(source);
 		// printer.printBase(b);
 		System.out.println(printer);
-		assertTrue(e.equivalent(b, (FolFormula) parser.parseFormula("b"), (FolFormula) parser.parseFormula("b")));
-		assertFalse(e.equivalent(b, (FolFormula) parser.parseFormula("a"), (FolFormula) parser.parseFormula("b")));
-		assertTrue(e.equivalent(b, (FolFormula) parser.parseFormula("a && b"),
-				(FolFormula) parser.parseFormula("b && a")));
+		assertTrue(e.equivalent(b, parser.parseFormula("b"), parser.parseFormula("b")));
+		assertFalse(e.equivalent(b, parser.parseFormula("a"), parser.parseFormula("b")));
+		assertTrue(e.equivalent(b, parser.parseFormula("a && b"),
+				parser.parseFormula("b && a")));
 
 	}
 }

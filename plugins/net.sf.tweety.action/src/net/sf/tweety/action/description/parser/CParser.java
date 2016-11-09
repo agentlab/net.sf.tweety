@@ -23,10 +23,10 @@ import java.io.Reader;
 
 import org.osgi.service.component.annotations.Component;
 
-import net.sf.tweety.action.description.CActionDescription;
+import net.sf.tweety.action.description.syntax.CLaw;
 import net.sf.tweety.action.signature.ActionSignature;
 import net.sf.tweety.action.signature.parser.ActionSignatureParser;
-import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 
@@ -40,7 +40,7 @@ import net.sf.tweety.commons.ParserException;
  */
 @Component(service = Parser.class)
 public class CParser
-  extends Parser<CActionDescription> {
+  implements Parser<CLaw> {
   protected ActionSignature signature;
   
   /*
@@ -48,7 +48,7 @@ public class CParser
    * @see net.sf.tweety.Parser#parseBeliefBase(java.io.Reader)
    */
   @Override
-  public CActionDescription parseBeliefBase( Reader reader )
+  public BeliefBase<CLaw> parseBeliefBase( Reader reader )
     throws IOException, ParserException {
     // State 0 : initialize
     // State 1 : read signature
@@ -91,7 +91,7 @@ public class CParser
    * @see net.sf.tweety.Parser#parseFormula(java.io.Reader)
    */
   @Override
-  public Formula parseFormula( Reader reader )
+  public CLaw parseFormula( Reader reader )
     throws IOException, ParserException {
     String s = "";
     int c;
@@ -107,7 +107,7 @@ public class CParser
    * @see net.sf.tweety.Parser#parseFormula(java.lang.String)
    */
   @Override
-  public Formula parseFormula( String formula) throws ParserException, IOException {
+  public CLaw parseFormula( String formula) throws ParserException, IOException {
     return new CLawParser( signature ).parseFormula( formula );
   }
   

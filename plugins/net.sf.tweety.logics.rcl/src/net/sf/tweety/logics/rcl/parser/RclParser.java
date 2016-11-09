@@ -24,6 +24,7 @@ import java.io.StringReader;
 
 import org.osgi.service.component.annotations.Component;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.fol.parser.FolParser;
@@ -50,7 +51,7 @@ import net.sf.tweety.logics.rcl.syntax.RelationalConditional;
  *  @author Matthias Thimm
  */
 @Component(service = Parser.class)
-public class RclParser extends Parser<RclBeliefSet> {
+public class RclParser implements Parser<RelationalConditional> {
 
 	/** For parsing FOL fragments. */
 	private FolParser folParser;
@@ -66,7 +67,7 @@ public class RclParser extends Parser<RclBeliefSet> {
 	 * @see net.sf.tweety.kr.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public RclBeliefSet parseBeliefBase(Reader reader) throws IOException, ParserException {
+	public BeliefBase<RelationalConditional> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		RclBeliefSet beliefSet = new RclBeliefSet();
 		String s = "";
 		// for keeping track of the section of the file

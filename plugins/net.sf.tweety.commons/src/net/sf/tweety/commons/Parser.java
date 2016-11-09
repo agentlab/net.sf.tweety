@@ -18,6 +18,8 @@
  */
 package net.sf.tweety.commons;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,84 +31,124 @@ import java.io.StringReader;
  * 
  * @author Matthias Thimm
  */
-public abstract class Parser<T extends BeliefBase> {
+public interface Parser<T extends Formula> {
 
 	/**
-	 * Parses the file of the given filename into a belief base of the given type.
-	 * @param filename the name of a file
+	 * Parses the file of the given filename into a belief base of the given
+	 * type.
+	 * 
+	 * @param filename
+	 *            the name of a file
 	 * @return a belief base
-	 * @throws FileNotFoundException if the file is not found 
-	 * @throws Exception some parsing exceptions may be added here.
+	 * @throws FileNotFoundException
+	 *             if the file is not found
+	 * @throws Exception
+	 *             some parsing exceptions may be added here.
 	 */
-	public T parseBeliefBaseFromFile(String filename) throws FileNotFoundException, IOException, ParserException{
-		InputStreamReader reader = new InputStreamReader(new java.io.FileInputStream(filename));
-		T bs = this.parseBeliefBase(reader);
-		reader.close();
-		return bs;
+	default BeliefBase<T> parseBeliefBaseFromFile(String filename) throws IOException, ParserException {
+		try (InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));) {
+			return this.parseBeliefBase(reader);
+		} catch (Exception e) {
+			throw new ParserException(e);
+		}
 	}
-	
+
+	default BeliefBase<T> parseBeliefBaseFromFile(File file) throws IOException, ParserException {
+		try (InputStreamReader reader = new InputStreamReader(new FileInputStream(file));) {
+			return this.parseBeliefBase(reader);
+		} catch (Exception e) {
+			throw new ParserException(e);
+		}
+	}
+
 	/**
-	 * Parses the given text into a belief base of the given type.	 
-	 * @param text a string
+	 * Parses the given text into a belief base of the given type.
+	 * 
+	 * @param text
+	 *            a string
 	 * @return a belief base.
-	 * @throws Exception some parsing exceptions may be added here.
+	 * @throws Exception
+	 *             some parsing exceptions may be added here.
 	 */
-	public T parseBeliefBase(String text) throws IOException, ParserException{
+	default BeliefBase<T> parseBeliefBase(String text) throws IOException, ParserException {
 		return this.parseBeliefBase(new StringReader(text));
 	}
-	
+
 	/**
 	 * Parses the given reader into a belief base of the given type.
-	 * @param reader a reader 
+	 * 
+	 * @param reader
+	 *            a reader
 	 * @return a belief base
-	 * @throws Exception some parsing exceptions may be added here.
+	 * @throws Exception
+	 *             some parsing exceptions may be added here.
 	 */
-	public abstract T parseBeliefBase(Reader reader) throws IOException, ParserException;
-	
+	BeliefBase<T> parseBeliefBase(Reader reader) throws IOException, ParserException;
+
 	/**
 	 * Parses the file of the given filename into a formula of the given type.
-	 * @param filename the name of a file
+	 * 
+	 * @param filename
+	 *            the name of a file
 	 * @return a formula
-	 * @throws FileNotFoundException if the file is not found 
-	 * @throws Exception some parsing exceptions may be added here.
+	 * @throws FileNotFoundException
+	 *             if the file is not found
+	 * @throws Exception
+	 *             some parsing exceptions may be added here.
 	 */
-	public Formula parseFormulaFromFile(String filename) throws FileNotFoundException, IOException, ParserException{
-		InputStreamReader reader = new InputStreamReader(new java.io.FileInputStream(filename));
-		Formula f = this.parseFormula(reader);
-		reader.close();
-		return f;
+	default T parseFormulaFromFile(String filename) throws FileNotFoundException, IOException, ParserException {
+		try (InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));) {
+			return this.parseFormula(reader);
+		} catch (Exception e) {
+			throw new ParserException(e);
+		}
 	}
-	
+	default T parseFormulaFromFile(File file) throws FileNotFoundException, IOException, ParserException {
+		try (InputStreamReader reader = new InputStreamReader(new FileInputStream(file));) {
+			return this.parseFormula(reader);
+		} catch (Exception e) {
+			throw new ParserException(e);
+		}
+	}
+
 	/**
 	 * Parses the given text into a formula of the given type.
-	 * @param text a string
+	 * 
+	 * @param text
+	 *            a string
 	 * @return a formula
-	 * @throws Exception some parsing exceptions may be added here.
+	 * @throws Exception
+	 *             some parsing exceptions may be added here.
 	 */
-	public Formula parseFormula(String text) throws IOException, ParserException{
+	default T parseFormula(String text) throws IOException, ParserException {
 		return this.parseFormula(new StringReader(text));
 	}
-	
+
 	/**
 	 * Parses the given reader into a formula of the given type.
-	 * @param reader a reader
+	 * 
+	 * @param reader
+	 *            a reader
 	 * @return a formula
-	 * @throws Exception some parsing exceptions may be added here.
+	 * @throws Exception
+	 *             some parsing exceptions may be added here.
 	 */
-	public abstract Formula parseFormula(Reader reader) throws IOException, ParserException;
-	
+	T parseFormula(Reader reader) throws IOException, ParserException;
+
 	/**
 	 * Checks whether the given string is a number.
-	 * @param str some string
+	 * 
+	 * @param str
+	 *            some string
 	 * @return "true" if the given string can be parsed as a number
 	 */
-	public static boolean isNumeric(String str){  
-	  try{  
-	    Double.parseDouble(str);  
-	  }catch(NumberFormatException nfe) {
-		  return false;  
-	  }  
-	  return true;  
+	public static boolean isNumeric(String str) {
+		try {
+			Double.parseDouble(str);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
 	}
-	
+
 }

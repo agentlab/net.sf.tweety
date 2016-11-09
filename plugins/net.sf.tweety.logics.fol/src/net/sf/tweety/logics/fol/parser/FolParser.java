@@ -32,7 +32,7 @@ import java.util.Stack;
 
 import org.osgi.service.component.annotations.Component;
 
-import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.LogicalSymbols;
@@ -78,7 +78,7 @@ import net.sf.tweety.logics.fol.syntax.Tautology;
  * @author Matthias Thimm
  */
 @Component(service = Parser.class)
-public class FolParser extends Parser<FolBeliefSet> {
+public class FolParser implements Parser<FolFormula> {
 
 	/**
 	 * forall-quantifier used in syntax 
@@ -104,7 +104,7 @@ public class FolParser extends Parser<FolBeliefSet> {
 	 * @see net.sf.tweety.kr.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public FolBeliefSet parseBeliefBase(Reader reader) throws IOException, ParserException {
+	public BeliefBase<FolFormula> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		FolBeliefSet beliefSet = new FolBeliefSet();
 		String s = "";
 		// for keeping track of the section of the file
@@ -218,7 +218,7 @@ public class FolParser extends Parser<FolBeliefSet> {
 	 * @see net.sf.tweety.kr.Parser#parseFormula(java.io.Reader)
 	 */
 	@Override
-	public Formula parseFormula(Reader reader) throws IOException, ParserException {
+	public FolFormula parseFormula(Reader reader) throws IOException, ParserException {
 		Stack<Object> stack = new Stack<Object>();
 		try{
 			this.variables = new HashMap<String,Variable>();

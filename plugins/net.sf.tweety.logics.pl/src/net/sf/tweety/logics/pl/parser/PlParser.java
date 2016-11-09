@@ -26,6 +26,7 @@ import java.util.Stack;
 
 import org.osgi.service.component.annotations.Component;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.LogicalSymbols;
@@ -51,13 +52,13 @@ import net.sf.tweety.logics.pl.syntax.Tautology;
  *  @author Bastian Wolf
  */
 @Component(service = Parser.class)
-public class PlParser extends Parser<PlBeliefSet> {
+public class PlParser implements Parser<PropositionalFormula> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public PlBeliefSet parseBeliefBase(Reader reader) throws ParserException {
+	public BeliefBase<PropositionalFormula> parseBeliefBase(Reader reader) throws ParserException {
 		PlBeliefSet beliefSet = new PlBeliefSet();
 		String s = "";
 		// read from the reader and separate formulas by "\n"

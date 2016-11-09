@@ -43,7 +43,7 @@ import net.sf.tweety.logics.rdl.syntax.DefaultRule;
  *
  */
 @Component(service = Parser.class)
-public class RdlParser extends Parser<DefaultTheory> {
+public class RdlParser implements Parser<DefaultRule> {
 
 	/**
 	 * parser to parse knowledge base
@@ -53,8 +53,9 @@ public class RdlParser extends Parser<DefaultTheory> {
 	/**
 	 * tokens for parsing defaults
 	 */
-	private final String DIV_COLON = "::", DIV_COMMA = ";", DIV_SLASH = "/";
-
+	private final String DIV_COLON = "::";
+	private final String DIV_COMMA = ";";
+	private final String DIV_SLASH = "/";
 	
 	/**
 	 * regexes for parsing a default and the justifications
@@ -86,7 +87,7 @@ public class RdlParser extends Parser<DefaultTheory> {
 	 * @see net.sf.tweety.commons.Parser#parseFormula(java.io.Reader)
 	 */
 	@Override
-	public Formula parseFormula(Reader reader) throws IOException, ParserException {
+	public DefaultRule parseFormula(Reader reader) throws IOException, ParserException {
 		BufferedReader br = new BufferedReader(reader);
 		String line = br.readLine();
 		Matcher matcher = DEFAULT_SPLIT.matcher(line);

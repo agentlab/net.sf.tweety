@@ -54,7 +54,7 @@ import net.sf.tweety.logics.commons.syntax.interfaces.Invertable;
  * @param <T>	is the type of the language that the ASPIC theory's rules range over 
  */
 @Component(service = Parser.class)
-public class AspicParser <T extends Invertable> extends Parser<AspicArgumentationTheory<T>>{
+public class AspicParser <T extends Invertable> implements Parser<InferenceRule<T>>{
 	
 	/**
 	 * Used to parse formulae
@@ -118,14 +118,10 @@ public class AspicParser <T extends Invertable> extends Parser<AspicArgumentatio
 	 * @see net.sf.tweety.commons.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	@SuppressWarnings(value = { "unchecked" })
-	public AspicArgumentationTheory<T> parseBeliefBase(Reader reader) throws IOException, ParserException {
+	public BeliefBase<InferenceRule<T>> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		final Pattern ORDER = Pattern.compile(".*<.*");
-		
 		AspicArgumentationTheory<T> as = new AspicArgumentationTheory<T>( rfg);
-		
 		BufferedReader br = new BufferedReader(reader);
-		
 		while(true) {
 			String line = br.readLine();
 			if(line==null)
@@ -133,9 +129,9 @@ public class AspicParser <T extends Invertable> extends Parser<AspicArgumentatio
 			if (ORDER.matcher(line).matches()) {
 				as.setOrder(parseSimpleOrder(line));
 			} else {
-				Formula rule = parseFormula(line);
+				InferenceRule<T> rule = parseFormula(line);
 				if(rule != null)
-					as.addRule((InferenceRule<T>)rule);
+					as.addRule(rule);
 			}
 		}
 		return as;
@@ -146,7 +142,7 @@ public class AspicParser <T extends Invertable> extends Parser<AspicArgumentatio
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Formula parseFormula(Reader reader) throws IOException, ParserException {
+	public InferenceRule<T> parseFormula(Reader reader) throws IOException, ParserException {
 		final Pattern RULE = Pattern.compile("(.*)("+symbolStrict +"|"+symbolDefeasible +")(.+)"),
 				RULE_ID = Pattern.compile("^\\s*([A-Za-z0-9]+)\\s*:(.*)"),
 				EMPTY = Pattern.compile("^\\s*$");

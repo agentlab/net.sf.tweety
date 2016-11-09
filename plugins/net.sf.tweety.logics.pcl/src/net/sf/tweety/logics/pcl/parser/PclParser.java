@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.pcl.PclBeliefSet;
@@ -48,7 +49,7 @@ import net.sf.tweety.math.probability.Probability;
  *  @author Matthias Thimm
  */
 @Component(service = Parser.class)
-public class PclParser extends Parser<PclBeliefSet>{
+public class PclParser implements Parser<ProbabilisticConditional>{
 
 	/**
 	 * Logger.
@@ -59,7 +60,7 @@ public class PclParser extends Parser<PclBeliefSet>{
 	 * @see net.sf.tweety.kr.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public PclBeliefSet parseBeliefBase(Reader reader) throws IOException, ParserException {
+	public BeliefBase<ProbabilisticConditional> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		PclBeliefSet beliefSet = new PclBeliefSet();
 		String s = "";		 
 		// read from the reader and separate formulas by "\n"

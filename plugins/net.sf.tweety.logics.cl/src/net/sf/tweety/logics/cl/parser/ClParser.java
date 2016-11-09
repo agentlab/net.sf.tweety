@@ -24,6 +24,7 @@ import java.io.StringReader;
 
 import org.osgi.service.component.annotations.Component;
 
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.cl.ClBeliefSet;
@@ -44,13 +45,13 @@ import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
  *  @author Matthias Thimm
  */
 @Component(service = Parser.class)
-public class ClParser extends Parser<ClBeliefSet> {
+public class ClParser implements Parser<Conditional> {
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public ClBeliefSet parseBeliefBase(Reader reader) throws IOException, ParserException {
+	public BeliefBase<Conditional> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		ClBeliefSet beliefSet = new ClBeliefSet();
 		String s = "";
 		// read from the reader and separate formulas by "\n"
@@ -101,8 +102,8 @@ public class ClParser extends Parser<ClBeliefSet> {
 		}
 		PlParser plParser = new PlParser();
 		if(idx == -1)
-			return new Conditional((PropositionalFormula)plParser.parseFormula(s.substring(1, s.length()-1)));
-		return new Conditional((PropositionalFormula)plParser.parseFormula(s.substring(idx+1, s.length()-1)),(PropositionalFormula)plParser.parseFormula(s.substring(1, idx)));		
+			return new Conditional(plParser.parseFormula(s.substring(1, s.length()-1)));
+		return new Conditional(plParser.parseFormula(s.substring(idx+1, s.length()-1)),plParser.parseFormula(s.substring(1, idx)));		
 	}
 
 }

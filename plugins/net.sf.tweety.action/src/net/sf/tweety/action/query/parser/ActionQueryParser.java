@@ -42,6 +42,7 @@ import net.sf.tweety.action.query.syntax.SActionQuery;
 import net.sf.tweety.action.signature.ActionSignature;
 import net.sf.tweety.action.signature.FolAction;
 import net.sf.tweety.action.signature.FolActionName;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.LogicalSymbols;
@@ -80,7 +81,7 @@ import net.sf.tweety.logics.pl.syntax.Tautology;
  */
 @Component(service = Parser.class)
 public class ActionQueryParser
-  extends Parser<SActionQuerySet> {
+  implements Parser<SActionQuery> {
   private ActionSignature signature;
   
   public ActionQueryParser() {
@@ -96,7 +97,7 @@ public ActionQueryParser(ActionSignature signature) {
    * @see net.sf.tweety.Parser#parseBeliefBase(java.io.Reader)
    */
   @Override
-  public SActionQuerySet parseBeliefBase( Reader reader ) {
+  public BeliefBase<SActionQuery> parseBeliefBase( Reader reader ) {
     SActionQuerySet beliefSet = new SActionQuerySet();
     String s = "";
     // read from the reader and separate formulas by "\n"

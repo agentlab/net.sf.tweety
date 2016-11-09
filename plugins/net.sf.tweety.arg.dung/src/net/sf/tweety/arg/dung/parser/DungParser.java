@@ -26,6 +26,8 @@ import org.osgi.service.component.annotations.Component;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
@@ -53,12 +55,12 @@ import net.sf.tweety.commons.ParserException;
   */
 @SuppressWarnings("all")
 @Component(service = Parser.class)
-public class DungParser extends Parser implements DungParserConstants {
+public class DungParser implements Parser<DungEntity>, DungParserConstants {
 
         public DungParser(){
         }
 
-        public DungTheory parseBeliefBase(Reader reader) throws ParserException{
+        public BeliefBase<DungEntity> parseBeliefBase(Reader reader) throws ParserException{
                 try
                 {
                         DungParser theParser = new DungParser(reader);
@@ -68,7 +70,7 @@ public class DungParser extends Parser implements DungParserConstants {
                 }
         }
 
-        public Formula parseFormula(Reader reader) throws ParserException{
+        public DungEntity parseFormula(Reader reader) throws ParserException{
                 try{
                         DungParser theParser = new DungParser(reader);
                         return theParser.SingleFormula();
@@ -97,8 +99,8 @@ public class DungParser extends Parser implements DungParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public Formula SingleFormula() throws ParseException {
-        Formula f;
+  static final public DungEntity SingleFormula() throws ParseException {
+	  DungEntity f;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ARGUMENT_NAME:
     case 6:

@@ -32,7 +32,7 @@ import net.sf.tweety.action.description.syntax.StaticLaw;
 import net.sf.tweety.action.grounding.GroundingRequirement;
 import net.sf.tweety.action.grounding.parser.GroundingRequirementsParser;
 import net.sf.tweety.action.signature.ActionSignature;
-import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.syntax.Variable;
@@ -61,7 +61,7 @@ import net.sf.tweety.logics.fol.syntax.Tautology;
  * @author Sebastian Homann
  */
 @Component(service = Parser.class)
-public class CLawParser extends Parser<CActionDescription> {
+public class CLawParser implements Parser<CLaw> {
 
   protected ActionSignature signature;
 
@@ -82,7 +82,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @see net.sf.tweety.Parser#parseBeliefBase(java.io.Reader)
    */
   @Override
-  public CActionDescription parseBeliefBase( Reader reader )
+  public BeliefBase<CLaw> parseBeliefBase( Reader reader )
     throws ParserException {
     CActionDescription actionDescription = new CActionDescription();
 
@@ -113,7 +113,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @see net.sf.tweety.Parser#parseFormula(java.io.Reader)
    */
   @Override
-  public Formula parseFormula( Reader reader )
+  public CLaw parseFormula( Reader reader )
     throws IOException, ParserException {
     String s = "";
     int c;
@@ -143,7 +143,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @see net.sf.tweety.Parser#parseFormula(java.lang.String)
    */
   @Override
-  public Formula parseFormula(String s) throws ParserException, IOException {
+  public CLaw parseFormula(String s) throws ParserException, IOException {
     s = s.trim();
     String reqString = null;
     // handle grounding requirements
@@ -182,7 +182,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseCausedFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseCausedFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.startsWith("caused "))
       throw new ParserException("Missing 'caused' expression in causal law: "+s);
     FolFormula afterFormula = null;
@@ -239,7 +239,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseInertialFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseInertialFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.startsWith("inertial "))
       throw new ParserException("Missing 'inertial' expression in causal law: "+s);
     FolFormula formula = null;
@@ -269,7 +269,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseDefaultFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseDefaultFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.startsWith("default "))
       throw new ParserException("Missing 'default' expression in causal law: "+s);
     FolFormula ifFormula = null;
@@ -317,7 +317,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseCausesFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseCausesFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.contains( " causes " ))
       throw new ParserException("Missing 'causes' expression in causal law: "+s);
     FolFormula headFormula = null;
@@ -375,7 +375,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseAlwaysFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseAlwaysFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.startsWith( "always " ))
       throw new ParserException("Missing 'always' expression in causal law: "+s);
     FolFormula headFormula = null;
@@ -405,7 +405,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseNonexecutableFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseNonexecutableFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.startsWith("nonexecutable "))
       throw new ParserException("Missing 'nonexecutable' expression in causal law: "+s);
     FolFormula ifFormula = null;
@@ -453,7 +453,7 @@ public class CLawParser extends Parser<CActionDescription> {
    * @throws ParserException
    * @throws IOException
    */
-  private Formula parseMayCauseFormula(String s, String reqString) throws ParserException, IOException {
+  private CLaw parseMayCauseFormula(String s, String reqString) throws ParserException, IOException {
     if(!s.contains( " may cause " ))
       throw new ParserException("Missing 'may cause' expression in causal law: "+s);
     FolFormula headFormula = null;

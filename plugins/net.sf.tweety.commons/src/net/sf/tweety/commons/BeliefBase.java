@@ -20,6 +20,8 @@ package net.sf.tweety.commons;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * This class captures an abstract knowledge base, i.e. some set of formulas in
@@ -40,6 +42,14 @@ public interface BeliefBase<T extends Formula> extends Collection<T>, Cloneable 
 	 * @return the signature of the language of this knowledge base.
 	 */
 	Signature getSignature();
+	
+	default <S extends T> Collection<S> getIndex(Class<S> clazz){
+		return stream().filter(clazz::isInstance).map(clazz::cast).collect(Collectors.toSet());
+	}
+	
+	default <S extends T> Stream<S> getIndexStream(Class<S> clazz){
+		return stream().filter(clazz::isInstance).map(clazz::cast);
+	}
 
 	default boolean addAll(Collection<? extends T> formulas) {
 		return formulas.stream().map(formula -> add(formula)).reduce(false, (a, b) -> a || b);
@@ -53,6 +63,11 @@ public interface BeliefBase<T extends Formula> extends Collection<T>, Cloneable 
 	@Override
 	default boolean contains(Object o) {
 		return stream().filter(formula -> formula.equals(o)).findFirst().isPresent();
+	}
+	
+	@Override
+	default boolean containsAll(Collection<?> c) {
+		return c.stream().allMatch(this::contains);
 	}
 
 	@Override

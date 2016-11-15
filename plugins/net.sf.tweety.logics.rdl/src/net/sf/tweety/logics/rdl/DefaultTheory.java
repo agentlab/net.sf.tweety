@@ -30,7 +30,9 @@ import net.sf.tweety.commons.Signature;
 import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.FolSignature;
+import net.sf.tweety.logics.rdl.syntax.RdlFormula;
 import net.sf.tweety.logics.rdl.syntax.DefaultRule;
+import net.sf.tweety.logics.rdl.syntax.RdlFact;
 
 /**
  * Models a default theory in Reiter's default logic, see [R. Reiter. A logic for default reasoning. Artificial Intelligence, 13:81–132, 1980].
@@ -39,13 +41,13 @@ import net.sf.tweety.logics.rdl.syntax.DefaultRule;
  *
  */
 @Component(service = BeliefBase.class)
-public class DefaultTheory implements BeliefBase<FolFormula> {
+public class DefaultTheory implements BeliefBase<RdlFormula> {
 
 	/** The set of facts (first-order formulas). */
-	private FolBeliefSet facts;
+	private Collection<FolFormula> facts;
+	
 	/** The set of default rules */
 	private Collection<DefaultRule> defaults;
-	
 	
 	/**
 	 * constructs empty default theory
@@ -61,7 +63,7 @@ public class DefaultTheory implements BeliefBase<FolFormula> {
 	 * @param facts the knowledge base
 	 * @param defaults the defaults
 	 */
-	public DefaultTheory(FolBeliefSet facts, Collection<DefaultRule> defaults) {
+	public DefaultTheory(Collection<FolFormula> facts, Collection<DefaultRule> defaults) {
 		super();
 		this.facts = facts;
 		this.defaults = new ArrayList<DefaultRule>();
@@ -122,7 +124,8 @@ public class DefaultTheory implements BeliefBase<FolFormula> {
 	 */
 	@Override
 	public Signature getSignature() {
-		Signature result = facts.getSignature();
+		FolSignature result = new FolSignature();
+		result.addAll(facts);
 		for(DefaultRule d: defaults)
 			result.addSignature(d.getSignature());
 		return result;
@@ -143,24 +146,43 @@ public class DefaultTheory implements BeliefBase<FolFormula> {
 	 * 
 	 * @return FoL formulas in default theories
 	 */
-	public FolBeliefSet getFacts(){
+	public Collection<FolFormula> getFacts(){
 		return facts;
 	}
 
 	@Override
-	public boolean add(FolFormula formula) {
-		return facts.add(formula);
+	public boolean add(RdlFormula formula) {
+		if (formula instanceof RdlFact) {
+			RdlFact rdlFact = (RdlFact) formula;
+			return facts.add(rdlFact.getFormula());
+		} else if (formula instanceof DefaultRule) {
+			return defaults.add((DefaultRule) formula);
+		} else {
+			throw new IllegalArgumentException("Unknown type " + formula.getClass());
+		}
 	}
 
 	@Override
 	public boolean remove(Object formula) {
-		return facts.remove(formula);
+		return facts.remove(formula) || defaults.remove(formula);
 	}
 
 	@Override
 	public void clear() {
 		facts.clear();
 		defaults.clear();
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public BeliefBase<RdlFormula> clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -50,7 +50,7 @@ import net.sf.tweety.math.probability.Probability;
  * @author Matthias Thimm, Nils Geilen
  *
  */
-public class DefaultRule extends RelationalFormula {
+public class DefaultRule extends RelationalFormula implements RdlFormula {
 
 	/** The prerequisite of the default rule */
 	private FolFormula pre;

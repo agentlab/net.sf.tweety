@@ -27,15 +27,16 @@ import java.util.regex.Pattern;
 
 import org.osgi.service.component.annotations.Component;
 
-import net.sf.tweety.commons.Formula;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
-import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.parser.FolParser;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.Tautology;
 import net.sf.tweety.logics.rdl.DefaultTheory;
 import net.sf.tweety.logics.rdl.syntax.DefaultRule;
+import net.sf.tweety.logics.rdl.syntax.RdlFormula;
+import net.sf.tweety.logics.rdl.syntax.impl.DefaultFact;
 
 /**
  * This class implements a parser for default logic. 
@@ -43,12 +44,12 @@ import net.sf.tweety.logics.rdl.syntax.DefaultRule;
  *
  */
 @Component(service = Parser.class)
-public class RdlParser implements Parser<DefaultRule> {
+public class RdlParser implements Parser<RdlFormula> {
 
 	/**
 	 * parser to parse knowledge base
 	 */
-	private FolParser folparser;
+	private final Parser<FolFormula> folparser = new FolParser();
 
 	/**
 	 * tokens for parsing defaults
@@ -60,21 +61,20 @@ public class RdlParser implements Parser<DefaultRule> {
 	/**
 	 * regexes for parsing a default and the justifications
 	 */
-	private final Pattern JUS_SPLIT = Pattern.compile("^([^;]+)" + DIV_COMMA + "(.*)$"),
-			DEFAULT_SPLIT = Pattern.compile("^(.*)" + DIV_COLON + "(.*)" + DIV_SLASH + "(.*)$");
+	private final Pattern JUS_SPLIT = Pattern.compile("^([^;]+)" + DIV_COMMA + "(.*)$");
+	private final Pattern DEFAULT_SPLIT = Pattern.compile("^(.*)" + DIV_COLON + "(.*)" + DIV_SLASH + "(.*)$");
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.commons.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public DefaultTheory parseBeliefBase(Reader reader) throws IOException, ParserException {
-		folparser= new FolParser();
+	public BeliefBase<RdlFormula> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		BufferedReader br = new BufferedReader(reader);
 		String str = "";
 		String line;
 		while ((line = br.readLine()) != null && !line.matches(".*"+DIV_COLON+".*"))
 				str += line + "\n";
-		FolBeliefSet facts = folparser.parseBeliefBase(str);
+		BeliefBase<FolFormula> facts = folparser.parseBeliefBase(str);
 		LinkedList<DefaultRule> defaults = new LinkedList<>();
 		do {
 			if (!line.matches("^\\s*$"))
@@ -87,29 +87,30 @@ public class RdlParser implements Parser<DefaultRule> {
 	 * @see net.sf.tweety.commons.Parser#parseFormula(java.io.Reader)
 	 */
 	@Override
-	public DefaultRule parseFormula(Reader reader) throws IOException, ParserException {
+	public RdlFormula parseFormula(Reader reader) throws IOException, ParserException {
 		BufferedReader br = new BufferedReader(reader);
 		String line = br.readLine();
 		Matcher matcher = DEFAULT_SPLIT.matcher(line);
-		if (!matcher.matches())
-			return folparser.parseFormula(line);
+		if (!matcher.matches()){
+			FolFormula forlFormula =folparser.parseFormula(line); 			
+			return new DefaultFact(forlFormula);
+		}
 		FolFormula pre = new Tautology();
 		if (!matcher.group(1).matches("^\\s*$"))
-			pre = (FolFormula) parseFormula(matcher.group(1));
-		FolFormula conc = (FolFormula) parseFormula(matcher.group(3));
+			pre = folparser.parseFormula(matcher.group(1));
+		FolFormula conc = folparser.parseFormula(matcher.group(3));
 		String jus = matcher.group(2);
 		LinkedList<FolFormula> juslist = new LinkedList<>();
 		while (true) {
 			Matcher m = JUS_SPLIT.matcher(jus);
 			if (!m.matches()) {
-				juslist.add((FolFormula) parseFormula(jus));
+				juslist.add(folparser.parseFormula(jus));
 				break;
 			}
 			jus = m.group(2);
-			juslist.add((FolFormula) parseFormula(m.group(1)));
+			juslist.add(folparser.parseFormula(m.group(1)));
 		}
 		return new DefaultRule(pre, juslist, conc);
-
 	}
-
+	
 }

@@ -29,6 +29,7 @@ import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.prover.FolTheoremProver;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.rdl.semantics.DefaultProcessTree;
+import net.sf.tweety.logics.rdl.syntax.RdlFormula;
 
 /**
  * Implements a naive reasoner for default logic based on exhaustive application
@@ -37,7 +38,7 @@ import net.sf.tweety.logics.rdl.semantics.DefaultProcessTree;
  * @author Matthias Thimm, Nils Geilen
  */
 @Component(service = Reasoner.class)
-public class NaiveDefaultReasoner implements Reasoner<FolFormula, FolFormula> {
+public class NaiveDefaultReasoner implements Reasoner<RdlFormula, FolFormula> {
 
 //	 DefaultProcessTree tree;
 	//
@@ -55,7 +56,7 @@ public class NaiveDefaultReasoner implements Reasoner<FolFormula, FolFormula> {
 	 * @see net.sf.tweety.commons.Reasoner#query(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public Answer query(BeliefBase<FolFormula> beliefBase, FolFormula query) {
+	public Answer query(BeliefBase<RdlFormula> beliefBase, FolFormula query) {
 		if (!query.isGround())
 			throw new IllegalArgumentException("Query is not grounded.");
 		if (!(beliefBase instanceof DefaultTheory)) {
@@ -77,7 +78,7 @@ public class NaiveDefaultReasoner implements Reasoner<FolFormula, FolFormula> {
 	 /**
 	 * @return all extensions of the default theory
 	 */
-	 public Collection<Collection<FolFormula>> getAllExtensions(BeliefBase<FolFormula> beliefBase) {
+	 public Collection<Collection<FolFormula>> getAllExtensions(BeliefBase<RdlFormula> beliefBase) {
 		 DefaultProcessTree tree = new DefaultProcessTree((DefaultTheory) beliefBase);
 		 return tree.getExtensions();
 	 }

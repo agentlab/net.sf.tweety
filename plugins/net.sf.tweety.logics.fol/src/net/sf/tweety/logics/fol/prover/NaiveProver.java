@@ -18,13 +18,14 @@
  */
 package net.sf.tweety.logics.fol.prover;
 
+import java.util.Collection;
+
 import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.fol.ClassicalInference;
-import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
@@ -38,7 +39,7 @@ public class NaiveProver extends FolTheoremProver{
 	ClassicalInference inf = new ClassicalInference();
 
 	@Override
-	public boolean equivalent(FolBeliefSet kb, FolFormula a, FolFormula b) {
+	public boolean equivalent(Collection<FolFormula> kb, FolFormula a, FolFormula b) {
 		return ClassicalInference.equivalent(a, b);
 	}
 

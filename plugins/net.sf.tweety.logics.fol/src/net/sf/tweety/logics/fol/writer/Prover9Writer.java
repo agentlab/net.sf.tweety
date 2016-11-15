@@ -3,11 +3,12 @@ package net.sf.tweety.logics.fol.writer;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Collection;
 import java.util.Iterator;
 
-import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.commons.syntax.Constant;
 import net.sf.tweety.logics.commons.syntax.Variable;
+import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.AssociativeFOLFormula;
 import net.sf.tweety.logics.fol.syntax.Conjunction;
 import net.sf.tweety.logics.fol.syntax.Contradiction;
@@ -73,11 +74,12 @@ public class Prover9Writer implements FolWriter {
 	 * (non-Javadoc)
 	 * @see net.sf.tweety.logics.fol.writer.FolWriter#printBase(net.sf.tweety.logics.fol.FolBeliefSet)
 	 */
-	public void printBase(BeliefBase<FolFormula> b)  throws IOException {
+	public void printBase(Collection<FolFormula> b)  throws IOException {
 			writer.write("formulas(sos).\n");
 			
 			// print types
-			FolSignature sig = (FolSignature) b.getSignature();
+			// TODO: fix casts 
+			FolSignature sig = (FolSignature) ((FolBeliefSet)b).getSignature();
 			for (Constant c : sig.getConstants())
 				writer.write( "\t"+c.getSort() + "(" + c + ").\n");
 

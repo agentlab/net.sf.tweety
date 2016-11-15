@@ -18,8 +18,9 @@
  */
 package net.sf.tweety.logics.fol.prover;
 
+import java.util.Collection;
+
 import net.sf.tweety.commons.Reasoner;
-import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
@@ -68,6 +69,6 @@ public abstract class FolTheoremProver implements Reasoner<FolFormula, FolFormul
 //	 */
 //	public abstract boolean query(FolBeliefSet kb, FolFormula query);
 	
-	public abstract boolean equivalent(FolBeliefSet kb, FolFormula a, FolFormula b);
+	public abstract boolean equivalent(Collection<FolFormula> kb, FolFormula a, FolFormula b);
 	
 }

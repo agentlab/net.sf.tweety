@@ -1,8 +1,8 @@
 package net.sf.tweety.logics.fol.writer;
 
 import java.io.IOException;
+import java.util.Collection;
 
-import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 
 /**
@@ -34,7 +34,7 @@ public interface FolWriter {
 	 * @param b
 	 *            a knowledge base
 	 */
-	public void printBase(BeliefBase<FolFormula> b) throws IOException ;
+	public void printBase(Collection<FolFormula> b) throws IOException ;
 	
 	/**
 	 * Closes the Writer

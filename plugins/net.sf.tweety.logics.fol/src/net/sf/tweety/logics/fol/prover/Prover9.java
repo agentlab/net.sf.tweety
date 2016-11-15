@@ -2,6 +2,7 @@ package net.sf.tweety.logics.fol.prover;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 import org.osgi.service.component.annotations.Component;
@@ -10,7 +11,6 @@ import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.util.Shell;
-import net.sf.tweety.logics.fol.FolBeliefSet;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.writer.Prover9Writer;
 
@@ -72,7 +72,7 @@ public class Prover9 extends FolTheoremProver {
 	 * net.sf.tweety.logics.fol.syntax.FolFormula)
 	 */
 	@Override
-	public boolean equivalent(FolBeliefSet kb, FolFormula a, FolFormula b) {
+	public boolean equivalent(Collection<FolFormula> kb, FolFormula a, FolFormula b) {
 		try {
 			File file = File.createTempFile("tmp", ".txt");
 			Prover9Writer printer = new Prover9Writer(new PrintWriter(file));

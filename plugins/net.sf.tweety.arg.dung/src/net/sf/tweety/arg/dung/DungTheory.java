@@ -20,62 +20,55 @@ package net.sf.tweety.arg.dung;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.osgi.service.component.annotations.Component;
 
+import com.google.common.collect.Iterators;
+
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.arg.dung.syntax.DungSignature;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.BeliefSet;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Signature;
-import net.sf.tweety.graphs.DefaultGraph;
-import net.sf.tweety.graphs.Edge;
 import net.sf.tweety.graphs.Graph;
-import net.sf.tweety.graphs.Node;
-import net.sf.tweety.math.matrix.Matrix;
-import net.sf.tweety.math.term.IntegerConstant;
-
 
 /**
  * This class implements an abstract argumentation theory in the sense of Dung.
- * <br>
- * <br>See
- * <br>
- * <br>Phan Minh Dung. On the Acceptability of Arguments and its Fundamental Role in Nonmonotonic Reasoning, Logic Programming and n-Person Games.
- * In Artificial Intelligence, Volume 77(2):321-358. 1995
  *
+ * @see Phan Minh Dung. On the Acceptability of Arguments and its Fundamental
+ *      Role in Nonmonotonic Reasoning, Logic Programming and n-Person Games. In
+ *      Artificial Intelligence, Volume 77(2):321-358. 1995
  *
- * @author Matthias Thimm, Tjitze Rienstra
+ * @author Matthias Thimm
+ * @author Tjitze Rienstra
+ * @author Dmitriy Shishkin
  *
  */
 @Component(service = BeliefBase.class)
-public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, Comparable<DungTheory> {
+public class DungTheory implements BeliefBase<DungEntity> {
 
 	/**
-	 * For archiving sub graphs 
+	 * The set of arguments
 	 */
-	private static Map<DungTheory, Collection<Graph<Argument>>> archivedSubgraphs = new HashMap<DungTheory, Collection<Graph<Argument>>>();
-		
+	private final Set<Argument> arguments = new HashSet<>();
+	
 	/**
 	 * The set of attacks
 	 */
-	private Set<Attack> attacks;
+	private final Set<Attack> attacks = new HashSet<>();
 
 	/**
 	 * Default constructor; initializes empty sets of arguments and attacks
 	 */
 	public DungTheory(){
 		super();
-		attacks = new HashSet<Attack>();
 	}
 	
 	/**
@@ -83,17 +76,33 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 * @param graph some graph
 	 */
 	public DungTheory(Graph<Argument> graph){
-		super(graph.getNodes());
-		this.attacks = new HashSet<Attack>();
-		for(Edge<? extends Argument> e: graph.getEdges())
-			this.attacks.add(new Attack(e.getNodeA(),e.getNodeB()));		
+		super();
+		arguments.addAll(graph.getNodes());
+		graph.getEdges().stream().map(edge -> new Attack(edge.getNodeA(), edge.getNodeB())).forEach(attacks::add);
+	}
+
+	public DungTheory(BeliefBase<DungEntity> beliefBase){
+		super();
+		arguments.addAll(beliefBase.getIndex(Argument.class));
+		beliefBase.getIndex(Attack.class).forEach(attacks::add);
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.BeliefBase#getSignature()
 	 */
 	public Signature getSignature(){
-		return new DungSignature(formulas);
+		return new DungSignature(arguments);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <S extends DungEntity> Collection<S> getIndex(Class<S> clazz) {
+		if (Argument.class.isAssignableFrom(clazz)) {
+			return (Collection<S>) arguments;
+		} else if (Attack.class.isAssignableFrom(clazz)) {
+			return (Collection<S>) attacks;
+		}
+		return BeliefBase.super.getIndex(clazz);
 	}
 
 	/**
@@ -164,7 +173,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 * @return true if the theory is coherent
 	 */
 	public boolean isCoherent(){
-		Set<Extension> preferredExtensions = new PreferredReasoner().getExtensions(this);;
+		Set<Extension> preferredExtensions = new PreferredReasoner().getExtensions(this);
 		Set<Extension> stableExtensions = new StableReasoner().getExtensions(this);
 		stableExtensions.retainAll(preferredExtensions);
 		return preferredExtensions.size() == stableExtensions.size();
@@ -260,12 +269,10 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 */
 	public Extension faf(Extension extension){
 		Extension newExtension = new Extension();
-		Iterator<Argument> it = this.iterator();
-		while(it.hasNext()){
-			Argument argument = it.next();
-			if(extension.isAcceptable(argument, this))
-				newExtension.add(argument);
-		}
+		arguments
+			.stream()
+			.filter(arg -> extension.isAcceptable(arg, this))
+			.forEach(newExtension::add);
 		return newExtension;
 	}
 	
@@ -348,7 +355,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 */
 	public String prettyPrint(){
 		String output = new String();
-		Iterator<Argument> it = this.iterator();
+		Iterator<Argument> it = arguments.iterator();
 		while(it.hasNext())
 			output += "argument("+it.next().toString()+").\n";
 		output += "\n";
@@ -362,7 +369,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){		
-		return "<" + super.toString() + "," + this.attacks + ">";
+		return "<" + arguments.toString() + "," + this.attacks + ">";
 	}
 	
 	/**
@@ -394,7 +401,19 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 			if(att.contains(a))
 				toBeRemoved.add(att);
 		boolean b = this.attacks.removeAll(toBeRemoved);
-		return super.remove(a) || b;
+		return arguments.remove(a) || b;
+	}
+	
+	@Override
+	public boolean remove(Object obj) {
+		if (obj instanceof Argument) {
+			Argument argument = (Argument) obj;
+			attacks.stream().filter(attack -> attack.contains(argument)).forEach(attacks::remove);
+			return arguments.remove(obj);
+		} else if(obj instanceof Attack){
+			return attacks.remove(obj);
+		}
+		throw new IllegalArgumentException("Only Attack or Argument is required");
 	}
 	
 //	/* (non-Javadoc)
@@ -447,8 +466,8 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 	 * @return "true" if this Dung Theory has been modified 
 	 */
 	public boolean add(DungTheory theory){
-		boolean b1 = this.addAll(theory.formulas);
-		boolean b2 = this.addAllAttacks(theory.getAttacks());
+		boolean b1 = this.addAll(theory.arguments);
+		boolean b2 = this.addAllAttacks(theory.attacks);
 		return b1 || b2 ;		
 	}
 	
@@ -460,11 +479,7 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 		return new HashSet<Attack>(this.attacks);
 	}
 	
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getRestriction(java.util.Collection)
-	 */
-	@Override
-	public Graph<Argument> getRestriction(Collection<Argument> arguments) {
+	public BeliefBase<DungEntity> getRestriction(Collection<Argument> arguments) {
 		DungTheory theory = new DungTheory();
 		theory.addAll(arguments);
 		for (Attack attack: this.attacks)
@@ -504,193 +519,49 @@ public class DungTheory extends BeliefSet<Argument> implements Graph<Argument>, 
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#add(net.sf.tweety.graphs.Edge)
-	 */
 	@Override
-	public boolean add(Edge<Argument> edge) {
-		throw new UnsupportedOperationException();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getNodes()
-	 */
-	@Override
-	public Collection<Argument> getNodes() {		
-		return formulas;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getNumberOfNodes()
-	 */
-	@Override
-	public int getNumberOfNodes() {
-		return this.size();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#areAdjacent(net.sf.tweety.graphs.Node, net.sf.tweety.graphs.Node)
-	 */
-	@Override
-	public boolean areAdjacent(Argument a, Argument b) {
-		return this.isAttackedBy(b, a);
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getEdges()
-	 */
-	@Override
-	public Collection<? extends Edge<? extends Argument>> getEdges() {
-		return this.attacks;		
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getChildren(net.sf.tweety.graphs.Node)
-	 */
-	@Override
-	public Collection<Argument> getChildren(Node node) {
-		if(!(node instanceof Argument))
-			throw new IllegalArgumentException("Node of type argument expected");
-		return this.getAttacked((Argument)node);
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getParents(net.sf.tweety.graphs.Node)
-	 */
-	@Override
-	public Collection<Argument> getParents(Node node) {
-		if(!(node instanceof Argument))
-			throw new IllegalArgumentException("Node of type argument expected");
-		return this.getAttackers((Argument)node);
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#existsDirectedPath(net.sf.tweety.graphs.Node, net.sf.tweety.graphs.Node)
-	 */
-	@Override
-	public boolean existsDirectedPath(Argument node1, Argument node2) {
-		return DefaultGraph.existsDirectedPath(this, node1, node2);
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getNeighbors(net.sf.tweety.graphs.Node)
-	 */
-	@Override
-	public Collection<Argument> getNeighbors(Argument node) {
-		Set<Argument> neighbours = new HashSet<Argument>();
-		neighbours.addAll(this.getAttacked(node));
-		neighbours.addAll(this.getAttackers(node));
-		return neighbours;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getAdjancyMatrix()
-	 */
-	@Override
-	public Matrix getAdjancyMatrix() {
-		Matrix m = new Matrix(this.getNumberOfNodes(), this.getNumberOfNodes());
-		int i = 0, j;
-		for(Argument a: this){
-			j = 0;
-			for(Argument b : this){
-				m.setEntry(i, j, new IntegerConstant(this.areAdjacent(a, b) ? 1 : 0));				
-				j++;
-			}
-			i++;
-		}
-		return m;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getComplementGraph(int)
-	 */
-	@Override
-	public DungTheory getComplementGraph(int selfloops) {
-		DungTheory comp = new DungTheory();
-		for(Argument node: this)
-			comp.add(node);
-		for(Argument node1: this)
-			for(Argument node2: this)
-				if(node1 == node2){
-					if(selfloops == Graph.INVERT_SELFLOOPS){
-						if(!this.isAttackedBy(node2, node1))
-							comp.add(new Attack(node1, node2));
-					}else if(selfloops == Graph.IGNORE_SELFLOOPS){
-						if(this.isAttackedBy(node2, node1))
-							comp.add(new Attack(node1, node2));						
-					}
-				}else if(!this.isAttackedBy(node2, node1))
-					comp.add(new Attack(node1, node2));
-		return comp;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#hasSelfLoops()
-	 */
-	@Override
-	public boolean hasSelfLoops() {
-		for(Argument a: this)
-			if(this.isAttackedBy(a, a))
-				return true;
-		return false;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getEdge(net.sf.tweety.graphs.Node, net.sf.tweety.graphs.Node)
-	 */
-	@Override
-	public Edge<Argument> getEdge(Argument a, Argument b) {
-		if(this.isAttackedBy(b, a))
-			return new Attack(a, b);
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#isWeightedGraph()
-	 */
-	@Override
-	public boolean isWeightedGraph() {
-		return false;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getStronglyConnectedComponents()
-	 */
-	@Override
-	public Collection<Collection<Argument>> getStronglyConnectedComponents() {
-		return DefaultGraph.getStronglyConnectedComponents(this);
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.tweety.graphs.Graph#getSubgraphs()
-	 */
-	@Override
-	public Collection<Graph<Argument>> getSubgraphs() {	
-		if(!DungTheory.archivedSubgraphs.containsKey(this))			
-			DungTheory.archivedSubgraphs.put(this, DefaultGraph.<Argument>getSubgraphs(this));		
-		return DungTheory.archivedSubgraphs.get(this);
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(DungTheory o) {
-		// DungTheory implements Comparable in order to 
-		// have a fixed (but arbitrary) order among all theories
-		// for that purpose we just use the hash code.
-		return this.hashCode() - o.hashCode();
-	}
-
-	@Override
-	public Iterator<Argument> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<DungEntity> iterator() {
+		return Iterators.concat(arguments.iterator(), attacks.iterator());
 	}
 
 	@Override
 	public boolean contains(Object obj) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean add(DungEntity formula) {
+		if (formula instanceof Argument) {
+			return arguments.add((Argument) formula);
+		} else if (formula instanceof Attack) {
+			return attacks.add((Attack) formula);
+		} else {
+			throw new IllegalArgumentException("Only Argument or Attack allowed, but was " + formula.getClass());
+		}
+	}
+
+	@Override
+	public boolean containsAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clear() {
+		attacks.clear();
+		arguments.clear();
+	}
+
+	@Override
+	public BeliefBase<DungEntity> clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

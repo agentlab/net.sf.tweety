@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -62,7 +63,7 @@ public class GroundReasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	protected Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){		
+	protected Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){		
 		Extension ext = new Extension();
 		int size;
 		do{
@@ -78,7 +79,7 @@ public class GroundReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("not defined for grounded semantics");
 	}
 	

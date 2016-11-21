@@ -23,6 +23,7 @@ import java.util.Set;
 
 import net.sf.tweety.arg.dung.AbstractExtensionReasoner;
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.ldo.syntax.AbstractGraphLdoModality;
 import net.sf.tweety.arg.dung.ldo.syntax.AbstractLdoModality;
 import net.sf.tweety.arg.dung.ldo.syntax.LdoArgument;
@@ -112,6 +113,7 @@ public class LdoInterpretation implements Interpretation {
 					return true;
 			return false;
 		}
+		Graph<Argument> graph = new DungTheoryGraph(theory);
 		if(formula instanceof AbstractLdoModality){
 			LdoFormula innerFormula = ((AbstractLdoModality)formula).getInnerFormula();
 			if(formula instanceof AbstractGraphLdoModality){
@@ -124,7 +126,7 @@ public class LdoInterpretation implements Interpretation {
 				for(LdoArgument a: refUpper)
 					refArgsUpper.add(a.getArgument());
 				if(formula instanceof LdoGraphBoxModality){
-					for(Graph<Argument> t: theory.getSubgraphs()){
+					for(Graph<Argument> t: graph.getSubgraphs()){
 						DungTheory th = new DungTheory(t);
 						if(th.containsAll(refArgsLower) && refArgsUpper.containsAll(th)){
 							LdoInterpretation i = new LdoInterpretation(th, this.ext, this.sem);
@@ -135,7 +137,7 @@ public class LdoInterpretation implements Interpretation {
 					return true;
 				}
 				if(formula instanceof LdoGraphDiamondModality){
-					for(Graph<Argument> t: theory.getSubgraphs()){
+					for(Graph<Argument> t: graph.getSubgraphs()){
 						DungTheory th = new DungTheory(t);
 						if(th.containsAll(refArgsLower) && refArgsUpper.containsAll(th)){
 							LdoInterpretation i = new LdoInterpretation(th, this.ext, this.sem);
@@ -169,7 +171,7 @@ public class LdoInterpretation implements Interpretation {
 		if(formula instanceof LdoRelation){
 			LdoFormula left = ((LdoRelation)formula).getLeft();
 			LdoFormula right = ((LdoRelation)formula).getRight();
-			for(Graph<Argument> t: theory.getSubgraphs()){
+			for(Graph<Argument> t: graph.getSubgraphs()){
 				// check for completeness
 				boolean complete = true;
 				for(Attack a: theory.getAttacks()){

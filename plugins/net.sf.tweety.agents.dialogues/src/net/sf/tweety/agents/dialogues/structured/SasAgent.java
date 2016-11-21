@@ -146,7 +146,7 @@ public abstract class SasAgent extends Agent {
 	 * @return The set of arguments this agent may bring forward.
 	 */
 	protected Set<Argument> getPossibleArguments(){
-		Set<Argument> possibleArguments = new HashSet<Argument>(this.getView()); 
+		Set<Argument> possibleArguments = new HashSet<Argument>(this.getView().getIndex(Argument.class)); 
 		possibleArguments.removeAll(this.getCommonView());
 		return possibleArguments;
 	}

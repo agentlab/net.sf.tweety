@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.ldo.semantics.LdoInterpretation;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.DungSignature;
@@ -90,7 +91,7 @@ public abstract class LdoFormula implements ClassicalFormula{
 	 */
 	public Collection<DungTheory> getDividers(DungTheory theory, int semantics){
 		Collection<DungTheory> result = new HashSet<DungTheory>();
-		for(Graph<Argument> g: theory.getSubgraphs()){
+		for(Graph<Argument> g: (new DungTheoryGraph(theory)).getSubgraphs()){
 			DungTheory sub = new DungTheory(g);
 			LdoInterpretation i = new LdoInterpretation(sub,semantics);
 			if(i.satisfies(this))

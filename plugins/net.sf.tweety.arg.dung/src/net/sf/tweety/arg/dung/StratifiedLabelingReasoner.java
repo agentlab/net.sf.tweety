@@ -27,6 +27,7 @@ import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.semantics.StratifiedLabeling;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
@@ -36,7 +37,7 @@ import net.sf.tweety.commons.Reasoner;
  * @author Matthias Thimm
  */
 @Component(service = Reasoner.class)
-public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> {
+public class StratifiedLabelingReasoner implements Reasoner<DungEntity, Argument> {
 
 	/** The set of stratified labelings this reasoner is based upon. */
 	private Set<StratifiedLabeling> labelings;
@@ -78,7 +79,7 @@ public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> 
 	 * @see net.sf.tweety.Reasoner#query(net.sf.tweety.Formula)
 	 */
 	@Override
-	public Answer query(BeliefBase<Argument> beliefBase, Argument arg) {
+	public Answer query(BeliefBase<DungEntity> beliefBase, Argument arg) {
 //		if(!(query instanceof Argument))
 //			throw new IllegalArgumentException("Formula of class argument expected");
 //		Argument arg = (Argument) query;
@@ -113,7 +114,7 @@ public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> 
 	 * Returns the labelings this reasoner bases upon.
 	 * @return the labelings this reasoner bases upon.
 	 */
-	public Set<StratifiedLabeling> getLabelings(BeliefBase<Argument> beliefBase){
+	public Set<StratifiedLabeling> getLabelings(BeliefBase<DungEntity> beliefBase){
 		if(this.labelings == null)
 			this.labelings = this.computeLabelings(beliefBase);
 		return this.labelings;
@@ -131,7 +132,7 @@ public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> 
 	 * Computes the labelings this reasoner bases upon.
 	 * @return A set of labelings.
 	 */
-	private Set<StratifiedLabeling> computeLabelings(BeliefBase<Argument> beliefBase){
+	private Set<StratifiedLabeling> computeLabelings(BeliefBase<DungEntity> beliefBase){
 		Set<StratifiedLabeling> labelings = new HashSet<StratifiedLabeling>();
 		AbstractExtensionReasoner reasoner = AbstractExtensionReasoner.getReasonerForSemantics(this.semantics, Semantics.CREDULOUS_INFERENCE);
 		Set<Extension> extensions = reasoner.getExtensions(beliefBase);
@@ -139,13 +140,13 @@ public class StratifiedLabelingReasoner implements Reasoner<Argument, Argument> 
 		for(Extension extension: extensions){
 			StratifiedLabeling labeling = new StratifiedLabeling();
 			if(extension.isEmpty()){
-				for(Argument arg: theory)
+				for(Argument arg: theory.getIndex(Argument.class))
 					labeling.put(arg, Integer.MAX_VALUE);
 				labelings.add(labeling);
 			}else{
 				for(Argument arg: extension)
 					labeling.put(arg, 0);
-				Extension remainingArguments = new Extension(theory);
+				Extension remainingArguments = new Extension(theory.getIndex(Argument.class));
 				remainingArguments.removeAll(extension);
 				DungTheory remainingTheory = new DungTheory(theory.getRestriction(remainingArguments));
 				StratifiedLabelingReasoner sReasoner = new StratifiedLabelingReasoner(this.semantics, this.inferenceType);

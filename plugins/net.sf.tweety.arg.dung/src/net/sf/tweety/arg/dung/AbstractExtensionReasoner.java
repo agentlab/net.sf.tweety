@@ -25,19 +25,19 @@ import java.util.Set;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.syntax.Proposition;
-import net.sf.tweety.logics.pl.syntax.PropositionalFormula;
 
 
 /**
  * This class models an abstract extension reasoner used for Dung theories.
  * @author Matthias Thimm
  */
-public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Argument> {
+public abstract class AbstractExtensionReasoner implements Reasoner<DungEntity, Argument> {
 	
 	/**
 	 * The extensions this reasoner bases upon.
@@ -98,7 +98,7 @@ public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Ar
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.kr.Reasoner#query(net.sf.tweety.kr.Formula)
 	 */
-	public Answer query(BeliefBase<Argument> beliefBase, Argument arg){
+	public Answer query(BeliefBase<DungEntity> beliefBase, Argument arg){
 //		if(!(query instanceof Argument))
 //			throw new IllegalArgumentException("Formula of class argument expected");
 //		Argument arg = (Argument) query;
@@ -141,20 +141,20 @@ public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Ar
 	 * add the constraint in_A => out_B1 ^ ... ^ out_BN.    
 	 * @return a propositional belief set.
 	 */
-	public PlBeliefSet getPropositionalCharacterisation(BeliefBase<Argument> beliefBase){
+	public PlBeliefSet getPropositionalCharacterisation(BeliefBase<DungEntity> beliefBase){
 		Map<Argument,Proposition> in = new HashMap<Argument,Proposition>();
 		Map<Argument,Proposition> out = new HashMap<Argument,Proposition>();
 		Map<Argument,Proposition> undec = new HashMap<Argument,Proposition>();
 		PlBeliefSet beliefSet = new PlBeliefSet();
-		for(Argument a: beliefBase){
+		for(Argument a: beliefBase.getIndex(Argument.class)){
 			in.put(a, new Proposition("in_" + a.getName()));
 			out.put(a, new Proposition("out_" + a.getName()));
 			undec.put(a, new Proposition("undec_" + a.getName()));
 			// for every argument only one of in/out/undec can be true
 			beliefSet.add(in.get(a).combineWithOr(out.get(a).combineWithOr(undec.get(a))));
-			beliefSet.add((PropositionalFormula)in.get(a).combineWithAnd(out.get(a)).complement());
-			beliefSet.add((PropositionalFormula)in.get(a).combineWithAnd(undec.get(a)).complement());
-			beliefSet.add((PropositionalFormula)out.get(a).combineWithAnd(undec.get(a)).complement());
+			beliefSet.add(in.get(a).combineWithAnd(out.get(a)).complement());
+			beliefSet.add(in.get(a).combineWithAnd(undec.get(a)).complement());
+			beliefSet.add(out.get(a).combineWithAnd(undec.get(a)).complement());
 		}
 		beliefSet.addAll(this.getPropositionalCharacterisationBySemantics(beliefBase, in, out, undec));
 		return beliefSet;
@@ -169,13 +169,13 @@ public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Ar
 	 * @return the semantic-specific propositional characterization of the underlying Dung
 	 * theory, see <code>getPropositionalCharacterisation</code>.
 	 */
-	protected abstract PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec);
+	protected abstract PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec);
 	
 	/**
 	 * Returns the extensions this reasoner bases upon.
 	 * @return the extensions this reasoner bases upon.
 	 */
-	public Set<Extension> getExtensions(BeliefBase<Argument> beliefBase){
+	public Set<Extension> getExtensions(BeliefBase<DungEntity> beliefBase){
 		if(this.extensions == null)
 			this.extensions = this.computeExtensions(beliefBase);
 		return this.extensions;
@@ -193,5 +193,5 @@ public abstract class AbstractExtensionReasoner implements Reasoner<Argument, Ar
 	 * Computes the extensions this reasoner bases upon.
 	 * @return A set of extensions.
 	 */
-	protected abstract Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase);
+	protected abstract Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase);
 }

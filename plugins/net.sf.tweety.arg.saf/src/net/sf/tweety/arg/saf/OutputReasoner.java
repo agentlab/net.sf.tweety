@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Component;
 import net.sf.tweety.arg.dung.AbstractExtensionReasoner;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.arg.saf.syntax.ArgumentStructure;
 import net.sf.tweety.commons.Answer;
 import net.sf.tweety.commons.BeliefBase;
@@ -43,7 +44,7 @@ import net.sf.tweety.logics.pl.syntax.Proposition;
  * @author Matthias Thimm
  */
 @Component(service = Reasoner.class)
-public class OutputReasoner implements Reasoner<Argument, Proposition> {
+public class OutputReasoner implements Reasoner<DungEntity, Proposition> {
 
 	/**
 	 * The output of this reasoner.
@@ -83,7 +84,7 @@ public class OutputReasoner implements Reasoner<Argument, Proposition> {
 	 * @see net.sf.tweety.kr.Reasoner#query(net.sf.tweety.kr.Formula)
 	 */
 	@Override
-	public Answer query(BeliefBase<Argument> beliefBase, Proposition query) {		
+	public Answer query(BeliefBase<DungEntity> beliefBase, Proposition query) {		
 //		if(!(query instanceof Proposition))
 //			throw new IllegalArgumentException("Reasoning in structured argumentation frameworls is only defined for propositional queries.");
 		Answer answer = new Answer(beliefBase, query);
@@ -97,7 +98,7 @@ public class OutputReasoner implements Reasoner<Argument, Proposition> {
 	 * Returns the output this reasoner bases upon.
 	 * @return the output this reasoner bases upon.
 	 */
-	public Set<Proposition> getOutput(BeliefBase<Argument> beliefBase){
+	public Set<Proposition> getOutput(BeliefBase<DungEntity> beliefBase){
 		if(this.output == null){
 			Set<Extension> extensions = this.reasoner.getExtensions(beliefBase);			
 			this.output = new HashSet<Proposition>();			

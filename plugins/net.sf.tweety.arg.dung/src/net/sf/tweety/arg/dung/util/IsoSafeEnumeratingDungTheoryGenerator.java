@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
 import net.sf.tweety.graphs.util.GraphUtil;
@@ -64,7 +65,7 @@ public class IsoSafeEnumeratingDungTheoryGenerator implements DungTheoryGenerato
 	 */
 	private boolean isIsomorphic(DungTheory theory, Collection<DungTheory> theories){
 		for(DungTheory other: theories)
-			if(GraphUtil.isIsomorphic(theory, other))
+			if(GraphUtil.isIsomorphic((new DungTheoryGraph(theory)), (new DungTheoryGraph(other))))
 				return true;
 		return false;
 	}
@@ -80,8 +81,8 @@ public class IsoSafeEnumeratingDungTheoryGenerator implements DungTheoryGenerato
 			this.cntAttacks++;
 			Collection<DungTheory> newTheories = new HashSet<DungTheory>();
 			for(DungTheory theory: this.currentTheories){
-				for(Argument a: theory){
-					for(Argument b: theory){
+				for(Argument a: theory.getIndex(Argument.class)){
+					for(Argument b: theory.getIndex(Argument.class)){
 						if(!theory.isAttackedBy(b, a)){
 							DungTheory newTheory = new DungTheory();
 							newTheory.addAll(theory);

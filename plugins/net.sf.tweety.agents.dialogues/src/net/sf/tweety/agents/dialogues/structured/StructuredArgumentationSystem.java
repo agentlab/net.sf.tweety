@@ -75,8 +75,9 @@ public class StructuredArgumentationSystem extends MultiAgentSystem<SasAgent> {
 			if(!(this.saf.containsAll(e)))
 				throw new IllegalArgumentException("Action contains unknown arguments.");
 			this.commonView.addAll(e);
-			for(Argument a: this.commonView){
-				for(Argument b: this.commonView)
+			Collection<Argument> index = commonView.getIndex(Argument.class);
+			for(Argument a: index){
+				for(Argument b: index)
 					if(saf.isAttackedBy(a, b))
 						this.commonView.add(new Attack(b,a));
 			}				

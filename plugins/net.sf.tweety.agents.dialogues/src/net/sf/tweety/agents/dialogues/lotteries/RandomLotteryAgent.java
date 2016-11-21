@@ -26,6 +26,7 @@ import java.util.Random;
 import net.sf.tweety.agents.Perceivable;
 import net.sf.tweety.agents.dialogues.ExecutableDungTheory;
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.prob.lotteries.UtilityFunction;
 import net.sf.tweety.graphs.Graph;
@@ -58,7 +59,7 @@ public class RandomLotteryAgent extends AbstractLotteryAgent{
 	 */
 	@Override
 	public ExecutableDungTheory next(Collection<? extends Perceivable> percepts) {
-		List<Graph<Argument>> allSub = new LinkedList<Graph<Argument>>(this.theory.getSubgraphs());
+		List<Graph<Argument>> allSub = new LinkedList<Graph<Argument>>((new DungTheoryGraph(theory)).getSubgraphs());
 		Random rand = new Random();
 		return new ExecutableDungTheory(new DungTheory(allSub.get(rand.nextInt(allSub.size()))));
 	}

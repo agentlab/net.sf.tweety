@@ -26,6 +26,7 @@ import java.util.Set;
 
 import net.sf.tweety.arg.dung.AbstractExtensionReasoner;
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Semantics;
 import net.sf.tweety.arg.dung.syntax.Argument;
@@ -89,7 +90,7 @@ public class Division extends Pair<Extension,Extension>{
 	 */
 	public Collection<DungTheory> getDividers(DungTheory theory, int semantics){
 		Collection<DungTheory> result = new HashSet<DungTheory>();
-		Collection<Graph<Argument>> subtheories = theory.getSubgraphs();
+		Collection<Graph<Argument>> subtheories = (new DungTheoryGraph(theory)).getSubgraphs();
 		for(Graph<Argument> g: subtheories){
 			DungTheory sub = new DungTheory(g);
 			for(Division d: Division.getDivisions(AbstractExtensionReasoner.getReasonerForSemantics(semantics, Semantics.CREDULOUS_INFERENCE).getExtensions(sub), sub)){
@@ -125,7 +126,7 @@ public class Division extends Pair<Extension,Extension>{
 	 */
 	public static Collection<Division> getDivisions(Extension ext, DungTheory aaf){
 		Collection<Division> result = new HashSet<Division>();
-		Collection<Argument> remaining = new HashSet<Argument>(aaf);
+		Collection<Argument> remaining = new HashSet<Argument>(aaf.getIndex(Argument.class));
 		remaining.removeAll(ext);
 		SetTools<Argument> setTools = new SetTools<Argument>();
 		Set<Set<Argument>> subsetsExt = setTools.subsets(ext);
@@ -144,7 +145,7 @@ public class Division extends Pair<Extension,Extension>{
 	 * @return "true" if the given set of divisions is exhaustive.
 	 */
 	public static boolean isExhaustive(Collection<Division> divisions, DungTheory theory, int semantics){
-		Collection<Graph<Argument>> subgraphs = theory.getSubgraphs();
+		Collection<Graph<Argument>> subgraphs = (new DungTheoryGraph(theory)).getSubgraphs();
 		// convert to Dung theories
 		Collection<DungTheory> subtheories = new HashSet<DungTheory>();
 		for(Graph<Argument> g: subgraphs)
@@ -189,8 +190,8 @@ public class Division extends Pair<Extension,Extension>{
 		if(Division.archivedDivisons.containsKey(theory))
 			return Division.archivedDivisons.get(theory);
 		Collection<Division> result = new HashSet<Division>();
-		for(Set<Argument> args: new SetTools<Argument>().subsets(theory)){
-			Collection<Argument> retainer = new HashSet<Argument>(theory);
+		for(Set<Argument> args: new SetTools<Argument>().subsets(theory.getIndex(Argument.class))){
+			Collection<Argument> retainer = new HashSet<Argument>(theory.getIndex(Argument.class));
 			retainer.removeAll(args);
 			result.add(new Division(new Extension(args), new Extension(retainer)));
 		}

@@ -24,6 +24,7 @@ import java.util.Set;
 import net.sf.tweety.agents.Perceivable;
 import net.sf.tweety.agents.dialogues.ExecutableDungTheory;
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.prob.lotteries.ArgumentationLottery;
@@ -117,7 +118,7 @@ public class ProbabilisticLotteryAgent extends AbstractLotteryAgent {
 		Extension e = null;
 		double bestUtility = Double.NEGATIVE_INFINITY;
 		if(this.updatestrategy == ProbabilisticLotteryAgent.UPDATE_NAIVE){
-			Set<Set<Argument>> subsets =  new SetTools<Argument>().subsets(this.theory);
+			Set<Set<Argument>> subsets =  new SetTools<Argument>().subsets(this.theory.getIndex(Argument.class));
 			for(Set<Argument> posMove: subsets){
 				Extension move = new Extension(posMove);
 				SubgraphProbabilityFunction updFunc = this.prob.naiveUpdate(move);				
@@ -131,7 +132,7 @@ public class ProbabilisticLotteryAgent extends AbstractLotteryAgent {
 			return new ExecutableDungTheory(new DungTheory(this.theory.getRestriction(e)));
 		}else{
 			DungTheory th = new DungTheory();
-			Collection<Graph<Argument>> subgraphs = this.theory.getSubgraphs();
+			Collection<Graph<Argument>> subgraphs = (new DungTheoryGraph(theory)).getSubgraphs();
 			for(Graph<Argument> subgraph: subgraphs){		
 				DungTheory sub = new DungTheory(subgraph);				
 				SubgraphProbabilityFunction updFunc;

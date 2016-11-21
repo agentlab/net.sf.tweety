@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -64,9 +65,9 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	protected Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){	
+	protected Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){	
 		Extension ext = new Extension();
-		for(Argument f: beliefBase)
+		for(Argument f: beliefBase.getIndex(Argument.class))
 			ext.add(f);
 		return this.getStableExtensions(beliefBase, ext);
 	}
@@ -76,7 +77,7 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	 * @param arguments a set of arguments to be refined to yield a stable extension
 	 * @return the set of stable extensions that are a subset of <source>arguments</source>
 	 */
-	private Set<Extension> getStableExtensions(BeliefBase<Argument> beliefBase, Extension ext){
+	private Set<Extension> getStableExtensions(BeliefBase<DungEntity> beliefBase, Extension ext){
 		Set<Extension> completeExtensions = new SccCompleteReasoner().getExtensions(beliefBase);
 		Set<Extension> result = new HashSet<Extension>();
 		for(Extension e: completeExtensions)
@@ -89,12 +90,12 @@ public class StableReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
 		DungTheory theory = (DungTheory) beliefBase;
 		PlBeliefSet beliefSet = new PlBeliefSet();
 		// an argument is in iff all attackers are out, and
 		// no argument is undecided
-		for(Argument a: theory){
+		for(Argument a: theory.getIndex(Argument.class)){
 			PropositionalFormula attackersAnd = new Tautology();
 			PropositionalFormula attackersOr = new Contradiction();
 			PropositionalFormula attackersNotAnd = new Tautology();

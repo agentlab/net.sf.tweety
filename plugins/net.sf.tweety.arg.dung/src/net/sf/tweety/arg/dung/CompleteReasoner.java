@@ -27,6 +27,7 @@ import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -93,11 +94,11 @@ public class CompleteReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
 	@Override
-	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+	public Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){
 		if(this.useSatSolver)
 			return this.computeExtensionsBySatSolving(beliefBase);
 		Extension groundedExtension = new GroundReasoner(this.getInferenceType()).getExtensions(beliefBase).iterator().next();
-		Set<Argument> remaining = new HashSet<Argument>(beliefBase);
+		Set<Argument> remaining = new HashSet<>(beliefBase.getIndex(Argument.class));
 		remaining.removeAll(groundedExtension);
 		return this.getCompleteExtensions(beliefBase, groundedExtension, remaining);
 	}
@@ -106,7 +107,7 @@ public class CompleteReasoner extends AbstractExtensionReasoner {
 	 * Computes the extensions by reducing the problem to SAT solving
 	 * @return the extensions of the given Dung theory.
 	 */
-	protected Set<Extension> computeExtensionsBySatSolving(BeliefBase<Argument> beliefBase){
+	protected Set<Extension> computeExtensionsBySatSolving(BeliefBase<DungEntity> beliefBase){
 		SatSolver solver = SatSolver.getDefaultSolver();
 		PlBeliefSet prop = this.getPropositionalCharacterisation(beliefBase);
 		// get some labeling from the solver, then add the negation of this to the program and repeat
@@ -147,7 +148,7 @@ public class CompleteReasoner extends AbstractExtensionReasoner {
 	 * @param remaining arguments that still have to be considered to be part of an extension
 	 * @return all complete extensions that are supersets of an argument in <source>arguments</source>
 	 */
-	private Set<Extension> getCompleteExtensions(BeliefBase<Argument> beliefBase, Extension ext, Collection<Argument> remaining){
+	private Set<Extension> getCompleteExtensions(BeliefBase<DungEntity> beliefBase, Extension ext, Collection<Argument> remaining){
 		Set<Extension> extensions = new HashSet<Extension>();
 		DungTheory dungTheory = (DungTheory) beliefBase;
 		if(ext.isConflictFree(dungTheory)){
@@ -170,11 +171,11 @@ public class CompleteReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
 		DungTheory theory = (DungTheory) beliefBase;
 		PlBeliefSet beliefSet = new PlBeliefSet();
 		// an argument is in iff all attackers are out
-		for(Argument a: theory){
+		for(Argument a: theory.getIndex(Argument.class)){
 			if(theory.getAttackers(a).isEmpty()){
 				beliefSet.add(((PropositionalFormula)in.get(a)));
 			}else{

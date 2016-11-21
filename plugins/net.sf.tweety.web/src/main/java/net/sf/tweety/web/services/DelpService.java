@@ -29,15 +29,17 @@ import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
-import net.sf.tweety.arg.delp.DefeasibleLogicProgram;
 import net.sf.tweety.arg.delp.DelpReasoner;
 import net.sf.tweety.arg.delp.parser.DelpParser;
 import net.sf.tweety.arg.delp.semantics.ComparisonCriterion;
 import net.sf.tweety.arg.delp.semantics.EmptyCriterion;
 import net.sf.tweety.arg.delp.semantics.GeneralizedSpecificity;
+import net.sf.tweety.arg.delp.syntax.DelpRule;
 import net.sf.tweety.commons.Answer;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.ParserException;
+import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.fol.parser.FolParser;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.Negation;
@@ -124,7 +126,7 @@ public class DelpService{
 			throw new JSONException("Malformed JSON: no \"compcriterion\" attribute given");
 		try {
 			DelpParser parser = new DelpParser();
-			DefeasibleLogicProgram delp = parser.parseBeliefBase(query.getString(DelpService.JSON_ATTR_KB));
+			BeliefBase<DelpRule> delp = parser.parseBeliefBase(query.getString(DelpService.JSON_ATTR_KB));
 			ComparisonCriterion comp = null;
 			if(query.getString(DelpService.JSON_ATTR_COMP).equals(DelpService.JSON_ATTR_COMP_EMPTY))
 					comp = new EmptyCriterion();
@@ -132,7 +134,7 @@ public class DelpService{
 					comp = new GeneralizedSpecificity();
 			if(comp == null)
 				throw new JSONException("Malformed JSON: unknown value for attribute \"compcriterion\"");
-			DelpReasoner reasoner = new DelpReasoner(comp);
+			Reasoner<DelpRule, FolFormula> reasoner = new DelpReasoner(comp);
 			FolParser folParser = new FolParser();
 			folParser.setSignature(parser.getSignature());
 			String qString = query.getString(DelpService.JSON_ATTR_QUERY).trim();

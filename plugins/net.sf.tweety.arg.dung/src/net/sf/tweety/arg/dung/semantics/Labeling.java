@@ -57,14 +57,14 @@ public class Labeling extends AbstractArgumentationInterpretation implements Map
 		if(!theory.containsAll(ext))
 			throw new IllegalArgumentException("The arguments of the given extension are not all in the given theory.");
 		Extension ext2 = new Extension();
-		for(Argument a: theory){
+		for(Argument a: theory.getIndex(Argument.class)){
 			if(!ext.contains(a))
 				if(theory.isAttacked(a, ext))
 					ext2.add(a);
 		}
 		for(Argument a: ext2)
 			this.labeling.put(a, ArgumentStatus.OUT);
-		for(Argument a: theory)
+		for(Argument a: theory.getIndex(Argument.class))
 			if(!this.labeling.containsKey(a))
 				this.labeling.put(a, ArgumentStatus.UNDECIDED);	
 	}

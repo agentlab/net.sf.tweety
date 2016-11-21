@@ -57,8 +57,8 @@ public class DefaultDungTheoryGenerator implements DungTheoryGenerator {
 		DungTheory theory = new DungTheory();
 		for(int i = 0; i < this.params.numberOfArguments; i++)
 			theory.add(new Argument("a" + i));		
-		for(Argument a: theory)
-			for(Argument b: theory){
+		for(Argument a: theory.getIndex(Argument.class))
+			for(Argument b: theory.getIndex(Argument.class)){
 				if(a == b && this.params.avoidSelfAttacks)
 					continue;
 				if(this.random.nextDouble() <= this.params.attackProbability)
@@ -84,8 +84,8 @@ public class DefaultDungTheoryGenerator implements DungTheoryGenerator {
 		theory.add(arg);
 		for(int i = 1; i < this.params.numberOfArguments; i++)
 			theory.add(new Argument("a" + i));
-		for(Argument a: theory)
-			for(Argument b: theory){
+		for(Argument a: theory.getIndex(Argument.class))
+			for(Argument b: theory.getIndex(Argument.class)){
 				if(a == b && this.params.avoidSelfAttacks)
 					continue;
 				if(this.random.nextDouble() <= this.params.attackProbability){

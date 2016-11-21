@@ -25,6 +25,7 @@ import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.graphs.Graph;
 
@@ -60,7 +61,7 @@ public class SocialAbstractArgumentationFramework extends DungTheory{
 		super(graph);
 		this.pos_votes = new HashMap<Argument,Integer>();
 		this.neg_votes = new HashMap<Argument,Integer>();
-		for(Argument arg: this){
+		for(Argument arg: this.getIndex(Argument.class)){
 			this.pos_votes.put(arg, 0);
 			this.neg_votes.put(arg, 0);
 		}
@@ -135,11 +136,12 @@ public class SocialAbstractArgumentationFramework extends DungTheory{
 	 * @see net.sf.tweety.commons.BeliefSet#add(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public boolean add(Argument a){
+	public boolean add(DungEntity a){
 		boolean result = super.add(a);
-		if(result){
-			this.pos_votes.put(a, 0);
-			this.neg_votes.put(a, 0);
+		if (a instanceof Argument && result) {
+			Argument argument = (Argument) a;
+			this.pos_votes.put(argument, 0);
+			this.neg_votes.put(argument, 0);
 		}
 		return result;
 	}
@@ -151,7 +153,7 @@ public class SocialAbstractArgumentationFramework extends DungTheory{
 	public boolean add(DungTheory theory){
 		boolean result = super.add(theory);
 		if(theory instanceof SocialAbstractArgumentationFramework){
-			for(Argument a: theory){
+			for(Argument a: theory.getIndex(Argument.class)){
 				this.pos_votes.put(a, ((SocialAbstractArgumentationFramework)theory).getPositive(a));
 				this.neg_votes.put(a, ((SocialAbstractArgumentationFramework)theory).getNegative(a));
 			}
@@ -165,7 +167,7 @@ public class SocialAbstractArgumentationFramework extends DungTheory{
 	public String toString(){		
 		String s = "<{";
 		boolean isFirst = true;
-		for(Argument arg: this){
+		for(Argument arg: this.getIndex(Argument.class)){
 			if(isFirst)
 				isFirst = false;
 			else s += ",";

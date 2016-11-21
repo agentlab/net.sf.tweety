@@ -28,6 +28,7 @@ import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.commons.util.MapTools;
@@ -73,8 +74,8 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
-		Collection<Collection<Argument>> sccs = ((DungTheory) beliefBase).getStronglyConnectedComponents();
+	public Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){
+		Collection<Collection<Argument>> sccs = (new DungTheoryGraph(beliefBase)).getStronglyConnectedComponents();
 		Set<Extension> extensions = new HashSet<Extension>();
 		if(sccs.size() == 1){
 			// an extension for a single scc is a conflict-free set with maximal arguments
@@ -88,7 +89,7 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 				t.addAll(this.getOutparents(af, scc));
 				DungTheory restTheory = new DungTheory(af.getRestriction(t));//this.getUP(af, scc, af));
 				Set<Extension> e = this.singleAFExtensions(restTheory);
-				exts.put(restTheory, e);
+				exts.put(restTheory.getIndex(Argument.class), e);
 			}
 			// combine all extensions from all sccs that are compatible
 			MapTools<Collection<Argument>,Extension> mapTools = new MapTools<Collection<Argument>,Extension>();			
@@ -145,7 +146,7 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 	 */
 	private Collection<Argument> getOutparents(DungTheory af, Collection<Argument> s){
 		Collection<Argument> result = new HashSet<Argument>();
-		for(Argument a: af)
+		for(Argument a: af.getIndex(Argument.class))
 			if(!s.contains(a)){
 				if(af.isAttackedBy(a, new Extension(s)))
 					result.add(a);				
@@ -157,7 +158,7 @@ public class CF2Reasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.arg.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("Implement me!");
 	}
 }

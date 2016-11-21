@@ -23,6 +23,8 @@ import java.io.FileReader;
 
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 
 /**
@@ -36,7 +38,7 @@ public class FileDungTheoryGenerator implements DungTheoryGenerator {
 	/** The files containing Dung theories. */
 	private File[] files;
 	/** A parser for parsing the files. */
-	private Parser<DungTheory> parser;
+	private Parser<DungEntity> parser;
 	/** The index of the next theory to be returned. */
 	private int idx;
 	
@@ -46,7 +48,7 @@ public class FileDungTheoryGenerator implements DungTheoryGenerator {
 	 * @param files an array of files.
 	 * @param parser a parser for the files.
 	 */
-	public FileDungTheoryGenerator(File[] files, Parser<DungTheory> parser){
+	public FileDungTheoryGenerator(File[] files, Parser<DungEntity> parser){
 		this.files = files;
 		this.parser = parser;
 		this.idx = 0;
@@ -56,7 +58,7 @@ public class FileDungTheoryGenerator implements DungTheoryGenerator {
 	 * @see net.sf.tweety.arg.dung.util.DungTheoryGenerator#generate()
 	 */
 	@Override
-	public DungTheory generate() {
+	public BeliefBase<DungEntity> generate() {
 		if(this.idx >= this.files.length)
 			this.idx = 0;
 		try {

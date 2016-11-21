@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import net.sf.tweety.arg.delp.parser.DelpParser;
+import net.sf.tweety.arg.delp.syntax.DelpRule;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.fol.syntax.FolFormula;
 import net.sf.tweety.logics.fol.syntax.Negation;
@@ -36,41 +37,41 @@ public final class TestFormulaParsing {
 
     @Test
     public void parseSimple() throws IOException {
-        FolFormula fol;
-        fol = (FolFormula) PARSER_BIRDS.parseFormula("Bird(tweety)");
+        DelpRule fol;
+        fol = PARSER_BIRDS.parseFormula("Bird(tweety)");
         assertTrue("Formula '"+fol+"' is ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
 
-        fol = (FolFormula) PARSER_BIRDS.parseFormula("tweety");
+        fol = PARSER_BIRDS.parseFormula("tweety");
         assertTrue("Formula '"+fol+"' is ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
         assertEquals("First predicate has arity 0", 0, fol.getPredicates().iterator().next().getArity());
 
-        fol = (FolFormula) PARSER_BIRDS.parseFormula(" \tPenguin(tina) \n");
+        fol = PARSER_BIRDS.parseFormula(" \tPenguin(tina) \n");
         assertTrue("Formula '"+fol+"' is ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
 
-        fol = (FolFormula) PARSER_BIRDS.parseFormula("  Scared (  tweety )");
+        fol = PARSER_BIRDS.parseFormula("  Scared (  tweety )");
         assertTrue("Formula '"+fol+"' is ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
         assertEquals("First predicate has arity 1", 1, fol.getPredicates().iterator().next().getArity());
 
-        fol = (FolFormula) PARSER_BIRDS.parseFormula("~  Bird (\ntweety)");
+        fol = PARSER_BIRDS.parseFormula("~  Bird (\ntweety)");
         assertTrue("Formula '"+fol+"' is ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
         assertTrue("Formula '"+fol+"' is negation", fol instanceof Negation);
 
-        fol = (FolFormula) PARSER_BIRDS.parseFormula(" ~Bird (Ydog)");
+        fol = PARSER_BIRDS.parseFormula(" ~Bird (Ydog)");
         assertFalse("Formula '"+fol+"' is NOT ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
         assertTrue("Formula '"+fol+"' is negation", fol instanceof Negation);
 
-        fol = (FolFormula) PARSER_STOCKS.parseFormula(" in_fusion (A, B)");
+        fol = PARSER_STOCKS.parseFormula(" in_fusion (A, B)");
         assertFalse("Formula '"+fol+"' is NOT ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
         assertEquals("First predicate has arity 2", 2, fol.getPredicates().iterator().next().getArity());
 
-        fol = (FolFormula) PARSER_STOCKS.parseFormula(" ~ in_fusion (A, steel)");
+        fol = PARSER_STOCKS.parseFormula(" ~ in_fusion (A, steel)");
         assertFalse("Formula '"+fol+"' is NOT ground", fol.isGround());
         assertTrue("Formula '"+fol+"' is literal", fol.isLiteral());
     }

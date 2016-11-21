@@ -28,6 +28,7 @@ import net.sf.tweety.arg.dung.semantics.ArgumentStatus;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.semantics.Labeling;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -61,7 +62,7 @@ public class SemiStableReasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+	public Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){
 		// check all complete extensions and remove those sets with non-mininal set of undecided arguments
 		Set<Extension> exts = new CompleteReasoner(this.getInferenceType()).getExtensions(beliefBase);
 		Map<Extension,Extension> extUndec = new HashMap<Extension,Extension>();
@@ -87,7 +88,7 @@ public class SemiStableReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.arg.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out, Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("Implement me!");
 	}
 }

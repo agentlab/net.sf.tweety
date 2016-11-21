@@ -37,12 +37,11 @@ import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
-import net.sf.tweety.commons.BeliefSet;
+import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 import net.sf.tweety.logics.commons.analysis.InconsistencyMeasure;
 import net.sf.tweety.logics.commons.analysis.MusEnumerator;
-import net.sf.tweety.logics.pl.PlBeliefSet;
 import net.sf.tweety.logics.pl.analysis.InconsistencyMeasureFactory;
 import net.sf.tweety.logics.pl.analysis.InconsistencyMeasureFactory.Measure;
 import net.sf.tweety.logics.pl.parser.PlParserFactory;
@@ -127,8 +126,8 @@ public class InconsistencyMeasurementService{
 	 */
 	private class MeasurementCallee implements Callable<Double>{
 		InconsistencyMeasure<PropositionalFormula> measure;
-		BeliefSet<PropositionalFormula> beliefSet;
-		public MeasurementCallee(InconsistencyMeasure<PropositionalFormula> measure, BeliefSet<PropositionalFormula> beliefSet){
+		BeliefBase<PropositionalFormula> beliefSet;
+		public MeasurementCallee(InconsistencyMeasure<PropositionalFormula> measure, BeliefBase<PropositionalFormula> beliefSet){
 			this.measure = measure;
 			this.beliefSet = beliefSet;
 		}
@@ -190,12 +189,12 @@ public class InconsistencyMeasurementService{
 			throw new JSONException("Malformed JSON: unknown value for attribute \"measure\"");
 		if(!query.has(InconsistencyMeasurementService.JSON_ATTR_FORMAT))
 			throw new JSONException("Malformed JSON: no \"format\" attribute given");
-		Parser<PlBeliefSet> parser = PlParserFactory.getParserForFormat(
+		Parser<PropositionalFormula> parser = PlParserFactory.getParserForFormat(
 						Format.getFormat(query.getString(InconsistencyMeasurementService.JSON_ATTR_FORMAT)));
 		if(parser == null)
 			throw new JSONException("Malformed JSON: unknown value for attribute \"format\"");
 		try {
-			PlBeliefSet beliefSet = parser.parseBeliefBase(query.getString(InconsistencyMeasurementService.JSON_ATTR_KB));			
+			BeliefBase<PropositionalFormula> beliefSet = parser.parseBeliefBase(query.getString(InconsistencyMeasurementService.JSON_ATTR_KB));			
 			ExecutorService executor = Executors.newSingleThreadExecutor();
 			double val;
 			long millis = System.currentTimeMillis();

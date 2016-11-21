@@ -101,10 +101,11 @@ public class OvercautiousArgumentationAgent extends SasAgent {
 	protected Set<Argument> attackSet(){
 		DungTheory commonView = this.getCommonView().toDungTheory();
 		Set<Argument> attackSet = new HashSet<Argument>();
-		for(Argument a : commonView){
+		Collection<Argument> index = commonView.getIndex(Argument.class);
+		for(Argument a : index){
 			ArgumentStructure arg1 = (ArgumentStructure) a;
 			if(arg1.getClaim().equals(this.focalElement)){
-				for(Argument b: commonView){
+				for(Argument b: index){
 					ArgumentStructure arg2 = (ArgumentStructure) b;
 					if(commonView.isIndirectAttack(arg2, arg1)){
 						attackSet.addAll(arg2);

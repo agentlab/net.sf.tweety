@@ -21,6 +21,7 @@ package net.sf.tweety.arg.social;
 import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.arg.social.semantics.SimpleProductSemantics;
 import net.sf.tweety.arg.social.semantics.SocialMapping;
 import net.sf.tweety.commons.Answer;
@@ -37,7 +38,7 @@ import net.sf.tweety.commons.Reasoner;
  *
  */
 @Component(service = Reasoner.class)
-public class IssReasoner implements Reasoner<Argument, Argument>{
+public class IssReasoner implements Reasoner<DungEntity, Argument>{
 
 	/** The semantics used by this reasoner. */
 	private SimpleProductSemantics semantics;
@@ -72,9 +73,9 @@ public class IssReasoner implements Reasoner<Argument, Argument>{
 	 * @return the maximum-norm distance between the two social
 	 * mappings
 	 */
-	private double dist(SocialMapping<Double> sm1, SocialMapping<Double> sm2, BeliefBase<Argument> args){
+	private double dist(SocialMapping<Double> sm1, SocialMapping<Double> sm2, BeliefBase<DungEntity> args){
 		double dist = 0;
-		for(Argument a: args){
+		for(Argument a: args.getIndex(Argument.class)){
 			if(Math.abs(sm1.get(a)-sm2.get(a)) > dist)
 				dist = Math.abs(sm1.get(a)-sm2.get(a));
 		}
@@ -85,17 +86,17 @@ public class IssReasoner implements Reasoner<Argument, Argument>{
 	 * Returns the social model computed by the ISS algorithm.
 	 * @return the social model computed by the ISS algorithm.
 	 */
-	public SocialMapping<Double> getSocialModel(BeliefBase<Argument> beliefBase){
+	public SocialMapping<Double> getSocialModel(BeliefBase<DungEntity> beliefBase){
 		if(this.mapping == null){
 			SocialAbstractArgumentationFramework saf = (SocialAbstractArgumentationFramework) beliefBase;
 			this.mapping = new SocialMapping<Double>(this.semantics);
-			for(Argument a: saf)
+			for(Argument a: saf.getIndex(Argument.class))
 				this.mapping.put(a, 0.5);
 			SocialMapping<Double> newmapping = this.mapping;
 			do{
 				this.mapping = newmapping;
 				newmapping = new SocialMapping<Double>(this.semantics);
-				for(Argument a: saf){
+				for(Argument a: saf.getIndex(Argument.class)){
 					double val = this.semantics.supp(saf.getPositive(a), saf.getNegative(a));
 					for(Argument b: saf.getAttackers(a)){
 						if(newmapping.containsKey(b))
@@ -114,7 +115,7 @@ public class IssReasoner implements Reasoner<Argument, Argument>{
 	 * @see net.sf.tweety.commons.Reasoner#query(net.sf.tweety.commons.Formula)
 	 */
 	@Override
-	public Answer query(BeliefBase<Argument> beliefBase, Argument query) {
+	public Answer query(BeliefBase<DungEntity> beliefBase, Argument query) {
 		Answer answer = new Answer(beliefBase, query);
 		SocialMapping<Double> socialModel = this.getSocialModel(beliefBase);
 		answer.setAnswer(socialModel.satisfies(query));

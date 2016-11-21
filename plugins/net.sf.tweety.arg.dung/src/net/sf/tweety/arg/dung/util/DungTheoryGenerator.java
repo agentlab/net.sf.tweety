@@ -18,8 +18,9 @@
  */
 package net.sf.tweety.arg.dung.util;
 
-import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
+import net.sf.tweety.commons.BeliefBase;
 
 /**
  * Class implementing this interface provide the capability
@@ -32,7 +33,7 @@ public interface DungTheoryGenerator {
 	 * Generates a new Dung theory
 	 * @return a Dung theory,
 	 */
-	public DungTheory generate();
+	public BeliefBase<DungEntity> generate();
 	
 	/**
 	 * Generates a new Dung theory where the given argument
@@ -41,7 +42,7 @@ public interface DungTheoryGenerator {
 	 *  to be in the grounded extension of the generated theory.
 	 * @return a Dung theory,
 	 */
-	public DungTheory generate(Argument arg);
+	public BeliefBase<DungEntity> generate(Argument arg);
 	
 	/**
 	 * Set the seed for the generation. Every two

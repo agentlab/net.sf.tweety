@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Component;
 
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -61,7 +62,7 @@ public class PreferredReasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	protected Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+	protected Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){
 		Set<Extension> completeExtensions = new SccCompleteReasoner().getExtensions(beliefBase);
 		Set<Extension> result = new HashSet<Extension>();
 		boolean maximal;
@@ -82,7 +83,7 @@ public class PreferredReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
 		throw new UnsupportedOperationException("not defined for preferred semantics");
 	}
 }

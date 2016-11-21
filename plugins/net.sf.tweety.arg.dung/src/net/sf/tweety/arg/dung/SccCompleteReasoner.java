@@ -31,6 +31,7 @@ import org.osgi.service.component.annotations.Component;
 import net.sf.tweety.arg.dung.semantics.Extension;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
 import net.sf.tweety.commons.Reasoner;
 import net.sf.tweety.logics.pl.PlBeliefSet;
@@ -73,7 +74,7 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 	 * @param undec all arguments currently undecided
 	 * @return the set of extensions
 	 */
-	private Set<Extension> computeExtensionsViaSccs(BeliefBase<Argument> beliefBase, DungTheory theory, List<Collection<Argument>> sccs, int idx, Collection<Argument> in, Collection<Argument> out, Collection<Argument> undec){
+	private Set<Extension> computeExtensionsViaSccs(BeliefBase<DungEntity> beliefBase, DungTheory theory, List<Collection<Argument>> sccs, int idx, Collection<Argument> in, Collection<Argument> out, Collection<Argument> undec){
 		if(idx >= sccs.size()){
 			Set<Extension> result = new HashSet<Extension>();
 			result.add(new Extension(in));
@@ -88,7 +89,7 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 		Argument aux = new Argument("_aux_argument8937");
 		subTheory.add(aux);
 		subTheory.add(new Attack(aux,aux));
-		for(Argument a: subTheory)
+		for(Argument a: subTheory.getIndex(Argument.class))
 			if(theory.isAttacked(a, new Extension(undec)))				
 				subTheory.add(new Attack(aux,a));
 		// compute complete extensions of sub theory
@@ -104,7 +105,7 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 			for(Argument a: ext)
 				attacked.addAll(theory.getAttacked(a));
 			new_out.addAll(attacked);
-			for(Argument a: subTheory)
+			for(Argument a: subTheory.getIndex(Argument.class))
 				if(a != aux && !ext.contains(a) && !attacked.contains(a))
 					new_undec.add(a);			
 			result.addAll(this.computeExtensionsViaSccs(beliefBase, theory, sccs, idx+1, new_in, new_out, new_undec));
@@ -115,9 +116,9 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#computeExtensions()
 	 */
-	public Set<Extension> computeExtensions(BeliefBase<Argument> beliefBase){
+	public Set<Extension> computeExtensions(BeliefBase<DungEntity> beliefBase){
 		DungTheory theory = (DungTheory) beliefBase;
-		List<Collection<Argument>> sccs = new ArrayList<Collection<Argument>>(theory.getStronglyConnectedComponents());		
+		List<Collection<Argument>> sccs = new ArrayList<Collection<Argument>>((new DungTheoryGraph(theory)).getStronglyConnectedComponents());		
 		// order SCCs in a DAG
 		boolean[][] dag = new boolean[sccs.size()][sccs.size()];
 		for(int i = 0; i < sccs.size(); i++){
@@ -155,7 +156,7 @@ public class SccCompleteReasoner extends AbstractExtensionReasoner {
 	 * @see net.sf.tweety.argumentation.dung.AbstractExtensionReasoner#getPropositionalCharacterisationBySemantics(java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<Argument> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
+	protected PlBeliefSet getPropositionalCharacterisationBySemantics(BeliefBase<DungEntity> beliefBase, Map<Argument, Proposition> in, Map<Argument, Proposition> out,Map<Argument, Proposition> undec) {
 		return new CompleteReasoner().getPropositionalCharacterisationBySemantics(beliefBase, in, out, undec);
 	}
 	

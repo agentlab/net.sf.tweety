@@ -23,6 +23,7 @@ import java.util.Collection;
 import net.sf.tweety.agents.Perceivable;
 import net.sf.tweety.agents.dialogues.ExecutableDungTheory;
 import net.sf.tweety.arg.dung.DungTheory;
+import net.sf.tweety.arg.dung.DungTheoryGraph;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.prob.lotteries.UtilityFunction;
 import net.sf.tweety.graphs.Graph;
@@ -43,7 +44,7 @@ public class UtilityBasedLotteryAgent extends AbstractLotteryAgent{
 	public ExecutableDungTheory next(Collection<? extends Perceivable> percepts) {
 		double bestUtility = Double.NEGATIVE_INFINITY;
 		DungTheory e = new DungTheory();
-		for(Graph<Argument> subgraph: this.theory.getSubgraphs()){
+		for(Graph<Argument> subgraph: (new DungTheoryGraph(theory)).getSubgraphs()){
 			DungTheory sub = new DungTheory(subgraph);
 			Double d = this.util.getUtility(sub, this.semantics);
 			if(d > bestUtility){

@@ -27,9 +27,8 @@ import org.osgi.service.component.annotations.Component;
 import net.sf.tweety.arg.dung.DungTheory;
 import net.sf.tweety.arg.dung.syntax.Argument;
 import net.sf.tweety.arg.dung.syntax.Attack;
+import net.sf.tweety.arg.dung.syntax.DungEntity;
 import net.sf.tweety.commons.BeliefBase;
-import net.sf.tweety.commons.BeliefSet;
-import net.sf.tweety.commons.Formula;
 import net.sf.tweety.commons.Parser;
 import net.sf.tweety.commons.ParserException;
 
@@ -45,13 +44,13 @@ import net.sf.tweety.commons.ParserException;
  * @author Matthias Thimm
  */
 @Component(service = Parser.class)
-public class ApxParser implements Parser<Argument>{
+public class ApxParser implements Parser<DungEntity>{
 
 	/* (non-Javadoc)
 	 * @see net.sf.tweety.commons.Parser#parseBeliefBase(java.io.Reader)
 	 */
 	@Override
-	public BeliefBase<Argument> parseBeliefBase(Reader reader) throws IOException, ParserException {
+	public BeliefBase<DungEntity> parseBeliefBase(Reader reader) throws IOException, ParserException {
 		DungTheory theory = new DungTheory();
 		BufferedReader in = new BufferedReader(reader);
 		String row = null;
@@ -101,7 +100,7 @@ public class ApxParser implements Parser<Argument>{
 	 * @see net.sf.tweety.commons.Parser#parseFormula(java.io.Reader)
 	 */
 	@Override
-	public Argument parseFormula(Reader reader) throws IOException, ParserException {
+	public DungEntity parseFormula(Reader reader) throws IOException, ParserException {
 		String row;
 		StringBuilder line = new StringBuilder();
 		int c;

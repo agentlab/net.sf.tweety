@@ -69,70 +69,13 @@
         </detail>
       </annotation>
       <requirement
-          name="ch.qos.logback.slf4j"
-          versionRange="[1.0.7,1.1.0)"/>
-      <requirement
-          name="ch.qos.logback.classic"
-          versionRange="[1.0.7,1.1.0)"/>
-      <requirement
-          name="ch.qos.logback.core"
-          versionRange="[1.0.7,1.1.0)"/>
-      <requirement
           name="org.objenesis"/>
-      <requirement
-          name="org.slf4j.api"
-          versionRange="[1.7.2,1.8.0)"/>
-      <requirement
-          name="org.slf4j.jcl"
-          versionRange="[1.7.2,1.8.0)"/>
-      <requirement
-          name="org.slf4j.ext"
-          versionRange="[1.7.2,1.8.0)"/>
-      <requirement
-          name="org.slf4j.jul"
-          versionRange="[1.7.2,1.8.0)"/>
-      <requirement
-          name="org.slf4j.log4j"
-          versionRange="[1.7.2,1.8.0)"/>
-      <requirement
-          name="org.apache.commons.codec"
-          versionRange="[1.4.0,2.0.0)"/>
-      <requirement
-          name="org.apache.commons.collections"
-          versionRange="[3.2.0,3.3.0)"/>
-      <requirement
-          name="org.apache.commons.io"
-          versionRange="[2.2.0,2.3.0)"/>
       <requirement
           name="org.apache.commons.math"/>
       <requirement
           name="org.apache.commons.math3"/>
       <requirement
-          name="org.hamcrest.core"
-          versionRange="[1.3.0,2.0.0)"/>
-      <requirement
-          name="org.hamcrest.generator"
-          versionRange="[1.3.0,2.0.0)"/>
-      <requirement
-          name="org.hamcrest.integration"
-          versionRange="[1.3.0,2.0.0)"/>
-      <requirement
-          name="org.hamcrest.library"
-          versionRange="[1.3.0,2.0.0)"/>
-      <requirement
           name="org.kohsuke.args4j"/>
-      <requirement
-          name="org.mockito.feature.feature.group"
-          versionRange="[1.9.5,2.0.0)"/>
-      <requirement
-          name="org.eclipse.equinox.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.swt.dummyfragments.feature.group"/>
-      <requirement
-          name="com.codeaffine.osgi.test.util.feature.feature.group"/>
-      <requirement
-          name="org.junit.feature.feature.group"
-          versionRange="[4.12.0,5.0.0)"/>
       <requirement
           name="*"/>
       <sourceLocator
@@ -142,16 +85,6 @@
           name="Neon">
         <repository
             url="http://download.eclipse.org/tools/orbit/S-builds/S20161021172207/repository"/>
-        <repository
-            url="http://fappel.github.io/xiliary"/>
-        <repository
-            url="http://agentlab.ru/eclipse/update/org.junit/4.12.0/"/>
-        <repository
-            url="http://agentlab.ru/eclipse/update/org.mockito/1.10.19/"/>
-        <repository
-            url="http://agentlab.ru/p2/orbit/missing-swt-fragments/"/>
-        <repository
-            url="http://download.eclipse.org/eclipse/updates/4.6"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -202,7 +135,7 @@
   </setupTask>
   <stream name="master"/>
   <logicalProjectContainer
-      xsi:type="setup:ProjectCatalog"
-      href="index:/org.eclipse.setup#//@projectCatalogs[name='ru.agentlab']"/>
+      xsi:type="setup:Project"
+      href="index:/org.eclipse.setup#//@projectCatalogs[name='ru.agentlab']/@projects[name='osgi']"/>
   <description>IDE Setup for Tweety Project</description>
 </setup:Project>

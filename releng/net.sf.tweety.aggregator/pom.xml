@@ -13,7 +13,7 @@
 	</parent>
 
 	<modules>
-		<module>../../plugins/net.sf.tweety.action</module>
+		<!--<module>../../plugins/net.sf.tweety.action</module>
 		<module>../../plugins/net.sf.tweety.agents</module>
 		<module>../../plugins/net.sf.tweety.agents.dialogues</module>
 		<module>../../plugins/net.sf.tweety.arg.aba</module>
@@ -27,9 +27,9 @@
 		<module>../../plugins/net.sf.tweety.arg.saf</module>
 		<module>../../plugins/net.sf.tweety.arg.social</module>
 		<module>../../plugins/net.sf.tweety.beliefdynamics</module>
-		<module>../../plugins/net.sf.tweety.cli</module>
+		<module>../../plugins/net.sf.tweety.cli</module>-->
 		<module>../../plugins/net.sf.tweety.commons</module>
-		<module>../../plugins/net.sf.tweety.graphs</module>
+		<!--<module>../../plugins/net.sf.tweety.graphs</module>
 		<module>../../plugins/net.sf.tweety.logics.cl</module>
 		<module>../../plugins/net.sf.tweety.logics.commons</module>
 		<module>../../plugins/net.sf.tweety.logics.dl</module>
@@ -45,9 +45,9 @@
 		<module>../../plugins/net.sf.tweety.lp.asp</module>
 		<module>../../plugins/net.sf.tweety.lp.asp.beliefdynamics</module>
 		<module>../../plugins/net.sf.tweety.lp.nlp</module>
-		<module>../../plugins/net.sf.tweety.machinelearning</module>
+		<module>../../plugins/net.sf.tweety.machinelearning</module>-->
 		<module>../../plugins/net.sf.tweety.math</module>
-		<module>../../plugins/net.sf.tweety.preferences</module>
+		<!--<module>../../plugins/net.sf.tweety.preferences</module>
 		<module>../../plugins/net.sf.tweety.web</module>
 		
 		<module>../../tests/net.sf.tweety.arg.aba.tests</module>
@@ -64,9 +64,9 @@
 		<module>../../tests/net.sf.tweety.lp.asp.tests</module>
 		<module>../../tests/net.sf.tweety.lp.asp.beliefdynamics.tests</module>
 		<module>../../tests/net.sf.tweety.lp.nlp.tests</module>
-		<module>../../tests/net.sf.tweety.machinelearning.tests</module>
+		<module>../../tests/net.sf.tweety.machinelearning.tests</module>-->
 		<module>../../tests/net.sf.tweety.math.tests</module>
-		<module>../../tests/net.sf.tweety.preferences.tests</module>
+		<!--<module>../../tests/net.sf.tweety.preferences.tests</module>
 		
 		<module>../../examples/net.sf.tweety.arg.deductive.examples</module>
 		<module>../../examples/net.sf.tweety.arg.dung.examples</module>
@@ -83,7 +83,7 @@
 		<module>../../examples/net.sf.tweety.logics.rdl.examples</module>
 		<module>../../examples/net.sf.tweety.logics.rpcl.examples</module>
 		<module>../../examples/net.sf.tweety.lp.asp.examples</module>
-		<module>../../examples/net.sf.tweety.machinelearning.examples</module>
+		<module>../../examples/net.sf.tweety.machinelearning.examples</module>-->
 
 		<!-- <module>../../releng/net.sf.tweety.repository</module> -->
 		<module>../../releng/net.sf.tweety.target</module>

@@ -7,5 +7,6 @@ Export-Package: net.sf.tweety.graphs,
  net.sf.tweety.graphs.orders,
  net.sf.tweety.graphs.util
 Require-Bundle: net.sf.tweety.math;bundle-version="1.7.0",
- net.sf.tweety.commons;bundle-version="1.7.0"
+ net.sf.tweety.commons;bundle-version="1.7.0",
+ gov.nist.math.jama.gov.nist.math.jama;bundle-version="1.1.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

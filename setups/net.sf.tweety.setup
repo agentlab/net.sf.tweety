@@ -69,13 +69,17 @@
         </detail>
       </annotation>
       <requirement
-          name="org.objenesis"/>
+          name="gov.nist.math.jama.gov.nist.math.jama"/>
       <requirement
           name="org.apache.commons.math"/>
       <requirement
           name="org.apache.commons.math3"/>
       <requirement
+          name="org.objenesis"/>
+      <requirement
           name="org.kohsuke.args4j"/>
+      <requirement
+          name="org.sat4j.core"/>
       <requirement
           name="*"/>
       <sourceLocator
@@ -85,6 +89,8 @@
           name="Neon">
         <repository
             url="http://download.eclipse.org/tools/orbit/S-builds/S20161021172207/repository"/>
+        <repository
+            url="http://agentlab.ru/pd/p2/eclipseorbit/"/>
       </repositoryList>
     </targlet>
   </setupTask>

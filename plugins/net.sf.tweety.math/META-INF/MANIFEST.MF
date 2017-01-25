@@ -17,5 +17,9 @@ Export-Package: net.sf.tweety.math,
 Require-Bundle: net.sf.tweety.commons;bundle-version="1.0.0",
  org.apache.commons.math;bundle-version="2.1.0",
  org.apache.commons.math3;bundle-version="3.5.0",
- org.slf4j.api;bundle-version="1.7.2"
+ org.slf4j.api;bundle-version="1.7.2",
+ gov.nist.math.jama.gov.nist.math.jama;bundle-version="1.1.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: .,
+ libs/lbfgs-0.1.jar,
+ libs/ojalgo-35.0.jar

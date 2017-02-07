@@ -18,47 +18,47 @@ public class Prover9Test {
 
 	static FolTheoremProver e;
 	FolWriter printer = new Prover9Writer();
-	
+
 	@BeforeClass public static void init(){
 		e = new Prover9("C:\\app\\prover9\\bin\\prover9.exe");
 	}
 
-	@Test
+    @Test
+    public void testMortal() throws Exception {
+        FolParser parser = new FolParser();
+        String source = "Object = {sokrat, stone, sea} \n"//
+            + "type(People(Object)) \n"//
+            + "type(Mortal(Object)) \n"//
+            + "People(sokrat) \n"//
+            + "forall X: (!People(X) || Mortal(X)) \n";
+        FolBeliefSet b = parser.parseBeliefBase(source);
+        printer.printBase(b);
+        System.out.println(printer);
+        assertTrue(e.query(b, (FolFormula)parser.parseFormula("People(sokrat)")));
+        assertFalse(e.query(b, (FolFormula)parser.parseFormula("People(stone)")));
+        assertTrue(e.query(b, (FolFormula)parser.parseFormula("Mortal(sokrat)")));
+        assertFalse(e.query(b, (FolFormula)parser.parseFormula("Mortal(sea)")));
+        assertTrue(e.query(b, (FolFormula)parser.parseFormula("exists X: (Mortal(X))")));
+        assertFalse(e.query(b, (FolFormula)parser.parseFormula("exists X: (!People(X)) && (Mortal(X))")));
+    }
+
+    @Test
 	public void test1() throws Exception {
-		FolParser parser = new FolParser();	
+		FolParser parser = new FolParser();
 		String source = "type(a) \n type(b) \n type(c) \n"
 				+ "a \n !b";
 		FolBeliefSet b = parser.parseBeliefBase(source);
 		//printer.printBase(b);
 		System.out.println(printer);
-		assertFalse(e.query(b, (FolFormula)parser.parseFormula("b")));
+        assertFalse(e.query(b, (FolFormula)parser.parseFormula("b")));
 		assertTrue(e.query(b, (FolFormula)parser.parseFormula("a")));
 		assertFalse(e.query(b, (FolFormula)parser.parseFormula("c")));
 		assertFalse(e.query(b, (FolFormula)parser.parseFormula("!c")));
 	}
-	
-	@Test
-	public void test2() throws Exception {
-		FolParser parser = new FolParser();	
-		String source = "Animal = {horse, cow, lion} \n"
-				+ "type(Tame(Animal)) \n"
-				+ "type(Ridable(Animal)) \n"
-				+ "Tame(cow) \n"
-				+ "!Tame(lion) \n"
-				+ "Ridable(horse) \n"
-				+ "forall X: (!Ridable(X) || Tame(X)) \n";
-		FolBeliefSet b = parser.parseBeliefBase(source);
-		printer.printBase(b);
-		System.out.println(printer);
-		assertTrue(e.query(b, (FolFormula)parser.parseFormula("Tame(cow)")));
-		assertTrue(e.query(b, (FolFormula)parser.parseFormula("exists X: (Tame(X))")));
-		assertTrue(e.query(b, (FolFormula)parser.parseFormula("Tame(horse)")));
-		assertTrue(e.query(b, (FolFormula)parser.parseFormula("!Ridable(lion)")));
-	}
-	
-	@Test
+
+    @Test
 	public void test3() throws Exception {
-		FolParser parser = new FolParser();	
+		FolParser parser = new FolParser();
 		String source = "Animal = {horse, cow, lion} \n"
 				+ "Plant = {grass, tree} \n"
 				+ "type(Eats(Animal, Plant)) \n"
@@ -80,11 +80,11 @@ public class Prover9Test {
 		assertFalse(e.query(b, (FolFormula)parser.parseFormula("forall X: (forall Y: (Eats(Y, X)))")));
 		assertTrue(e.query(b, (FolFormula)parser.parseFormula("!(forall X: (forall Y: (Eats(Y, X))))")));
 	}
-	
 
-	@Test
+
+    @Test
 	public void test4() throws Exception {
-		FolParser parser = new FolParser();	
+		FolParser parser = new FolParser();
 		String source = "type(a) \n type(b) \n type(c) \n"
 				+ "a \n !b";
 		FolBeliefSet b = parser.parseBeliefBase(source);
